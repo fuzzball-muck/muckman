@@ -1,0 +1,116 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Rooms and the Environment Tree
+  (cont'd)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="rooms1.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="things.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>Overview: Rooms and the Environment Tree (cont'd)</b></p>
+
+<p>The position of a room within the environment tree can be changed
+(that is, it can be `re-parented') with the <code>@teleport</code>
+command: teleport the daughter room to its new parent room. For example,
+if another player wanted to begin a new area &#151; an African village
+say &#151; she could start off from the pier in Sinshe, and use the
+<code>@teleport</code> command to position the new rooms correctly.</p>
+
+<p><code>
+====================================<br>
+&gt; @dig Environment: Afurica<br>
+&nbsp;  Environment: Afurica created with room number #5266.<br>
+&nbsp;  Parent set to Sinshe Parent Room(#635RA).<br>
+&gt; @tel #5266 = #101<br>
+&nbsp;  Parent set.<br>
+&gt; @dig Kapiti Plain Environment Room<br>
+&nbsp;  Kapiti Plain Environment Room created with room number #5435.<br>
+&nbsp;  Parent set to Sinshe Parent Room(#635RA).<br>
+&gt; @tel #5435 = #5266<br>
+&nbsp;  Parent set.<br>
+&gt; @dig Kapiti Plain -- By the Watering Hole<br>
+&nbsp;  Kapiti Plain -- By the Watering Hole created with room <br>
+&nbsp;  number #5433.<br>
+&nbsp;  Parent set to Sinshe Parent Room(#635RA).<br>
+&gt; @tel #5433 = #5435<br>
+&nbsp;  Parent set.<br>
+&gt; @act kap = me<br>
+&nbsp;  Action created with number #5435 and attached.<br>
+&gt; @link kap = #5433<br>
+&gt; kap<br>
+&nbsp;  Kapiti Plain -- By the Watering Hole(#5433R)<br>
+&gt; @trace here<br>
+&nbsp;  Kapiti Plain -- By the Watering Hole(#5433R)<br>
+&nbsp;  Kapiti Plain Environment Room(#5435R)<br>
+&nbsp;  Environment: Afurica(#5266R)<br>
+&nbsp;  Master Environment(#101RA)<br>
+&nbsp;  **Missing**<br>
+&nbsp;  ***End of List***<br>
+====================================<br>
+</code></p>
+
+<p>The new environment rooms do not have an <code>Abode</code> flag. In
+order to make <code>#5435</code> and <code>#5266</code> appear for other
+players in a <code>@trace,</code> and in order for player-created rooms
+to be correctly parented, they will need to be set <code>Abode.</code>
+Once Kenya has moved to <code>Kapiti Plain -- By the Watering
+Hole(#5433)</code>, any new rooms she digs from there will be correctly
+parented to <code>Kapiti Plain Environment Room(#5435)</code>.</p>
+
+<p>Alternately, the parent room can be declared at the time the room is
+created.</p>
+
+<p><code>
+====================================<br>
+&gt; @dig Environment: Afurica = #101<br>
+&nbsp;  Environment: Afurica created with room number #5266.<br>
+&nbsp;  Trying to set parent...<br>
+&nbsp;  Parent set to Master Environment(#101RA).<br>  
+====================================
+</code></p>
+
+<p>Registered names also can be declared when the room is created.</p>
+
+<p><code>
+====================================<br>
+&gt; @dig Kapiti Plain -- By the Watering Hole = #5435 = kap<br> 
+&nbsp;  Kapiti Plain -- By the Watering Hole created with room <br>
+&nbsp;  number #5433.<br>
+&nbsp;  Trying to set parent...<br>
+&nbsp;  Parent set to Sinshe Parent Room(#635RA).<br>
+&nbsp;  Room registered as $kap<br>
+&nbsp;  <br>
+&nbsp;  or...<br>
+  <br>                     
+&gt; @dig Kapiti Plain -- By the Watering Hole == kap<br>
+&nbsp;  Kapiti Plain -- By the Watering Hole created with room <br>
+&nbsp;  number #5433.<br>
+&nbsp;  Parent set to Sinshe Parent Room(#635RA).<br>
+&nbsp;  Room registered as $kap<br>
+====================================<br>
+</code></p>
+
+
+  <center>
+  <a href="rooms1.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="things.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

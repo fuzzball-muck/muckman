@@ -1,0 +1,249 @@
+<html>
+<head>
+  <title>The MUCK Manual: Messages and Message Properties</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="specprops.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="datatypes.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.1.2  Messages and Message Properties</b></p>
+
+<p>As indicated earlier, a set of properties in the <code>_/</code>
+directory is given special handling by the server. They can be set with
+a group of server commands such as <code>@succ,</code>
+<code>@ofail,</code> etc., and they cause strings to be parsed and
+displayed automatically whenever certain events happen.  Collectively,
+this group of commands, properties, and their values are called
+`messages'.</p>
+
+<p><pre>
+    <em>Command/Message Type       Property</em>
+    @desc                      _/de
+    @succ                      _/sc
+    @osucc                     _/osc
+    @fail                      _/fl
+    @ofail                     _/ofl
+    @drop                      _/dr
+    @odrop                     _/odr
+    @pecho                     _/pecho
+    @oecho                     _/oecho
+</pre></p>
+
+<p>(There does not seem to be a definitive pronunciation for messages:
+when speaking in RL, some people would say `at-fail' for
+<code>@fail,</code> and others would say simply `fail'.)</p>
+
+<p>The <code>@desc</code> message is evaluated and displayed to any user
+who looks at an object of any type.</p>
+
+<p><code>
+====================================<br>
+&gt; @desc me = A nymph with green hair.{look-notify}<br>
+&nbsp;  Message set.<br>
+&gt; l me<br>
+&nbsp;  [ Kiri looked at you. ]<br>
+&nbsp;  A nymph with green hair.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>@succ</code> message is evaluated and displayed to any user
+who successfully uses an object. The meaning of `success' varies
+depending on the object type. To successfully use a thing or a program
+means to pick it up. To successfully use a room means to look at it. To
+successfully use an exit means to pass through it or use it as a command
+that triggers a program. To successfully use a player means to steal one
+of her pennies with the <code>rob</code> command.</p>
+
+<p><code>
+====================================<br>
+&gt; @succ out = You step out back.<br>
+&nbsp; Message set.<br>
+&gt; out<br>
+&nbsp; You step out back.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>@osucc</code> message is evaluated and displayed to all
+players in a room where a player successfully uses the object, <em>other
+than</em> the player in question. The <code>@osucc</code> message (that
+is, the string stored in the object's <code>_/osc</code> property) is
+prefaced with the user's name when it is displayed.</p>
+
+<p><code>
+====================================<br>
+&gt; @osucc out = steps out back.<br>
+&nbsp; Message set.<br>
+<br>
+&nbsp;  (Kiri types `out'... others see...)<br>
+&nbsp;  Kiri steps out back.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>@fail</code> is evaluated and displayed to a user who fails to
+successfully use an object. The normal reason for failure is that the
+object is locked against the player. The terms for success or failure
+are those indicated above, for <code>@succ</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; @fail vault = Ahem. Only authorized bank employees may open the<br>
+&nbsp;  vault. Various alarms begin to sound. <br>
+&nbsp; Message set.<br>
+&gt; @lock vault = ~banker:yes<br>
+&nbsp;  Locked.<br>
+&gt; vault<br>
+&nbsp;  Ahem. Only authorized bank employees may open the vault.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>@ofail</code> message is evaluated and displayed to all
+players in a room where a player fails to successfully use the object,
+<em>except</em> the player in question. The <code>@ofail</code> message
+is prefaced with the user's name when it is displayed.</p>
+
+<p><code>
+====================================<br>
+&gt; @ofail vault = tried to open the vault! Shrill alarms begin ringing!<br>
+&nbsp;  Message set.<br>
+<br>
+&nbsp;  (Kiri types `vault'... others see...)<br>
+&nbsp;  Kiri tried to open the vault! Shrill alarms begin ringing!<br>
+====================================<br>
+</code></p>
+
+<p>The <code>@drop</code> message is evaluated and displayed to a player
+who triggers a drop. For a thing or program, a drop is triggered when
+the object is dropped. For a room, a drop is triggered whenever an
+object is dropped in the room. For an exit, a drop is triggered when a
+player (or other object type) passes through th exit (using an
+exit/action linked to a program does not trigger a drop).  For a player,
+a drop is triggered when he or she is killed.</p>
+
+<p><code>
+====================================<br>
+&gt; @drop grenade = BANG!<br>
+&nbsp;  Message set.<br>
+&gt; drop grenade<br>
+&nbsp;  BANG!<br>
+====================================<br>
+</code></p>
+
+<p>The <code>@odrop</code> message is is evaluated and displayed to all
+players in a room where a player drops an object, except for the
+triggering player, or all other players in the room a player arrives in
+when she passes through an exit. The <code>@odrop</code> message is
+prefaced with the user's name when it is displayed.
+
+<p><code>
+====================================<br>
+&gt; @odrop out = comes out of the house.<br>
+&nbsp;  Message set.<br>
+<br>
+&nbsp;  (Kiri types `drop out'... the players in the outside room see...)<br>
+&nbsp;  Kiri comes out of the house.<br>
+&nbsp;  Kiri has arrived.<br>
+<br>
+&gt; @odrop grenade = drops a grenade! Run! {null:{delay:3,{lit:<br>
+&nbsp;  {null:{tell:BANG!}}}}}<br>
+&nbsp;  Message set.<br>
+<br>
+&nbsp;  (Kiri types `drop grenade'... others see...)<br>
+&nbsp;  Kiri drops a grenade! Run!<br>
+&nbsp;  BANG!<br>
+====================================<br>
+</code></p>
+
+<p><code>@pecho</code> and <code>@oecho</code> are somewhat different
+than the preceding messages, having to do with the format of messages
+transmitted (or `broadcast') by puppets and vehicles.</p>
+
+<p>By default, output broadcast from a puppet is prefaced by the
+puppet's name and a &gt; greater than sign. Typing <code>@pecho
+&lt;puppet name&gt; = &lt;new preface string&gt;</code> sets the puppet
+object's <code>_/pecho</code> property, which will become the new
+preface string. (See <a href="puptut.html">Section 4.3</a> for more
+information on creating puppets.)</p>
+
+<p><code>
+====================================<br>
+&gt; z look<br>
+&nbsp;  Squiggy&gt; Amberside Inn, Tavern<br>
+&nbsp;  Squiggy&gt; At first glance the tavern seems little changed from <br>
+&nbsp;  Squiggy&gt; days when pirate sloops sought haven in the protected <br>
+&nbsp;  Squiggy&gt; coves of Amberside's cliffs: the beams are still low <br>
+&nbsp;  Squiggy&gt; and smoke-stained...<br>
+<br>
+&gt; @pecho squiggly = *<br>
+&nbsp;  Message set.<br>
+<br>
+&gt; ex squig = _/<br>
+&nbsp;  str /_/pecho:*<br>
+&nbsp;  1 property listed.<br>
+<br>
+&gt; z look<br>
+&nbsp;  * Amberside Inn, Tavern<br>
+&nbsp;  * At first glance the tavern seems little changed from days when <br>
+&nbsp;  * pirate sloops sought haven in the protected coves of Amberside's <br>
+&nbsp;  * cliffs: the beams are still low and smoke-stained...<br>
+====================================<br>
+</code></p>
+
+<p>By default, messages broadcast from the exterior of a vehicle object
+to its interior will be prefaced by the string <code>Outside&gt;
+</code>. Typing <code>@oecho &lt;vehicle object&gt; = &lt;new preface
+string&gt;</code> will set the vehicle's <code>_/oecho</code> property,
+which will become the new preface string. (See <a
+href="vehicletut.html">Section 4.5</a> for more information on creating
+vehicles.)</p>
+
+<p><code>
+====================================<br>
+&gt; @create 1967 Corvette Sting Ray<br>
+&nbsp;  1967 Corvette Sting Ray created with number #558.<br>
+&gt; @set 1967 = V<br>
+&nbsp;  Flag set.<br>
+&gt; @act getin = 1967<br>
+&nbsp;  Action created with number #559 and attached.<br>
+&gt; @link getin = 1967<br>
+&nbsp;  Linked to 1967 Corvette Sting Ray(#558V)<br>
+&gt; drop 1967<br>
+&nbsp;  Dropped.<br>
+&gt; getin<br>
+&nbsp;  1967 Corvette Sting Ray(#558V)<br>
+<br>
+&gt; z :raps sharply on the window... "Can you hear me in there, <br>
+&nbsp; mistress?"<br>
+&nbsp;  Outside&gt; Squiqqy raps sharply on the window... "Can you hear <br>
+&nbsp;  me in there, mistress?"<br>
+<br>
+&gt; @oecho here = &gt;&gt;&gt;<br>
+&nbsp;  Message set.<br>
+<br>
+&gt; z :raps again. "What about now?"<br>
+&nbsp;  &gt;&gt;&gt; Squiggy raps again. "What about now?"<br>
+====================================<br>
+</code></p>
+
+  <center>
+  <a href="specprops.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="datatypes.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

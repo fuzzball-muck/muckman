@@ -1,0 +1,86 @@
+<html>
+<head>
+  <title>The MUCK Manual: Mucker Levels</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf12.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muflibs.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>3.2.1  Mucker Levels</b></p>
+    
+<p>There are &#151; in effect, if not literally &#151; five MUF permission
+levels: 0 to 4.</p>
+
+<p>Mucker Level 0 refers to players who do not have a Mucker or Wizard
+bit.  They cannot create new programs or use the <code>MUF</code>
+editor. <code>MUF</code> programs owned by them run as if they were
+Level 1 Muckers.</p>
+
+<p>Mucker Level 1 players are `apprentices'. They can use the editor and
+create <code>M1</code> programs. Their programs can only retrieve
+information about objects in the same room. For example, <code>#123
+name</code> will fail if object <code>#123</code> is not in the same
+room as the user running the program. <code>M1</code> programs always
+run as if they are set Setuid. Output (from <code>NOTIFY,</code>
+<code>NOTIFY_EXCEPT,</code> and <code>NOTIFY_EXCLUDE</code>) can only go
+to players in the same room, and will usually (depending on server
+compiler directives) be prefaced with the user's name. They cannot use
+<code>ADDPENNIES.</code> <code>M1</code> programs have an
+instruction-count limit of about 20,000 instructions.</p>
+   
+<p>Mucker Level 2 players are `journeymen'. They can use most but not all
+<code>MUF</code> primitives. They can create <code>M2</code> programs,
+and set programs they own <code>M2</code> or <code>M1.</code>
+<code>M2</code> programs are limited to about 80,000 instructions.</p>
+
+<p>Mucker Level 3 playes are `masters'. They can set programs they own
+<code>M1,</code> <code>M2,</code> or <code>M3.</code> They can use the
+connection information primitives (<code>CONDBREF,</code>
+<code>ONLINE,</code> etc.), can read the <code>EXITS</code> list of any
+room, can use <code>NEXTOBJ</code> on objects, can use
+<code>NEWROOM,</code> <code>NEWOBJECT,</code> <code>NEWEXIT,</code> and
+<code>COPYOBJ</code> without limitations, can use <code>QUEUE</code> and
+<code>KILL,</code> and can override the permissions restrictions of
+<code>MOVETO.</code> There is no absolute limit on <code>M3</code>
+processes' intruction count.</p>
+
+<p>Wizards and wizbitted programs are effectively Mucker Level 4. They
+can set programs they own <code>M1,</code> <code>M2,</code> or
+<code>M3,</code> and <code>W</code> or <code>!W.</code> They can use
+primitives not available to other Mucker Levels, including
+<code>RECYCLE,</code> <code>CONHOST,</code> <code>FORCE,</code> and
+<code>SETOWN.</code> All properties are readable and settable by
+<code>Wizard</code> programs.</p>
+
+<p>The effective Mucker Level of a program is its own Mucker Level or its
+owner's Mucker Level, whichever is lower. There is one exception:
+Programs owned by wizards who do not have a Mucker bit set run at Mucker
+Level 2, unless the program is set <code>Wizard.</code></p>
+
+<p>To set Mucker bits, use just the number as a flag: <code>@set
+cashmere=2.</code></p>
+
+
+  <center>
+  <a href="muf12.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muflibs.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

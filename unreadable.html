@@ -1,0 +1,83 @@
+<html>
+<head>
+  <title>The MUCK Manual: Good but Unreadable</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+	<a href="muf4.html"back">back</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>Good but Unreadable</b></p>
+
+<p><code>MUF</code> has one fairly significant weakness: the more you
+write your code `the <code>MUF</code> way' &#151; that is, with fast,
+low-level stack-handling primitives &#151; the less readable it becomes.
+Here's an example...</p>
+
+<p><pre>
+: SomeFunction   ( d1 s1 d2 s2 --  ) 
+                                    
+  4 pick 4 pick propdir? if
+    3 pick "*/" smatch not if
+      3 pick "/" strcat 3 put
+    then
+  else
+    pop pop pop pop exit
+  then
+  dup "*/" smatch not if
+    "/" strcat
+  then
+    
+  3 pick 5 rotate 5 rotate 5 rotate 5 rotate
+  dup 5 rotate 5 rotate 5 rotate 5 rotate
+  
+  4 pick 4 pick nextprop dup 4 put
+  5 rotate 5 rotate 5 rotate 5 rotate
+    
+  begin
+    4 pick 4 pick getprop if
+      pop over
+      7 pick 7 pick swap subst
+      4 pick 4 pick 4 pick 4 pick
+      4 rotate 4 rotate getprop setprop
+      4 pick 4 pick nextprop dup not if
+        break
+      then
+      dup 4 put 5 put
+    else
+      4 pick 4 pick dup "*/" smatch if
+        dup strlen 1 - strcut pop
+      then
+      over over nextprop not if
+        pop pop break
+      then
+      nextprop dup 4 put 5 put
+    then
+    pop over 7 pick 7 pick swap subst
+  repeat
+  pop pop pop pop pop pop pop pop
+;
+</pre></p>
+
+<p>All clear on what this function does? Probably not... In fact, it
+does do something specific and useful: it copies the contents of one
+propdir to another, omitting subdirectories, without disturbing the
+underlying stack or relying on variables. But, without some help from
+comments, it would take some doing to figure this out.</p>
+
+  <center>
+	<a href="muf4.html"back">back</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

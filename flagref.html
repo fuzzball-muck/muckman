@@ -1,0 +1,289 @@
+<html>
+<head>
+  <title>The MUCK Manual: Flag Reference</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="usercoms.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="srvcomref.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>2.5  Flag Reference</b></p>
+
+<dl>
+<code><p><dt>A (Abode, Abate, Autostart)</p></code>
+<dd><p><em>On a Room</em>: Anyone can set their home or the home of
+objects to the room.</p>
+  
+<dd><p><em>On an Exit</em>: The exit is lower priority than an exit
+without the <code>Abate</code> flag. If
+<code>compatible_priorties</code> is tuned to `no', an abated exit's
+priority is `less than 0'; If <code>compatible_priorites</code> is tuned
+to `yes', an abated exit's priority is `less than 1'.</p>
+
+<dd><p><em>On a Program</em>: The program will automatically be loaded
+into memory and executed when <code>the</code> <code>MUCK</code> starts
+or restarts.</p>
+
+
+<code><dt>B (Builder, Bound, Block)</code>
+
+<dd><p><em>On a Player</em>: Player can create and modify objects with
+the <code>@create, @dig,  @link</code>, and <code>@open.</code> On most
+<code>MUCKs,</code> players start off with a <code>B</code> flag. A
+<code>B</code> flag on players is also called a `builder bit'.</p>
+
+<dd><p><em>On a Room</em>: Personal exits (exits attached to a player)
+cannot be used in the room.</p>
+
+<dd><p><em>On a Program</em>: Any functions within the program run in
+preempt mode. If the program set <code>B</code> is called by another
+program, multi-tasking status returns to that of the calling program
+when execution exits from the called program.</p>
+
+<dd><p>(Only wizards can set and remove B flags.)</p>
+
+
+<code><dt>C (Chown_OK, Color)</code>
+
+<dd><p><em>On any object except Players</em>: Anyone can take control of
+the object with the @chown command (`change ownership').</p>
+  
+<dd><p><em>On a Player</em>: On <code>MUCK</code> versions
+<code>5.x</code> and lower, no effect.  on 6.x, <code>MUCK</code> output
+will be formatted with <code>ASCII</code> color, provided that the
+player's client handles color and that the text has been formatted with
+color.</p>
+
+
+<code><dt>D (Dark, Debug)</code>
+
+<dd><p><em>On a Room</em>: Wizards and the owner of the room see all
+objects normally, but other players see only objects they own. If no
+objects would be seen, a `Contents' list is not appended to the
+description of the room.</p>
+
+<dd><p><em>On a Thing</em>: The object does not appear in the room's
+`Contents' list.</p>
+
+<dd><p><em>On a Player</em>: The player does not appear in the
+`Contents' list of rooms or in the <code>WHO</code> list. Only wizards
+may set players dark.</p>
+
+<dd><p><em>On a Program</em>: A stack trace of internal program
+operations is printed out to anyone who uses the program.</p>
+
+
+<code><dt>E (Exit)</code>
+
+<dd><p><em>Type Flag</em>: The object is an Exit/Action.</p>
+
+
+<code><dt>F (MUCK Forth Program)</code>
+
+<dd><p><em>Type Flag</em>: The object is a program.</p>
+
+
+<code><dt>H (Haven, HardUID)</code>
+
+<dd><p><em>On a Room</em>: The <code>kill</code> command may not be used
+in that room.</p>
+
+<dd><p><em>On a Player</em>: The player cannot be paged.</p>
+
+<dd><p><em>On a Program</em>: The program runs with the permissions of
+the owner of the trigger, rather than with the permissions of the user
+of the program. When this is set in conjunction with the
+<code>Sticky</code> (<code>Setuid</code>, below) flag on a program, and
+the program is owned by a wizard, then it will run with the effective
+mucker level and permissions of the calling program. If the caller was
+not a program, or the current program is <em>not</em> owned by a wizard,
+then it runs with <code>Setuid</code>.</p>
+
+
+<code><dt>J (Jump_OK)</code>
+
+<dd><p><em>On a Room</em>: Players can teleport to and from the room
+(assuming other conditions for teleporting are met). If the
+<code>MUCK</code> is configured with <code>secure_teleporting,</code>
+<code>J</code> indicates that exits attached to players and objects can
+be used to leave to leave the room, and <code>!J</code> indicates that
+they cannot.</p>
+
+<dd><p><em>On a Thing</em>: The object can be moved by a program running
+at any Mucker level.
+
+<dd><p><em>On a Player</em>: The player can teleport to and from rooms
+(assuming other conditions for teleporting are met).</p>
+
+
+<code><dt>K (Kill_OK)</code>
+
+<dd><p><em>On a Player</em>: The player can be killed with the
+<code>kill</code> command. A player who is `killed' is simply sent
+home.</p>
+
+
+<code><dt>L (Link_OK)</code>
+
+<dd><p><em>On a Room</em>: Anyone can link exits to the room.</p>
+
+<dd><p><em>On a Program</em>: The program can be called by any program,
+and can be triggered by actions and propqueues not owned by the owner of
+the program.</p>
+
+
+<code><dt>M1 (Mucker Level 1)</code>  (See also <a
+href="mucklev.html">Section 3.2.1</a>)
+
+<dd><p><em>On a Player</em>: The player is an `apprentice' Mucker. He
+can use the <code>MUF</code> editor and create <code>M1</code>
+programs.</p>
+
+<dd><p><em>On an Exit</em>: The exit runs at priority 1.</p>
+
+<dd><p><em>On a Program</em>: The program runs with Mucker level 1
+permissions. The program cannot get information about or send
+information to any object that is not in the same room. Some
+<code>MUF</code> primitives cannot be used. Program output to anyone
+except the triggering player is prepended with the triggering player's
+name.  Instruction count is limited to about 20,000 instructions. The
+program follows permissions for protected props (see <a
+href="specprops.html">Section 2.1.1</a>).</p>
+
+
+<code><dt>M2  (Mucker Level 2)</code>  (See also <a
+href="mucklev.html">Section 3.2.1</a>)
+
+<dd><p><em>On a Player</em>: The player is a `journeyman' Mucker. She
+can use the <code>MUF</code> editor and create <code>M2</code> programs.
+She can set the Mucker level of any program she controls to
+<code>M1</code> or <code>M2.</p></code>
+
+<dd><p><em>On an Exit</em>: The exit runs at priority 2.</p>
+
+<dd><p><em>On a Program</em>: The program runs with Mucker level 2
+permissions. Some <code>MUF</code> primitives cannot be used.
+Instruction count is limited to about 80,000 instructions. The program
+follows permissions for protected props (see Section 2.1.1).</p>
+
+
+<code><dt>M3  (Mucker Level 3)</code>  (See also <a
+href="mucklev.html">Section 3.2.1</a>)
+
+<dd><p><em>On a Player</em>: The player is a `master' Mucker. He can use
+the <code>MUF</code> editor and create <code>M3</code> programs. He can
+set the Mucker level of any program he controls to <code>M1,</code>
+<code>M2,</code> or <code>M3.</code> </p>
+
+<dd><p><em>On an Exit</em>: The exit runs at priority 3.</p>
+
+<dd><p><em>On a Program</em>: The program runs with Mucker level 3
+permissions. Almost all <code>MUF</code> primitives can be used. There
+is no absolute limit to instruction count, unless the program is running
+in <code>PREEMPT</code> mode. The program may over-ride the permissions
+for protected props.</p>
+
+<code><dt>P  (Player)</code>
+
+<dd><p><em>Type Flag</em>: The object is a Player.</p>
+
+
+<code><dt>Q  (Quell)</code>
+
+<dd><p><em>On a Player or Room</em>: The <code>Quell</code> flag cancels
+the effects of a wizard flag. A wizard player set <code>Q</code> is
+effectively a normal player.  A <code>Q</code> flag on a wizbitted room
+will cancel the realms-wiz powers of the room's owner.</p>
+
+
+<code><dt>R  (Room)</code>
+
+<dd><p><em>Type Flag</em>: The object is a Room.</p>
+
+
+<code><dt>S  (Silent, Sticky, SetUID)</code>
+
+<dd><p><em>On a Thing</em>: The object will return to its home when
+dropped.</p>
+
+<dd><p><em>On a Room</em>: The room's drop-to is delayed until all
+players have left the room.</p>
+
+<!-- <dd><p><em>On an Exit</em>: If the exit is attached to a thing and
+linked to another thing &lt;&lt;&lt;check&gt;&gt;&gt;</p> -->
+
+<dd><p><em>On a Player</em>: The player will not see dbrefs on things
+she owns, and will not see objects in a <code>Dark</code> room. Control
+is unchanged however.</p>
+
+<dd><p><em>On a Program</em>: The program runs with the permissions of
+the owner of the program, and not those of the user.</p>
+
+
+<code><dt>W (Wizard)</code>
+
+<dd><p><em>On a Room</em>: The room's owner has Realms Wiz powers in
+that room and any rooms parented to it, provided that the
+<code>MUCK's</code> <code>realms_control</code> parameter is set to
+`yes'.</p>
+
+<dd><p><em>On an Exit</em>: The exit runs at priority 4.</p>
+
+<dd><p><em>On a Player</em>: The player is a wizard. Wizards have
+control over all objects in the database (although with some
+restrictions in their control over God and other wizards). Wizards can
+use restricted, wiz-only commands, and can set programs, rooms, and
+things <code>W</code> and <code>B.</code> Some wizard powers are enabled
+or disabled by the system parameter <code>god_priv</code>.</p>
+
+<dd><p><em>On a Program</em>: The program is effectively Mucker level 4.
+All <code>MUF</code> primitives may be used, and do not have a maximum
+instruction count unless the program is running in preempt mode.</p>
+
+
+<code><dt>X (Xforcicble)</code>
+
+<dd><p><em>On a Player or Thing</em>: The player or thing may be forced
+by a player (or other object type) to which it is
+<code>force_locked</code>.</p>
+
+
+<code><dt>V (Vehicle)</code>
+
+<dd><p><em>On a Thing</em>: The object is a vehicle.</p>
+
+<dd><p><em>On a Room</em>: Vehicles may not enter the room.</p>
+
+<dd><p><em>On an Exit</em>: Vehicles may not use the exit.</p>
+
+
+<code><dt>Z (Zombie)</code>
+
+<dd><p><em>On a Thing</em>: The object is a Zombie: all output the
+Zombie sees or hears will be related to the controlling player.</p>
+<dd><p><em>On a Room</em>: Zombies may not enter the room or be forced
+in the room.</p>
+
+<dd><p><em>On an Exit</em>: Zombies may not use the exit.</p>
+
+  <center>
+  <a href="usercoms.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="srvcomref.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

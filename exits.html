@@ -1,0 +1,227 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Exits</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="looktraps.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="locks.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.3  Overview: Exits and Locks</b></p>
+
+<p>An `exit' is a link between two objects on a <code>MUCK.</code> When
+the two objects are rooms, the exit creates a virtual `door' between
+them. When the destination is a program, the exit serves as a
+user-created command.  Other combinations are possible. Exits are also
+called `actions'. Use of exits (as well as objects of other types) is
+controlled by `locks': an expression that evaluates as either `true' (in
+which case the exit/object can be used) or `false' (in which case it
+cannot). An exit is characterized by having a starting point (an object
+to which it is `attached') and a destination point (an object to which
+it is `linked').  </p>
+
+<p><b>Exits</b></p>
+
+<p>Exits are created with either the <code>@open</code> or
+<code>@action</code> command. Both create an exit (an object with type
+flag E), but the syntax and defaults are slightly different.</p>
+
+<p>The basic syntax of the <code>@open</code> command is <code>@open
+&lt;exit name&gt;</code>.  An exit created in this way will be attached
+to (i.e., start from) the room in which one issues the command, and it
+will not be linked to anything (it won't lead anywhere). The exit can be
+linked to another object on the <code>MUCK</code> with the
+<code>@link</code> command, syntax <code>@link &lt;exit name&gt; =
+&lt;destination&gt;</code>. Since the destination will usually be
+somewhere else on the <code>MUCK,</code> it will need to be specified by
+dbref rather than name.</p>
+
+<p>
+Hooking up an exit in two steps... <br>
+<code>
+====================================<br>
+&gt; @open out<br>
+&nbsp;  Exit opened with number #1766.<br>
+&gt; @find hallway<br>
+&nbsp;  Ansley Inn, Hallway(#198R)<br>
+&nbsp;  1 objects found.<br>
+&nbsp;  ***End of List***<br>
+&gt; @link out = #98<br>
+&nbsp;  Linked to Ansley Inn, Hallway(#98R)<br>
+====================================<br>
+</code></p>
+
+<p>
+Hooking up an exit in one step...<br>
+<code>
+====================================<br>
+&gt; @open out = #98<br>
+&nbsp;  Exit opened with #1766.<br>
+&nbsp;  Linked to Ansley Inn, Hallway(#198R)<br>
+====================================<br>
+</code></p>
+
+<p>An exit does not have to be attached to a room, however: an exit can
+be attached to anything except a program or another exit. The
+<code>@action</code> command (abbreviated as <code>@act</code>) creates
+an action/exit attached to an object specified at the time of
+creation:</p>
+
+<p><code>
+====================================<br>
+&gt; @act myplace = me<br>
+&nbsp;  Action created with number #1236 and attached.<br>
+&gt; @link myplace = #1234 <br>
+&nbsp;  Linked to Cashmere's Den(#1234).<br>
+====================================<br>
+</code></p>
+
+Many <code>MUCKs</code> have a soft-coded <code>@action</code> command,
+that allows you to specify both the source and destination at the time
+of the exit's creation:</p>
+
+<p><code>
+====================================<br>
+&gt; @act myplace = me,#1234<br>
+&nbsp;  Action created with number #1236 and attached.<br>
+&nbsp;  Trying to link...<br>
+&nbsp;  Linked ot Cashmere's Den(#1234)<br>
+====================================<br>
+</code></p>
+
+<p>The attachments and links of exits can be changed. To relink an exit,
+issue the <code>@unlink</code> command and then <code>@link</code> the
+exit to the new destination.</p>
+
+<p><code>
+====================================<br>
+&gt; @unlink myplace<br>
+&nbsp;  Unlinked.<br>
+&gt; @link myplace = #1768<br>
+&nbsp;  Linked to Cashmere's Bachelor Pad(#5784R).<br>
+====================================
+</code></p>
+
+<p>To change an exit's point of attachment, use the <code>@attach</code>
+command, syntax <code>@attach &lt;exit&gt; = &lt;new attachment
+point&gt;</code></p>
+
+<p><code>
+====================================<br>
+&gt; @attach refrigerator = here<br>
+&nbsp;  Action re-attached.<br>
+====================================<br>
+</code></p>
+
+<p>(Obvious-exit programs generally list exits in the order of
+first-attached to last-attached, or the reverse. Therefore, the order in
+which exits appear on the list can be changed by using
+<code>@attach</code> to re-attach exits to the room: the exit will then
+become the last-attached exit, and move to either the first or last
+position in the list.)</p>
+
+<p>To reiterate, exits have a source (the object to which they are
+attached) and a destination (the object to which they are linked). This
+means that they are <em>one way</em>. This point often causes confusion
+for new builders: in order to create a `door' between two rooms, one
+needs to create two exits, one leading in each direction. The following
+example illustrates this: <code>Cashmere's Bachelor Pad</code> has dbref
+<code>#5784.</code> From the Bachelor Pad, he will create a Bedroom, and
+then create two exits that make a door between the Pad and the
+Bedroom.</p>
+
+<p><code>
+====================================<br>
+&gt; @dig Cashmere's Bedroom<br>
+&nbsp;  Cashmere's Bedroom created with #5792.<br>
+&nbsp;  Parent set to BD's Environment Room(#4989RA).<br>
+&gt; @open Bedroom = #5792<br>
+&nbsp;  Exit opened with number #5793.<br>
+&gt; bedroom<br>
+&nbsp;  Cashmere's Bedroom(#5792)<br>
+&gt; @open Out = #5784<br>
+&nbsp;  Exit opened with number #5784.<br>
+&nbsp;  Linked to Cashmere's Bachelor Pad(#5784R).<br>
+====================================
+</code></p>
+
+<p>Exits linked to things move the the thing to the point of attachment
+when used (rather than moving the user to the thing).</p>
+
+<p><code>
+====================================<br>
+&gt; @act getpup = me<br>
+&nbsp;  Action created with number #4684 and attached.<br>
+&gt; @link getpup = $pup<br>
+&nbsp;  Linked to Squiggy(#128629XZ).<br>
+&gt; getpup<br>
+&nbsp;  done<br>
+&gt; i<br>
+&nbsp;  You are carrying:<br>
+&nbsp;  Squiggy(#128629XZ)<br>
+&nbsp;  You have 10664 wet cats.<br>
+====================================<br>
+</code></p>
+
+<p>Exits' names can include `aliases', other names that can be used as
+the exit name. An existing exit can be renamed to include aliases with
+the <code>@name</code> command, or the aliases can be specified at the
+time of the exit's creation.</p>
+
+<p>
+Renaming an existing exit...<br>
+<code>
+====================================<br>
+&gt; @name bedroom = Bedroom &lt;B&gt;;bedroom;bed;b<br>
+&nbsp;  Name set.<br>
+====================================
+</code></p>
+  
+<p>
+Creating an exit with aliases...<br>
+<code>
+====================================<br>
+&gt; @open Out &lt;O&gt;;out;ou;o<br>
+&nbsp;  Exit opened with number #5785.<br>
+====================================
+</code></p>
+
+<p>Each string separated by a ; semi-colon is an alias for the exit. In
+the `out' example above, typing either <code>out &lt;o&gt;, out,
+ou,</code> or <code>o</code> would cause the player to use the out
+exit. Only the first name or alias is shown a list of obvious exits. The
+above examples follow the common and useful convention of supplying a
+`full' exit name along with a simple abbreviation in the first
+alias.</p>
+
+<p><code>
+====================================<br>
+&gt; look<br>
+&nbsp;  Cashmere's Bachelor Pad(#5784R)<br>
+&nbsp;  Obvious Exits:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Bedroom &lt;B&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Out &lt;O&gt;<br>
+====================================<br>
+</code></p>
+
+  <center>
+  <a href="looktraps.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="locks.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

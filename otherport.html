@@ -1,0 +1,138 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Other Porting Considerations</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="portglobals.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="sysparms.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+
+<p><b>Setting Up the Database (cont't)</b>:</p>
+<p><em>Other Porting Considerations</em>:</p>
+
+<p><em>Permission</em>: all programs in <code>fbmuf.tar</code> and the
+start-up database are in the public domain. For other programs, you
+should make a good faith effort to honor the conditions for porting
+programs. Read the program's header comment, looking for notes about
+permission and/or the author of the program. If the program says it
+can't be ported without permission, don't: instead, contact the
+program's author and ask for permission, or find a similar program that
+can be freely ported.</p>
+
+<p>Sometimes you just can't get in contact with the author, usually
+because he is no longer <code>MUCK</code>'ing. In this case, contact the
+<code>MUCK's</code> <code>MUF</code> or Globals wizard, and let her know
+that you want to port the program.  Usually there is no problem with
+this. And, even if the program says it can be ported freely, sending
+<code>page #mail</code> that you've done so is a good idea: people make
+programs freely available because they would like to see them widely
+used; letting them know you are using their program is a thoughtful
+gesture.</p>
+
+<p><em>Connect and Disconnect Calls</em>: Programs called from these
+queues (and related queues such as <code>_arrive</code> and
+<code>_listen</code>) must be set <code>Link_OK.</code> Again, when
+uploading from scripts, this is handled for you, but when you're
+manually porting the program, you will need to set the calling property
+yourself.</p>
+
+<p><code>
+====================================<br>
+&gt; @set con-announce = L<br>
+ &nbsp; Flag set.<br>
+&gt; @propset #0 = dbref:_connect/announce:#82<br>
+ &nbsp; Property set.<br>
+&gt; ex #0 = _connect/announce<br>
+ &nbsp; ref _connect/announce:con-announce(#82FWLM3)<br>
+====================================
+</code></p>
+
+<p>Sometimes a program needs to be called from a prop like
+<code>_connect,</code> <code>_disconnect,</code> or <code>_listen</code>
+&#151; and so should be set <code>Link_OK</code> &#151; but also needs
+to be kept <em>not</em> <code>Link_OK</code> for security reasons. This
+is handled by creating a small, <code>Link_OK</code> stub program that
+calls the real program. An example of this is provided below, in the
+discussion of setting up Guest characters.</p>
+
+
+<p><em>Macros</em>: Programs uploaded from scripts or provided with the
+start-up database will set up any macros they need. For programs that
+you install yourself, you will sometimes need to define macros. If a
+program that works fine on another <code>MUCK</code> will not compile on
+yours because of an unrecoginized word...</p>
+
+<p><code>
+ &nbsp;   Error in line 273: Unrecognized word otell.
+</code></p>
+
+<p>... the problem is probably an undefined macro. On the
+<code>MUCK</code> from which you are porting the program, go into the
+program editor, type <code>`s'</code> to see a list of defined global
+macros, and look for the offending word...  <code>`otell'</code> in this
+example. Copy the macro definition. Then, on your <code>MUCK,</code>
+define the macro.</p>
+
+<p><code>
+====================================<br>
+&gt; @edit lib-look<br>
+ &nbsp; Entering editor.<br>
+ &nbsp; Line not available for display.<br>
+&gt; def otell ( s --  ) loc @ me @ rot notify_except<br>
+ &nbsp; Entry created.<br>
+&gt; c<br>
+ &nbsp; Compiler done.<br>
+&gt; q<br>
+ &nbsp; Editor exited.<br>
+====================================
+</code></p>
+
+<p><code>MUF</code> Macros are also discussed in <a
+href="mufmacs.html">Section 3.2.3</a>, <code>MUF</code> Macros.</p>
+
+<p><code>MPI</code> Macros: You will probably want to set up global
+<code>MPI</code> macros as well.  These are stored in the
+<code>_msgmacs/</code> directory of Room <code>#0.</code> Set a property
+in this directory, with the name of the macro as the prop name, and the
+<code>MPI</code> to be used in its place as the stored value. For
+example, to set up a simple <code>{look-notify}</code>...</p>
+
+<p><code>
+====================================<br>
+&gt; @set #0=_msgmacs/look-notify:{null:{tell:[ {name:me} looked at <br>
+ &nbsp; you. ],this}}<br>
+ &nbsp; Property set.<br>
+====================================
+</code></p>
+
+<p>Wizards on an established <code>MUCK</code> may well be willing to
+email you a file containing their <code>MUCK's</code> <code>MPI</code>
+macros. <code>MPI</code> macros are also discussed in <a
+href="mpimacs.html">Section 3.1.1</a>.</p>
+
+<p>You may also copy <a href="mufmacsamp.html">sample <code>MUF</code>
+macros</a> and <a href="mpimacsamp.html">sample <code>MPI</code>
+macros</a> from here.</p>
+
+  <center>
+  <a href="portglobals.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="sysparms.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

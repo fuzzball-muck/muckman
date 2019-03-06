@@ -1,0 +1,983 @@
+<html>
+<head>
+  <title>The MUCK Manual: User-Created Command Reference</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="srvcomref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="programming.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<p><b>2.7  User-Created Command Reference</b></p>
+
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<p>This section provides a quick reference for user-created commands
+supplied in the standard start-up database (std-db.db). On many
+<code>MUCKS,</code> several or many of these programs will have been
+modified or replaced with versions that are either more recent or more
+specifically attuned to the needs of the <code>MUCK.</code> So syntax
+may very slightly, but you can reasonably expect to find a command that
+offers similar functionality.  An established <code>MUCK</code> will
+have many other user-created commands besides these.</p>
+
+<p>Most user-created commands follow the convention of a
+<code>#help</code> argument: typing the command name followed by
+<code>#help</code> will display a help
+screen. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="3who">
+<a name="a">
+<p><code>3WHO</code><br>
+<code>3who</code></p>
+
+<p>Displays the names, online times, and idle times of all players
+online, formatted to three columns. A less spammy alternative to
+<code>WHO</code>. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="@archive">
+<p><code>@ARCHIVE &nbsp;|&nbsp; @ARC</code><br>
+<code>@archive &lt;object&gt;</code></p>
+
+<p>The archive command essentially `decompiles' an object, outputting
+all commands and settings that would be necessary to recreate the
+object. The output is simply printed to your screen: it is not saved in
+some archive on the <code>MUCK.</code> In order to use an
+<code>@archive</code> dump, you will need to capture the output, by
+cutting and pasting, logging with a client, or some other means, and
+save it to a file on your own computer.</p>
+
+<p>The archived object can then be recreated by quoting or pasting the
+file into a <code>MUCK</code> window. The most common uses of archive
+dumps are porting objects between <code>MUCKs</code> or keeping a
+back-up copy offline to safeguard against loss or corruption of the
+<code>MUCK's</code> dbase.</p>
+
+<p>The <code>@archive</code> command is recursive:
+<code>&lt;object&gt;</code> and anything contained by
+<code>&lt;object&gt;</code> will be archived. Thus, for example, an
+entire area can be dumped to an archive file by archiving the parent
+room: all rooms, exits, things, and programs in the area that are owned
+by the archiving player will become part of the dump.</p>
+
+<p>For non-wizzes, <code>@</code> wiz props will not be part of the
+dump. Restricted props (props that begin with a <code>~</code> tilde)
+will be included in the dump, but will not be recreated when the archive
+is quoted, unless the player is a wizard at that time. Also, exits
+leading to and from archived rooms or areas cannot be linked when the
+archive is quoted (though exits within an archived area can). It is
+normal to see various <code>`Huh?'</code> and <code>`Permission
+denied'</code> messages when recreating an object from an archive
+dump.</p>
+
+<p><code>MPI</code> and <code>MUF</code> that contains hard-coded dbrefs
+create another portability concern. A dbref, naturally, refers to a
+specific object on a specific <code>MUCK.</code> The corresponding
+object on a different <code>MUCK</code> will have a different dbref. To
+some extent, this problem can be reduced by using pointers and
+registered names when building, describing, coding, etc.  For example,
+if you (player <code>#123</code>) used a personal version of
+<code>{look-notify}</code> ...</p>
+  
+<p><code>
+ &nbsp; &nbsp; {null:{tell:[ {name,me} looked at you. ],#123}}
+</code></p>
+    
+<p>... the code would result in a <code>`Permission denied'</code> error
+if you recreated yourself on another <code>MUCK</code> via an archive
+dump. This could be avoided with either of the following versions:</p>
+
+<p><code>
+ &nbsp; &nbsp; {null:{tell:[ {name,me} looked at you. ],this}}<br>
+ &nbsp; &nbsp; {null:{tell:[ {name,me} looked at you. ],*Jessy}}
+</code></p>
+    
+<p>Recreating objects from archive dumps usually sets temporary
+registered name values on your character, in propdir
+<code>_reg/tmp.</code> It is not necessary to do anything with this
+directory, but to conserve dbase space, you might want to remove it
+after doing a large dump: <code>@set me = _reg/tmp:</code> &nbsp; [<a
+href="#top">top</a>]</p><hr>
+    
+<a name="b">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+<a name="@bansite">
+<p><code>@BANSITE</code><br>
+<code>@bansite sitename (Prevents logins from the given site)</code><br>
+<code>@bansite !sitename (Re-allows logins from the given site)</code><br>
+<code>@bansite #list (Lists all the sites that are banned)</code></p>
+
+<p>This command prevents anyone from logging onto the <code>MUCK</code>
+from a banned site. Along with <code>@toad,</code> it is used to prevent
+problematic players from connecting to the <code>MUCK.</code> For
+example, a player might be toaded for violations of the
+<code>MUCK's</code> acceptable use policy, but continue to log on via
+guest and alternate characters. <code>@Bansite</code> prevents this by
+locking out connections from a given site regardless of the character.
+
+<p>Sites may be specified by host name or numeric address. Wildcards may
+be used in the site name and address. Wildcards are frequently
+necessary, since many <code>ISP's</code> use dynamic host names for
+customer's connected via <code>SLIP</code> or <code>PPP</code>
+connections. For example, an examination of a problematic player's
+<code>@/</code> directory might show that the last host used was: 
+
+<p><code>
+  &nbsp; &nbsp; user12.vnn.luser.com
+</code></p>
+    
+<p>Doing <code>@bansite user12.vnn.luser.com would</code> be
+ineffective: in all likelihood, the first one or two sections of the
+hostname would different the next time the player logged on. In lieu
+of...</p>
+
+<p><code>
+ &nbsp; &nbsp; @bansite user12.vnn.luser.com
+</code></p>
+   
+<p>... one should do:</p>
+    
+<p><code>
+  &nbsp; &nbsp; @bansite *vnn.luser.com &nbsp; &nbsp; &nbsp; - or -<br>
+  &nbsp; &nbsp; @bansite *luser.com
+</code></p>
+    
+<p><code>@Bansite</code> has two disadvantages: it locks out other
+players who connect from the same site, and it offers no protection
+against players who you want to ban but can log on from alternate sites.
+(Wizard only) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="bootall">
+<p><code>BOOTALL</code><br>
+<code>bootall</code></p>
+
+<p>Boots all but your lowest numbered connection. This program does not
+work well. <code>Cmd-@bootme,</code> which is widely available, is a
+better choice. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="c">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="change">
+<p><code>CHANGE</code><br>
+<code>change &lt;object&gt;=&lt;propname&gt;:/&lt;old&gt;/&lt;new&gt;
+&nbsp;&nbsp;&nbsp; - or -<br> change
+&lt;object&gt;=&lt;mesgtype&gt;;/&lt;old&gt;/&lt;new&gt;</code></p>
+
+<p>Edits a property or message, replacing string
+<code>&lt;old&gt;</code> with string <code>&lt;new&gt;.</code> The
+syntax varies slightly &#151; that is, it uses either a : colon or ;
+semi-colon delimiter &#151; for messages and properties. `Messages'
+are `name', `desc', `succ', `osucc', `fail', `ofail', `drop', and
+`odrop'. Examples:</p>
+
+<p><code>
+ &nbsp; &nbsp; change here=_arrive/check:/444/445<br>
+ &nbsp; &nbsp; change me=desc;/top hat/beret
+</code> &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="@check">
+<p><code>@CHECK</code><br>
+<code>@check</code></p>
+
+<p>Checks all objects in your location for completeness, with the
+definition of `complete' being adjusted as appropriate for the object
+type. For example, exits are checked for links, descs, succs, osuccs,
+and odrops. Locked exits are checked for fails and ofails. The command
+prints a list of objects that need further work. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="d">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@doing">
+<p><code>@DOING</code><br>
+<code>@doing &lt;msg&gt;</code></p>
+
+<p>Sets your `sticky do' string... that is, the message shown with your
+name and times with commands <code>WHO</code> and <code>whodo.</code>
+The original purpose of doing strings was to provide a way for people to
+let others know what they are doing at the moment. Rather than
+frequently updating their doing string, most players set it to some
+(presumably) witty or interesting `bumpersticker' type remark, and leave
+it. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="e">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="edit">
+<p><code>EDIT</code><br>
+<code>edit &lt;object&gt; = &lt;prop&gt; &nbsp; &nbsp; or,</code><br>
+<code>edit &lt;object&gt; = @&lt;mesgtype&gt;</code></p>
+
+<p>This unusual and useful command is works only with the TinyFugue
+<code>UNIX</code> client. Entering the command and parameters pulls the
+value of <code>&lt;prop&gt;</code> or <code>&lt;mesgtype&gt;</code> into
+your client window, with the cursor positioned for editing. You can then
+use arrow keys, backspace, etc., to edit the property value. Pressing
+`enter' stores the new property value. <code>&lt;Mesgtype&gt;</code> can
+be `name', `desc', `succ', `osucc', `fail', `ofail', `drop', or
+`odrop'.</p>
+
+<p>Before using <code>edit,</code> you must define the following
+TinyFugue macro:</p>
+
+<p><code>
+ &nbsp; &nbsp;   /def -fg -p100 -t"##edit&gt; *" = /grab %-1
+</code></p>
+    
+<p>Like most TinyFugue settings, this setting is `volatile'... It is not
+retained between TinyFugue sessions. To avoid having to redefine it each
+time, put the definition line in TinyFugue's resource file, .tfrc, so
+that it will be defined each time you start the client. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="f">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="fetch">
+<p><code>FETCH &nbsp;|&nbsp; RETRIEVE &nbsp;|&nbsp; GRAB</code><br>
+<code>fetch &lt;object 1&gt; from &lt;object 2&gt;</code></p>
+
+<p>Removes <code>&lt;object</code> 1&gt; from <code>&lt;object</code>
+2&gt;. You must be carrying <code>&lt;object</code> 2&gt; and it must
+not be locked or <code>container_locked</code> against you. The object
+names do not have to be typed completely: partial strings sufficient to
+distinguish the object from others you are carrying will work. See also
+<a href="#put"><code>put</code></a>, below. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="g">
+<a name="h">
+<a name="i">
+<a name="j">
+<a name="k">
+<a name="l">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="lookat">
+<p><code>LOOKAT</code><br>
+<code>lookat &lt;player's&gt; &lt;object&gt;</code></p>
+
+<p>Does a `possessive look', showing you the description of an object
+being carried by another player. Example: <code>lookat tarka's linux club
+pin</code>. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="lsedit">
+<p><code>LSEDIT &nbsp;|&nbsp; LSE</code><br>
+<code>lsedit &lt;object&gt; = &lt;list name&gt;</code></p>
+
+<p>Puts you in an interactive list editor. See <a
+href="lists.html">Sections 2.1</a> and <a href="lsedittut.html">4.1</a>
+for more information. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="lsprop">
+<p><code>LSPROP &nbsp;|&nbsp; LSP</code><br>
+<code>lsprop &lt;object&gt; [= &lt;path&gt;]</code></p>
+
+<p>Lists all properties on object and their values. If a path is
+specified, it will list only properties on that path. Examples:</p>
+    
+<p><code>
+ &nbsp; &nbsp; lsp me ........... Lists all properties on your
+ character<br>
+ &nbsp; &nbsp; lsp me = _descs .. Lists all properties in your _descs/
+ directory
+</code> <p>[<a href="#top">top</a>]</p><hr>
+    
+<a name="m">
+<a name="n">
+<a name="o">
+<a name="p">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="propcp">
+<p><code>PROPCP &nbsp;|&nbsp; CP</code><br>
+<code>cp &lt;object 1&gt;=&lt;prop 1&gt;,&lt;object 2&gt;=&lt;prop
+2&gt;</code></p>
+
+<p>Copies <code>&lt;prop 1&gt;</code> and its value from
+<code>&lt;object 1&gt;</code> to <code>&lt;prop 2&gt;</code> on
+<code>&lt;object 2&gt;</code>. This example copies the @succ of exit
+`out' to another exit:</p>
+    
+<p><code>
+  &nbsp; &nbsp;  cp out=_/sc,#1344=_/sc  
+</code></p>
+ 
+<p><code>Propcp</code> handles partial input well. If <code>&lt;object
+1&gt;</code> is omitted, it assumes <code>&lt;prop 1&gt;</code> is on
+the user. If <code>&lt;object 2&gt;</code> is omitted, it assumes the
+destination object is the same as <code>&lt;object 1&gt;</code>...
+i.e., that you are copying from one prop to another on the same object.
+If <code>&lt;prop 2&gt;</code> is omitted, is assumes that it is the
+same as <code>&lt;prop 1&gt;</code>... i.e., that you are copying a
+property on one object to the same property on a different object. If
+more information is omitted, the program will ask for it. Rather than
+providing all &#151; or even any &#151; of the information on the
+command line, one can simply type cp, and respond to prompts. You must
+control both objects. See also <a href="#propmv"><code>propmv</code></a>,
+below. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="">
+<p><code>PROPMV &nbsp;|&nbsp; MV</code><br>
+<code>mv &lt;object 1&gt;=&lt;prop 1&gt;,&lt;object 2&gt;=&lt;prop
+2&gt;</code></p>
+
+<p>Moves <code>&lt;prop 1&gt;</code> and its value from <code>&lt;object
+1&gt;</code> to <code>&lt;prop 2&gt;</code> on <code>&lt;object
+2&gt;</code>, erasing <code>&lt;prop 1&gt;</code>. This example moves
+the fail message on `out' to the ofail:</p>
+    
+<p><code>
+  &nbsp; &nbsp;  mv out=_/fl,out=_/ofl   
+</code></p>
+ 
+<p>Propmv handles partial input well. If <code>&lt;object 1&gt;</code>
+is omitted, it assumes <code>&lt;prop 1&gt;</code> is on the user. If
+<code>&lt;object 2&gt;</code> is omitted, it assumes the destination
+object is the same as <code>&lt;object 1&gt;</code>...  i.e., that you
+are moving a value from one prop to another on the same object. If
+<code>&lt;prop 2&gt;</code> is omitted, is assumes that it is the same
+as <code>&lt;prop 1&gt;</code>... i.e., that you are moving a property
+on one object to the same property on a different object. If more
+information is omitted, the program will ask for it. Rather than
+providing all &#151; or even any &#151; of the information on the
+command line, one can simply to <code>mv,</code> and respond to prompts.
+You must control both objects.  See also <a
+href="#propcp"><code>propcp</code></a>, above. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@purge">
+<p><code>@PURGE</code><br>
+<code>@purge &lt;player&gt; = yes</code></p>
+
+<p>Recycles all of <code>&lt;player's&gt;</code> belongings. Most often,
+this will be used before <code>@toad.</code> It is a good idea to do
+<code>@owned &lt;player&gt;</code> first, and make suitable
+arrangements. Exits leading to rooms owned by the player will become
+unlinked, and should either be relinked or recycled. Public building
+&#151; or rooms that are jointly used by the player and others &#151;
+should be chowned to someone else. Mortals my purge only themselves;
+wizards may purge any player. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="put">
+<p><code>PUT &nbsp;|&nbsp; REPLACE &nbsp;|&nbsp; STUFF</code><br>
+<code>put &lt;object 1&gt; in &lt;object 2&gt;</code></p>
+
+<p>Moves <code>&lt;object 1&gt;</code> from your inventory into the
+contents of <code>&lt;object 2&gt;</code>. You must be holding both
+objects, and <code>&lt;object 2&gt;</code> must not be locked or
+<code>container_locked</code> against you. Partial names for both
+objects will work. See also <a href="#fetch"><code>fetch</code></a>,
+above. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="q">
+<a name="r">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="read">
+<p><code>READ &nbsp;|&nbsp; WRITE &nbsp;|&nbsp; EDIT &nbsp;|&nbsp; ERASE
+&nbsp;|&nbsp; PROTECT</code><br>
+
+<p>These commands operate bulletin boards that run from the standard
+bulletin board program, gen-mesgboard. <code>Read</code> is also an
+in-server alias for <code>look.</code> So, in a room that contains a
+bulletin board, <code>read</code> is a bulletin board command;
+elsewhere, it does a <code>look</code>.</p>
+
+<table>
+<tr><td valign="top"> &nbsp; <code>read</code></td><td>Show the headers of all posted messages.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>read new</code></td><td>Show headers of all messages less than 2 days old.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>read recent</code></td><td>Show headers of all messages after last read messages.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>read &lt;keyword&gt;</code></td><td>Show headers of all messages with matching <code>&lt;keyword&gt;</code>.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>read -&lt;days&gt;</code></td><td>Show headers of all messages fewer than <code>&lt;days&gt;</code> old.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>read &lt;mesgnum&gt;</code></td><td>Read the message referred to by the given message number.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>read - </code></td><td>Read the next message, after the last one you read.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>read -recent</code></td><td>Read all messages after last read message, in one continuous stream.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>write</code></td><td>Post a message. Prompts for subject and keywords.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>write &lt;subject&gt;</code></td><td>Post a message with given <code>&lt;subject&gt;</code>.  Prompts for keywords.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>write &lt;subject&gt;=&lt;keywords&gt;</code>  </td><td>Post a message with given <code>&lt;subject&gt;</code> and <code>&lt;keywords&gt;</code>.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>erase &lt;message num&gt;</code> </td><td>Lets message owner erase a previously written message.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>editmesg &lt;message num&gt;</code> </td><td>Lets message owner edit a previously written message.<br></td></tr>
+
+<tr><td valign="top"> &nbsp; <code>protect &lt;message num&gt;</code> </td><td>Lets a wizard protect a message from auto-expiration.<br></td></tr>
+</table>
+[<a href="#top">top</a>]</p><hr>
+
+<a name="@register">
+<p><code>@REGISTER &nbsp;|&nbsp; @REG</code><br>
+<code>@reg &lt;object&gt; = &lt;registered name&gt;</code><br>
+<code>@reg #me &lt;object&gt; = &lt;registered name&gt;</code><br>
+<code>@reg #prop &lt;target object&gt;:&lt;propdir&gt; &lt;object&gt; =
+&lt;registered name&gt;</code></p>
+
+<p>Sets a registered name for <code>&lt;object&gt;.</code> (See <a
+href="regnames.html">Section 2.1.5</a> for more information on
+registered names).</p>
+
+<p>The default format, <code>@reg &lt;object&gt; = &lt;registered name&gt;</code>, creates a global registered name by setting property <code>_reg/&lt;reg name&gt;</code> on room #0 with the value of <code>&lt;object's&gt;</code> dbref. Because a property is being set on room #0, this will result in a `Permission denied' error for a mortal player (unless she happens to own room #0). The following example, which would be typed by a wizard, gives the gen-nothing program the registered name of <code>nothing</code>; players would then be able to link actions to it by typing <code>@link &lt;action&gt; = $nothing</code></p>
+   
+<p><code>
+  &nbsp; &nbsp;  @reg gen-nothing = nothing
+</code></p>
+
+<p>Registered names can be set on your character rather than on room #0,
+in which case they will be be meaningful only for you, by using the
+<code>#me</code> argument. The following example, which could be typed
+by a mortal, or by a wizard who wants to create a personal registered
+name, gives a puppet object the registered name `pup'. It could then be
+specified by <code>$pup,</code> rather than its dbref, as in <code>@tel
+$pup = me</code>.</p>
+    
+<p><code>
+  &nbsp; &nbsp;  @reg #me squiggy = pup
+</code></p>
+
+<p>You can over-ride the target propdir, from <code>_reg/</code> to
+anything else, by using the <code>#prop</code> argument. If the target
+propdir does not begin with <code>_reg/</code> , the setting will not be
+usable as a registered name; this would simply be a way to set a
+property with data type dbref rather than string (which could also be
+accomplished with <code>@propset</code>). The following example sets
+property <code>_disconnect/cleanup</code> in the current room with the
+dbref of program gen-sweeproom.</p>
+    
+<p><code>
+  &nbsp; &nbsp; @register #prop here:_disconnect gen-sweeproom=cleanup
+</code></p>
+    
+<p>The same thing could be accomplished by typing:</p>
+
+<p><code>
+  &nbsp; &nbsp; @propset here=dbref:_disconnect/cleanup:&lt;#dbref of gen-sweeproom&gt;
+</code></p>
+
+<p>This example makes a setting in sub-propdir <code>_reg/lib,</code>
+giving the lib-strings library program the registered name
+<code>$lib/strings.</p></code>
+
+<p><code>
+  &nbsp; &nbsp;  @register #prop #0:_reg/lib lib-strings = strings
+</code></p>
+    
+<p>The same thing could be accomplished by typing:</p>
+
+<p><code>
+  &nbsp; &nbsp; @register lib-strings = lib/strings &nbsp; &nbsp; - or
+  -<br>
+  &nbsp; &nbsp; @propset #0 = dbref:_reg/lib/strings:&lt;#dbref of lib-strings&gt;
+</code></p>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="restart"
+<p><code>@RESTART</code><br>
+<code>@restart</code></p>
+
+<p>This command kills all active programs and restarts any set
+<code>Autostart.</code> It works by forcing the user to do <code>@kill
+all</code>, which means that God may not
+use it if the muck is running with the compile-time option
+<code>god_priv</code>. (Wizard only) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="s">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@size">
+<p><code>@SIZE</code><br>
+<code>@size &lt;object&gt;</code></p>
+
+Calculates the memory used by <code>&lt;object&gt;</code>. Note that if
+<code>cmd-@sizer</code> is not set <code>Wizard</code>, the memory used by
+Wizard props will not be included in the total.[<a
+href="#top">top</a>]</p><hr>
+
+<a name="sweep">
+<p><code>SWEEP</code><br>
+<code>sweep  (sweeps all sleepers in the room)</code><br>
+<code>sweep &lt;player&gt; (sweeps &lt;player&gt;)</code></p>
+
+<p>Sends home all players in a room who are sleeping, and who
+are not owners of the room.  It also sends their contents 
+that they do not own home when it homes them. If you control the room,
+you may also sweep online players who do not control the room.</p>
+
+<p>The following prop settings, on either yourself or a room, as
+appropriate, are used to configure the command:</p>
+  
+<p><table valign="top">
+  <tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/sweep</code> </td>       
+    <td> message shown when you sweep the room.</td>
+  </tr><tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/swept</code></td>
+    <td> message shown if you are swept.</td>
+  </tr><tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/fmt/</code></td>
+    <td> propdir where sweep-player formats are stored.</td>
+  </tr><tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/fmt/std</code></td>
+    <td> message shown if you sweep an individual player.</td>
+  </tr><tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/to</code></td>
+    <td> where players swept in this room go to. ie: room #1234</td>
+  </tr><tr>
+    <td valign="top"> <nobr>&nbsp; &nbsp;
+		<code>_sweep/authorized&nbsp; </code></nobr></td>
+    <td><nobr> players authorized to sweep this room. Format: #12 #432 #190</td>
+  </tr><tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/immune</code></td>
+    <td> players immune to general sweeps in this room.</td>
+  </tr><tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/public?</code></td>
+    <td> if `yes' means this room in sweepable by anyone.</td>
+  </tr><tr>
+    <td valign="top"> &nbsp; &nbsp; <code>_sweep/immune?</code></td>
+    <td> If `yes', means this THING doesn't home from inventory when the
+    player is swept.</td>
+  </tr>
+</table>[<a href="#top">top</a>]</p><hr>
+
+<a name="t">
+<a name="u">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="uptime">
+<p><code>UPTIME</code><br>
+<code>uptime</code></p>
+
+<p>Displays the time since the server was last restarted.&nbsp;[<a
+href="#top">top</a>]</p><hr>
+
+<a name="v">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@view">
+<p><code>@VIEW</code><br>
+<code>@view &lt;program&gt;</code></p>
+
+<p>Displays documentation for <code>&lt;program&gt;</code>, if the
+program is appropriately configured.</p>
+
+To configure a program for use with <code>@view</code>, set it
+<code>Link_OK</code> and set the program's <code>_docs</code> property
+with a string that emulates a command that would show the documents. The
+most common way to do this is to set the <code>_docs</code> property to
+a command that <code>@lists</code> the header comment of the program.
+For example, if the first 54 lines of program
+<code>claimhome.muf(#47)</code> are a comment with documentation, one
+would configure the program for use with <code>@view</code> by typing:
+
+<p><code>
+  &nbsp; &nbsp; @set #47 = L<br>
+  &nbsp; &nbsp; @set #47 = _docs:@list #47 = 1 - 54
+</code></p>
+
+<p>Other command formats are possible. Another example:</p>
+
+<p><code>
+  &nbsp; &nbsp; @set #47 = _docs:info claimhome
+</code></p>
+<p>[<a href="#top">top</a>]</p><hr>
+<hr>
+
+<a name="w">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@when">
+<p><code>@WHEN</code><br>
+<code>@when &lt;object&gt;</code></p>
+
+<p>Displays timestamp information for <code>&lt;object&gt;</code>: time
+created, time last modified, time last used, and usecount.
+<code>&lt;object&gt;</code> defaults to <code>`here'.</code> You must control
+<code>&lt;object&gt;</p>
+
+<a name="x">
+<a name="y">
+<a name="z">
+
+  <center>
+  <a href="srvcomref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="programming.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

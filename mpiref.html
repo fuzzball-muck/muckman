@@ -1,0 +1,2712 @@
+<html>
+<head>
+  <title>The MUCK Manual: MPI Reference</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mpiex.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>3.1.3  MPI Reference</b></p>
+
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<p>
+<center>
+<table border="0">
+  <tr>
+    <td colspan="5"><em>Connection Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#awake">awake</a></code></td>
+    <td><code><a href="#idle">idle</a></code></td>
+    <td><code><a href="#online">online</a></code></td>
+    <td><code><a href="#ontime">ontime</a></code></td>    
+    <td><code>&nbsp;</code></td>
+  </tr><tr>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </code></td>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </code></td>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </code></td>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </code></td>
+    <td><code>&nbsp;</code></td>
+  </tr><tr>
+    <td colspan="5"><em>DB Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#contains">contains</a></code></td>
+    <td><code><a href="#contents">contents</a></code></td>
+    <td><code><a href="#controls">controls</a></code></td>
+    <td><code><a href="#dbequals">dbequals</a></code></td>
+    <td><code><a href="#exits">exits</a></code></td>
+  </tr><tr>
+    <td><code><a href="#flags">flags</a></code></td>
+    <td><code><a href="#force">force</a></code></td>
+    <td><code><a href="#fullname">fullname</a></code></td> 
+    <td><code><a href="#holds">holds</a></code></td>
+    <td><code><a href="#istype">istype</a></code></td>
+  </tr><tr>
+    <td><code><a href="#links">links</a></code></td>
+    <td><code><a href="#location">location</a></code></td>
+    <td><code><a href="#locked">locked</a></code></td>
+    <td><code><a href="#money">money</a></code></td>
+    <td><code><a href="#name">name</a></code></td>
+  </tr><tr>
+    <td><code><a href="#nearby">nearby</a></code></td>
+    <td><code><a href="#owner">owner</a></code></td>
+    <td><code><a href="#ref">ref</a></code></td>
+    <td><code><a href="#testlock">testlock</a></code></td>
+    <td><code><a href="#type">type</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>List-Handling Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#commas">commas</a></code></td>
+    <td><code><a href="#count">count</a></code></td>
+    <td><code><a href="#lcommon">lcommon</a></code></td>
+    <td><code><a href="#lmember">lmember</a></code></td>
+    <td><code><a href="#lrand">lrand</a></code></td>
+  </tr><tr>
+    <td><code><a href="#sublist">sublist</a></code></td> 
+    <td><code><a href="#lremove">lremove</a></code></td>
+    <td><code><a href="#lsort">lsort</a></code></td>
+    <td><code><a href="#lunion">lunion</a></code></td>
+    <td><code><a href="#lunique">lunique</a></code></td>
+  </tr><tr>
+    <td><code><a href="#mklist">mklist</a></code></td>       
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Loop Functions<em></code></td>
+  </tr><tr>
+    <td><code><a href="#filter">filter</a></code></td>
+    <td><code><a href="#fold">fold</a></code></td>
+    <td><code><a href="#for">for</a></code></td>
+    <td><code><a href="#foreach">foreach</a></code></td>
+    <td><code><a href="#parse">parse</a></code></td>
+  </tr><tr>
+    <td><code><a href="#while">while</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Logical Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#and">and</a></code></td>
+    <td><code><a href="#equals">equals</a></code></td>
+    <td><code><a href="#ge">ge</a></code></td>
+    <td><code><a href="#gt">gt</a></code></td>
+    <td><code><a href="#if">if</a></code></td>
+  </tr><tr>
+    <td><code><a href="#le">le</a></code></td>
+    <td><code><a href="#lt">lt</a></code></td>
+    <td><code><a href="#not">not</a></code></td>
+    <td><code><a href="#notequals">notequals</a></code></td>
+    <td><code><a href="#or">or</a></code></td>
+  </tr><tr>
+    <td><code><a href="#xor">xor</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Math Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#absolute">absolute</a></code></td>
+    <td><code><a href="#addition">addition</a></code></td>
+    <td><code><a href="#decrement">decrement</a></code></td>
+    <td><code><a href="#dice">dice</a></code></td>
+    <td><code><a href="#distance">distance</a></code></td>
+  </tr><tr>
+    <td><code><a href="#divide">divide</a></code></td>
+    <td><code><a href="#increment">increment</a></code></td>
+    <td><code><a href="#maximum">maximum</a></code></td>
+    <td><code><a href="#minimum">minimum</a></code></td>
+    <td><code><a href="#modulo">modulo</a></code></td>
+  </tr><tr>
+    <td><code><a href="#multiply">multiply</a></code></td>
+    <td><code><a href="#sign">sign</a></code></td>
+    <td><code><a href="#subtraction">subtraction</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Miscellaneous Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#attr">attr</a></code></td>
+    <td><code><a href="#debug">debug</a></code></td>
+    <td><code><a href="#debugif">debugif</a></code></td>
+    <td><code><a href="#delay">delay</a></code></td>
+    <td><code><a href="#fox">fox</a></code></td>
+  </tr><tr>
+    <td><code><a href="#func">func</a></code></td>
+    <td><code><a href="#isnum">isnum</a></code></td>
+    <td><code><a href="#isdbref">isdbref</a></code></td>
+    <td><code><a href="#kill">kill</a></code></td>
+    <td><code><a href="#macros">macros</a></code></td>
+  </tr><tr>
+    <td><code><a href="#muckname">muckname</a></code></td>
+    <td><code><a href="#muf">muf</a></code></td>
+    <td><code><a href="#version">version</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Property Handling</em></code></td>
+  </tr><tr>
+    <td><code><a href="#concat">concat</a></code></td>
+    <td><code><a href="#delprop">delprop</a></code></td>
+    <td><code><a href="#exec">exec</a></code></td>
+    <td><code><a href="#exec!">exec!</a></code></td>
+    <td><code><a href="#index">index</a></code></td>
+  </tr><tr>
+    <td><code><a href="#index!">index!</a></code></td>
+    <td><code><a href="#lexec">lexec</a></code></td>
+    <td><code><a href="#list">list</a></code></td>
+    <td><code><a href="#listprops">listprops</a></code></td>
+    <td><code><a href="#prop">prop</a></code></td>
+  </tr><tr>
+    <td><code><a href="#prop!">prop!</a></code></td>
+    <td><code><a href="#propdir">propdir</a></code></td>
+    <td><code><a href="#rand">rand</a></code></td>
+    <td><code><a href="#select">select</a></code></td>
+    <td><code><a href="#store">store</a></code></td>
+  </tr><tr>
+    <td><code><a href="#timesub">timesub</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>String Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#center">center</a></code></td>
+    <td><code><a href="#eval">eval</a></code></td>
+    <td><code><a href="#instr">instr</a></code></td>
+    <td><code><a href="#left">left</a></code></td>
+    <td><code><a href="#literal">literal</a></code></td>
+  </tr><tr>
+    <td><code><a href="#midstr">midstr</a></code></td>
+    <td><code><a href="#nl">nl</a></code></td>
+    <td><code><a href="#null">null</a></code></td>
+    <td><code><a href="#otell">otell</a></code></td>
+    <td><code><a href="#pronouns">pronouns</a></code></td>
+  </tr><tr>
+    <td><code><a href="#right">right</a></code></td>
+    <td><code><a href="#smatch">smatch</a></code></td>
+    <td><code><a href="#strip">strip</a></code></td>
+    <td><code><a href="#strlen">strlen</a></code></td>
+    <td><code><a href="#subst">subst</a></code></td>
+  </tr><tr>
+    <td><code><a href="#tell">tell</a></code></td>
+    <td><code><a href="#tolower">tolower</a></code></td>
+    <td><code><a href="#toupper">toupper</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Time Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#convsecs">convsecs</a></code></td>
+    <td><code><a href="#convtime">convtime</a></code></td>
+    <td><code><a href="#created">created</a></code></td>
+    <td><code><a href="#date">date</a></code></td>
+    <td><code><a href="#delay">delay</a></code></td>
+  </tr><tr>
+    <td><code><a href="#ftime">ftime</a></code></td>
+    <td><code><a href="#lastused">lastused</a></code></td>
+    <td><code><a href="#ltimestr">ltimestr</a></code></td>
+    <td><code><a href="#modified">modified</a></code></td>
+    <td><code><a href="#secs">secs</a></code></td>
+  </tr><tr>
+    <td><code><a href="#stimestr">stimestr</a></code></td>
+    <td><code><a href="#time">time</a></code></td>
+    <td><code><a href="#timestr">timestr</a></code></td>
+    <td><code><a href="#tzoffset">tzoffset</a></code></td>
+    <td><code><a href="#timesub">timesub</a></code></td>
+  </tr><tr>
+    <td><code><a href="#usecount">usecount</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Variable-Handling Functions</em></code></td>
+  </tr><tr>
+    <td><code><a href="#arg">&arg</a></code></td>
+    <td><code><a href="#cmd">&cmd</a></code></td>
+    <td><code><a href="#how">&how</a></code></td>
+    <td><code><a href="#set">set</a></code></td>
+    <td><code><a href="#variable">variable</a></code></td>
+  </tr><tr>
+    <td><code><a href="#with">with</a></code></td>
+  </tr>
+</table></center>
+</p>
+
+
+<p><em>Definitions</em></p>
+  
+<dl>
+  <p><dt><em>Trigger</em>
+    <dd>The object that the <code>MPI</code> script is evaluated from.</p>
+  
+  <p><dt><em>List</em>
+    <dd>A string containing several individual substring items,
+    seperated by carriage return characters.</p>
+  
+  <p><dt><em>Property-Based List</em>
+    <dd>A set of consecutively numbered properties that each contain one
+    string in a list of strings. Property based lists are often numbered
+    like: <code>listname1,</code> <code>listname2,</code>
+    <code>listname3,</code> <code>listname4,</code> etc.  Another
+    popular format is <code>listname#/1,</code>
+    <code>listname#/2,</code> <code>listname#/3,</code> etc.
+    <code>MPI</code> can read in either of those formats, and several
+    more, for that matter.</p> 
+
+  <p><dt><em>False</em>
+    <dd>A string value of <code>"0",</code> or a null string
+    (<code>""</code>).</p>
+
+  <p><dt><em>True</em>
+    <dd>Anything that is not False.</p>
+</dl>   
+
+
+<a name="a">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="absolute">
+<p><code>ABS &nbsp;|&nbsp; ABSOLUTE</code><br>
+<code>{abs:expr}</code></p>
+
+<p>Returns the absolute value of <code>expr.</code> 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="addition">
+<p><code>ADD &nbsp;|&nbsp; ADDITION</code><br>
+<code>{add:expr1,expr2}</code><br>
+<code>{add:expr1,expr2,expr3...}</code></p>
+
+<p>Returns the sum of the values of <code>expr1</code> and
+<code>expr2.</code> If more than two args are given, then this will add
+all the args together and return the result.  
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="and">
+<p><code>AND &nbsp;|&nbsp; &&</code><br>
+<code>{and:expr1,expr2...}</code></p>
+
+<p>Returns true if <code>expr1</code> and <code>expr2</code> evaluate as
+true. Otherwise, this returns false. If <code>expr1</code> was false,
+this doesn't bother to evaluate <code>expr2,</code> as it does C-style
+shortcutting. If there are more than two arguments, then this will
+evaluate all of them until either one returns false, in which case this
+function returns false, or until it has evaluated all of the arguments.
+This function returns true only if all the arguments evaluate as true. 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="arg">
+<p><code>ARG &nbsp;|&nbsp; &ARG</code><br>
+<code>{&arg}</code></code></p>
+
+<p>The <code>{&arg}</code> variable contains a string with the value of
+the command line arguments the user entered. This is so that you can
+have stuff like <code>MPI</code> in the fail of an exit, and when the
+user triggers the exit, and has some extra text on the line they
+entered, other than the exitname, the <code>MPI</code> can take that
+extra stuff as arguments for use.  Note that you need to set an action
+<code>Haven</code> to get it to accept command line arguments.  
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="attr">
+<p><code>ATTR | ATTRIBUTE</code><br>
+{attr:attr1,attr2...,text}<br>
+
+<p>This formats <code>text</code> with color and formatting attributes
+specified as <code>attr1,</code> <code>attr2,</code> etc. You may specify up
+to 8 attributes.  Example, to format the string `<code>WARNING!</code>' in
+bold red letters, use <code>{attr:bold,red,WARNING!</code>}. Nesting
+attributes is not recommended.  (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr> 
+
+<a name="awake">
+<p><code>AWAKE</code><br>
+<code>{awake:player}</code></p>
+
+<p>Returns how many times player is connected. This means that it will
+returns 0 if the player is not connected. If the given object is
+<em>not</em> a player, it will return 0. In all other cases, it will
+return a positive number, being how many times the given player is
+connected to the server. 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="b">
+<a name="c">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="center">
+<p><code>CENTER</code><br>
+<code>{center:string}</code><br>
+<code>{center:string,fieldwidth}</code><br>
+<code>{center:string,fieldwidth,padstring}</code></p>
+
+<p>Takes a string and pads it to fit the given fieldwidth, with the
+string center justified. If no padstring is given, it assumes that it
+will pad the string with spaces. If no fieldwidth is given, it assumes
+that the field width is 78 characters. Example:
+<code>{center:Hello,10,1234567890}</code> would return the string
+"123Hello12" 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="commas">
+<p><code>COMMAS</code><br>
+<code>{commas:list}</code><br>
+<code>{commas:list,lastsep}</code><br>
+<code>{commas:list,lastsep,var,expr}</code></p>
+
+<p>Takes a list and returns a plain english comma delimited string with
+the items in it. For example,
+<code>{commas:{mklist:Tom,Dick,Harry}}</code> will return "Tom, Dick and
+Harry". If you specify the lastsep argument, you can replace the "and"
+with something else, such as "or" to get a result like "a, b or c".
+Note: You need to be careful to include spaces around the "or" or else
+you might get a result like "a, borc". </p>
+
+<p>Example:</p>
+
+<p><code>
+  &nbsp;   {commas:{mklist:a,b,c}, or } 
+</code></p>
+
+<p>If the var and expr arguments are passed, then for every item in the
+list, it will set the value of the given variable name (which it will
+declare) to the item, then evaluate expr, and use the result in the
+string it outputs. Example: <code>{commas:{contents:here},\, or
+,v,{name:{&v}}}</code> will return the name of every object in the room in a
+comma separated list, using ", or " as the final conjunction. ie: "Tom,
+Can of SPAM, Dick, or Harry." 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="cmd">
+<p><code>CMD &nbsp;|&nbsp; &CMD</code><br>
+<code>{&cmd}</code></p>
+
+<p>The <code>{&cmd}</code> variable contains the command name the user
+used, that caused the <code>MPI</code> to run. This is generally the
+exit name that the player triggered. For example, if the player typed
+`east', and triggered the exit named `east;e;out', which ran some
+<code>MPI</code> commands, the <code>{&cmd}</code> variable would have a
+value of "east". 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="concat">
+<p><code>CONCAT</code><br>
+<code>{concat:listname}</code><br>
+<code>{concat:listname,obj}</code></p>
+
+<p>Returns a string, containing the concatenated lines of a property
+based list. It concatenates the list semi-intelligently, putting a
+single space between lines normally, and two spaces between lines when
+the previous one ended with a period, exclamation mark, or question
+mark. A property based list is a series of properties that are
+consecutively numbered. The server understands several different
+formats, and can also read in property lists in either the propnameX
+format, or the <code>propname#/X</code> format. It does <em>not</em>
+evaluate the contents of the list for embedded <code>MPI</code>
+commands. If no <code>obj</code> argument is supplied, then it looks for
+the list somewhere down the environment from the trigger object.
+Otherwise, it looks for the list down the environment from the given
+object.  
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="contains">
+<p><code>CONTAINS</code><br>
+<code>{contains:obj1}</code><br>
+<code>{contains:obj1,obj2}</code></p>
+
+<p>Returns true if <code>obj1</code> is within <code>obj2,</code> or
+within anything it contains, or within anything they contain. If
+<code>obj2</code> is not given, then it checks to see is
+<code>obj1</code> is held by the player, or by anything they hold, etc.
+Basically, this just sees if <code>obj1</code> is within the locational
+environment of <code>obj2.</code> 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="contents">
+<p><code>CONTENTS</code><br>
+<code>{contents:obj}</code><br>
+<code>{contents:obj,type}</code></p>
+
+<p>Returns a list of the contents of the given object. If a second
+argument is passed to it, it restricts the listing to only those objects
+that are of the given type. Either the object must be nearby the trigger
+object, or else the owner of the trigger object must control the object.
+Otherwise this will error out with a <code>Permission Denied</code>
+error. The valid object type values are <code>Room,</code>
+<code>Thing,</code> <code>Exit,</code> <code>Player,</code>
+<code>Program,</code> and <code>Bad.</code> <em>Hint</em>:  If you need
+to get a list of two types of objects from the room, just concatenate
+the lists from two calls to this function, with each object type you
+want. For example:</p>
+
+<p><code>
+ &nbsp;   {mklist:{contents:here,player},{contents:here,thing}}
+ &nbsp; &nbsp; &nbsp; - or -<br>
+ &nbsp;   {contents:here,player}{nl}{contents:here,thing}
+</code></p>
+
+[<a href="#top">top</a>]</p><hr>
+
+<a name="controls">
+<p><code>CONTROLS</code><br>
+<code>{controls:obj}</code><br>
+<code>{controls:obj,player}</code></p>
+
+<p>If one argument is given, then this returns true ("1") if the trigger
+object's owner controls the given object. If two arguments are given,
+then it returns true if the given player controls the given object.
+Otherwise, this returns false. ("0")  Wizards control everything
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="convsecs">
+<p><code>CONVSECS</code><br>
+<code>{convsecs}</code></p>
+
+<p>Converts systime seconds into a readable time string. 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="convtime">
+<p><code>CONVTIME</code><br>
+<code>{convtime:string}</code></p>
+
+<p>Converts <code>"HH:MM:SS</code> Mo/Dy/Yr"</code> format time string
+to systime seconds.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="count">
+<p><code>COUNT</code><br>
+<code>{count:list}</code><br>
+<code>{count:list,sep}</code></p>
+
+<p>This counts the number of <code>\r</code> delimited items that are in
+the given list. This is effectively a list item count. If the sep
+argument if given, then it counts the number of sep delimited substrings
+in list. ie: The default sep <code>is</code> \r. (A carriage return.)
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="created">
+<p><code>CREATED</code><br>
+<code>{created:obj}</code></p>
+
+<p>Returns the systime when <code>obj</code> was created.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="d">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="date">
+<p><code>DATE</code><br>
+<code>{date}</code><br>
+<code>{date:timezone}</code></p>
+
+<p>Returns a date string in the form <code>mm/dd/yy.</code> If the
+timezone argument is given, then it offsets the date returned by that
+number of hours.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="dbequals">
+<p><code>DBEQ &nbsp;|&nbsp; DBEQUALS</code><br>
+<code>{dbeq:obj1,obj2}</code></p>
+
+<p>Returns true if <code>obj1</code> and <code>obj2</code> refer to the
+same <code>object.</code> This does name matching, so
+<code>{dbeq:*Wizard,#1}</code> will return true if <code>#1</code> is
+named Wizard.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="debug">
+<p><code>DEBUG</code><br>
+<code>{debug:expr}</code></p>
+
+<p>This will show <code>MPI</code> debugging information for all the
+commands within the given expression. This is useful for seeing why
+something isn't working. This returns the result of the evaluation of
+<code>expr.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="debugif">
+<p><code>DEBUGIF</code><br>
+<code>{debugif:condition,statement}</code></p>
+
+<p>If <code>condition</code> evals true, use debug mode is used when
+evaluating statement.  Otherwise the statement is evaluated in regular
+mode.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="decrement">
+<p><code>DEC &nbsp;|&nbsp; DECREMENT</code><br>
+<code>{dec:var}</code><br>
+<code>{dec:var,val}</code></p>
+
+<p>Decrements the value of the given variable by one, returning the
+result. If a value argument is given, then it will subtract that from
+the variable, instead of the value <code>1.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="delay">
+<p><code>DELAY</code><br>
+<code>{delay:secs,expr}</code></p>
+
+<p>Evaluates the given expression, then puts the result of that on the
+timequeue, to execute after the given number of seconds. At that time,
+the string is evaluated again, and displayed to the user, or to the
+room, depending on whether it was run from a regular message such as
+<code>@succ,</code> or from an omessage such as <code>@osucc.</code>
+Since the expression is evaluated both before and after being delayed,
+you need to put <code>MPI</code> code that is to run after the delay
+within a <code>{lit:expr}</code> command. If a <code>{delay}</code>
+evaluation is a null string, then the notify or notify_except will not
+be done.  <code>{Delay}</code> will return the process ID of the event
+it puts on the timequeue.  
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="delprop">
+<p><code>DELPROP</code><br>
+<code>{delprop:propname}</code><br>
+<code>{delprop:propname,object}</code></p>
+
+<p>This function will remove a property and all of its subsidiary
+properties in the case that it is a propdir. This will delete the
+property on the trigger object, unless an object argument is specified.
+If one is, then it will delete the property on that given object. This
+function returns a null string. If you specify a propname that is
+protected, you will get an error of <code>Permission Denied</code>. You
+are only allowed to delete properties from objects that are owned by the
+owner of the trigger object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="dice">
+<p><code>DICE</code><br>
+<code>{dice:X}</code><br>
+<code>{dice:X,Y}</code><br>
+<code>{dice:X,Y,Z}</code></p>
+
+<p>Given one parameter, picks a random number between <code>1</code> and
+<code>X.</code> <code>(1dX)</code> Given two parameters, it randomly
+generates <code>Y</code> numbers between <code>1</code> and
+<code>X,</code> and adds them together. <code>(YdX)</code> A third
+parameter, if given, is just added to this sum as a modifier.
+<code>(YdX+Z)</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="distance">
+<p><code>DIST &nbsp;|&nbsp; DISTANCE</code><br>
+<code>{dist:x,y} Returns distance from 0,0 that x,y</code> is.<br>
+<code>{dist:x,y,z} Returns distance from 0,0,0 that x,y,z</code> is.<br>
+<code>{dist:x,y,x2,y2} Returns distance between x,y and x2</code>,y2.<br>
+<code>{dist:x,y,z,x2,y2,z2} Returns distance between x,y,z and x2,y2</code>,z2.</p>
+
+<p>Given two arguments, this calculates the distance of a 2D point from
+the origin. Given three arguments, this calculates the distance of a 3D
+point from the origin. Given four arguments, this calculates the
+distance between a pair of 2D points. Given six arguments, this
+calculates the distance between a pair of 3D points.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="divide">
+<p><code>DIV &nbsp;|&nbsp; DIVIDE</code><br>
+<code>{div:expr1,expr}</code><br>
+<code>{div:expr1,expr2,expr3...}</code></p>
+
+<p>Returns the value of <code>expr1</code> divided by
+<code>expr2.</code> Division by zero will return zero. If more than two
+arguments are given, then the first argument is divided by the second,
+and the result is divided by the third, etc, for all of the arguments.
+For example:  <code>{div:180,6,3,5}</code> would be read like <code>180
+/ 6 / 3 / 5</code>, and a result of 2 would be returned.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="e">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="equals">
+<p><code>EQ &nbsp;|&nbsp; EQUALS &nbsp;|&nbsp; ==</code><br>
+<code>{eq:expr1,expr2}</code></p>
+
+<p>If <code>expr1</code> and <code>expr2</code> evaluate out to the same
+value, then this returns true. Otherwise, this returns false. If both
+expressions evaluate out to numbers, then this compares them
+numerically.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="eval">
+<p><code>EVAL</code><br>
+<code>{eval:string}</code></p>
+
+<p>Sort of the exact opposite of <code>{lit:}</code>. This takes a
+string, and evaluates it for <code>MPI</code> commands embedded within
+it. This can be used on the output of <code>{list:}</code>, for example.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="exec">
+<p><code>EXEC</code><br>
+<code>{exec:propname}</code><br>
+<code>{exec:propname,obj}</code></p>
+
+<p>Returns the string value of the given property, after having
+evaluated any embedded <code>MPI</code> commands that it contained. If
+no object parameter is passed to it, it looks for the property somewhere
+down the environment from the trigger object. Otherwise, it looks down
+the environment from the object specified. If the property is not found,
+this returns an empty string. If the property that it tries to access is
+read restricted and the owner of the trigger object does not own the
+object that the property is found on, then the <code>MPI</code> script
+stops with a <code>Permission denied</code> error.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="exec!">
+<p><code>EXEC!</code><br>
+<code>{exec!:propname}</code><br>
+<code>{exec!:propname,obj}</code></p>
+
+<p>Returns the string value of the given property, after having
+evaluated any embedded <code>MPI</code> commands that it contained. If
+no object parameter is passed to it, it looks for the property on the
+trigger.  Otherwise, it looks for the property on the object specified.
+If the property is not found, this returns an empty string. If the
+property that it tries to access is read restricted and the owner of the
+trigger object does not own the object that the property is found on,
+then the <code>MPI</code> script stops with a <code>Permission
+denied</code> error.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="exits">
+<p><code>EXITS</code><br>
+<code>{exits:obj}</code></p>
+
+<p>Returns a list of all the exits on the given object. The owner of the
+trigger object has to control <code>obj,</code> or else this errors out
+with <code>Permission denied</code>. Programs and exits never have exits
+attached to them.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="f">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="filter">
+<p><code>FILTER</code><br>
+<code>{filter:var,list,expr}</code><br>
+<code>{filter:var,list,exp,sep}</code><br>
+<code>{filter:var,lst,exp,sep,s2}</code></p>
+
+<p>This evaluates <code>expr</code> for each and every item in the given
+list. On each evaluation, the temporary variable <code>var</code> will
+contain the value of the item under scrutiny. This function returns a
+list containing all of the items from the input list, for which
+<code>expr</code> evaluated true. <code>Var</code> will only be defined
+for the duration of <code>expr,</code> and will be undefined after the
+<code>{filter}</code> construct finishes. If sep is given, then it uses
+that string as the item seperator in the input list, instead of the
+usual carriage return character. If <code>s2</code> is defined, then it
+will use that string to seperate the items in the list it returns,
+instead of the normal carriage return. <code>Sep</code> and
+<code>s2</code> can be multiple characters long.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="flags">
+<p><code>FLAGS</code><br>
+<code>{flags:obj}</code></p>
+
+<p>Returns a flaglist string from <code>obj.</code>, such as
+<code>PM2J.</code> The object must either be in the vicinity, or it must
+be controlled by the owner of the trigger object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="fold">
+<p><code>FOLD</code><br>
+<code>{fold:var1,var2,list,expr}</code><br>
+<code>{fold:var1,var2,lst,expr,sep}</code></p>
+
+<p>This takes a list and stores the first two items in <code>var1</code>
+and <code>var2,</code> then evaluates <code>expr.</code> The value
+returned by <code>expr</code> is then put in <code>var1,</code> and the
+next list item is put in <code>var2.</code> <code>Expr</code> keeps
+being evaluated in this way until there are no more list items left.
+This returns the last value returned by <code>expr.</code> If a sep
+argument is given, the input list is assumed to have its individual
+items delimited by that string, otherwise it assumes a carriage return.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="for">
+<p><code>FOR</code><br>
+{for:varname,start,end,increment,command}</p>
+
+<p>Acts as a counting loop, like BASIC's <code>for</code> loops. The
+<code>varname</code> is the name of the variable that it will create and
+use to store the count value. The start value will be the initial value
+of the variable, and the end value will be the value that the variable
+is working towards. The increment is how much the variable will be
+incremented by in each loop. The command will be evaluated for each
+value of the variable between the beginning and ending values. For
+example: <code>{null:{for:i,10,1,-1,{tell:{&i}}}}</code> will echo a
+countdown from ten to one, inclusive, to the user.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="force">
+<p><code>FORCE</code><br>
+<code>{force:object,command}</code></p>
+
+<p>Forces the given player or thing to do the given command. The thing
+forced must be <code>@flock</code>'ed to the trigger object, or the
+trigger object's owner, and it must be set <em>Xforcible</em>, or else
+this function will get a <code>Permission denied</code> error. This
+function returns a null string. <code>{Force}</code> cannot force a
+thing-object to do something, if it is set <code>Dark,</code> is in a
+room set <code>Zombie,</code> if it has the same name as a player, or is
+owned by a player set <code>Zombie.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="foreach">
+<p><code>FOREACH</code><br>
+<code>{foreach:var,list,expr}</code><br>
+<code>{foreach:var,list,expr,sep}</code></p>
+
+<p>This evaluates <code>expr</code> for each and every item in the given list. On each evaluation, the temporary variable <code>var</code> will contain the value of the item under scrutiny. <code>Var</code> will only be defined for the duration of <code>expr,</code> and will be undefined after the <code>{foreach}</code> construct finishes. If <code>sep</code> is given, then it uses that string as the item seperator in list, instead of the usual carriage return character. <code>Sep</code> can be multiple characters long. This structure returns the result of the last evaluation of <code>expr.</code> Example:  <code>{foreach:thing,{contents:here},{store:1,_seen}}</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="fox">
+<p><code>FOX</code><br>
+<code>{fox}</code></p>
+
+<p>Returns the string <code>YARF!</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="ftime">
+<p><code>FTIME</code><br>
+<code>{ftime:format}</code><br>
+<code>{ftime:format,tz}</code><br>
+<code>{ftime:format,tz,secs}</code></p>
+
+<p>Returns a time string in the format you specify. See the MUF
+Reference entry on <a href="mufref.html#timefmt">timefmt</a> for the
+<code>%subs</code> that you can use in the format string. If specified,
+<code>tz</code> is the number of hours offset from GMT. If specified,
+<code>secs</code> is the systime to use, instead of the current time.
+<code>{ftime:%x %X %Y,8,0}</code> will return the date and time for
+systime 0, for the Pacific time zone.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="fullname">
+<p><code>FULLNAME</code><br>
+<code>{fullname:obj}</code></p>
+
+<p>Returns the name of the given object. In the case where the object is
+an exit, then the full name of the exit is given, including all the ;
+aliases. The object must be in the immediate vicinity, or be controlled
+by the owner of the trigger object.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="g">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="ge">
+<p><code>GE &nbsp;|&nbsp; &gt;=</code><br>
+<code>{ge:expr1,expr2}</code></p>
+
+<p>Evals <code>expr1</code> and <code>expr2,</code> then returns true if
+<code>expr1</code> was larger or equal.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="gt">
+<p><code>GT &nbsp;|&nbsp; GREATERTHAN &nbsp;|&nbsp; &gt;</code><br>
+<code>{gt:expr1,expr2}</code></p>
+
+<p>Evaluates <code>expr1</code> and <code>expr2,</code> then returns true if <code>expr1</code> was larger.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="h">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="holds">
+<p><code>HOLDS</code><br>
+<code>{holds:obj1}</code><br>
+<code>{holds:obj1,obj2}</code></p>
+
+<p>Returns true if the location of <code>obj1</code> is
+<code>obj2.</code> If no <code>obj2</code> argument is given, then this
+will return true if the location of <code>obj1</code> is the player.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="how">
+<p><code>HOW &nbsp;|&nbsp; &HOW</code><br>
+<code>{&how}</code></p>
+
+<p>The <code>{&how}</code> variable is a short string telling what ran
+the <code>MPI</code> command. It can have the values <code>`(@desc)',</code>
+<code>`(@succ)',</code> <code>`(@osucc)',</code> etc. for when it is run
+from an <code>@desc,</code> an <code>@succ,</code> an
+<code>@osucc,</code> or whatever. It can also have the value
+<code>`(@lock)'</code> for when it is run from a lock test.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="i">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="idle">
+<p><code>IDLE</code><br>
+<code>{idle:player}</code></p>
+
+<p>Returns player idle time in seconds. If the given player is not
+connected, or is not a player object at all, then this will return -1.
+This returns the idle time for the most recently connected connection,
+if there are multiple connects.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="if">
+<p><code>IF</code><br>
+<code>{if:check,true}</code><br>
+<code>{if:check,true,false}</code></p>
+
+<p>This is a simple conditional command. It evaluates the
+<code>check</code> argument and if it is true, then it evaluates the
+<code>true</code> argument and returns its result. If <code>check</code>
+does not evaluate as true, then it will evaluate the <code>false</code>
+argument, if there is one, and returns its result. If there is no false
+argument, and <code>check</code> evaluated false, then it returns a null
+<F6>string. Example:
+
+<p><code>
+ &nbsp; &nbsp;   Your computer is {if:{eq:2,3},broken!,All right.}
+</code></p>
+
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="increment">
+<p><code>INC &nbsp;|&nbsp; INCREMENT</code><br>
+<code>{inc:var}</code><br>
+<code>{inc:var,val}</code></p>
+
+<p>Increments the value of the given variable by one, returning the
+result. If a value argument is given, then it will add that value to the
+variable, instead of the value <code>1.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="index">
+<p><code>INDEX</code><br>
+<code>{index:propname}</code><br>
+<code>{index:propname,obj}</code></p>
+
+<p>Returns the string value of the property whose name is stored in the
+given property. This sounds confusing, but it's basically just the same
+as <code>{prop:{prop:propname}}</code>. If no object parameter is passed
+to it, it looks for both the index property and the referenced property
+somewhere down the environment from the trigger object. Otherwise, it
+looks down the environment from the object specified for both of them.
+If either property is not found, this returns an empty string. If the
+property that it tries to access is read restricted, and the owner of
+the trigger object does not own the object that the properties are found
+on, then the <code>MPI</code> script stops with a <code>Permission
+denied</code> error.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="index!">
+<p><code>INDEX!</code><br>
+<code>{index!:propname}</code><br>
+<code>{index!:propname,obj}</code></p>
+
+<p>Returns the string value of the property whose name is stored in the
+given property. This sounds confusing, but it's basically just the same
+as <code>{prop!:{prop!:propname}}</code>. If no object parameter is
+passed to it, it looks for both the index property and the referenced
+property on the trigger object. Otherwise, it looks on the specified
+object for both of them. If either property is not found, this returns
+an empty string. If the property that it tries to access is read
+restricted, and the owner of the trigger object does not own the object
+that the properties are found on, then the <code>MPI</code> script stops
+with a <code>Permission denied</code> error.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="instr">
+<p><code>INSTR</code><br>
+<code>{instr:str1,str2}</code></p>
+
+<p>Lists the position of the first substring within <code>str1</code>
+that matches <code>str2.</code> If no such substring exists, then this
+returns a 0.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="isdbref">
+<p><code>ISDBREF</code><br>
+<code>{isdbref:dbref}</code></p>
+
+<p>Returns true if the string passed to it is a valid dbref.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="isnum">
+<p><code>ISNUM</code><br>
+<code>{isnum:number}</code></p>
+
+<p>Returns true if the string passed to it is a valid number.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="istype">
+<p><code>ISTYPE</code><br>
+<code>{istype:obj,typ}</code></p>
+
+<p>Returns true if the given object if of the given type. Valid types
+are: <code>Bad,</code> <code>Room,</code> <code>Exit,</code>
+<code>Thing,</code> <code>Player,</code> and <code>Program.</code>
+[<a href="#top">top</a>]</p><hr>
+
+<a name="j">
+<a name="k">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="kill">
+<p><code>KILL</code><br>
+<code>{kill:0}</code><br>
+<code>{kill:processID}</code></p>
+
+<p>Kills a process on the timequeue, that was possibly created by
+<code>{DELAY}.</code> If the process ID it is given is 0, then it will
+kill all processes done by that trigger object. If the process to be
+killed was not set off by that trigger, and was not set off by any
+object that the owner of the trigger owns, then this will error out with
+<code>Permission denied</code>. If no process is found, this returns 0.
+If a process was found, and the permissions were okay, then the process
+is killed, and <code>{kill}</code> returns the number of processes
+killed. Usually one.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="l">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="lastused">
+<p><code>LASTUSED</code><br>
+<code>{lastused:obj}</code></p>
+
+<p>Returns the systime when obj was last used.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lcommon">
+<p><code>LCOMMON</code><br>
+<code>{lcommon:list1,list2}</code></p>
+
+<p>Creates a list containing every item that appears in <em>both</em>
+<code>list1</code> and <code>list2.</code> Any duplicate items in the
+resulting list are removed.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="le">
+<p><code>LE &nbsp;|&nbsp; &lt;=</code><br>
+<code>{le:expr1,expr2}</code></p>
+
+<p>Evals <code>expr1</code> and <code>expr2,</code> then returns true if
+<code>expr1</code> was smaller or equal.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="left">
+<p><code>LEFT</code><br>
+<code>{left:string}</code><br>
+<code>{left:string,fieldwidth}</code><br>
+<code>{left:string,fieldwidth,padstring}</code></p>
+
+<p>Takes a string and pads it to fit the given fieldwidth, with the
+string left justified. If no padstring is given, it assumes that it will
+pad the string with spaces. If no fieldwidth is given, it assumes that
+the field width is 78 characters. Example:
+<code>{left:Hello,10,_.}</code> would return the
+string <code>"Hello_._._"</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lexec">
+<p><code>LEXEC</code><br>
+<code>{lexec:listname}</code><br>
+<code>{lexec:listname,obj}</code></p>
+
+<p>This takes a property based list, and concatenates all its lines
+together, stripping spaces from the beginning and end of each one. It
+then evaluates the result for <code>MPI</code> commands, and returns the
+resulting string. A property based list is a series of properties that
+are consecutively numbered. The server understands several different
+formats, and can also read in property lists in either the
+<code>propnameX</code> format, or the <code>propname#/X</code> format.
+If no <code>obj</code> argument is supplied, then it looks for the list
+somewhere down the environment from the trigger object. Otherwise, it
+looks for the list down the environment from the given object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="links">
+<p><code>LINKS</code><br>
+<code>{links:obj}</code></p>
+
+<p>Returns the object reference of what the given object if linked to.
+Since exits can be meta-links, linked to multiple exits, if there is
+more than one link, then this function returns a list of all the
+destinations, seperated by carriage return characters. (\r)
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="list">
+<p><code>LIST</code><br>
+<code>{list:listname}</code><br>
+<code>{list:listname,obj}</code></p>
+
+<p>Returns a string, containing a carriage-return delimited list of
+individual lines from a property based list. A property based list is a
+series of properties that are consecutively numbered. The server
+understands several different formats, and can also read in property
+lists in either the <code>propnameX</code> format, or the
+<code>propname#/X</code> format. It does <code>not</code> evaluate the
+contents of the list for embedded <code>MPI</code> commands. If no
+<code>obj</code> argument is supplied, then it looks for the list
+somewhere down the environment from the trigger object. Otherwise, it
+looks for the list down the environment from the given object. 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="listprops">
+<p><code>LISTPROPS</code><br>
+<code>{listprops:propdir}</code><br>
+<code>{listprops:propdir,object}</code><br>
+<code>{listprops:propdir,object,pattern}</code></p>
+
+<p>This function will return a list that contains the full names of all
+the sub-properties contained by the given propdir. If not given,
+<code>object</code> defaults to the trigger object. If a pattern is
+given, the sub-properties in the propdir are each compared against the
+smatch wildcard pattern, and only those that match are returned in the
+list. This comparison is only done on the last part of the property name
+after the last <code>/.</code> See also <a href="#propdir">propdir</a>
+and <a href="#smatch">smatch</a>.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="literal">
+<p><code>LIT &nbsp;|&nbsp; LITERAL</code><br>
+<code>{lit:string}</code></p>
+
+<p>Returns the literal string given as its parameter. This means you can
+have things that look like <code>MPI</code> commands within it, and it
+will not evaluate them, but will rather just treat them as a string.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lmember">
+<p><code>LMEMBER</code><br>
+<code>{lmember:list,item}</code><br>
+<code>{lmember:list,item,delimiter}</code></p>
+
+<p>Returns <code>0</code> if the given item is <em>not</em> in the given list,
+otherwise, it returns the item's position in the list. The first list
+item in the list would return <code>1,</code> and the third would return
+<code>3,</code> for example. If the delimiter argument is given, then it
+treats the list as if it were delimited by that string, instead of by
+carriage returns.  (<code>\r</code>'s) Example:
+<code>{lmember:{mklist:a,b,c,d,e,f},d}</code> would return
+<code>4.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="location">
+<p><code>LOC &nbsp;|&nbsp; LOCATION</code><br>
+<code>{loc:obj}</code></p>
+
+<p>Returns the location of the given object. The object must either be
+in the vicinity, or it must be controlled by the owner of the trigger
+object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="locked">
+<p><code>LOCKED</code><br>
+{locked:player,obj}</p>
+
+<p>Tests the <code>_/lok</code> <code>(@lock)</code> standard lock
+property on obj against the given player. Returns true if the lock is
+locked against the player.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lrand">
+<p><code>LRAND</code><br>
+<code>{lrand:list}</code><br>
+<code>{lrand:list,seperator}</code></p>
+
+<p>Returns a randomly picked stringlist item from the given list. If the
+seperator argument is given, then it will assume that the stringlist has
+its items delimited by the given seperator string, instead of by
+carriage returns.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lunion">
+<p><code>LUNION</code><br>
+<code>{lunion:list1,list2}</code></p>
+
+<p>Combines the contents of <code>list1</code> and <code>list2,</code>
+removing any duplicates.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lunique">
+<p><code>LUNIQUE</code><br>
+<code>{lunique:list}</code></p>
+
+<p>Returns <code>list</code> with all duplicate items removed.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lremove">
+<p><code>LREMOVE</code><br>
+<code>{lremove:list1,list2}</code></p>
+
+<p>Returns the contents of <code>list1,</code> with any items that match
+an item in <code>list2</code> removed. The resulting list has all
+duplicate items removed.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="lsort">
+<p><code>LSORT</code><br>
+<code>{lsort:list}</code><br>
+<code>{lsort:list,var1,var2,expr}</code></p>
+
+<p>Returns the sorted contents of <code>list.</code> If 4 arguments are
+given, then it evaluates expr with a pair of values, in
+<code>var1</code> and <code>var2.</code> If <code>expr</code> returns
+true, then it will swap the positions of the two values in the list. It
+runs this comparison on every pair of items in the list, so it will be
+evaluated N*N times, where N is the number of items in the list. This
+method can also be used to randomize a list. Example:</p>
+
+<p><code>
+ &nbsp; &nbsp;   {lsort:{&list},v1,v2,{gt:{dice:100},50}}
+</code></p>
+
+[<a href="#top">top</a>]<hr>
+
+
+<a name="lt">
+<p><code>LT &nbsp;|&nbsp; LESSTHAN &nbsp;|&nbsp; &lt; </code><br>
+<code>{lt:expr1,expr2}</code></p>
+
+<p>Evaluates <code>expr1</code> and <code>expr2,</code> then returns
+true if <code>expr1</code> was smaller.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="ltimestr">
+<p><code>LTIMESTR</code><br>
+<code>{ltimestr:secs}</code></p>
+
+<p>Given a time period, in seconds, this will return a string, including
+a breakdown of all the time units of that period. For example, given a
+number of seconds, it might return <code>"1 week, 2 days, 10 mins, 52
+secs".</code>
+[<a href="#top">top</a>]</p><hr>
+
+<a name="m">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="maximum">
+<p><code>MAX &nbsp;|&nbsp; MAXIMUM</code><br>
+<code>{max:expr1,expr2}</code></p>
+
+<p>Returns the greater of the values of <code>expr1</code> and
+<code>expr2.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="mklist">
+<p><code>MKLIST</code><br>
+<code>{mklist:value...}</code></p>
+
+<p>Returns a list with all the given values as list items, seperated by carriage returns. (<code>\r</code>'s) Example:  <code>{mklist:Tom,Dick,Harry}</code> returns <code>"Tom\rDick\rHarry"</code>. Note:  A maximum of nine items can be passed to the <code>{mklist}</code> function. If you need more, you can chain <code>{mklist}s</code> together. Example:</p>
+
+<p><code>
+ &nbsp; &nbsp;   {mklist:{mklist:a,b,c,d,e,f,g,h,i},j,k,l,m,n,o,p}
+</code></p>
+
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="midstr">
+<p><code>MIDSTR</code><br>
+<code>{midstr:str,pos}</code><br>
+<code>{midstr:str,pos1,pos2}</code></p>
+
+<p>Returns the substring that starts at <code>pos1</code> within
+<code>str.</code> If no <code>pos2</code> is given, then the returned
+string is only the character at the given <code>pos1</code> position. If
+a <code>pos2</code> position is given, then it returns the substring
+beginning at <code>pos1</code> and ending at <code>pos2,</code>
+inclusive. If <code>pos1</code> or <code>pos2</code> are negative, then
+they represent the position that is that absolute number of characters
+from the end of the string. The first character in <code>str</code> is
+1, and the last one can always be referenced by -1. If a position would
+be before the beginning of the string, it is assumed to be at the
+beginning of the string. If it would be beyond the end of the string, it
+is assumed to be at the last character. If the starting position is
+later in the string than the ending position, then the returned string
+has the characters in reverse order. If either <code>pos1</code> or
+<code>pos2</code> are 0, then this returns a null string.
+(<code>""</code>)
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="minimum">
+<p><code>MIN &nbsp;|&nbsp; MINIMUM</code><br>
+<code>{min:expr1,expr2}</code></p>
+
+<p>Returns the lesser of the values of <code>expr1</code>
+<code>and</code> expr2.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="modified">
+<p><code>MODIFIED</code><br>
+<code>{modified:obj}</code></p>
+
+<p>Returns the systime when <code>obj</code> was last modified.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="modulo">
+<p><code>MOD &nbsp;|&nbsp; MODULO</code><br>
+<code>{mod:expr1,expr2}</code></p>
+
+<p>Returns the leftover remainder of <code>expr1</code> divided by
+<code>expr2.</code> If more than two arguments are given, then the first
+arguments is modded by the second, then the result of that would be
+modded by the third, and so on and so forth. For example:
+<code>{mod:91,20,3}</code> would be read as <code>91 % 20 % 3</code>,
+and a result of <code>2</code> would be returned.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="money">
+<p><code>MONEY</code><br>
+<code>{money:obj}</code></p>
+
+<p>This returns the value of an object of type <code>Thing</code>, or
+returns how many pennies a player has.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="muckname">
+<p><code>MUCKNAME</code><br>
+<code>{muckname}</code></p>
+
+<p>Returns the muck name string. Example: FurryMUCK
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="muf">
+<p><code>MUF</code><br>
+{muf:prog,arg}</p>
+
+<p>Runs the given <code>MUF</code> prog with the string arg on the
+stack. This returns the top stack value when the prog exits. If the
+<code>MPI</code> code was run from a propqueue like
+<code>_listen,</code> or <code>_connect,</code> then <code>{muf}</code>
+cannot run a <code>MUF</code> program with a Mucker level of less than 3 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="multiply">
+<p><code>MULT &nbsp;|&nbsp; MULTIPLY</code><br>
+<code>{mult:expr1,expr2}</code><br>
+<code>{mult:expr1,expr2,expr3...}</code></p>
+
+<p>Returns the product of the values <code>expr1</code> and
+<code>expr2.</code> If more than two args are given, then they are all
+multiplied together to get the result. 
+[<a href="#top">top</a>]</p><hr>
+
+<a name="n">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="name">
+<p><code>NAME</code><br>
+{name:obj}</p>
+
+<p>Returns the name of the given object. If the object is an exit, the
+name returned is the first exit name it has before the first
+`<code>;</code>'. The object must be in the vicinity, or controlled by
+the owner of the trigger object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="ne">
+<p><code>NE &nbsp;|&nbsp; NOTEQUALS &nbsp;|&nbsp; != &nbsp;|&nbsp;
+&lt;&gt;</code><br>
+<code>{ne:expr1,expr2}</code></p>
+
+<p>If <code>expr1</code> and <code>expr2</code> evaluate out to the same
+value, then this returns false. Otherwise, this returns true. If both
+expressions evaluate out to numbers, then this compares them
+numerically.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="nearby">
+<p><code>NEARBY</code><br>
+<code>{nearby:obj}</code><br>
+<code>{nearby:obj,obj2}</code></p>
+
+<p>If one argument is given, then this returns true ("1") if the given
+object is nearby to the trigger object. If two arguments are given, then
+it returns true if the two objects are nearby one another. Otherwise,
+this returns false. ("0")  Nearby is defined as: 1) The two objects are
+in the same location, or 2) One object contains the other, or 3) the two
+objects are in fact the same object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="nl">
+<p><code>NL &nbsp;|&nbsp; \r</code><br>
+<code>{nl}  or  \r</code></p>
+
+<p>Returns a carriage return character. This can be used to seperate items in a list, or can split the string at that point, starting a new line. Example:  the string:</p>
+
+<p><code>
+ &nbsp; &nbsp;   This is\ran example{nl}of using newlines.
+</code></p>
+
+<p>would print out like:</p>
+
+<p><code>
+    This is<br>
+    an example<br>
+    of using newlines.
+</code></p>
+
+[<a href="#top">top</a>]<hr>
+
+<a name="not">
+<p><code>NOT &nbsp;|&nbsp; !</code><br>
+<code>{not:expr}</code></p>
+
+<p>Returns the logical <code>NOT</code> of <code>expr.</code>
+<code>If</code> expr was true, this returns false. If <code>expr</code>
+was false, this returns true.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="null">
+<p><code>NULL</code><br>
+<code>{null:expr...}</code></p>
+
+<p>Returns a null string, no matter what the expressions within it
+return. This can take up to nine arguments, though you could pass the
+output of several commands as one argument.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="o">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="online">
+<p><code>ONLINE</code><br>
+<code>{online}</code></p>
+
+<p>Returns a list of players who are online. This function can only be
+executed by wizbitted objects.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="ontime">
+<p><code>ONTIME</code><br>
+{ontime:player}</p>
+
+<p>Returns <code>player</code>'s online time in seconds. If the given
+player is not connected, or is not a player object at all, then this
+will return -1. This returns the online time for the most recently
+connected connection, if there are multiple connects.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="or">
+<p><code>OR</code><br>
+<code>{or:expr1,expr2...}</code></p>
+
+<p>Returns true if <code>expr1</code> or <code>expr2</code> evaluate as
+true. Otherwise, this returns false. If <code>expr1</code> was true,
+this doesn't bother to exaluate <code>expr2,</code> as it does C-style
+shortcutting. If there are more than two arguments, then this will
+evaluate them until either one returns true, or until it has evaluated
+all the expressions. This returns false only if all of the expressions
+return false.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="otell">
+<p><code>OTELL</code><br>
+<code>{otell:string}</code><br>
+<code>{otell:string,room}</code><br>
+<code>{otell:string,room,player}</code></p>
+
+<p>This will tell the given string to all the players in the room,
+except for the given player. If no room argument is given, it is assumed
+to be the room that the triggering player is in. If no player is given,
+then it assumes that you want to skip sending the message to the
+triggering player. If you pass it a player of #-1, it will send the
+message to all the players in the room. This returns the message that
+was sent. If the trigger isn't a room, or an exit on a room, and if the
+message doesn't already begin with the user's name, then the user's name
+will be prepended to the message.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="owner">
+<p><code>OWNER</code><br>
+<code>{owner:obj}</code></p>
+
+<p>Returns the owner of the given object. The object must be in the
+vicinity, or be controlled by the trigger object's owner.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="p">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="parse">
+<p><code>PARSE</code><br>
+<code>{parse:var,list,expr}</code><br>
+<code>{parse:var,list,expr,sep}</code><br>
+<code>{parse:var,list,expr,sep,s2}</code></p>
+
+<p>This evaluates <code>expr</code> for each item in the given list. On
+each evaluation, the temporary variable <code>var</code> will contain
+the value of the item under scrutiny. This function returns a list
+containing the output of <code>expr</code> for each item within the
+list. This lets you do direct translation of a list of dbrefs, for
+example, into a list of names. <code>var</code> will only be defined for
+the duration of <code>expr,</code> and will be undefined after the
+<code>{filter}</code> construct finishes. If <code>sep</code> is given,
+then it uses that string as the item seperator in the input list,
+instead of the usual carriage return character. If <code>s2</code> is
+defined, then it will use that string to seperate the items in the list
+it returns, instead of the normal carriage return. <code>Sep</code> and
+<code>s2</code> can be multiple characters long.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="pronouns">
+<p><code>PRONOUNS</code><br>
+<code>{pronouns:string}</code><br>
+<code>{pronouns:string,object}</code></p>
+
+<p>If passed one argument, evaluates the string and does pronoun
+substitution with regards to the using player. If given two args, it
+does the pronoun substitution with regards to the given object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="prop">
+<p><code>PROP</code><br>
+<code>{prop:propname}</code><br>
+<code>{prop:propname,obj}</code></p>
+
+<p>Returns the literal string value of the given property. If no object
+parameter is passed to it, it looks for the property somewhere down the
+environment from the trigger object. Otherwise, it looks down the
+environment from the object specified. If the property is not found,
+this returns an empty string. If the property that it tries  to access
+is read restricted and the owner of the trigger object does not own the
+object that the property is found on, then the <code>MPI</code> script
+stops with a <code>Permission denied</code> error.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="prop!">
+<p><code>PROP!</code><br>
+<code>{prop!:propname}</code><br>
+<code>{prop!:propname,obj}</code></p>
+
+<p>Returns the literal string value of the given property. If no object
+parameter is passed to it, it looks for the property on the trigger.
+Otherwise, it looks for the property on the object specified. If the
+property is not found, this returns an empty string. If the property
+that it tries to access is read restricted and the owner of  the trigger
+object does not own the object that the property is found on, then the
+<code>MPI</code> script stops with a <code>Permission denied</code>
+error.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="propdir">
+<p><code>PROPDIR</code><br>
+<code>{PROPDIR:propname,obj}</code></p>
+
+<p>If the given property on the given object is a propdir, containing
+sub-properties, then this returns true.  Otherwise it returns false.
+Object will default to the trigger object, if not given.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="q">
+<a name="r">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="rand">
+<p><code>RAND</code><br>
+<code>{rand:listname}</code><br>
+<code>{rand:listname,obj}</code></p>
+
+<p>Returns the value of a randomly picked list item from a property
+based list. If no <code>obj</code> parameter is given, then it looks
+down the environment from the trigger object for the list. Otherwise, it
+looks down the environment from the given object. 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="ref">
+<p><code>REF</code><br>
+<code>{ref:obj}</code></p>
+
+<p>Returns the dbref of the given object in the form <code>#xxxx.</code>
+The <code>object</code> must be in the vicinity, or controlled by the
+owner of the trigger object.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="right">
+<p><code>RIGHT</code><br>
+<code>{right:string}</code><br>
+<code>{right:string,fieldwidth}</code><br>
+<code>{right:string,fieldwidth,padstring}</code></p>
+
+<p>Takes a string and pads it to fit the given fieldwidth, with the
+string right justified. If no padstring is given, it assumes that it
+will pad the string with spaces. If no fieldwidth is given, it assumes
+that the field width is 78 characters. Example:</p> 
+
+<p><code>
+ &nbsp; &nbsp; {right:Hello,10,_.} 
+</code></p>
+
+<p>would return the string</p>
+
+<p><code>
+ &nbsp; &nbsp;  "_._._Hello"
+</code></p>
+
+[<a href="#top">top</a>]<hr>
+
+<a name="s">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="secs">
+<p><code>SECS</code><br>
+<code>{secs}</code></p>
+
+<p>Returns system time: the number of second since midnight 1/1/70 GMT
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="select">
+<p><code>SELECT</code><br>
+<code>{select:value,listname}</code><br>
+<code>{select:value,listname,object}</code></p>
+
+<p>Returns the value of a single list item from a sparse property list. The item chosen is the one who's line number is the largest one that is less than or equal to the given value. If the list is missing any items, then <code>{select}</code> will return the item in the list with the highest line number that is less than or equal to the given value. For example, if the list has the following entries:</p>
+
+<p><code>
+    _junk#/1:one<br>
+    _junk#/5:two<br>
+    _junk#/16:three<br>
+    _junk#/20:four
+</code></p>
+
+<p>Then <code>{select:9,_junk}</code> will return <code>"two",</code>
+<code>{select:16,_junk}</code> will return <code>"three",</code> and
+<code>{select:25,_junk}</code> will return <code>"four".</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="set">
+<p><code>SET</code><br>
+<code>{set:var,value}</code></p>
+
+<p>This sets the value of the given named variable to the given value.
+If no variable with that given name is currently defined, then this
+gives an error message complaining about that.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="sign">
+<p><code>SIGN</code><br>
+<code>{sign:expr}</code></p>
+
+<p>Returns -1 <code>if</code> expr is negative. Returns <code>1</code>
+if <code>expr</code> is positive. If <code>expr</code> is
+<code>0,</code> then it returns <code>0.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="smatch">
+<p><code>SMATCH</code><br>
+<code>{smatch:str,pattern}</code></p>
+
+<p>Matches <code>str</code> against the wildcard pattern. If there is a
+match, this returns true, or <code>"1".</code> If it doesn't match, this
+returns a value of <code>"0",</code> or false. In wildcard patterns, the
+following characters have the following meanings:</p>
+
+<table>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>*</code></td>
+    <td><code>matches any number of any character</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>?</code></td>
+    <td><code>matches one character, of any type</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>[abcde]</code></td>
+    <td><code>matches one char, if it is a, b, c, d, or e</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>[a-z]</code></td>
+    <td><code>matches on char, if it is between a and z, inclusive</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>[^abd-z]</code></td>
+    <td><code>matches one char if it is NOT a, b, or beteen d and z</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>{word1|word2}</code></td>
+    <td><code>matches one word, if it is word1, or word2</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>{^word1|word2}</code></td>
+    <td><code>matches one word, if it is NOT word1 or word2</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><code>\</code></td>
+    <td><code>escapes any of the prev chars, making it not special</code></td>
+  </tr>
+</table>
+<br>
+
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="stimestr">
+<p><code>STIMESTR</code><br>
+<code>{stimestr:secs}</code></p>
+
+<p>Given a time period, in seconds, this will return the most
+significant time unit of that time period. For example, a number of
+seconds, that is equivalent to 9 days, 23 hours, 10 minutes, and 52
+seconds, will be have the value <code>9d</code> returned, as the
+abbreviated most significant time unit. 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="store">
+<p><code>STORE</code><br>
+<code>{store:val,prop}</code><br>
+<code>{store:val,prop,obj}</code></p>
+
+<p>Stores a string value in a given property. If no obj parameter is
+given, then it stores the property on the trigger object. Otherwise, it
+will store it on the given object. If you specify a propname that is
+protected, you will get a <code>Permission denied</code> error. You are
+only allowed to store properties on objects controlled by the owner of
+the trigger object. The trigger object is the object that triggered the
+evaluation of the <code>MPI</code> commands. This function returns the
+string that is stored as the prop value. If you store a null value in
+the property, then it will remove the property if it is not a propdir.
+It will clear the value of the prop if it <em>is</em> a propdir.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="strip">
+<p><code>STRIP</code><br>
+<code>{strip:string}</code></p>
+
+<p>Returns a copy of string with all the spaces stripped from the
+beginning and the end.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="sublist">
+<p><code>SUBLIST</code><br>
+<code>{sublist:list,pos1}</code><br>
+<code>{sublist:list,pos1,pos2}</code><br>
+<code>{sublist:list,pos1,pos2,sep}</code></p>
+
+<p>Takes a list, and returns a subset of the list items within it. The
+subset is all the list items between list item <code>pos1,</code> and
+list item <code>pos2,</code> inclusive. If the <code>pos2</code>
+argument is omitted, it assumes that <code>pos2</code> is the same as
+<code>pos1.</code> If <code>pos2</code> is less than <code>pos1,</code>
+then all the list items between <code>pos2</code> and <code>pos1</code>
+are returned, in reversed order. If <code>pos1</code> or
+<code>pos2</code> are negative, it counts that many list items back from
+the end of the list, so <code>-1</code> is the last list item, and
+<code>-5</code> would be the fifth from last list item. The input list
+is assumed to be delimited by carriage returns (<code>\r</code>) unless
+the sep argument is given.  
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="subst">
+<p><code>SUBST</code><br>
+<code>{subst:str,old,new}</code></p>
+
+<p>Returns a copy of <code>str</code> with all substring instances of
+<code>old</code> replaced by the text specified by <code>new.</code>
+Basically just substitutes the new text for the old text in
+<code>str.</code> Example: <code>{subst:Hello World!,l,r}</code> would
+return <code>"Herro Worrd!"</code> 
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="subtraction">
+<p><code>SUBT &nbsp;|&nbsp; SUBTRACTION</code><br>
+<code>{subt:expr1,expr2}</code><br>
+<code>{subt:expr1,expr2,expr3...}</code></p>
+
+<p>Returns the difference of the values <code>expr1</code> and
+<code>expr2.</code> If more than two args are given, all values are
+subtracted from the first value in sequence. For example:
+<code>{subt:10,3,2,4}</code> would be read as <code>10 - 3 - 2 -
+4,</code> and it would return a result of <code>1.</code>
+[<a href="#top">top</a>]</p><hr>
+
+<a name="t">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="tell">
+<p><code>TELL</code><br>
+<code>{tell:string}</code><br>
+<code>{tell:string,player}</code></p>
+
+<p>If passed only a string, tells the user that string. If passed both a
+string, and a player dbref, it will tell the given player the message.
+This returns the message that was sent. If the trigger isn't a room, or
+an exit on a room, and if the message doesn't already begin with the
+user's name, then the user's name will be prepended to the message. The
+two exceptions to this are that if the messages is being sent to the
+owner of the trigger, or to the user, then the user's name will not be
+prepended.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="testlock">
+<p><code>TESTLOCK</code><br>
+<code>{testlock:obj,prop}</code><br>
+<code>{testlock:obj,prop,who}</code><br>
+<code>{testlock:obj,prop,who,def}</code></p>
+
+<p>Tests the lock property <code>prop,</code> on <code>obj</code>
+against the given player <code>who.</code> If no <code>who</code>
+argument is given, then it checks the lock against the using player. If
+a <code>def</code> argument is given, then the lock will default to that
+value, if there is no lock property of the given name on the given
+object. Returns true if the lock is locked against the player.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="time">
+<p><code>TIME</code><br>
+<code>{time}</code><br>
+<code>{time:timezone}</code></p>
+
+Returns a time string in the 24hr form <code>hh:mm:ss.</code> If the
+timezone argument is given, then it offsets the time returned by that
+number of hours.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="timestr">
+<p><code>TIMESTR</code><br>
+<code>{timestr:secs}</code></p>
+
+<p>Given a time period in seconds, this will return a concise
+abbreviated string representation of how long that time was. This might
+return a value like <code>"9d 12:56"</code> for <code>9 days, 12 hours,
+and 56 minutes</code>.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="timesub">
+<p><code>TIMESUB</code><br>
+<code>{timesub:period,offset,listname}</code><br>
+<code>{timesub:period,offset,listname,object}</code></p>
+
+<p>This is sort of like <code>{list},</code> except that it will only
+return one line of the given named property list. The line it chooses
+depends on the time. The period is the length of time, in seconds, that
+it takes for <code>{timesub}</code> to cycle through the entire list.
+The offset is the number of seconds to offset into the time period, if
+you actually need to synchronize the <code>{timesub}</code> with
+something. The offset usually is just left at zero. If the object
+argument is not passed, it looks for the list on the trigger. What this
+all means, is that if you have, for example, a period of 3600 (one
+hour), an offset of zero, and a property list that has six items in it,
+then <code>{timesub}</code> will return the first line of the property
+list during the first ten minutes of the hour, the second line during
+the next ten minutes, and so on, until it returns the last line during
+the last ten minutes of the hour. Then it returns the first line for the
+beginning of the next hour. Here's an example:</p>
+
+<p><code>
+ &nbsp; &nbsp;   {timesub:86400,0,_sunmoon}
+</code></p>
+
+<p>This example will show different property list lines, depending on
+the time of day. The period is 86400 seconds, which is one day. If the
+property list has 24 items in it, then a different line will be returned
+for each hour of the day.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="tolower">
+<p><code>TOLOWER</code><br>
+<code>{tolower:string}</code></p>
+
+<p>Returns a copy of string, with all uppercase characters converted to
+lowercase.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="toupper">
+<p><code>TOUPPER</code><br>
+<code>{toupper:string}</code></p>
+
+<p>Returns a copy of string, with all lowercase characters converted to
+uppercase.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="type">
+<p><code>TYPE</code><br>
+<code>{type:obj}</code></p>
+
+<p>Returns the type of an object. The possible values are:
+<code>Bad,</code> <code>Room,</code> <code>Exit,</code>
+<code>Thing,</code> <code>Player,</code> and <code>Program.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="tzoffset">
+<p><code>TZOFFSET</code><br>
+<code>{tzoffset}</code></p>
+
+<p>Returns local time zone offset from GMT in seconds.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="u">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="usecount">
+<p><code>USECOUNT</code><br>
+<code>{usecount:obj}</code></p>
+
+<p>Returns the usecount of <code>obj.</code>
+[<a href="#top">top</a>]</p><hr>
+
+<a name="v">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="variable">
+<p><code>V &nbsp;|&nbsp; VARIABLE &nbsp;|&nbsp; &</code><br>
+<code>{v:var}</code><br>
+<code>{&var}</code></p>
+
+<p>These are two ways of trying to do the same thing. They return the
+value of the named variable <code>var.</code> If there is no variable
+with the given name currently defined, then this gives an error stating
+as much. Variables can be defined either with the <code>{with:}</code>
+function or within a looping command.
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="version">
+<p><code>VERSION</code><br>
+<code>{version}</code></p>
+
+<p>Returns the version string for the server.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="w">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="while">
+<p><code>WHILE</code><br>
+<code>{while:check,expr}</code></p>
+
+<p>This is a looping structure. It evaluates <code>check,</code> and if
+it evaluates true, then it evaluates <code>expr</code>, and repeats the
+process. If <code>check</code> evaluates false, then the loop is exited.
+This returns the result of the last evaluation of <code>expr.</code>
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="with">
+<p><code>WITH</code><br>
+<code>{with:var,val,expr..}</code></p>
+
+<p>This defines a new variable with the given name, and sets its value
+to the given <code>val.</code> Up to 7 <code>expr's</code> are allowed,
+but the only value returned to <code>{with}'s</code> caller, is the
+value returned by the evaluation of the last <code>expr.</code> If there
+is already a variable of the same name, then this command will override
+that variable, for the duration of the <code>{with:}</code> command. The
+new variable is only valid to use within the confines of the
+<code>{with:}</code> command, and it will go away after the command
+completes. This provides scoped variables quite effectively.
+<em>Note</em>:  There can be no more than 32 variables defined at any
+one time, total. This includes variables that are defined within macros,
+or properties or lists that are executed with <code>{exec:}</code> or
+<code>{lexec:}.</code> Here's an example to illustrate the scope of
+variables inside of <code>{with:}</code> commands: </p>
+
+<p><pre>
+  {prop:_mydesc}                        <font color="red">&lt;- {&people} not defined</font>
+  {with:people,{contents:here,players}, <font color="red">&lt;- Defining. Not available yet</font>
+    {if:{count:{&people}},              <font color="red">&lt;- It's usable now</font>
+      The players awake here are
+      {lit: }                           <font color="red">&lt;- just puts in a space</font>
+      {commas:{&people},{lit: and },
+        who,{name:{&who}}               <font color="red">&lt;- uses {&who} as temp var</font>
+      }                                 <font color="red">&lt;- {&who} no longer defined</font>
+    }
+  }                                     <font color="red">&lt;- {&people} no longer defined</font>
+</pre></p>
+
+[<a href="#top">top</a>]<hr>
+
+<a name="x">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="xor">
+<p><code>XOR &nbsp;|&nbsp; EXCLUSIVEOR</code> <br>
+<code>{xor:expr1,expr2}</code></p>
+
+<p>Returns true if <code>expr1</code> or <code>expr2</code> evaluate as
+true, but false if both do.  Otherwise, this returns false.
+[<a href="#top">top</a>]</p><hr>
+
+<a name="y">
+<a name="z">
+
+
+  <center>
+  <a href="mpiex.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

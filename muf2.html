@@ -1,0 +1,149 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (2)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf3.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Actually Beginning:</b></p>
+
+<p>We'll get to <code>MUF</code> code itself soon, but a few words on
+the mechanics of making programs and their trigger actions may be in
+order first.</p>
+
+<p>The command to make a program is <code>@program &lt;name of
+program&gt;,</code> or just <code>@prog &lt;name of program&gt;.</code>
+This does two things. It creates the program object (although there is
+no code in it yet), and it puts you into the <code>MUF</code> editor.
+The program is essentially a thing. You can pick it up, hand it to
+people, and so on, but it has the type flag <code>F</code> and so is
+treated as a different kind of object. The editor lets you enter and
+manipulate the text of your program, much like lsedit lets you enter and
+manipulate the text of a list (though the commands are different). Type
+<code>q</code> to get out of the editor (if you're in `insert' mode, you
+will need to type a .  period and then <code>q</code>). Once the program
+is created, you can edit or add to the code with the <code>@edit</code>
+command, syntax <code>@edit &lt;program&gt;</code>.</p>
+
+<p>The editor commands are:</p>
+
+<p><table border="0">
+  <tr>
+    <td valign="top"><code>&lt;number&gt; i&nbsp;&nbsp;&nbsp;</code></td>
+    <td valign="top"><code>Insert text before line &lt;number&gt;. If you 
+    don't  have any code in the program, you can just type `i' by itself to 
+    enter insert mode.</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>.</code></td>
+    <td valign="top"><code>Exit insert mode. (That's a period, btw)</code>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><code>&lt;number&gt; &lt;number&gt; l</code></td>
+    <td valign="top"><code>List lines &lt;number&gt; to &lt;number&gt;.
+    </code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>&lt;number&gt; &lt;number&gt; d &nbsp;</code></td>
+    <td valign="top"><code>Delete lines &lt;number&gt; to &lt;number&gt;.
+    </code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>a</code></td>
+    <td valign="top"><code>Show macros (abridged version).</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>s</code></td>
+    <td valign="top"><code>Show macros (long version).</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>&lt;program#&gt; v</code></td>
+    <td valign="top"><code>List program's public functions.</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>n</code></td>
+    <td valign="top"><code>Toggle line numbering on and off.</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>c</code></td>
+    <td valign="top"><code>Compile the program you're editing.</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>u</code></td>
+    <td valign="top"><code>Uncompile it.</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>h</code></td>
+    <td valign="top"><code>Get help on the editor.</code></td>
+  </tr>
+  <tr>
+    <td valign="top"><code>q</code></td>
+    <td valign="top"><code>Quit editor mode.</code></td>
+  </tr>
+</table></p>
+
+<p>The editor is cumbersome, especially if you've never used a
+line-based editor (such as <code>UNIX's</code> <code>ex</code>). You may
+find it easier to work on your program in a text editor on your own
+computer or in your <code>UNIX</code> account, and upload it to the
+<code>MUCK</code> as needed. The following technique works well. Begin
+the file with:</p>
+
+<p><code>
+ &nbsp; &nbsp;   @q<br>
+ &nbsp; &nbsp;   @edit &lt;program name or #dbref&gt;<br>
+ &nbsp; &nbsp;   1 9999 d<br>
+ &nbsp; &nbsp;   i
+</code></p>
+
+<p>And end it with:
+
+<p><code>
+ &nbsp; &nbsp;   .<br>
+ &nbsp; &nbsp;   c<br>
+ &nbsp; &nbsp;   q
+</code></p>
+
+<p>Put the code of your program between those. Then, by pasting the
+whole file into your mucking window, or by using your client to upload
+the file onto the <code>MUCK,</code> you automatically quit any programs
+you have running, delete all old code, insert new code, and recompile.
+(To upload a file using <code>TinyFugue,</code> type   <code>/quote -0
+`&lt;filename&gt;</code> . The apostrophe in front of
+<code>&lt;filename&gt;</code> is required.) For other clients, see the
+program's Help menu or other documentation.</p>
+
+<p>You will also need to make something that triggers the program. The most
+straightforward method is to open an action and link it to the program. You
+can also trigger it from a prop (see <a href="triggers.html">Section
+2.1.4</a>). If a program is set with the <code>L</code> flag, it is
+<code>Link_OK</code> and is in effect a public program: anyone can link to it
+or list it.  Without the <code>L</code> flag, only you or a wizard can list
+and link to the program.</p>
+
+  <center>
+  <a href="muf.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf3.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

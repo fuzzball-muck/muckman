@@ -1,0 +1,345 @@
+<html>
+<head>
+  <title>The MUCK Manual: Tutorials: Using the List Editor</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="tutorials.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="multiacttut.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>4.1  Using the List Editor</b></p>
+
+<p>Lists (introduced in <a href="lists.html">Commands Overview:
+Lists</a>) are the <code>MUCK</code> equivalent of files or documents:
+adjacent, related props hold lines of text, which together make up a
+list. Lists allow you to include formatting information such as
+paragraph breaks and indentation in descriptions and other text output.
+Lists are normally created and edited using the list editor, command
+<code>lsedit.</code>.</p>
+
+<p>If you have used a line editor before, such as <code>UNIX's</code>
+<code>ex,</code> the <code>MUCK</code> list editor will seem familiar
+and easy to use. But if your only experience with text editors has been
+through screen editors such as Notepad or Simpletext, or
+<code>WYSIWYG</code> word processors, the list editor will definitely
+take some getting used to.</p>
+
+<p>With a line editor, you work with individual lines of text or with
+groups of lines, rather than seeing all lines at the same time, with
+your position in the file marked with a cursor. In order to see the
+contents of the list, you will need to enter a command that causes text
+to be displayed. Similarly, you need to enter explicit commands to move
+around in the list and tell the editor which line you are working
+with.</p>
+
+<p>The following is a walk-through of using the list editor to give a room
+&#151; a lounge on a high-tech world &#151; a two-paragraph
+description.</p>
+
+<p>The syntax for lsedit is <code>lsedit &lt;obj&gt; = &lt;list
+name&gt;</code>.  <code>&lt;Obj&gt;</code> here is the object holding
+the props that make up the list. We do not necessarily have to store the
+list on the room, but since the list holds the room's desc, it makes
+sense to do so. The list name can be anything we like.  We'll call it
+`desc', just to keep things simple. So, to get started we start the list
+editor:</p>
+
+<p><pre>
+====================================
+> lsedit here = desc
+<    Welcome to the list editor.  You can get help by entering '.h'     >
+< '.end' will exit and save the list.  '.abort' will abort any changes. >
+<    To save changes to the list, and continue editing, use '.save'     >
+< Insert at line 1 >
+====================================
+</pre></p>
+
+<p>At this point, we can either type in the text directly, or we can copy
+text from a text editor on our client computer, and paste it into our
+<code>MUCK</code> client's window (often a better choice).</p>
+
+<p>Let's say that we enter the following description for the room, using
+either method:</p>
+
+<p><pre>
+====================================
+  This lounge, one notices immediately, is oddly anacoustic: something
+  -- perhaps the walls covered in a short-nub, grey carpet, perhaps the
+  somewhat unusual layout of shoulder-high, paper-thin partitions
+  between groups of tables, or perhaps the alcoves set into the walls --
+  something seems to swallow sound here. Footfalls fall muted;
+  conversations coalesce into a low, murmuring susurrus. 
+
+  A seemingly continuous tube of cobalt blue neon adorns the room,
+  running along the walls eight inhces below the ceiling. Its
+  eye-thwarting hue reflects in dabs and streaks from the furniture: the
+  tables, chairs, barstools, and the bar itself... sleek amalgamations
+  of stainless steel, glass, and buffed black leather. Behind the bar,
+  between shelves holding ornate bottles, sits a single bonsai tree, its
+  tortured form hilighted in the beam of a hidden drop light.
+====================================
+</pre></p>
+
+<p>When we enter the text, nothing seems to happen. Did we successfully
+enter it?  To see the contents of our list, we can type <code>.l</code>
+(to list the lines, without line numbers) or <code>.p</code> (to print
+the lines, with line numbers.)</p>
+
+<p><pre>
+====================================
+> .l
+  This lounge, one notices immediately, is oddly anacoustic: something
+  -- perhaps the walls covered in a short-nub, grey carpet, perhaps the
+  somewhat unusual layout of shoulder-high, paper-thin partitions
+  between groups of tables, or perhaps the alcoves set into the walls --
+  something seems to swallow sound here. Footfalls fall muted;
+  conversations coalesce into a low, murmuring susurrus. 
+  A seemingly continuous tube of cobalt blue neon adorns the room,
+  running along the walls eight inhces below the ceiling. Its
+  eye-thwarting hue reflects in dabs and streaks from the furniture: the
+  tables, chairs, barstools, and the bar itself... sleek amalgamations
+  of stainless steel, glass, and buffed black leather. Behind the bar,
+  between shelves holding ornate bottles, sits a single bonsai tree, its
+  tortured form hilighted in the beam of a hidden drop light.
+  < listed 2 lines starting at line 1 >
+
+> .p
+  1: This lounge, one notices immediately, is oddly anacoustic:
+  something -- perhaps the walls covered in a short-nub, grey carpet,
+  perhaps the somewhat unusual layout of shoulder-high, paper-thin
+  partitions between groups of tables, or perhaps the alcoves set into
+  the walls -- something seems to swallow sound here. Footfalls fall
+  muted; conversations coalesce into a low, murmuring susurrus. 
+  2: A seemingly continuous tube of cobalt blue neon adorns the room,
+  running along the walls eight inhces below the ceiling. Its
+  eye-thwarting hue reflects in dabs and streaks from the furniture: the
+  tables, chairs, barstools, and the bar itself... sleek amalgamations
+  of stainless steel, glass, and buffed black leather. Behind the bar,
+  between shelves holding ornate bottles, sits a single bonsai tree, its
+  tortured form hilighted in the beam of a hidden drop light.
+  < listed 2 lines starting at line 1 >
+====================================
+</pre></p>
+
+<p>Hmmm... This looks more or less ok, but a couple things have happened to
+our text as it has been processed by the list editor. Our paragraphs are
+each currently in one long line, and the blank line that separated them
+has disappeared.</p>
+
+<p>Truly blank lines get `swallowed' by your client, and never make it
+to the <code>MUCK</code> or the list editor. So, if we want to put blank
+lines in a list, we need to put a space or two on the line to hold its
+place. We decide that we do want a blank line separating our paragraphs
+here, so we use <code>lsedit's</code> <code>.insert</code> command
+(syntax <code>.i &lt;line to insert&gt;</code>), and enter a couple
+spaces on
+line 2.</p>
+
+<p><pre>
+====================================
+> .i 2
+  < Insert at line 2>
+> ( ...we type a couple spaces here... )
+> .p
+  1: This lounge, one notices immediately, is oddly anacoustic:
+  something -- perhaps the walls covered in a short-nub, grey carpet,
+  perhaps the somewhat unusual layout of shoulder-high, paper-thin
+  partitions between groups of tables, or perhaps the alcoves set into
+  the walls -- something seems to swallow sound here. Footfalls fall
+  muted; conversations coalesce into a low, murmuring susurrus. 
+  2:
+  3: A seemingly continuous tube of cobalt blue neon adorns the room,
+  running along the walls eight inhces below the ceiling. Its
+  eye-thwarting hue reflects in dabs and streaks from the furniture: the
+  tables, chairs, barstools, and the bar itself... sleek amalgamations
+  of stainless steel, glass, and buffed black leather. Behind the bar,
+  between shelves holding ornate bottles, sits a single bonsai tree, its
+  tortured form hilighted in the beam of a hidden drop light.
+  < listed 3 lines starting at line 1 >
+====================================
+</pre></p>
+
+<p>We could leave our text in long lines, one per paragraph, but
+sometimes clients have trouble with line wrapping. If we leave it like
+this, it's possible that a few players will not be able to see all the
+text.  <code>Lsedit's</code> <code>.format</code> command (syntax
+<code>.format &lt;start line&gt; &lt;end line&gt; = &lt;columns to
+format to&gt;</code>) will break the lines up into reasonable
+lengths.</p>
+
+<p><pre>
+====================================
+> .format 1 3 = 76
+  < Formatted 3 lines starting at line 1 (Now curr line) to 76 columns. >
+> .p
+  1: This lounge, one notices immediately, is oddly anacoustic: something -- 
+  2: perhaps the walls covered in a short-nub, grey carpet, perhaps the somewhat
+  3: unusual layout of shoulder-high, paper-thin partitions between groups of 
+  4: tables, or perhaps the alcoves set into the walls -- something seems to 
+  5: swallow sound here. Footfalls fall muted; conversations coalesce into a 
+  6: low, murmuring susurrus. 
+  7:   
+  8: A seemingly continuous tube of cobalt blue neon adorns the room, running 
+  9: along the walls eight inches below the ceiling. Its eye-thwarting hue 
+ 10: reflects in dabs and streaks from the furniture: the tables, chairs, 
+ 11: barstools, and the bar itself... sleek amalgamations of stainless steel, 
+ 12: glass, and buffed black leather. Behind the bar, between shelves holding 
+ 13: ornate bottles, sits a single bonsai tree, its tortured form hilighted in 
+ 14: the beam of a hidden drop light.
+< listed 14 lines starting at line 1 >
+====================================
+</pre></p>
+
+<p>So, we successfully inserted a blank line, separating our paragraphs.
+But on second thought, this isn't how we want to format it. The blank
+line will break things up too much: the first paragraph will seem to `go
+with' the name of the room, and the second paragraph will seem to `go
+with' the room's contents list. The desc itself won't look like a
+unified whole on the screen. So, we decide instead to delete the blank
+line (using <code>lsedit's</code> <code>.delete</code> command, syntax
+<code>.del &lt;line to delete&gt;</code>), and indent the paragraphs two
+spaces, using <code>lsedit's</code> <code>.indent</code> command. </p>
+
+<p>The syntax for <code>.indent</code> is <code>.indent [&lt;first line
+to indent&gt; [&lt;last line to indent&gt;]] = &lt;number of spaces to
+indent&gt;.</code> That looks somewhat complicated when expressed
+formally, but it's not difficult in practice.</p>
+
+<p>Some examples...</p>
+
+<p>This indents the current line by five spaces:
+<pre>
+====================================
+> .indent 5
+  < Indenting 1 lines starting at line 2, 2 columns. >
+====================================
+</pre></p>
+
+<p>This indents line 14 by five spaces:
+<pre>
+====================================
+> .indent 14 = 5
+  < Indenting 1 lines starting at line 14, 2 columns. >
+====================================
+</pre></p>
+
+This indents lines 18 to 20 by five spaces:
+<pre>
+====================================
+> .indent 18 20 = 5
+  < Indenting 3 lines starting at line 18, 2 columns. >
+====================================
+</pre></p>
+
+<p>So, back to our main example: in the list editor, working with our
+`desc' list for a room, we want to delete line 7 (the blank line) and
+indent the two remaining lines by two spaces.</p>
+
+<p><pre>
+====================================
+> .del 7
+  < Deleting 1 lines, starting at line 7  (Now current line) >
+> .indent 1 = 2
+  < Indented 1 lines starting at line 1, 2 columns >
+> .indent 7 = 2
+  < Indented 1 lines starting at line 7, 2 columns >
+> .l
+    This lounge, one notices immediately, is oddly anacoustic:
+  something -- perhaps the walls covered in a short-nub, grey carpet,
+  perhaps the somewhat unusual layout of shoulder-high, paper-thin
+  partitions between groups of tables, or perhaps the alcoves set into
+  the walls -- something seems to swallow sound here. Footfalls fall
+  muted; conversations coalesce into a low, murmuring susurrus. 
+    A seemingly continuous tube of cobalt blue neon adorns the room,
+  running along the walls eight inhces below the ceiling. Its
+  eye-thwarting hue reflects in dabs and streaks from the furniture: the
+  tables, chairs, barstools, and the bar itself... sleek amalgamations
+  of stainless steel, glass, and buffed black leather. Behind the bar,
+  between shelves holding ornate bottles, sits a single bonsai tree, its
+  tortured form hilighted in the beam of a hidden drop light.
+====================================
+</pre></p>
+
+<p>OK, this is looking good. But we need to make one last change.  In the
+process of working with the list, we notice a typo in line 8 of the
+second paragraph: <code>`inhces'</code> should be <code>`inches'.</code>
+We want to fix that, and would rather not have to retype everything. The
+right tool for the job here is <code>lsedit's</code>
+<code>.replace</code> command (syntax <code>.repl &lt;line number&gt; =
+/&lt;old string&gt;/&lt;new string&gt;</code>)</p>
+
+<p><pre>
+====================================
+> .repl 8 = /inhces/inches
+  < Replaced.  Going to line 8 >
+  8: along the walls eight inches below the ceiling. Its eye-thwarting
+  hue
+====================================
+</pre></p>
+
+<p>Now, finally, an important point, we need to <em>get out of the list
+editor.</em> (Forgetting to get out of the list editor, and typing a
+bunch of commands into the list you were just working on is a fairly
+common mishap.) To do so, type <code>.end,</code> on a line by
+itself.</p>
+
+<p><pre>
+====================================
+> .end
+  < Editor exited. >
+  < list saved. >
+====================================
+</pre></p>
+
+<p>So we're done!  Or are we?  We do a <code>`look'</code> to see the
+final product, and get a disappointment. The desc doesn't show up. So
+far, we have created the list, but we haven't told the server to display
+this list as the room's desc. To do so, we need to set the room's desc
+with a bit of <code>MPI</code> that will cause the newly created list to
+be displayed when people look at the room.</p>
+
+<p><pre>
+====================================
+> @desc here = {list:desc}
+  Description set.
+> l
+    This lounge, one notices immediately, is oddly anacoustic:
+  something -- perhaps the walls covered in a short-nub, grey carpet,
+  perhaps the somewhat unusual layout of shoulder-high, paper-thin
+  partitions between groups of tables, or perhaps the alcoves set into
+  the walls -- something seems to swallow sound here. Footfalls fall
+  muted; conversations coalesce into a low, murmuring susurrus. 
+    A seemingly continuous tube of cobalt blue neon adorns the room,
+  running along the walls eight inches below the ceiling. Its
+  eye-thwarting hue reflects in dabs and streaks from the furniture: the
+  tables, chairs, barstools, and the bar itself... sleek amalgamations
+  of stainless steel, glass, and buffed black leather. Behind the bar,
+  between shelves holding ornate bottles, sits a single bonsai tree, its
+  tortured form hilighted in the beam of a hidden drop light.
+====================================
+</pre></p>
+
+<p>Voila!  We're done.</p>
+
+
+  <center>
+  <a href="tutorials.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="multiacttut.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

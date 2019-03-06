@@ -1,0 +1,209 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Locks</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="exits.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="bogusex.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>Locks:</b></p>
+
+<p>Locks are expressions used to control the use of objects. The most
+common applications are to lock exits so that only some people can use
+them, and to `lock down' things that you need to leave lying about in
+rooms (a sign or bulletin board, for example). Just what constitutes
+`use' depends on the object type. To `use' a thing means to pick it up.
+To `use' an exit means to pass through it to another room, or to use it
+as a command. To `use' a room means to look at it.</p>
+
+<p>If an object is locked it may be used if and only if the lock
+expression is `true' for the player (or other object type) attempting to
+use the object. `True' in this context and in rather nontechnical terms
+means `if the triggering player/object <em>is</em> or <em>has</em> or
+<em>is owned by</em> a result of the lock expression'.</p>
+
+<p>A simple example...</p>
+
+<p><code>
+====================================<br>
+&gt; @lock closet = me<br>
+&nbsp;  Locked.<br>
+&gt; ex out = _/<br>
+&nbsp;  lok /_/lok:Kenya(#75PBJM1)<br>
+====================================<br>
+</code></p>
+
+<p>A lock expression is stored as data type `lock' (see also <a
+href="datatypes.html">Section 2.1.3</a>), as indicated indicated by the
+prefix <code>lok,</code> and meaning that the server will evaluate the
+expression for `truth' in reference to the triggering player (or other
+triggering object type). The lock in this example evaluates to `database
+object <code>#75'.</code> If the player or other object trying to use
+the exit `is' <code>#75</code> (that is, if it is Kenya), then the lock
+`passes': Kenya will be able to use the exit. Further, if the the
+triggering player/object `has' Kenya, the lock would pass: if Kenya were
+inside a vehicle object, the vehicle would be able to use the exit.
+And, if the triggering object `is owned by' Kenya, the lock would
+pass... for example, a puppet owned by Kenya would be able to use the
+exit. And (this is the whole point of locks) <em>only</em> these objects
+would be able to use the exit.</p>
+
+<p>Property values as well as dbrefs can serve as lock expressions. The
+syntax for locking an object to a property value is <code>@lock</code>
+&lt;object&gt; = &lt;property&gt; : &lt;value&gt;</code></p>
+
+<p>Only females can use this exit:<br>
+<code>
+====================================<br>
+&gt; @lock Powder Room = sex:female<br>
+&nbsp;  Locked.<br>
+&gt; ex out = _/<br>
+&nbsp;  lok /_/lok:sex:female<br>
+====================================<br>
+</code></p>
+
+<p>If the triggering player/object `has' the property value `female' in
+her `sex' property, the lock passes: in other words, only females can
+use this exit. (When the system parameter <code>lock_envcheck</code> is
+tuned to `yes', the server searches rooms in the environment tree path
+for property matches on locks, as well as the triggering player/object.
+In this case, if room <code>#0</code> were set <code>sex:female</code>,
+the lock in the above example would always pass.)</p>
+
+<p>Wildcard characters (see <a href="patmatch.html">Section 2.1.6</a>) may be
+used in locks for property values.</p>
+
+<p>This exit may be used by males and females, but not fluffs... lyve
+wyth yt.<br>
+<code>
+====================================<br>
+&gt; @lock Normal Folks Bar and Grill = sex:*ale<br>
+&nbsp; Locked.<br>
+====================================<br>
+</code></p>
+
+<p>Lock expressions may contain or evaluate to multiple elements. The
+elements must be separated by an `or' operator (a <code>|</code>
+vertical bar) or by an `and' operator (an <code>&</code> ampersand), and
+may optionally be preceded by a `not' operator (an <code>!</code>
+exclamation point). Player names may be used, provided that they are
+preceded by an <code>*</code> asterix pointer.</p>
+
+<p>This exit may be used by either of two players, Passiflora or
+Kenya...<br>
+<code>
+====================================<br>
+&gt; @lock Den of Iniquity = *passiflora|*kenya<br>
+&nbsp;  Locked.<br>
+====================================<br>
+</code></p>
+    
+<p>This exit may only be used by female staff members...<br>
+<code>
+====================================<br>
+&gt; @lock Wizards' GunPowder Room = ~staff:yes&sex:female<br>
+&nbsp;  Locked.<br>
+====================================<br>
+</code></p>
+
+<p>This exit may be used by anyone (or anything) who is <em>not</em>
+Stinker...<br>
+<code>
+====================================<br>
+&gt; @lock Jessy's House = !*stinker<br>
+&nbsp;  Locked.<br>
+====================================<br>
+</code></p>
+
+<p>This exit may only be used by someone who <em>is</em> Jessy and who
+<em>is not</em> Jessy. In other words, this lock alway fails...<br>
+<code>
+====================================<br>
+&gt; @lock chair = *jessy&!*jessy<br>
+&nbsp;  Locked.<br>
+====================================<br>
+</code></p>
+
+<p>The operators have the following order of precedence:</p>
+  
+<ol>
+  <li>! not 
+  <li>| or
+  <li>& and 
+</ol>
+
+<p>The order of precedence can be over-ridden by enclosing
+sub-expressions within (parentheses). </p>
+
+<p>This exit may be used by all females and all others who are <em>not</em>
+Stinker...<br>
+<code>
+====================================<br>
+&gt; @lock bar = !*stinker|sex:female<br>
+&nbsp;  Locked.<br>
+====================================<br>
+</code></p>
+
+<p>This exit may be used by all who are <em>not</em> female and
+<em>not</em> Stinker...<br>
+<code>
+====================================<br>
+&gt; @lock bar = !(*stinker|sex:female)<br>
+&nbsp;  Locked.<br>
+====================================<br>
+</code></p>
+
+<p>An object can be locked to a <code>MUF</code> program, in which case
+the program runs when someone uses or attempts to use the object, and
+the lock passes if the program returns a true <code><em>MUF</em></code>
+value (that is, <code>MUF's</code> truth conditions over-ride the truth
+conditions for locks). In <code>MUF,</code> a <code>""</code> null
+string, the integer <code>0,</code> the floating point value
+<code>0.00000,</code> and the dbref for `nothing', <code>#-1,</code> are
+false. If the <code>MUF</code> program returns any of these values, the
+lock fails; if it returns any other value, the lock passes.</p>
+
+<p>A lock cannot include <code>MPI</code> (or rather, will invariably
+fail if set to an <code>MPI</code> string), but an object can be locked
+to a property value, and the property value on a relevant object can be
+set to an <code>MPI</code> string.</p> 
+
+<p>This exit may only be used on the stroke of midnight (or by someone
+who has figured out the lock and set his `time' property to
+<code>00:00:00</code>)...<br>
+<code>
+====================================<br>
+&gt; @lock time machine = time:00:00:00<br>
+&nbsp;  Locked.<br>
+&gt; @set time machine = time:{time}<br>
+&nbsp;  Property set.<br>
+====================================<br>
+</code></p>
+
+<p>Locks may be removed with the <code>@unlock</code> command, syntax
+<code>@unlock &lt;object&gt;'</code></p>
+
+
+  <center>
+  <a href="exits.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="bogusex.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

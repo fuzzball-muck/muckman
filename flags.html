@@ -1,0 +1,107 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Flags</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="dbrefname.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="props.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>Flags:</b></p>
+
+<p>Flags &#151; also called `bits' &#151; provide an economical way to
+store important information about all objects in the database.</p>
+
+<p>Usually you can see both the dbref and flags of any objects you
+control when they appear in a Contents or Inventory list, or in the case
+of rooms, simply by doing a look. Whether or not you can see this
+information is determined by the <code>S</code> flag set on your
+character: type <code>@set me =!S to</code> see dbrefs and flags, or
+<code>@set me = S</code> to hide them (in this context, the
+<code>S</code> flag means `Silent').  Whether you are set
+<code>Silent</code> or not, you can see the flags set on an object you
+control by examining it.</p>
+
+<p>The first flag listed after an object's dbref is its `type flag'. The
+type flag functions differently than any remaining flags. It determines
+the type of the object; it is set at the time of the object's creation;
+it cannot be changed; and it determines the meaning or function of
+remaining flags. If an object is created with the <code>@dig</code>
+command, it will be a room and will have an <code>R</code> flag in the
+first position. If it is created with the <code>@action</code> or
+<code>@open</code> command, it will be an exit and will have an
+<code>E</code> flag.  If it's created with the <code>@program</code>
+command, it will be a program and will have an <code>F</code> flag. If
+it's created with the <code>@pcreate</code> command, it will be a player
+and have a <code>P</code> flag. If it's created with the
+<code>@create</code> command, it will be a thing, and will have none of
+these flags.  All flags are either `set' or `not set' at all times.</p>
+
+<p>The meaning or function of the remaining flags depends on their
+context... that is, on what type flag the object has. For example, if a
+program (something with an <code>F</code> flag in the first position) is
+set <code>D,</code> the <code>D</code> flag means `Debug', and debugging
+information is shown whenever the program runs. If a room (something
+with an <code>R</code> flag in the first position) is set
+<code>D,</code> the <code>D</code> flag means `Dark': the `Contents'
+list won't appear for a player who doesn't control the room, and no
+notices are emitted when players connect and disconnect in the room. In
+short, the same flag won't always mean the same thing. While the
+context-dependent meanings of flags can be confusing for new users, it
+provides an elegantly economical way to store important information. The
+meanings of each flag in relation to the type flags are listed in <a
+href="flagref.html">Section 2.5.</a></p>
+
+<p>The type flag is set at the time of an object's creation. The
+remaining flags can be toggled with the <code>@set</code> command and
+the `not operator' (an ! exclamation point). The syntax for setting a
+flag is <code>@set &lt;object&gt; = &lt;flag&gt;</code>. For removing a
+flag, it's <code>@set &lt;object&gt; = !&lt;flag&gt;</code>. Flags are
+not case sensitive: <code>@set here = D</code> and <code>@set here =
+d</code> produce the same result.</p>
+
+<p><code>
+====================================<br>
+&gt; @set here = D<br>
+&nbsp;&nbsp;Flag set.<br>
+&gt; @set here = !D<br>
+&nbsp;&nbsp;Flag reset.<br>
+====================================<br>
+</code></p>
+
+<p>Mortals' use of flags is restricted in a few ways. Most importantly,
+they can only set flags on things they control. Players cannot change
+the state of the <code>Zombie</code> (<code>Z</code>) or
+<code>Dark</code> (<code>D</code>) flags on themselves. They cannot set
+themselves or anything they own <code>Builder</code> (<code>B</code>) or
+<code>Wizard</code> (<code>W</code>). They must have a Mucker bit (flags
+<code>M1,</code> <code>M2,</code> or <code>M3</code>) in order to change
+the Mucker bit of a program. Players can set the Mucker bit of a program
+they own to a level lower than or equal to their own, but not higher.
+Wizard's control all objects and may change the state of any flag on any
+object, with two exceptions: (<code>1</code>) type flags can never be
+changed; (<code>2</code>) if the <code>MUCK</code> is compiled with the
+<code>god_priv</code> option (which it usually is), wizards cannot set
+players <code>W</code> or <code>!W</code>.</p> 
+
+  <center>
+  <a href="dbrefname.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="props.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

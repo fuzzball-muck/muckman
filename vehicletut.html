@@ -1,0 +1,150 @@
+<html>
+<head>
+  <title>The MUCK Manual: Tutorials: Making Vehicles</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="puptut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="buildtut.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>4.4  Making Vehicles</b></p>
+
+<p><code>MUCK</code> has a rather limited set of server commands for
+using vehicles: objects configured such that players may get inside
+them, and see what happens outside the vehicle. Many <code>MUCKs</code>
+also have more elaborate <code>MUF</code> programs for vehicles. But,
+since these will vary widely from <code>MUCK</code> to
+<code>MUCK,</code> only the server vehcile commands are discussed
+here.</p>
+
+<p>A vehicle is in many ways much like a puppet. Whereas a puppet is
+created by setting the <nobr><code>Z(ombie)</code></nobr> flag on an
+object of type <code>THING,</code> a vehicle is created by setting the
+<nobr><code>V(ehicle)</code></nobr> flag on an object of type
+<code>THING.</code> Puppets broadcast anything hearable in their
+location to their owner; vehicles broadcast anything hearable in their
+location to all players inside the vehicle. The preface string marking
+puppet output is set with the <code>@pecho</code> commmand; the preface
+string marking vehicle output is set with the <code>@oecho</code>
+command. As with puppets, it is usually necessary to
+<code>force_lock</code> the vehicle to users who are allowed to drive
+(or fly or steer) it, and to create an action that implements this. One
+significant difference between puppets and vehicles: you need to create
+an action that lets you get inside a vehicle. This done by creating an
+action that is both attached and linked to the vehicle:</p>
+
+<p><code>
+====================================<br>
+&gt; @create 1967 Corvette Sting Ray<br>
+ &nbsp; 1967 Corvette Sting Ray created with number #558.<br>
+&gt; @set 1967 = V<br>
+ &nbsp; Flag set.<br>
+&gt; @act getin = 1967<br>
+ &nbsp; Action created with number #559 and attached.<br>
+&gt; @link getin = 1967<br>
+ &nbsp; Linked to 1967 Corvette Sting Ray(#558V)<br>
+&gt; drop 1967<br>
+ &nbsp; Dropped.<br>
+&gt; getin<br>
+ &nbsp; 1967 Corvette Sting Ray(#558V)<br>
+====================================
+</code></p>
+
+<p>To describe the interior of the vehicle, use the <code>@idesc</code>
+command:</p>
+
+<p><code>
+====================================<br>
+&gt; @idesc here = The 'vette's interior is pristine: gleaming chrome,<br>
+ &nbsp; smooth blue vinyl, and rubbery floormats.<br>
+&gt; look<br>
+ &nbsp; The 'vette's interior is pristine: gleaming chrome, smooth blue<br>
+ &nbsp; vinyl, and rubbery floormats.<br>
+====================================
+</code></p>
+
+<p>You do not need to create an action that takes you out of the vehicle:
+the server command <code>leave</code> will do this for you.</p>
+
+<p>You do, however, need to set up an action that will let you control the
+vehicle. The action will work by forcing the vehicle, so it needs to be
+set <code>X(forcible)</code> and <code>force_locked</code> to you.</p>
+
+<p><code>
+====================================<br>
+&gt; @set 1967 = X<br>
+ &nbsp; Flag set.<br>
+&gt; @flock 1967 = me<br>
+ &nbsp; Force lock set.<br>
+====================================
+</code></p>
+
+<p>If you wanted anyone to be able to drive the vehicle, you would need to
+set the force lock to something that would succeed for all players, such
+as <code>@flock 1967 = !#0.</code>  </p>
+
+<p>To make an action that controls the vehicle, create an action as
+normal, attached to the vehicle, lock it to a condition that always
+fails, and set its <code>@fail</code> message with <code>MPI</code> that
+forces the vehicle to act as specified by the action's argument:</p>
+
+<p><code>
+====================================<br>
+&gt; @act drive = 1967<br>
+  Action created with number 560 and attached.<br>
+> @lock drive = me&!me<br>
+  Locked.<br>
+> @fail drive = {force:#558,{&arg}}<br>
+  Message set.<br>
+> drive :vroom vrooOOOOmms!<br>
+  Outside> 1967 Corvette Sting Ray vroom vrooOOOmms!<br>
+> drive n<br>
+  Outside> 
+  <font color="red">
+  ( ... the vette goes north; we see the appropriate output
+  </font>
+  )<br>
+====================================
+</code></p>
+
+By default, all emits outside the vehicle will be broadcast to the
+vehicle's interior, prepended with the string <code>outside&gt;.</code>
+You can change this prepend string with the <code>@oecho</code> command:
+
+<p><code>
+====================================<br>
+ &nbsp; (Outside the vehicle, Holbrook waves.)<br>
+ &nbsp; Outside> Holbrook waves.<br>
+<br>
+> @oecho 1967 = >>><br>
+ &nbsp; Message set.<br>
+<br>
+ &nbsp; (Holbrook waves again for us.)<br>
+ &nbsp; >>> Holbrook waves again.<br>
+====================================
+</code></p>
+
+<p>Note: Soft-coded look, pose, and say commands may alter the behavior of
+vehicles from what is described here.</p>
+
+  <center>
+  <a href="puptut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="buildtut.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

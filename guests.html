@@ -1,0 +1,218 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Setting Up Guest Characters</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="edsrvfiles.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="makegohome.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+
+<p><b>Setting Up the Database (cont't)</b>:</p>
+<p><em>Setting Up Guest Characters</em>:</p>
+
+<p><font color="red">(Note: Setup for the <code>con-multiguest,</code>
+the Guest program supplied in the <code>fbmuf</code> package, described
+here, is more difficult than it really ought to be. As an alternative to
+the process described below, you may want to make a copy of <a
+href="multiguest.html"><code>MultiGuest.muf</code></a>, edit the line
+that specifies the guests password to something unique, go to the room
+that the Guests will start at, and paste the file into your client
+window. This will set up your Guest characters
+automatically. You need to have a $nothing action set up before
+quoting the file.)</font></p>
+
+<p>You will probably want to allow Guest characters. A program that
+shuffles incoming connections to the next available Guest character is
+available in fbmuf.tar and the start up database:
+<code>con-multiguest.</code> There is also a small `stub' program &#151;
+<code>con-callmultiguest</code> &#151; that calls the main program when
+players connect as Guests. The reason for this is that programs called
+from <code>_connect</code> must be set <code>Link_OK,</code> but the
+password creation scheme for Guests should be kept private, for security
+reasons.  Rather than calling <code>con-multiguest</code> directly
+(which would require it to be set <code>Link_OK</code>),
+<code>con-callmultiguest</code> is set <code>Link_OK</code> and called
+on connection. Then, this small program calls
+<code>con-multiguest</code> itself.</p>
+
+<p>If you don't have <code>con-multiguest</code> and
+<code>con-callmultiguest</code> ported and registered yet, do so now.
+Then set both program Wizard. Set <code>con-callmultiguest</code>
+<code>Link_OK</code> and <code>Set_UID.</code></p>
+
+<p><code>
+====================================<br>
+&gt; @prog con-multiguest<br>
+ &nbsp; Program created with number 88.<br>
+ &nbsp; Entering editor.<br>
+&gt; i<br>
+ &nbsp; Entering insert mode.<br>
+ &nbsp; &lt; quote or paste program &gt;<br>
+&gt; .<br>
+&gt; c<br>
+ &nbsp; Compiler done.<br>
+&gt; q<br>
+ &nbsp; Editor exited.<br>
+  <br>
+&gt; @reg con-multi = con/multiguest<br>
+ &nbsp; Now registered as _reg/con/multiguest: con-multiguest(#88FM3) on <br>
+ &nbsp; Room Zero(#0R)<br>
+  <br>
+&gt; @set #88 = W<br>
+ &nbsp; Flag set.<br>
+  <br>
+&gt; @prog con-callmultiguest<br>
+ &nbsp; Program created with number 89.<br>
+ &nbsp; Entering editor.<br>
+&gt; i<br>
+ &nbsp; Entering insert mode.<br>
+ &nbsp; &lt; quote or paste program &gt;<br>
+&gt; .<br>
+&gt; c<br>
+ &nbsp; Compiler done.<br>
+&gt; q<br>
+ &nbsp; Editor exited.<br>
+  <br>
+&gt; @set #89 = W<br>
+ &nbsp; Flag set.<br>
+&gt; @set #89 = L<br>
+ &nbsp; Flag set.<br>
+&gt; @set #89 = S<br>
+ &nbsp; Flag set.<br>
+====================================
+</code></p>
+
+<p>If you haven't created a room for the Guests to start in, do that now
+as well.</p>
+
+<p><code>
+====================================<br>
+&gt; @dig Guest Room<br>
+ &nbsp; Guest Room created with number 90.<br>
+====================================
+</code></p>
+
+<p><code>@Pcreate</code> the proto-Guest character.</p>
+
+<p><code>
+====================================<br>
+&gt; @pcreate Guest = guest<br>
+ &nbsp; Player Guest created as object #91.<br>
+====================================
+</code></p>
+
+<p>Then <code>@pcreate</code> the actual Guests. By default, the
+<code>con-multiguest</code> program is set up to handle eight Guests. If
+you want more or less, find the following line in the program...</p>
+
+<p><code>
+ &nbsp;   $def NumGuests 9  (Max guests allowed connected + 1)
+   
+</code></p>
+
+<p>... and edit it appropriately. That is, change <code>9</code> to some
+other number.</p>
+
+<p><code>
+====================================<br>
+&gt; @pcreate Guest1 = guest<br>
+ &nbsp; Player Guest1 created as object #92.<br>
+ &nbsp; .<br>
+ &nbsp; .<br>
+ &nbsp; .<br>
+&gt; @pcreate Guest8 = guest<br>
+ &nbsp; Player Guest1 created as object #99. <br>
+====================================
+</code></p>
+
+<p><code>@Teleport</code> the Guests to the Guest Room, and
+<code>@link</code> them there.</p>
+
+<p><code>
+====================================<br>
+&gt; @tel *guest = #90<br>
+ &nbsp; Teleported.<br>
+&gt; @link *guest = #90<br>
+ &nbsp; Home set.<br>
+ &nbsp; &lt;etc.&gt;<br>
+ &nbsp; &lt;etc.&gt;<br>
+ &nbsp; &lt;etc.&gt;<br>
+====================================
+</code></p>
+
+<p><code>@Set</code> the <code>_connect/multiguest</code> property on
+each Guest to call <code>con-callmultiguest.</code></p>
+
+<p><code>
+====================================<br>
+&gt; @propset *guest=dbref:_connect/multiguest:#89<br>
+ &nbsp; Property set.<br>
+&gt; @propset *guest1=dbref:_connect/multiguest:#89<br>
+ &nbsp; Property set.<br>
+ &nbsp; &lt;etc.&gt;<br>
+ &nbsp; &lt;etc.&gt;<br>
+ &nbsp; &lt;etc.&gt;<br>
+====================================
+</code></p>
+
+<p>This version of the multi-guest program changes Guest passwords by
+forcing a wizard (not the most elegant approach). You'll need to edit
+line 14 of the program, designating a wizard to do the forcing. In the
+original file, #1 is designated, but God cannot be forced if the
+<code>MUCK</code> is compiled with <code>GOD_PRIV.</code> (If you don't
+have other wiz characters yet, you need to make one.)</p>
+
+<p>You should probably also change the password creation scheme. This is
+in line 20. It's not really crucial what you change it too: just make it
+something that returns a string.</p>
+
+<p><code>
+====================================<br>
+&gt; @edit con-multiguest<br>
+ &nbsp; Entering editor.<br>
+ &nbsp; Line not available for display.<br>
+&gt; 14 l<br>
+ &nbsp; $def Wizard #1  (Change this to a wizard's dbref. Preferably not #1)<br>
+&gt; 14 d<br>
+ &nbsp; 1 lines deleted.<br>
+&gt; 14 i<br>
+ &nbsp; Entering insert mode.<br>
+&gt; $def Wizard #2  (Change this to a wizard's dbref. Preferably not #1)<br>
+&gt; .<br>
+  <br>
+&gt; 20 l<br>
+ &nbsp; $def PassWdMake (i -- s) 3 + 9 * intostr "TimE" swap strcat "tWINe" strcat<br>
+&gt; 20 d<br>
+ &nbsp; 1 lines deleted.<br>
+&gt; 20 i<br>
+ &nbsp; Entering insert mode.<br>
+&gt; $def PassWdMake (i -- s)  "snerk" 5 * 7 intostr swap strcat "aVast" strcat<br>
+&gt; .<br>
+&gt; c<br>
+ &nbsp; Compiler done.<br>
+ &nbsp; Editor exited.<br>
+====================================
+</code></p>
+
+  <center>
+  <a href="edsrvfiles.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="makegohome.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Tuning System Parameters</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="otherport.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="edsrvfiles.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+
+<p><b>Setting Up the Database (cont't)</b>:</p>
+<p><em>Tuning System Parameters</em>:</p>
+
+<p>The <code>@tune</code> command lets you adjust a number of system
+parameters. Type <code>`@tune'</code> without arguments to view the
+parameters and their current settings. Most can be left at their default
+settings. Of those that you may want to change, some only make cosmetic
+or formatting changes, while others significantly affect the operation
+of the <code>MUCK.</code> The following are some parameters you may want
+to change. The syntax for resetting a parameter is <code>`@tune
+&lt;parameter&gt; = &lt;value&gt;'.</code> The value must be compatible
+with the data type indicated in the left column of <code>@tune</code>
+output: <code>(str),</code> <code>(bool),</code> etc.</p>
+
+<table border="0">
+  <tr>
+    <td> &nbsp; &nbsp; </td>
+    <td valign="top">
+    <code>dumpwarn_mesg</code> <br>
+    <code>dumpwarn_mesg</code> <br>
+    <code>deltawarn_mesg</code> <br>
+    <code>dumpdeltas_mesg</code> <br>
+    <code>dumping_mesg</code>
+    </td>
+    <td valign="top">
+    These parameters can be freely changed to alternate save messages.
+    Note, however, that some players configure clients to be triggered
+    by the <code>##</code> characters in a save message. So, it's a good
+    idea to keep this format: enclose your new save messages in
+    <code>##</code> double octothorpes <code>##</code>
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>penny</code> <br>
+    <code>pennies</code> <br>
+    <code>cpenny</code> <br>
+    <code>cpennies</code>
+    </td>
+    <td valign="top">
+    Declaring new currency denominations is a time-honored wiz
+    pastime.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>muckname</code>
+    </td>
+    <td valign="top">
+    This you should change. Set it to the name of your
+    <code>MUCK.</code> It's a good idea to use a <code>muckname</code>
+    setting that does not include any spaces.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>huh_mesg</code><br>
+    <code>leave_mesg</code><br>
+    </td>
+    <td valign="top">
+    You may want to supply something more imaginative for these.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>dump_interval</code>
+    </td>
+    <td valign="top">
+    Four hours is the default interval between saves.  This is quite
+    workable, though it's often shorter on new <code>MUCKs</code> and
+    longer on large, established ones.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>max_pennies</code>
+    </td>
+    <td valign="top">
+    If money is signifcant on your <code>MUCK,</code> you may want to
+    lower this. Note that <code>M2</code> Muckers can make very simple
+    programs that give pennies freely. (This will eventually be changed
+    in fb6.0+.)
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>penny_rate</code>
+    </td>
+    <td valign="top">
+    Lower this if you want fewer <code>`You found a penny!'</code>
+    messages; raise it if you want more.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>command_burst_size</code><br>
+    <code>commands_per_time</code><br>
+    <code>command_time_msec</code><br>
+    <code>max_delta_objs</code><br>
+    <code>max_loaded_objs</code><br>
+    <code>max_process_limit</code><br>
+    <code>max_plyr_processes</code><br>
+    <code>max_instr_count</code><br>
+    <code>instr_slice</code><br>
+    <code>mpi_max_commands</code><br>
+    <code>pause_min</code><br>
+    <code>free_frames_pool</code>
+    </td>
+    <td valign="top">
+    It is unlikely that you will need to change these.  However, if for
+    some reason you believe your server is performing poorly, you may
+    wish to try adjusting these system-performance parameters.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>playermax_limit</code>
+    </td>
+    <td valign="top">
+    The default limit is 64. Higher limits allow more players, but
+    setting an unreasonably high limit wastes memory.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>listen_mlev</code>
+    </td>
+    <td valign="top">
+    This parameter controls the minimum Mucker level of programs which
+    can be called by <code>_listen.</code> The default is
+    <code>M3,</code> which is a good choice. The decision whether to
+    raise or lower it should be based on how closely player programming
+    is monitored.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>player_start</code>
+    </td>
+    <td valign="top">
+    This should be changed. Set it to the dbref of the room where you
+    want new players to start.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>use_hostnames</code>
+    </td>
+    <td valign="top">
+    The default for this parameter is <code>no,</code> but tuning it to
+    <code>yes</code> is convenient. Wizards see connection information
+    when typing <code>`WHO*'</code> (use <code>`WHO'</code> without the
+    asterix for normal formatting). With <code>use_hostnames</code> set
+    to <code>`yes',</code> domain names rather than numeric IP addresses
+    will be shown for all players logged on.  Note: the change won't be
+    immediately apparent.  Host names will be supplied for players who
+    log on after you tune the parameter to <code>`yes';</code> those who
+    are logged on now will still have numeric addresses.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>log_commands       </code><br>
+    <code>log_failed_commands</code><br>
+    <code>log_programs       </code>
+    </td>
+    <td valign="top">
+    Whether or not to log and what you do with the logs are fairly
+    significant decisions. See also <a href="security.html">Security
+    Concerns</a> and <a href="privacy">Privacy Issues</a>. As for the
+    technical aspects of logging, note the following: </p>
+
+    <ul>
+      <li><p>All commands (including says and poses) entered by wizards
+      are logged, regardless of the logging parameters. If
+      <code>log_commands</code> is off, and you want to have a private
+      discussion that won't go into the logs, set yourself
+      <code>Quell.</code></p>
+
+      <li><p>Log files pile up. You will need to follow some schedule
+      for deleting old log files. (The files are in the server directory
+      <code>game/logs.</code>) Either by hand, or with a script, or with
+      a crontab script that runs automatically, follow a routine for
+      copying the current logs to storage files.  For example:</p>
+
+      <p><code>
+         &nbsp;&nbsp; mv com2 com3<br>
+         &nbsp;&nbsp; mv com1 com2<br>
+         &nbsp;&nbsp; mv commands com1
+      </code></p>
+
+      <p>Doing this once per day, say, will keep one-day- old
+      log_commands files in <code>`com1',</code> two-day-old logs in
+      <code>`com2',</code> three-day-old logs in <code>`com3'.</code>
+      After three days, they're gone.</p>
+
+      <p>Raw logs are difficult to read. If you do need to review log
+      files, mastering the <code>UNIX</code> <code>`grep'</code> command
+      will be very helpful.</code></p>
+    </ul>
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>dbdump_warning</code>
+    <code>deltadump_warning</code>
+    </td>
+    <td valign="top">
+    Until your <code>MUCK</code> grows to past several thousand objects,
+    full saves will take only a couple seconds, and delta saves will be
+    practically instantaneous.  You might want to turn these off, out of
+    anti-spam sentiment.
+    </td>
+  </tr><tr>
+    <td colspan="3"> &nbsp; </td>
+  </tr><tr>
+    <td> &nbsp; </td>
+    <td valign="top">
+    <code>realms_control</code>
+    </td>
+    <td valign="top">
+    <code>The</code> Realms Wizard system has advantages and disad-
+    vantages. See <a href="realmswiz.html">Using the Realms Wizard
+    System</a>.
+    </td>
+  </tr>
+</table>
+
+<p>The remaining parameters can safely be left at their default
+settings.  For a (terse) description of what each parameter does, see
+the entry for <code>SYSPARM</code> in <a href="mufref.html#sysparm">Section
+3.2.5</a>, <code>MUF</code> Reference.</p>
+
+
+  <center>
+  <a href="otherport.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="edsrvfiles.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

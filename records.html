@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Record Keeping</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="toading.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="final.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><b>5.2.7 Record Keeping</b></p>
+
+<p>Your <code>MUCK</code> is itself a large, complex set of records, and
+most information you would need to record is automatically recorded,
+either in log files or the database itself. There is, though, one record
+that most administrators find extremely useful that <code>MUCK</code>
+itself has no mechanism for: player's email addresses. Life will be much
+easier if you religiously follow a practice of recording email addresses
+each time you run <code>@pcreate.</code> This will let you notify
+players of things like downtime and address changes, and &#151; if you
+follow a policy of not accepting character requests from anonymous email
+sites such as Hotmail, Rocketmail, Yahoo, etc. &#151; gives you some
+chance of identifying alternate characters controlled by the same
+player.</p>
+
+<p>You can store this online (on the player object, in a property such
+<code>as @/email),</code> but it is more valuable to keep the record
+offline, so that you can access it if the <code>MUCK</code> goes down...
+which is a prime example of when you would need the players' email
+addresses. A flat text file works fine for this.</p>
+
+<p>One other kind of record keeping may prove useful. It is occasionally
+necessary to issue warnings to players about <code>AUP</code>
+infringements, and the like.  In order for such warnings to be a useful
+administrative measure, other wizards need to know about warnings you
+have issued. A common and workable practice is to use a program that
+stores administrative notes about such matters in a wizard-only propdir
+on player objects.  With it, you can see if any other wizards have noted
+<code>AUP</code> problems with a player before you decide what an
+appropriate response to an incident is. (An example of such a program is
+provided <a href="wizlog.html">here</a>.)</p>
+
+  <center>
+  <a href="toading.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="final.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

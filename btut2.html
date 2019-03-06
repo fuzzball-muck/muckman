@@ -1,0 +1,152 @@
+<html>
+<head>
+  <title>The MUCK Manual: Creating Rooms and Areas (cont'd)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="buildtut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="btut3.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<p><b>Creating Rooms and Areas (cont'd)</b></p>
+
+<p><em>Creating an Environment Room:</em></p>
+
+<p>If you are building an area, as opposed to one or a few rooms for personal
+use, it's a good idea to parent the area to an environment room. Doing so will
+allow you to create commands that can be used throughout the area, and will
+let you do a backup of your work with a single <code>@archive</code> command.
+As discussed in <a href="rooms1.html">Section 2.2</a>, rooms by default have
+the same parent room (or environment room) as the room from which they are are
+created.  A room can be reparented by <code>@teleporting</code> it to a new
+environment room. A reasonable approach to building an area is to
+<code>@dig</code> an environment room, <code>@dig</code> the first room in the
+area with the just-created environment room as its parent, and move to the new
+room before creating additional rooms in the area.  This way, standard
+<code>@dig</code> commands will cause the additional rooms to be parented to
+the area's environment room.</p>
+
+<p><code>
+====================================<br>
+<nobr>
+&gt; @dig Amberside Environment Room&nbsp; <font color="red">(create the environment room)</font><br>
+</nobr><nobr>
+&nbsp; Amberside Environment Room created with room number 4801.<br>
+</nobr><nobr>
+&gt; @register #4801 = aer&nbsp; <font color="red">(give it a registered name for easy access)</font><br>
+</nobr><nobr>
+&nbsp; Now registered as _reg/aer:Amberside Environment Room(#4801) on <br>
+&nbsp; Shadowkat(#1131PBJ)<br>
+</nobr><nobr>
+&gt; @set $aer = A&nbsp; <font color="red">(set env room Abode, so it will show up in @trace)</font><br>
+</nobr>
+&nbsp; Flag set.<br>
+&gt; @dig Amberside Inn: Tavern = $aer<br>
+&nbsp; Amberside Inn: Tavern created with room number 4802.<br>
+&nbsp; Trying to parent...<br>
+&nbsp; Parent set to Amberside Environment Room(#4801RA).<br>
+<nobr>
+&gt; @register #4802 = ai &nbsp; <font color="red">(register this too, since we'll be going there)</font><br>
+</nobr>
+&nbsp; Now registered as _reg/ai:Amberside Inn: Tavern(#4802) on <br>
+&nbsp; Shadowkat(#1131PBJ)<br>
+&gt; @tel me = $ai  &nbsp; <font color="red">(go there)</font><br>
+&nbsp; You feel a wrenching sensation...<br>
+&nbsp; Amberside Inn: Tavern(#4802R)<br>
+&nbsp; Teleported.<br>
+====================================
+</code></p>
+
+<p>If system parameters on your <code>MUCK</code> are set such that you cannot
+teleport to your new room, it will be worthwhile to create a personal exit
+that takes you there, for use while you are building the area. After the area
+is built and linked to the rest of the <code>MUCK,</code> you can recycle
+it.</p>
+
+<p><code>
+====================================<br>
+&gt; @act ai = me<br>
+&nbsp;  Action created with number 4803 and attached.<br>
+&gt; @link ai = $ai<br>
+&nbsp;  Linked to Amberside Inn: Tavern(#4802)<br>
+&gt; ai<br>
+&nbsp;  Amberside Inn: Tavern(#4802R)<br>
+&gt; @trace here<br>
+&nbsp;  Amberside Inn: Tavern(#4802R)<br>
+&nbsp; Amberside Environment Room(#4801RA)<br>
+&nbsp;  Environment: Lowlands(#285RA)<br>
+&nbsp;  Rainforest Parent Room(#121RWA)<br>
+&nbsp;  Rainforest: Main Parent(#118RA)<br>
+&nbsp;  Master Environment(#101RA)<br>
+&nbsp;  **Missing**<br>
+====================================
+</code></p>
+
+<p>The Amberside Environment Room is parented to <code>Environment:
+Lowlands(#285RA)</code>, because we were under it when we issued the first
+<code>@dig</code> command. This may be where we want it when the area is
+finished, or there may be some other area of the <code>MUCK</code> that is
+more suitable. After the area is finished, you would contact the
+<code>MUCK's</code> builder wiz and discuss where to put the area. For now,
+the current location should be fine. Additional rooms that we
+<code>@dig</code> while under <code>The Amberside Environment
+Room(#4801RA)</code> will automatically be parented to there. </p>
+
+<p><code>
+====================================<br>
+&gt; @dig Amberside Inn: West Wing<br>
+&nbsp;  Amberside Inn: West Wing created with room number 4804.<br>
+&gt; @trace #4804<br>
+&nbsp; Amberside Inn: West Wing(#4804R)<br>
+&nbsp; Amberside Environment Room(#4801RA)<br>
+&nbsp; Environment: Lowlands(#285RA)<br>
+&nbsp; Rainforest Parent Room(#121RWA)<br>
+&nbsp; Rainforest: Main Parent(#118RA)<br>
+&nbsp; Master Environment(#101RA)<br>
+&nbsp; **Missing**<br>
+====================================
+</code></p>
+
+One way we could make use of the enivonment room is to provide a command
+available throughout the area we are building, and only in that area. If we
+make an action called <code>map;look map;loo map;lo map;l map</code>,
+attaching it to the environment room, and setting its <code>@succ</code>
+to display a list with and ASCII map of the area, users will be able to
+view a map of the area from anywhere within it.
+
+<p><code>
+====================================<br>
+&gt; @act map;look map;loo map;lo map;l map = $ae<br>
+&nbsp;  Action created with number 4805 and attached.<br>
+&gt; @link map = $nothing<br>
+&nbsp;  Linked to do-nothing.muf(#97)<br>
+&gt; @succ map = {list:the_map,this}<br>
+&nbsp; Message set.<br>
+&gt; lsedit map = the_map<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ( insert map ) <br>
+<br>
+====================================
+</code></p>
+
+
+  <center>
+  <a href="buildtut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="btut3.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

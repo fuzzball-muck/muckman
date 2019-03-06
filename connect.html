@@ -1,0 +1,110 @@
+<html>
+<head>
+  <title>The MUCK Manual: Connecting to the MUCK</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="terms.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="getchar.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>1.2  Connecting to the MUCK</b></p>
+
+<p>To play on a <code>MUCK,</code> you need to be logged onto a
+character. The most basic way to do this is with Telnet. A client
+program (see <a href="appenda.html">Appendix A</a>) is vastly preferable
+to <code>Telnet,</code> but not essential. For now, examples will assume
+you are using <code>Telnet</code> from a <code>UNIX</code> account. If
+you don't have a character on the <code>MUCK,</code> you will need to
+log on as a Guest. You will also need to find the addresses and port
+numbers of some open <code>MUCKs.</code>  Lists of such address are
+frequently posted on the newsgroup rec.games.mud.announce, and are
+easily found via web searches for keywords such as `muck' or `mud'. The
+example below use the current address for FurryMUCK (as of Summer,
+1999).</p>
+
+<p>Logging on involves two steps: connecting to the <code>MUCK,</code>
+and logging onto a specific character.</p>
+
+<p>To connect to the <code>MUCK</code> via Telnet on a <code>UNIX</code>
+account, type <code>telnet</code>, followed by a numeric or domain name
+IP address, followed by a port number. Press enter.</p>
+
+<p><code>
+====================================<br>
+&gt; telnet furry.org 8888<br>
+====================================<br>
+</code></p>
+
+<p>If the connection is successful (i.e., if you typed everything
+correctly, the Net is not having a Bad Day, and the <code>MUCK</code>
+itself is running) a login screen will scroll onto your terminal. If you
+experience a delay, and then a messages such as `connection incomplete:
+timed out', wait a few minutes and try again: it's possible that the
+<code>MUCK</code> was undergoing a save while you were trying to
+connect, or that there were transient connection problems on the
+Internet.</p>
+
+<p>The login screen should show informational text, illustrations
+composed of <code>ASCII</code> characters, or a combination of these. It
+is possible to successfully connect to the <code>MUCK,</code> yet see a
+rather garbled looking login screen. Usually this is due to improper
+terminal settings. If this happens, continue with the login step. The
+problem may disappear once you've logged on, and if doesn't, people
+online may be able to help with terminal settings. (This problem is
+relatively rare.)</p>
+
+<p>Once you've connected to the <code>MUCK,</code> you need to log onto
+a specific character. If you don't have a character on the
+<code>MUCK,</code> you can (usually) connect to a Guest character.</p>
+
+<p><code>
+====================================<br>
+&gt; connect guest guest<br>
+====================================<br>
+</code></p>
+
+<p>If you have a character, type <code>connect</code> followed by the
+character name and password.</p>
+
+<p><code>
+====================================<br>
+&gt; connect cashmere flipFlap<br>
+====================================<br>
+</code></p>
+
+<p>On large <code>MUCKs</code> (including our example, FurryMUCK) it is
+common to require Guests to page a wizard and ask to be let out of the
+Guest Room.  This is a security measure: it is not unheard of for
+players who have been banned from the <code>MUCK</code> for causing
+problems to attempt to log on as a Guest and continue their improper
+behavior; a wizard can check the site from which a Guest is connecting,
+and refuse to free someone from a site known to be the home of
+problem-causers. If this step is required (the text you see after
+logging on as a Guest will say so), type <code>wizzes</code> to get a
+list of any wizards online, and page one asking him to let you out
+(paging is discussed below, in <a href="talk.html">Section 1.4.3</a>).
+If no wizards are online, you'll have to try again later. On most
+<code>MUCKs,</code> this step is unnecessary. You can get out of the
+Guest Room simply by typing <code>out</code>.</p>
+
+  <center>
+  <a href="terms.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="getchar.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

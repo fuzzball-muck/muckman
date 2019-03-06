@@ -1,0 +1,97 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (6)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf5.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf7.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Organizing Your Code:</b></p>
+
+<p>Recall that <code>MUF</code> is a `structured' language: as long as
+the statements in a function are in the same order, reading top to
+bottom and left to right, and as long as they are separated by
+whitespace, it doesn't matter how you place them on the page.
+`Whitespace' is any combination of spaces, tabs, or line breaks.</p>
+
+<p>Instead of...</p>
+    
+<p><pre>
+  : main
+        
+       me @ "Hello, world!" notify
+       
+       "mink" "otter" "linsang" 
+       
+       pop pop pop
+  ;
+</pre></p>
+
+<p>We could have written...</p>
+
+<p><pre>
+  : main me @ "Hello, world!" notify "mink" "otter" "lingsang" pop pop pop ;
+</pre></p>
+
+<p>Or even...</p>
+
+<p><pre>
+  : main me 
+                          @ 
+                                       "Hello, world!"           
+     notify "mink" 
+                                        "otter" 
+     "linsang" 
+                              pop 
+               pop 
+                        pop
+  ;
+</pre></p>
+     
+<p>All three versions would mean the same thing to the compiler, would use
+the same amount of memory, and would be executed in exactly the same
+way. To most people, however, the first version would be much more
+clear. Arrange your code in such a way that its format illustrates or
+reinforces logical relationships (that is, combine things that go
+together and separate those that don't). </p>
+
+<p><code>MUF</code> is not case sensitve: <code>POP,</code>
+<code>Pop,</code> and <code>pop</code> would all be treated the same
+way. Capitalization, therefore, can be used as another way to format
+code. For example, you might choose to capitalize all function names and
+begin all variable names with lower case to concisely indicate their
+difference. Some coders use all capitals for primitives. This does
+clearly indicate their difference, but many people find all caps less
+readable than upper-lower case. Choose your own style, but remain
+consistent within a program.</p>
+
+<p>Now we'll (completely) rewrite tinker.muf several times, with each
+version introducing an important aspect of <code>MUF</code> programming.
+The &gt; signs and other formatting information have been omitted from
+the remaining examples, so you can cut and paste from this file into the
+one you're working on.</p>
+
+  <center>
+  <a href="muf5.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf7.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

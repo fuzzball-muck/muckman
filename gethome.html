@@ -1,0 +1,195 @@
+<html>
+<head>
+  <title>The MUCK Manual: Getting a Home</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="lockme.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="gethome2.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>1.5.4  Getting a Home</b></p>
+
+<p>(Note: It is not necessary to get a home immediately, and sometimes
+the simplest approach is the best one: page a staff member and ask her
+to set you up with a home or tell you how to do so.)</p>
+
+<p>`Home' has both a technical and non-technical meaning on
+<code>MUCKs.</code> In the technical sense, all players and things have
+a `home', a place to which they are `linked', and to which they will
+return if the <code>MUCK</code> doesn't know where to put them or if
+they are sent home by a command or program. A player's home must be a
+room. A thing's home may be a room or player.</p>
+
+<p>In the non-technical sense, your `home' is, naturally enough, where
+you live. Your `non-technical home' (the place where you hang out, keep
+your belongings, sleep, etc.) does not necessarily have to be your
+`technical home', but it is more convenient for both to be the same.</p>
+
+<p>Getting a home on the <code>MUCK</code> involves both technical and
+non-technical issues. Read this section completely before typing any of
+the commands.</p>
+
+<p>On the non-technical side, you will need to find a place where you
+can put a home. There may be places where the builder has installed a
+command that lets you put in a home: read `news' and any materials in
+the place where you start off, or ask people online for information
+about such places.</p>
+
+<p>If you don't find such a place, or if you find a public place where
+you would like a home but such a command is not available, you will need
+to contact the owner of the room and work with her to set up a home.
+Type <code>ex here to</code> find out the name of the room's owner, then
+contact her by <code>page</code> or <code>page #mail.</code> On most
+<code>MUCKs,</code> wizards or staff members work with new players to
+help set up a home. It's worthwhile asking people online how this matter
+is usually handled on your <code>MUCK.</code></p>
+
+<p>On the technical side, getting home involves three steps:
+
+<ol>
+    <li>Creating a home.
+    <li>Linking yourself to the home.
+    <li>Linking the home to the rest of the MUCK.
+</ol>
+</p>
+
+<p>If you are using a program that automates the process, creating a
+home is simply a matter of following instructions provided on a sign or
+directory. Usually you just type something like <code>claim &lt;# or
+direction&gt;</code>.</p>
+
+<p>To create your own home, make a room with the <code>@dig</code>
+command, syntax <code>@dig &lt;room name&gt;</code>. (You must have a
+`builder bit' &#151; the <code>B</code> flag &#151; in order to use
+<code>@dig.</code> On most <code>MUCKs,</code> all players have a
+builder bit.)</p>
+
+<p><code>
+====================================<br>
+&gt; @dig Cashmere's Den<br>
+&nbsp;&nbsp;Cashmere's Den created with Room #1234.<br>
+&nbsp;&nbsp;Parent set to Outdoor Environment Room(#101RJA).<br>
+====================================<br>
+</code></p>
+
+<p>Note the dbref of the newly created room (<code>#1234</code> in this
+example). You will need it in order to go there or link the room to the
+rest of the <code>MUCK.</code> If you forget the room's dbref, you can
+determine it with the <code>@find</code> command. </p>
+
+<p><code>
+====================================<br>
+&gt; @find cashmere's den<br>
+&nbsp;&nbsp;Cashmere's Den(#1234RJ)<br>
+&nbsp;&nbsp;End of list<br>
+&nbsp;&nbsp;(1 object found)<br>
+====================================<br>
+</code></p>
+
+<p>(If you see the room's name, but not its dbref, you are set
+<code>Silent.</code> Type <code>@set me=!S to</code> clear the
+<code>Silent</code> flag set on your character.)</p>
+
+<p>A newly created room is said to be `floating': it exists, but is not
+linked to anything else on the <code>MUCK.</code> In other words, there
+are no `doors' in and out of the room. If your <code>MUCK</code> has
+convenient `global exits' (commands that take you to a centralized
+location from anywhere on the <code>MUCK</code>) it may be feasible to
+leave the room floating indefinitely.</p>
+
+<p>If your <code>MUCK</code> has a convenient global exit, and you would
+like to set up a home without having to wait for help from someone else,
+<code>@dig</code> a room as described above, then use the
+<code>@link</code> command (syntax <code>@link</code> &lt;object&gt; =
+&lt;home&gt;</code>) to set your home and the <code>home</code> command
+to go there.</p>
+
+<p><code>
+====================================<br>
+&gt; @link me = #1234<br>
+&nbsp;&nbsp;Home set.<br>
+&gt; home<br>
+&nbsp;&nbsp;You wake up at home, without your possessions...<br>
+&nbsp;&nbsp;Cashmere's Den(#1234RJ)<br>
+====================================<br>
+</code></p>
+
+<p>As the example suggests, you can loose things when using the
+<code>home</code> command: when you type `home', both you and anything
+you are carrying go home. If you are carrying things that do not belong
+to you, or that are linked to somewhere else on the <code>MUCK,</code>
+they will return to their homes when you use the <code>home</code> command (in
+other words, the <code>home</code> command is recursive). There are two ways
+to avoid this problem. Teleporting may or may not be allowed on your
+<code>MUCK</code> (usually players can teleport to and from rooms they own).
+If you are able to, teleport to the new room first, then link yourself
+there.</p>
+
+<p><code>
+====================================<br>
+&gt; @tel me = #1234<br>
+&nbsp; You feel a wrenching sensation....<br>
+&nbsp; Cashmere's Den(#1234RJ)<br>
+&gt; @link me = here<br>
+&nbsp; Home set.<br>
+====================================<br>
+</code></p>
+
+<p>The second alternative is to use <code>gohome</code> rather than
+<code>home.</code> The <code>gohome</code> command takes you to your
+home without causing the things you're carrying to also go home.
+However, <code>gohome</code> is a user-created command: though it's
+widely available, there is a possibility that your <code>MUCK</code>
+does not provide it.</p>
+
+<p><code>
+====================================<br>
+&gt; @link me = #1234<br>
+&nbsp;&nbsp;Home set.<br>
+&gt; gohome<br>
+&nbsp;&nbsp;You head home, arriving safely.<br>
+&nbsp;&nbsp;Cashmere's Den(#1234RJ)<br>
+====================================<br>
+</code></p>
+
+<p>If you plan to leave your room set floating for a while, and your
+<code>MUCK</code> has a <code>gohome</code> command, you can just use it
+whenever you want to go home. If there is no gohome command, it will be
+worthwhile to create an action that takes you there without causing you to
+loose things you are carrying. Use the <code>@action</code> command
+(abbreviated <code>@act,</code> syntax <code>@act &lt;action name&gt; =
+&lt;origin or attachment point of action&gt;</code>), and the
+<code>@link</code> command (syntax <code>@link &lt;action&gt; =
+&lt;destination&gt;</code>) to create the action</p>
+
+<p><code>
+====================================<br>
+&gt; @act myplace = me<br>
+&nbsp;&nbsp;Action created with number #1236 and attached.<br>
+&gt; @link myplace = #1234 <br>
+&nbsp;&nbsp;Linked to Cashmere's Den(#1234).<br>
+====================================<br>
+</code></p>
+
+
+  <center>
+  <a href="lockme.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="gethome2.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

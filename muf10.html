@@ -1,0 +1,177 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf9.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf11.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Loops:</b></p>
+
+<p>A loop is a section of code that executes repeatedly, until a certain
+condition is met. The programmer defines the condition. If no condition
+is defined (or if the condition is one that will never be met), the loop
+will continue to execute indefinitely. This is called an `infinite
+loop'. The code for a loop begins with the primitive <code>BEGIN</code>
+and ends with either <code>REPEAT</code> or <code>UNTIL.</code></p>
+
+<p>A common way to define the exit condition of a loop is to use a
+variable to store the number of times the loop is to execute. With each
+repetition (or `iteration') of the loop, the variable is increased
+(`incremented') or decreased (`decremented') by one. When the value
+stored in the variable matches a predefined limit (often
+<code>0</code>), the loop exits. The following version of tinker.muf
+uses a loop controlled in this manner to do the `random number test'
+from the previous version three times.</p>
+
+<p><code>
+====================================<br>
+lvar ourNumber<br>
+lvar ourCounter<br>
+<br>
+: TellTrue<br>
+    <br>
+ &nbsp; &nbsp;     me @ "Yes, the number is greater than one million." notify<br>
+;<br>
+  <br>
+: TellFalse<br>
+    <br>
+ &nbsp; &nbsp;     me @ "No, the number is less than one million." notify<br>
+;<br>
+<br>
+: main<br>
+    <br>
+ &nbsp; &nbsp;     3 ourCounter !<br>
+    <br>
+ &nbsp; &nbsp;     begin<br>
+        <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         ourCounter @ 0 = if<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;              break<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         then<br>
+        <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         random ourNumber !<br>
+        <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         ourNumber @ 1000000 &gt; if<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;              TellTrue<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         else<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;              TellFalse<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         then<br>
+    <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         me @ ourNumber @ intostr notify<br>
+    <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         ourCounter @ 1 - ourCounter !    <br>
+            <br>
+ &nbsp; &nbsp;     repeat<br>
+    <br>
+ &nbsp; &nbsp;     me @ "OK, we're done with the loop." notify<br>
+;<br>
+====================================
+</code></p>
+
+<p>At the very top of the program, we declared the local variable
+<code>ourCounter</code>. In the first line in main, we stored the integer 3
+in our variable <code>ourCounter</code>. The next line is
+<code>BEGIN,</code> which starts the loop. The first thing
+<code>MUF</code> does with each pass through the loop is check to see if
+the value stored in <code>ourCounter</code> is 0. If it is, execution
+<code>BREAKs</code> out of the loop, and does whatever comes next (which
+in this case is to tell us "OK, we're done.")</p>
+
+In the first iteration of the loop, the <code>IF</code> test will be false,
+because we just put a <code>3</code> in <code>ourCounter</code>, not a
+<code>0.</code> So the loop will continue, executing our random number test.
+Then, at the bottom of the loop, we fetch the number out of
+<code>ourCounter</code>, subtract <code>1</code> from it, and then store the
+new number back in <code>ourCounter</code>. Then the loop
+<code>REPEATs,</code> jumping back to the top of the loop. This time, the
+value in <code>ourCounter</code> is <code>2</code>... still not
+<code>0,</code> so the loop exectutes again.  The next time the loop repeats,
+the value is <code>1</code>: the random number test has executed three times.
+Then execution will jump back to the top of the loop and begin for a
+<em>fourth</em> iteration. This time, however, the value stored in
+<code>ourCounter</code> has reached <code>0.</code> The <code>IF</code> test
+will be true, so the <code>BREAK</code> will be executed. The program jumps
+out of the loop and does whatever comes after the <code>REPEAT</code> (tells
+us we're done).</p>
+
+Here we are using <code>IF</code> to see if it is time to break out of
+the loop. <code>MUF</code> provides another conditional statement that
+does the same thing in shortened form. <code>WHILE</code> tests the top
+value on the stack for truth, just like <code>IF</code> does. When an
+<code>IF</code> test is true, code between the <code>IF</code> and its
+matching <code>THEN</code> is executed; otherwise, it skips to whatever
+follows the <code>THEN.</code> When a <code>WHILE</code> test is true,
+code between the <code>WHILE</code> and the next <code>REPEAT</code> or
+<code>UNTIL</code> is executed; otherwise, it skips to whatever follows
+the <code>REPEAT</code> or <code>UNTIL.</code> In other words, the loop
+continues to execute <code>WHILE</code> the condition is true.</p>
+
+<p>In the above version of tinker.muf, we used...</p>
+    
+<p><code>
+ &nbsp; &nbsp;  ourCounter @ 0 = if<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;    break<br>
+ &nbsp; &nbsp;  then
+</code></p>
+    
+<p>to exit the loop. We could accomplish the same thing with...</p>
+    
+<p><code>
+&nbsp; &nbsp;    ourCounter @ while
+</code></p>
+
+<p>As long as <code>ourCounter</code> is not <code>0,</code> it will be
+true, and the rest of the loop will execute. When it gets to
+<code>0,</code> it becomes false, and the <code>WHILE</code> will cause
+execution to break out of the loop.</p>
+
+<p><code>UNTIL</code> also provides a way to exit from a loop. The
+<code>UNTIL</code> marks the `bottom' of the loop, like a
+<code>REPEAT,</code> but also serves as an exit-condition check like
+<code>WHILE.</code> If the value on top of the stack is true when the
+program gets to <code>UNTIL,</code> execution `falls through' the bottom
+of the loop and continues from there. For example, the following loop
+repeats until <code>RANDOM</code> generates an integer greater than 1.5
+billion.</p>
+
+<p><code>
+====================================<br>
+ &nbsp; &nbsp;    begin<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;        random<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;        dup intostr me @ swap notify <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;        1500000000 &gt;<br>
+ &nbsp; &nbsp;    until<br>
+====================================
+</code></p>
+
+<p>With each iteration, the loop generates a random number, converts it
+into a string and notifies the user, then tests to see if it's greater
+than 1.5 billion. If so, the top value on the stack at
+<code>UNTIL</code> will be true, and the program will exit the loop.
+Otherwise, execution jumps back to <code>BEGIN,</code> and the loop
+repeats.</p>
+
+  <center>
+  <a href="muf9.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf11.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>The MUCK Manual: Droptos</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="things.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="looktraps.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.2.1  Droptos</b></p>
+
+<p>If a room is linked to another room or to a thing, the object linked
+to will serve as the room's `dropto'. A dropto is a location to which
+dropped objects will be moved.</p>
+
+<p><code>
+====================================<br>
+&gt; @dig Lost and Found = #102 = lnf<br>
+&nbsp;  Lost and Found created with room number 198.<br>
+&nbsp;  Trying to set parent...<br>
+&nbsp;  Parent set to OOC Environment(#102RA).<br>
+&nbsp;  Room registered as $lnf<br>
+  <br>
+&gt; @link here = #102<br>
+&nbsp;  Dropto set.<br>
+&gt; Drop bic<br>
+&nbsp;  Dropped.<br>
+&gt; @contents #198<br>
+&nbsp;  Bic Four-Color Ballpoint(#1237)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  1 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>If a room's <code>Sticky</code> flag is set, the drop-to is delayed
+until all players have left the room. To remove a dropto,
+<code>@unlink</code> the room. To remove a <code>Sticky</code> bit, type
+<code>@set here = !S</code>.</p>
+
+
+  <center>
+  <a href="things.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="looktraps.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<html>
+<head>
+  <title>The MUCK Manual: Triggering from Properties</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="datatypes.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="regnames.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.1.4  Triggering From Properties</b></p>
+
+<p>In most cases, programs and server operations are triggered (i.e.
+caused to run or execute) by typing a command. However, they can also be
+triggered from a number of protected properties: all message props
+(<code>_/de, _/sc</code>, etc.), plus <code>_connect, _oconnect,
+_disconnect, _odisconnect, _arrive, _oarrive, _depart, _odepart</code>,
+and <code>_listen</code>.</p>
+
+<p>Performing any of the actions implied by these property names sends
+information to the server and (if the property is set correctly) causes
+messages to be displayed, an <code>MPI</code> string to be parsed, or a
+program to run. For example, if you set a <code>_connect</code> prop on
+your character to trigger a certain program, the program will run each
+time you connect; if you put an <code>MPI</code> string in your
+<code>_/de</code> prop, it will be parsed each time someone looks at
+you. The server searches up the environment tree (see <a
+href="rooms1.html">Section 2.2</a>) for triggering props. For example,
+if <code>_connect</code> prop that triggers a program is set on your
+character, the program will run each time you connect. If it's set on a
+room, the program will run each time someone connects in that room. If
+it's set on the global parent room (<code>#0</code>), the program will
+run each time someone connects anywhere on the <code>MUCK.</code>
+
+<p>The manner in which the props are set differs depending on which prop
+it is (the <code>_/</code> directory is handled differently than the
+others, such a <code>_connect</code> or <code>_listen</code>) and on
+what the intended result is (messages are handled differently than MPI,
+which is handled differently than program calls).</p>
+
+<p>To cause a message to be displayed by a <code>_/</code> prop
+(<code>_/de, _/sc</code>, etc), simply set the message as a string, with
+<code>@set</code> or the specific server command. <code>@o-</code>
+messages such as <code>@osucc, @ofail</code>, and <code>@odrop</code>
+are prepended with the name of the triggering player (or other object
+type).</p>
+
+<p><code>
+====================================<br>
+&gt; @desc out=A simple wooden door.<br>
+&nbsp;  Message set.<br>
+&gt; look out<br>
+&nbsp;  A simple wooden door.<br>
+<br>
+&gt; @succ out=You decide to go outside for a bit...<br>
+&nbsp;  Message set.<br>
+&gt; out<br>
+&nbsp;  You decide to go outsides for a bit...<br>
+<br>
+&gt; @set out=_/sc:You head outside.<br>
+&nbsp;  Property set.<br>
+&gt; out<br>
+&nbsp;  You head outside.<br>
+====================================<br>
+</code></p>
+
+<p><code>MPI</code> strings in <code>_/</code> props will be parsed automatically.</p>
+
+<p><code>
+====================================<br>
+&gt; @desc watch=You glance at your watch. The time is {time}.<br>
+&nbsp;  look watch<br>
+&nbsp;  You glance at your watch. The time is 01:44:31.<br>
+====================================<br>
+</code></p>
+
+<p>To trigger a <code>MUF</code> program from a <code>_/</code> prop,
+preceed the dbref of the program with an <code>@</code> at-mark. For
+example, let's assume the dbref of the `Obvious Exits' program is
+<code>#123</code>:</p>
+
+<p><code>
+====================================<br>
+&gt; @succ here=@#123<br>
+&nbsp;  Message set.<br>
+&gt; look here<br>
+&nbsp;  Messy Room(#545RJ)<br>
+&nbsp;  Boy, this place is a mess!<br>
+&nbsp;  Obvious Exits:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     Out &lt;O&gt;<br>
+====================================<br>
+</code></p>
+
+<p>The other triggering props (<code>_arrive, _oconnect</code>, etc) are
+handled slightly differently. Simple strings cause no result,
+<code>MPI</code> must be preceeded with an <code>&</code> ampersand in
+order to be parsed, and <code>MUF</code> programs can be called with
+just a string indicating the dbref.</p>
+
+<p><code>
+====================================<br>
+&gt; @set me=_connect:555<br>
+&nbsp;  Property set.<br>      
+&gt; @set me=_arrive:&{null:{otell:waltzes in.}}<br>
+&nbsp;  Property set.<br>
+====================================<br>
+</code></p>
+
+<p>These triggers can be set up as a propdir rather than a single prop,
+in order to trigger multiple results from the same action. For example,
+the following settings would trigger both programs <code>#581</code> and
+<code>#555</code> each time someone connects in the room. The propdirs
+are evaluated in alphabetical order, so <code>#581</code> would execute
+first. (Other than determining alphabetical order, the prop names
+following the first <code>/</code> slash mark have no effect: they can
+be whatever you like.)</p>
+
+<p><code>
+====================================<br>
+&gt; @set here=_connect/desc-check:#581<br>
+&nbsp;  Property set.<br>
+&gt; @set here=_connect/my-wwf:#555<br>
+&nbsp;  Property set.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>_listen</code> is triggered by <em>any</em> activity. As
+such, it is both very useful and very easily abused. Permissions
+safeguards are coded into the server for <code>_listen:</code> the only
+result that can be triggered is execution of a program; the program must
+be set <code>Link_OK</code> and have a Mucker level equal to or higher
+than a level set by the <code>MUCK</code> administrators. Usually this
+parameter is set to <code>3</code> or <code>4</code> (<code>M4</code> is
+`wizard'). `Bot programs and automatic `noise' or `event' programs are
+common examples. The prop is set simply by putting the dbref of the
+program to run in the property value.</p>
+
+<p><code>
+====================================<br>
+&gt; @find noises<br>
+&nbsp;  noises.muf(#812FLM3)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  1 objects found.<br>
+&gt; @set here=_listen/noise:812<br>
+&nbsp;  Property set.<br>   
+====================================<br>
+</code></p>
+
+  <center>
+  <a href="datatypes.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="regnames.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

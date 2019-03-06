@@ -1,0 +1,99 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Things</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="rooms2.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="droptos.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>Overview: Things</b></p>
+
+<p>Things are objects created with the <code>@create</code> command and
+having no type flag. Both rooms and things can contain other
+objects.</p>
+
+<p>The syntax for <code>@create</code> is:</p>
+
+<p><pre>
+    @create &lt;object&gt; [=&lt;cost&gt; [=&lt;regname&gt;]]
+</pre></p>
+
+<p>The standard start-up database includes the user-created commands
+<code>put</code> and <code>fetch.</code> <code>Put</code> allows you to
+put an item you are carrying inside another item (syntax <code>put
+&lt;object&gt; in &lt;object&gt;</code>).  <code>Fetch</code> allows you
+to retrieve an item from inside another (syntax <code>fetch
+&lt;object&gt; from &lt;object&gt;</code>). Partial names may be used
+for <code>&lt;object&gt;</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; put kitty snacks in backpack<br>
+&nbsp;  Putting Kitty Snacks in Backpack.<br>
+&gt; fetch kitty from back<br>
+&nbsp;  Fetching Kitty Snacks from Backpack.<br>
+====================================<br>
+</code></p>
+
+<p>Things can also be set up as vehicles, by setting their
+<code>Vehicle</code> flag and creating an exit that is both attached and
+linked to the thing. For vehicles, and occassionally for other objects,
+you would want to describe the interior of the thing. The interior of a
+thing can be given a description with the <code>@idescribe</code>
+command, syntax <code>@idesc &lt;object&gt; = &lt;interior
+description&gt;</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; @create tRanSMogriFIER<br>
+&nbsp;  tRanSMogriFIER created with number 5489.<br>
+  <br>
+&gt; @desc trans = A large cardboard box with tRanSMogriFIER<br> 
+&nbsp;  written on the side in marker, and an arrow that says ----&gt; IN<br>
+&nbsp;  Description set.<br>
+  
+&gt; @idesc tRanSMogriFIER = An enthusiastic artist has made lots of<br> 
+&nbsp;  buttons and monsters with a marker on the sides.<br>
+&nbsp;  Description set.<br>
+  <br>
+&gt; l trans<br>
+&nbsp;  A large cardboard box with tRanSMogriFIER written on the side in<br> 
+&nbsp;  marker, and an arrow that says ----&gt; IN<br>
+  <br>
+&gt; @act get in;in;enter = trans<br>
+&nbsp;  Action created with number #2543 and attached to tRanSMogriFIER(#5489)<br>
+&gt; @link get in = trans<br>
+&nbsp;  Linked to gen-nothing.muf(#363FLM2)<br>
+&gt; get in<br>
+&nbsp;  tRanSMogriFIER(#5489)<br>
+&nbsp;  An enthusiastic artist has made lots of buttons and monsters with<br> 
+&nbsp;  a marker on the sides.<br>
+====================================<br>
+</code></p>
+
+<p>See <a href="vehicletut.html">Section 4.4</a> for more information on
+making vehicles.</p>
+
+  <center>
+  <a href="rooms2.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="droptos.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

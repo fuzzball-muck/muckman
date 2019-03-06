@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>The MUCK Manual: Unsecured Exits</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="bogusex.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="expriority.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.3.2  Unsecured Exits</b></p>
+
+<p>An exit that is not linked to anything and not thoroughly locked is
+unsecure, in that its ownership transfers to anyone who uses the exit
+and anyone can link it. This creates a minor security risk: someone
+could take control of an exit attached to one of your rooms and make it
+do something annoying or harmful. So, always secure exits. An exit can
+be secured by locking it to a condition that always fails &#151; such as
+<code>me&!me</code> &#151; or by linking it to something. All
+established <code>MUCKs</code> provide a `do-nothing' program, a program
+that produces no result, and thus serves as a convenient linking point
+for exits. Usually such a program is given the registered name
+<code>$nothing</code> or <code>$do-nothing</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; @link sit = $nothing<br>
+&nbsp;  Linked to gen-nothing.muf(#363FLM2).<br>
+====================================<br>
+</code></p>
+
+  <center>
+  <a href="bogusex.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="expriority.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

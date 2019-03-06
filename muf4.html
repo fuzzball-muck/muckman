@@ -1,0 +1,122 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (4)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf3.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf5.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>The Parts of a MUF Program:</b></p>
+
+<p><code>
+     1  ( tinker.muf. A practice program )<br>
+     2  <br>
+     3  : main<br>
+     4   &nbsp; &nbsp;   me @ "Hello, world!" notify<br>
+     5  ;
+</code></p>
+
+<p>Line 1 is a comment. In <code>MUF,</code> anything in parentheses is
+a comment.  The compiler ignores it, and it doesn't add to the compiled
+size of your program. Comments are used to tell people what the program
+does, and they are important. Tinker.muf is a very simple program at
+this point, but you should go ahead and get into the habit of including
+comments.  They explain what's going on to people who are trying to
+maintain your code, including you. Code that makes perfect sense to you
+when you write it will look like gobbledygook in a couple days (here's
+an <a href="unreadable.html">example</a>). You'll thank yourself for
+including frequent, detailed comments. The comment here is a header
+comment. In a full-blown program, we would put notes here about who
+wrote the program, when, how to install it, how to use it, and
+permissions for porting the program to other <code>MUCKs.</code></p>
+
+<p>Lines 3-5 compose a `word' or `function', a block of code that is executed
+as one piece. Functions are the building blocks of your program. You make a
+<code>MUF</code> program by making different functions that do different
+things, and calling the appropriate function when needed (more on this
+later).  This function is called `<code>main</code>', and it's our only
+function so far. A function begins with a colon, a space, and the name
+of the function (the space between the colon and the name is essential).
+It ends with a semi-colon.  Unlike C/C++, there's nothing special about
+the function name `<code>main</code>' in <code>MUF.</code> We could call
+the function anything we want. A <code>MUF</code> program begins with
+the <em>last</em> function in the program, no matter what it's called
+(when we add more functions, they'll need to go above
+<code>main</code>). In this case, <code>main</code> is the only
+function, so it's the last function, so the program begins execution
+there.</p>
+
+<p>Line 4 is the heart of our program, and it includes four different
+kinds of <code>MUF</code> stuff.</p>
+
+<p><code>me</code> is a variable. It defines a space in the computer's
+memory that holds some information... holds a value. In this case, it's
+a predefined variable (<code>MUF</code> has already staked out this
+variable name and declared what it's going to hold). The variable
+<code>me</code> holds the dbref of whoever's using the program. When you
+trigger tinker.muf by typing `test', <code>me</code> holds your dbref.
+If someone else typed `test', it would hold his. You can also add your
+own variables.</p>
+
+<p><code>@</code> is an operator. Operators do stuff to (operate upon)
+other things. <code>+</code> and <code>-</code> are some other
+operators. They add and subtract, and they only work on numbers.
+<code>@</code> is the `fetch' operator, and it only works on variables.
+The <code>@</code> fetches the value out the variable named right before
+it, and puts the information that was in the variable onto the top of
+the stack (we'll cover the stack next). Here, the <code>@</code> is
+getting a dbref out of the variable <code>me</code>.</p>
+
+<p><code>"Hello, world!"</code> is a string. A string is a set of
+characters. Here the characters are the letters that form the words -
+<code>Hello, world</code> -. The quotation marks are important. They
+tell <code>MUF</code> that this is a string. Anything inside double
+quote marks is treated as a string, a set of characters. The word -
+<code>me</code> - by itself is a variable, but <code>"me"</code> is a
+string.  <code>4</code> by itself is a number, an integer, but
+<code>"4"</code> is a string holding one character, the numeral 4.
+<code>#123</code> is a dbref, but <code>"#123"</code> is a string of the
+corresponding characters. These differences &#151; variable vs. string
+vs. integer vs.  dbref &#151; are called `data types', and they're
+important in <code>MUF.</code> Most operations can only be performed on
+one type of data. We have an example of that coming up...</p>
+
+<p><code>NOTIFY</code> is a primitive, a function that has been defined
+in <code>MUF.</code> <code>NOTIFY</code> needs two things to do its job,
+a dbref and a string. It takes the string and displays it to the
+character defined by the dbref (much like a <code>{tell}</code> in
+<code>MPI</code>). If it doesn't have a dbref and a string on top of the
+stack to work with, the program won't work.</p>
+
+<p>Incidently, the collective term for all these different kinds of
+<code>MUF</code> stuff (variables, integers, strings, and dbrefs...
+operators and primitives... function names and the symbols that mark
+their beginning and end) is `statement'. <code>NOTIFY,</code>
+<code>@,</code> <code>123,</code> <code>:</code> <code>,</code> and
+<code>main</code> are all statements.</p>
+
+
+  <center>
+  <a href="muf3.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf5.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

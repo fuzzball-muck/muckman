@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>The MUCK Manual: Basic Commands: Moving</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="look.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="talk.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>1.4.2  Moving</b></p>
+
+<p>The <code>go</code> or <code>goto</code> command causes your
+character to move in a certain direction or use a specific exit. For
+example, typing <code>goto north</code> would cause your character to
+move one room to the north (assuming there is a room to the north &#151;
+or, more accurately, there is an exit named `north' in your current
+location, leading to another room). The <code>goto</code> command is not
+really necessary, and is almost never used: typing the exit name by
+itself will also cause you to `go' in that direction, and directions are
+usually abbreviated to their first letter. Thus, typing
+<code>north</code> or <code>n</code> should produce the same result as
+<code>goto north</code>. If you can't go in a particular direction
+(because there is no exit in that direction, or the exit is locked
+against you), you will see a fail message such as `You can't go that
+way.'. A commonly used exit name is `out' or `o': typing either of these
+in an interior room will often move you outside the room or building.
+</p>
+
+<p>Frequently, the builder of a room makes use of a program that appends
+the names of `Obvious Exits' to the description of a room (An `obvious'
+exit is one that is not hidden by being set <code>Dark</code>). The
+names of these exits will then appear in a list below the room's
+description. The absence of such a list does not mean that there is no
+way out of the room. Read the room's description carefully to see if it
+indicates directions you can go. If you are still unable to determine
+valid directions, try common-sense directions such as `west', `n', or
+`out'.  If all else fails, you can get out of room by typing `home' or
+`gohome', which will return you to your home location.</p>
+
+
+  <center>
+  <a href="look.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="talk.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

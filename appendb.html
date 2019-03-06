@@ -1,0 +1,506 @@
+<html>
+<head>
+  <title>The MUCK Manual: Appendix B: Sample Policy Files</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="appenda.html">prev</a>|
+  <a href="toc.html">toc</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><h3>Appendix B: Sample Policy Files</h3></p>
+
+<p>You may freely modify and use these on any <code>MUCK</code></p>
+
+<p>The <code>@AUP</code> command mentioned in the Acceptable Use Policy
+can be copied from <a href="cmd-aup.html">here</a>. This command sets the
+restricted property <code>~aup</code> to <code>"yes"</code>. You may wish
+to <code>@lock</code> important commands and exits (such as the exit leading
+out of the <code>player_start</code> room to this property, to ensure that
+players are apprised of the AUP's existence and are (more or less) forced to
+enter an explicit command indicating their agreement, or stop using the
+<code>MUCK</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; @lock out = ~aup:yes<br>
+&gt; @fail out = Before entering GenericMUCK, you must first read the Acceptable<br>
+&nbsp; Use Policy (type 'info aup'), and indicate that you agree to abide by its<br>
+&nbsp; terms (by typing '@aup').<br>
+====================================
+</code></p>
+
+
+<hr>
+<pre>
+
+                 GenericMUCK's Acceptable Use Policy
+
+The staff of GenericMUCK respects your privacy and intellectual
+property rights, and requires that you extend the same respect to others.
+Please read this file completely, and enter the command <code>@AUP</code> to
+acknowledge that you have read the file and agree to abide by its terms.
+
+'Residents' refers to all players and staff. Where the distinction
+between staff and players is important, this will be explicitly noted.
+
+1.0  Access and Legal Responsibility
+
+Access to GenericMUCK, and the computing resources required to operate
+GenericMUCK, is granted on a revokable basis, and at no time is this
+access guaranteed.
+
+GenericMUCK services may be used only for lawful purposes. Transmission
+or solicitation for reception of material which violates US Federal or
+Hawaii State Law, any Policy of the site where the MUCK operates, or
+state or local law of the area in which you reside is prohibited. This
+includes, but is not limited to, material that is threatening, libelous,
+or violates trade-secret, patent, or copy-right protections.
+
+You agree to indemnify and hold harmless GenericMUCK, its staff, the
+owners/operators of the computing resources, and all other parties
+connected with the administration of GenericMUCK from all claims which
+are a result of your usage, without limitation. You agree that any
+traffic which originates from your character or connection is your legal
+responsibility.
+
+Notwithstanding the above, you agree that should GenericMUCK or its staff
+be found liable in a court of law for any action or lack of action related
+to your use of GenericMUCK, our liability is limited to $0.00.
+
+
+2.0 Privacy
+
+As a resident of GenericMUCK, you have a right to reasonable privacy.
+
+2.1  Residents may not use programs, zombie objects, or other methods to
+monitor your conversations or activities inappropriately.
+
+   2.1.1  Residents may use zombies, broadcasting exits, programs, etc.,
+   as detailed in `news programming'.
+
+   2.1.2  Staff may monitor intrusively, by setting the Dark flag on
+   themselves or referring to logs, if they have reason to believe that a
+   player or group of players is actively conspiring to destroy or damage
+   the MUCK's database, or is engaged in illegal activities.
+
+   2.1.3  Electronic Communications Privacy Act (ECPA) NOTICE:  The staff
+   of GenericMUCK reserves the right to monitor any and all communications
+   through or with GenericMUCK computing facilities. You agree that
+   GenericMUCK facilities are NOT to be considered a secure communications
+   medium for the purposes of the ECPA.
+
+2.2  Residents may not use programs or other methods to retrieve
+information stored in properties on your character or belongings
+inappropriately.
+
+   2.2.1  Residents may create and use programs that retrieve information
+   in ways that meet the the guidelines detailed in `news programming'.
+
+   2.2.2  Staff may use the `examine' command and other methods of
+   retrieving information remotely as needed.
+
+2.3  Residents may not harrass you.
+
+   2.3.1  If you indicate that you are not receptive to intimate or
+   sexual contact with another resident, that resident is obligated to
+   respect your wishes. If someone persists in making unwanted advances,
+   repeat your demand that he or she stop, and page a staff member
+   immediately.
+
+   Residents guilty of sexual harrassment are liable to disciplinary
+   action up to and including @toading and site-banning.
+
+   2.3.2  Repeated attempts to talk to, page, or otherwise interact with
+   a resident who has clearly requested to be left alone are a violation
+   of Acceptable Use.
+
+   2.3.3  Racial, ethnic, and religious slurs directed at a player are a
+   violation of Acceptable Use.
+
+2.4  Information about your life outside GenericMUCK is privileged. Your
+RL name, gender, age, phone number, email address, and place of residence
+are priviledged information. That is, unless you explicitly indicate that
+this information may be dispersed, residents are obligated to treat the
+information as confidential.
+
+2.5  Privacy as regards alternate characters is left to residents'
+discretion.
+
+   2.5.1  You may have alternate characters, and you are not obliged to
+   inform others of the relationships between your characters.
+
+   2.5.2  If you do not wish others to know of the relationships between
+   your characters, do not give out this information. If you do not mind
+   other residents knowing about the relationships between your characters,
+   it would be helpful if you indicated this, by conversation, pinfo, or
+   other means.
+
+3.0  Intellectual Property Rights
+
+The staff of GenericMUCK honors intellectual property rights as they
+pertain to the MUCK, and requires that residents do so as well. The staff
+claims no particular expertise in the complex and evolving field of
+international copyright law and the Internet. This does not, however,
+invalidate or limit the AUP as it pertains to intellectual property
+rights: GenericMUCK policies on intellectual property rights stand
+as detailed below.
+
+3.1  Residents may not create programs, rooms, or other objects
+incorporating copyrighted material without verifiable permission from
+the copyright holder.
+
+3.2  The staff of GenericMUCK become joint holders of intellectual
+property rights for public rooms or other creations which become an
+integral part of GenericMUCK and are used by a substantial portion of
+the residents. The owners of such creations may improve and add to them
+as they see fit, but may not @recycle the object or remove the properties
+or code that make it integral to the MUCK without permission from the staff.
+
+In the event that a player inappropriately destroys or changes public
+creations, the staff reserves the right to restore such creations from back
+ups. Should such occassions arise, intellectual property rights for that
+creation as the pertain to the MUCK will from that point lie solely with
+the staff of GenericMUCK. That is, the creating player forfeits rights to
+determine if and how the creation is used on the MUCK.
+
+3.3  Programs which include notices that permission to port is requested
+or required may not be ported to or from GenericMUCK without such
+permission. If you wish to port such a program and are unable to contact
+the author, notify a staff member. The staff will attempt to contact the
+author, and if unable to do so, will determine ona case-by-case basis
+whether the port meets AUP requirements.
+
+3.4  The staff will not modify or remove any of your programs without
+your permission, with the following exceptions: in the case of programs
+which pose a threat to the integrity of the database or violate privacy
+as detailed in `news programming' and the AUP, the staff will either
+request that you modify or remove the program, or will do so themselves.
+
+
+4.0  Violations of Acceptable Use.
+
+Residents who violate the Acceptable Use Policy, or who commit acts not
+explicitly covered by this policy but deemed a vilotation of the policy's
+spirit by the staff, are liable to consequences including:
+
+    - Suspension of access to the Muck and its computing resources for
+      a time to be determined by the administrators.
+    - Removal of your character and termination of access to the Muck
+      and its computing resources without prior notice.
+    - Notification of your site and/or system administrators
+    - Notification of civil and/or law enforcement authorities.
+
+
+ </pre>
+ <p>
+ <hr>
+ </p>
+
+
+ <pre>
+
+
+                      GenericMUCK's Mucker Policy
+                     -----------------------------
+
+1.0 How can I be a Mucker?
+
+We welcome both experienced and neophyte Muckers. We ask only that (a)
+you help the general public, not just yourself, by writing useful programs
+of some social benefit or aid to building, and (b) that you abide by the
+spirit and letter of our Mucker policy.
+
+If a program you would like to write or use falls into a "gray area" of
+these guidelines, please ask us for clarification. We may be able to
+suggest ways to accomodate your needs.
+
+
+2.0 What does a Mucker do?
+
+    2.1 Learning to Program
+
+    Start by reading the MUF tutorial and the MUCK Manual, also the
+    CHANGES files. Find them with the INFO command. If you need more help
+    than this, we may be able to put you in touch with a Mucker willing
+    to tutor you. If you write small programs to test something, or no
+    longer need a program, please remember to clean up after yourself.
+    A clean database is an effcient database, with less lag.
+
+    2.3 Public Programming
+
+    Whenever you write a program, and especially when a program is publicly
+    accessible (Link_OK), please make sure it adheres to our guidelines:
+
+        1. It should be useful in some way, social or building.
+        2. It should not violate guidelines of privacy, respect, or
+           honesty. (see section 3.0 of this policy)
+        3. It should not be wasteful-- do not use more space or CPU time
+           than is reasonable, or duplicate things that already exist.
+
+    If one of your programs meets the guidelines above, you may ask to have
+    it made publicly available. Such a program must be set link_ok in order
+    for other people to use it. A program that would be useful as a command
+    for everyone may be installed as a global. Type `globals' to see some
+    commands available.
+
+    Many programs are already publicly available; type `programs' for a
+    list, then list these programs for more information, or go to the
+    Programming Room off the Administrative Nexus and look through the
+    files. If you are looking for a program that would be a modification
+    of an existing one, you might find it more convenient to ask the
+    programmer to change it appropiately.
+
+
+3.0 Guidelines to Proper Programming Etiquette
+
+    3.1 Privacy
+
+    Players of GenericMUCK are entitled to privacy. If you couldn't
+    find something out by normal means or without the permission of the
+    users involved, you should not find it out with a program.
+
+***** Normal means does NOT include abuse of the powerful MPI command
+language. That means one does not use MPI to violate the Privacy of others,
+or attempt to manipulate or look at things or rooms you do not own. Please
+see NEWS MPI for more information. ****
+
+    However, when you use certain programs, it is understood that the
+    program may store, relay, or use *reasonable* information for
+    *reasonable* purposes. If you aren't sure a program would fit this
+    guideline, please ask.
+
+    (A) Bugs relay information to another person, room, or stores it for
+        later reading, without your implicit consent.
+
+    Examples of legal programs:
+
+    1. Public programs such as page and spoof, which only use information
+       for administrative purposes, and are documented as to this use.
+
+    2. Programs that broadcast messages for the purposes of "virtual
+       reality" such as a program to let you be heard from a stage. However
+       it is possible to disguise the use of such programs. This is
+       unethical.
+
+    3. Bulletin boards, mailing systems, and other programs meant to
+       record and display messages for the public. By entering messages
+       into such a program, the user gives implicit consent that they be
+       stored and displayed.
+
+    Examples of illegal programs:
+
+    1. Programs that duplicate "page", "whisper", "say", or "pose" in order
+       to record or relay information without the player's knowledge.
+
+      (B) Scanners find information about other players, their properties,
+          or belongings, that would not normally be available, and which
+          the player does not wish revealed. This includes programs written
+          in MPI.
+
+    Examples of legal programs:
+
+    1. A program that only shows you messages or properties which are set
+       specifically for that program. E.G. a smell program might show you
+       people's smell messages, but it would be unethical to write programs
+       to read people's smell messages at a distance, without their consent.
+
+    2. Programs that show you information which you could obtain another way,
+       e.g. a program to tell you which of a selected group of people are on
+       the WHO list, or a program to tell you what exits go from rooms that
+       you own. Owners can always examine anything they own.
+
+    3. In reasonable circumstances, programs may show you information
+       such as which players are in another room if it is known to the
+       people in this room that they may be observed. E.G. a transparent
+       exit description for windows.
+
+    Examples of illegal programs (in MUF or MPI):
+
+    1. Programs that show you properties or messages on players, objects,
+       and so forth that you do not own and could not normally find out.
+
+    2. Programs that reveal private exits in rooms without the permission
+       of the room's owner. (similarly, programs to locate players without
+       their permission)
+
+    3.2 Respect
+
+    Certain programs may, while not invading a player's privacy, harass
+    that player, or make it possible to do so in a way that is undetectable.
+    Players are entitled to respect and dignity.
+
+    (a) Spoofers that allow a player to simulate another player's actions.
+        This would allow players to forge incriminating or insulting
+        messages under that player's name. Messages that could potentially
+        be spoofed should be made apparent in some plain manner or changed
+        to remove this danger.
+
+    (b) Markers are programs that change, add to, or remove player
+        properties without their implicit permission.
+
+    Examples of legal programs:
+
+    1. Programs may set temporary properties, or properties that obviously
+       belong to the program, and do not interfere with other programs or
+       the user's convenience. E.G. the page program sets a number of
+       properties for records keeping.
+
+    2. Programs that explicitly give the user full knowledge of what changes
+       are about to be made. E.G. role-playing systems and shape-shifting
+       programs that modify your description.
+
+    3. Programs for building assistance, which change your properties and/or
+       objects in an approved way.
+
+    Examples of illegal programs (in MUF or MPI):
+
+    1. Programs to overwrite another player's descriptions, messages, etc.
+       without their consent.
+
+    2. Programs meant to harass them by insulting, annoying, or otherwise
+       inconveniencing them, e.g. programs to send a spoof message directly
+       to a player without the player's permission, or to whisper to all but
+       one player.
+
+    3.3 Other Prohibited Programs (MUF or MPI)
+
+    GenericMUCK prohibits general teleporter programs that would allow
+    players to invade private rooms or that are intended to violate
+    virtual reality, e.g. encouraging people to teleport directly to a
+    room, ignoring intervening areas. We also dislike programs that add
+    pennies for no valid reason. Pennies are spent and used for things,
+    and available at the GenericMUCK bank.
+
+    Teleporters may be allowed in limited cases, but only for very
+    specific reasons and purposes. They must follow these restrictions:
+
+    1. Players must agree explicitly, or implicitly by entering a vehicle,
+       following another player, being picked up by that player, etc. to
+       be moved.
+
+    2. Programs to move players can only move players from or to rooms
+       for which they have permission, and under such circumstances as are
+       appropiate, e.g. a taxi might have stops in different rooms with the
+       permissions of these rooms' owners.
+
+    3. Such programs must be appropiate to the circumstances, the "virtual
+       reality" of the situation in question, etc.
+
+    3.4 What Happens If I Make A Mistake?
+
+    There are three steps, depending on seriousness of the offense.
+    Accidents and oversights happen; on the other hand, a deliberate
+    infraction may well lose you your Mucker bit immediately. You will be
+    informed of the reasons for any actions we take as regards you or your
+    programs. If you misuse MPI, your BUILDER bit will be removed.
+
+    1. If you write a program considered abusive or forbidden, you will be
+       talked to about why you need such a program.
+
+        (a) If the reasons are acceptable, the program may be allowed as is,
+            or we may suggest how it can be modified to make it fit the
+            guidelines.
+
+        (b) If the reasons are unacceptable or inadequate, you may be warned
+            to remove the program, or else modify it so that it will be
+            acceptable.
+
+    2. If you don't comply with requests to modify or remove a program that
+       is particularly abusive, then the program may be removed. Programs
+       that may crash the server may also be confiscated or removed. You
+       will be told how and why the program crashes the server
+
+    3. If you repeatedly upload programs that were removed as abusive, or
+       crash the server, or otherwise abuse your Mucker bit, then you may
+       be deMuckered and offending programs will be removed. Violations with
+       MPI will result in the loss of your BUILDER bit as well.
+
+    Appeals will be allowed under extenuating circumstances.
+
+
+4.0 Program Libraries and Macros
+
+    4.1 Documentation
+
+    Please document your programs where possible, so that those who are
+    meant to use them can do so. If programs are Link_OK, therefore publicly
+    usable, you should put comments at the top. Public programs should also
+    follow the convention of including a #help function.
+
+    We suggest that programs have comment headers describing the basic code
+    (two or three lines to synopsize the program's purpose, how it should be
+    used, and unusual things that users should know), naming the owner, and
+    providing any copyrights you wish to include.
+
+    Please don't complicate your code more than MUF normally reads;
+    deliberately obfuscating your code beyond a capable Mucker's ability to
+    read is considered impolite. Macros should be commented, or else obvious
+    from name or definition as to what they are intended to do.
+
+    4.2 Information Ownership
+
+    Many programs are set Link_OK so that they can be readily used. This
+    does not mean that you are free to copy them to other systems, or for
+    your own uses. Please ask the permission of the creator before you copy
+    programs!
+
+
+5.0 The Final Word
+
+If you have any questions about this policy, MUCKing, or other related
+issues, please ask a knowledgeable player, Mucker, or Administrator.
+They may be able to offer you answers, suggest where you can look
+quickly and conveniently for information, or suggest how Mucker policy
+applies to your question.
+
+In all disputes related to Mucker policy and programming on GenericMUCK,
+the judgement of the MUF Administrators is final, and supercedes the
+guidelines of this policy.
+
+6.0 Mucker bit levels and getting your mucker bit.
+
+There are 3 Mucker levels.
+
+        M1 - Starter, or Apprentice
+        M2 - Standard, or Journeyman
+        M3 - Special, or Master
+
+When you ask for a Mucker bit on GenericMUCK, you will be set M1. This
+is where all Muckers will start. This gives you access to the @program and
+@edit commands and allows 75% of MUF functions. This is a safety feature
+to allow you to learn MUF without fear of damaging anything.
+
+To get to Level M2, you should have written, tested, and debugged some
+useful programs and then ask the MUF Administrator or hir assistants
+to look at them for programming style and usefulness. The Administrators
+may then grant you the M2 level. This allows 95% of MUF features to work.
+
+Level M3 is needed only in very special programs that must directly
+manipulate sensitive data from the database. This level can only be granted
+by the MUF Administrators.
+
+TO GET A Mucker BIT: Page or page #mail a wizard. Any wizard can give you
+an M1 bit. M2 and M3 bits are set by the MUF Administrator.
+
+</pre>
+
+
+  <center>
+  <a href="appenda.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

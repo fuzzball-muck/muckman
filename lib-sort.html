@@ -1,0 +1,264 @@
+<html>
+<head>
+  <title>The MUCK Manual: Lib-sort</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muflibs.html">prev</a>|
+  <a href="toc.html">toc</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><pre>
+@q
+@edit lib-sort
+1 9999 d
+i
+ 
+( lib-sort    v1.0    Jessy @ FurryMUCK    3/99
+  
+  lib-sort implements two functions: 'sort' and 'sort-d', both of which
+  sort stack ranges using a simple bubble sort.
+  
+  INSTALLATION:
+  
+  Port lib-sort. Set the program Link_OK and Mucker level 2. Register
+  the program and set its definition props:
+  
+    @reg lib-sort=$lib/sort
+    @set lib-sort=_defs/sort:"$lib/sort" match "sort" call
+    @set lib-sort=_defs/sort-d:"$lib/sort" match "sort-d" call
+    @set lib-sort=_docs:@list $lib/sort=1-49
+  
+  USE:
+  
+  sort [ x ... x' i --  x ... x' ]
+  
+  Sorts the top i items of the stack in ascending order. For example,
+  
+    "banana" "cherry" "apple" 3 sort 
+  
+  leaves
+  
+    "apple" "banana" "cherry" 
+  
+  on the stack.
+  
+  All items in the stack range must be the same type.
+  
+  ~
+  sort-d [ x ... x' i --  x ... x' ]
+  
+  Sorts the top i items of the stack in descending order. For example,
+  
+    "banana" "cherry" "apple" 3 sort-d
+  
+  leaves
+  
+    "cherry" "banana" "apple"
+  
+  on the stack.
+  
+  All items in the stack range must be the same type.
+  
+  ~
+  lib-sort may be freely ported. Please comment any changes.
+)
+    
+: SortStrings  ( s ... s' i -- s ... s' )  
+                                   (* sort range of strings, ascending *)
+  
+  dup   (* dup index: one copy is inner loop counter, other outer loop *)
+  begin          (* begin outer loop: will step through range i times  *)
+    dup while 
+      over      
+      begin   (* begin inner loop: step through range, comparing pairs *)   
+        dup 1 > while
+        dup 3 + pick over 3 + pick                         (* get pair *)
+        over over strcmp 0 > if                             (* compare *)
+          swap                                       (* swap if needed *)
+        then
+        3 pick 3 + put                                 (* replace pair *)
+        over 3 + put
+        1 -                            (* decrement inner loop counter *)
+      repeat                                         (* end inner loop *)
+      pop
+    1 -                                (* decrement outer loop counter *)
+  repeat                                             (* end outer loop *)
+  pop pop                                              (* pop counters *)
+;
+  
+: SortInts  ( i ... i' i'' -- i ... i' )
+                                      (* sort range of ints, ascending *)
+  
+  dup                            (* see SortStrings for stack comments *)
+  begin
+    dup while
+      over
+      begin
+        dup 1 > while
+        dup 3 + pick over 3 + pick
+        over over > if
+          swap
+        then
+        3 pick 3 + put
+        over 3 + put
+        1 -
+      repeat
+      pop
+    1 -
+  repeat
+  pop pop
+;
+  
+: SortDbrefs  ( d ... d' i -- d ... d' )
+                                    (* sort range of dbrefs, ascending *)
+  
+  dup                            (* see SortStrings for stack comments *)
+  begin
+    dup while
+      over
+      begin
+        dup 1 > while
+        dup 3 + pick over 3 + pick
+        over intostr atoi over intostr atoi > if
+          swap
+        then
+        3 pick 3 + put
+        over 3 + put
+        1 -
+      repeat
+      pop
+    1 -
+  repeat
+  pop pop
+;
+  
+: SortStrings-d  ( s ... s' i -- s ... s' )
+                                  (* sort range of strings, descending *)
+    
+  dup                            (* see SortStrings for stack comments *)
+  begin
+    dup while
+      over
+      begin
+        dup 1 > while
+        dup 3 + pick over 3 + pick
+        over over strcmp 0 < if
+          swap
+        then
+        3 pick 3 + put
+        over 3 + put
+        1 -
+      repeat
+      pop
+    1 -
+  repeat
+  pop pop
+;
+  
+: SortInts-d  ( i' ... i' i'' -- i ... i' )
+                                     (* sort range of ints, descending *)
+  
+  dup                            (* see SortStrings for stack comments *)
+  begin
+    dup while
+      over
+      begin
+        dup 1 > while
+        dup 3 + pick over 3 + pick
+        over over < if
+          swap
+        then
+        3 pick 3 + put
+        over 3 + put
+        1 -
+      repeat
+      pop
+    1 -
+  repeat
+  pop pop
+;
+  
+: SortDbrefs-d  ( d ... d' i -- d ... d' )
+                                   (* sort range of string, descending *)
+  
+  dup                            (* see SortStrings for stack comments *)
+  begin
+    dup while
+      over
+      begin
+        dup 1 > while
+        dup 3 + pick over 3 + pick
+        over intostr atoi over intostr atoi < if
+          swap
+        then
+        3 pick 3 + put
+        over 3 + put
+        1 -
+      repeat
+      pop
+    1 -
+  repeat
+  pop pop
+;
+  
+: sort  ( x ... x' i -- x ... x' )  
+            (* pass control to type-appropriate ascending sort function *)
+  
+  over string? if
+    SortStrings exit
+  then
+  
+  over int? if
+    SortInts exit
+  then
+  
+  over dbref? if
+    SortDbrefs exit
+  then
+;
+public sort
+  
+: sort-d  ( x ... x' i -- x ... x' )
+           (* pass control to type-appropriate descending sort function *)
+  
+  over string? if
+    SortStrings-d exit
+  then
+  
+  over int? if
+    SortInts-d exit
+  then
+  
+  over dbref? if
+    SortDbrefs-d exit
+  then
+;
+public sort-d
+.
+c
+q
+@reg lib-sort=lib/sort
+@set lib-sort=_defs/sort:"$lib/sort" match "sort" call
+@set lib-sort=_defs/sort-d:"$lib/sort" match "sort-d" call
+@set lib-sort=_docs:@list $lib/sort=1-49
+</pre></p>
+
+  <center>
+  <a href="muflibs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

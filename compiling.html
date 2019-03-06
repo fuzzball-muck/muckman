@@ -1,0 +1,588 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Compiling the Server</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="techissues.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="dbsetup.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><b>5.1.2  Compiling a MUCK</b></p>
+
+<p><code>UNIX</code> gurus and C buffs should have little difficulty
+compiling a <code>MUCK.</code> For the rest of us, it is a potentially
+frustrating experience. This section of the manual is addressed to the
+rest of us: sysadmins and C developers, you can use this time to go
+toggle in a new kernal from the front panel of a <code>PDP-11,</code>
+just to keep your hand in.</p>
+
+<p><code>MUCK</code> is not a shrink-wrapped, plug-and-play product. It
+is, rather, a large  freeware application developed over a number of
+years by skilled coders who are willing to devote innumerable hours to
+making something for other people to use and enjoy. It is assumed that
+you &#151; the site administrator &#151; have reasonable facility with
+the <code>UNIX</code> operating system and a basic understanding of how
+to configure the program by editing C source code configuration and
+header files. In other words, like <code>UNIX</code> itself,
+<code>MUCK</code> is quite user-friendly, but rather choosy about who
+its friends are. The following overview may help you get on speaking
+terms with your new server.</p>
+
+<p>It is of course madness to try to set up a <code>MUCK</code> without
+knowing <code>UNIX.</code>  Nonetheless, people often try, and often
+succeed. A good book on <code>UNIX</code> will be a worthwhile
+investment if you are going to be the <code>MUCK's</code> site
+administrator.</p>
+
+<p>If the set up goes smoothly &#151; that is, if your system has
+everything where <code>MUCK</code> expects it to be &#151; this
+information should be all you need.  If you encounter compilation
+errors, you'll need to enlist help. Those sysadmins and C developers
+will be through toggling in their microkernals by the time you've gotten
+that far, and will no doubt be <code>MUCK</code>'ing somewhere. Go to a
+large <code>MUCK,</code> and try a public shout, or paging helpstaffers
+and wizards, asking if someone can lend a hand compiling a
+<code>MUCK.</code></p>
+
+<p>Getting your server up and running involves the following steps:</p>
+
+<ol>
+  <li>Getting a compressed, archived file containing the source code.
+  <li>Uncompressing the files.
+  <li>Editing configuration files
+  <li>Compiling the source code
+  <li>Specifying database files
+  <li>Starting and logging onto the server
+</ol>
+
+<p><em>Getting the Server</em>:</p>
+
+<p>The <code>MUCK</code> platform has evolved over a number of years,
+from TinyMUD, written by James Aspnes, to its current incarnation:
+TinyMUCK, FuzzBall version 6.0, developed primarily by Garth Minette.
+The most current and authoritative version should be available at
+ftp.belfry.com/pub. You may want to get the archive of standard
+<code>MUF</code> programs and a start-up database as well.</p>
+
+<p><code>
+<ol>
+    <li>pub/fuzzball/fb6.0.tar.gz
+    <li>pub/fuzzball/fbmuf.tar.gz
+    <li>pub/fuzzball/basedb.tar.gz
+</ol>
+</code></p>
+
+<p>Put the <code>fb6.0</code> file where you want the top level of your
+<code>MUCK</code> directory to go, perhaps in your home directory.</p>
+
+
+<p><em>Uncompressing the Files</em>:</p>
+
+<p>The files you just got are compressed archives of a great many files
+and directories.</p>
+
+<p>To uncompress them, type <code>gunzip &lt;filename&gt;.</code> For
+example</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   gunzip fb6.0.tar.gz<br>
+====================================
+</code></p>
+
+<p>If you get something like <code>gunzip: command not found,</code> try
+<code>unzip:</code></p>
+
+<p><code>
+====================================<br>
+ &nbsp;   unzip fb6.0.tar.gz<br>
+====================================
+</code></p>
+
+<p>This uncompresses the archive. You now need to extract individual
+files from the archive with the <code>tar</code> command
+(<code>`tar'</code> for <code>`tape archive'</code>).</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   tar -xvf fb6.0.tar<br>
+====================================
+</code></p>
+
+<p>The switches <code>-xvf</code> tell the system that you want to
+eXtract files from an existing archive File, and that you'd like it to
+do so Verbosely, so you can see what it's doing.</p>
+
+<p>Type <code>ls</code> to `list files' in your current directory. You
+should see, among other things, an entry for <code>fb6.0/</code> (the
+<code>/</code> slash may or may not appear). This is the directory
+holding the server.</p>
+
+<p>If you got the dbase and <code>MUF</code> files, move them to the
+correct spots in the server directories...</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   mv fbmuf.tar.gz fb6.0/game/muf<br>
+ &nbsp;   mv basedb.tar.gz fb6.0/game/data<br>
+====================================
+</code></p>
+
+<p>... and change directories (<code>cd</code>) down to the directories
+holding the files and unpack them in the same fashion.</p>
+
+
+<p><em>Editing the Configuration Files</em></p>
+
+<p>In directory <code>fb6.0,</code> you should see a file called <code>INSTALLATION.</code> It gives succinct instructions for setting up the <code>MUCK.</code> Type <code>cat INST*</code> to list it on your screen.</p>
+
+<p>You will be editing a few files (<code>include/config.h,</code>
+<code>game/restart,</code> and possibly <code>include/params.h</code> or
+<code>include/autoconf.h).</code> It is strongly recommended that you
+make a copy of these files before you start modifying them, so you can
+start over if something obscure goes wrong.  In the appropriate
+directories...</p>
+
+<p><code>
+====================================<br>
+ &nbsp;  cp config.h config.bak<br>
+ &nbsp;  cp params.h params.bak<br>
+ &nbsp;  cp autoconf.h autoconf.bak<br>
+ &nbsp;  cp restart restart.bak<br>
+====================================
+</code></p>
+
+<p>You can either edit the files directly on the server, with text
+editors such as <code>vi</code> or <code>pico,</code> or you can
+download the files to your computer, make changes, and then upload them.
+Hereafter, the Manaul will simply instruct you to `edit' the files; do
+so in whatever way works best for you.</p>
+
+<p>Much of what you'll be doing when editing these files consists of
+`defining' or `undefining' terms. A term is defined by beginning a line
+with the <code>#define</code> preprocessor directive, followed by the
+term and (optionally) its definition.</p>
+
+<p>If a term is defined without a definition, such as...</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   #define GOD_PRIV<br>
+====================================
+</code></p>
+
+<p>... this simply means that the term is `true': the compiler can in
+effect check `Are we using God privileges?', and get a yes/no answer. In
+this case, the term is defined; it has a true value: so, yes, we're
+using God privileges.</p>
+
+<p>If a definition is supplied, then the term is true, and has a
+specific value. For example, </p>
+
+<p><code>
+====================================<br>
+ &nbsp;   #define TINYPORT 8000<br>
+====================================
+</code></p>
+
+<p>This means that, yes, we do have a specified default port to connect to:
+port 8000.</p>
+
+<p>You can `undefine' a term in either of two ways: you can comment it
+out, or you can explicitly undefine it. To undefine a term, use the
+<code>#undef</code> preprocessor directive:</p>
+
+<p><code>
+====================================<br>
+    #undef ANONYMITY<br>
+====================================
+</code></p>
+
+<p>To comment out a term (that is, to change it into a comment that
+people can read, but to be ignored by the compiler), enclose it in the
+strings <code>`/*'</code> and <code>`*/'</code></p>
+
+<p><code>
+====================================<br>
+    /* #define DISKBASE */<br>
+====================================
+</code></p>
+
+<p>In general, you should <code>#undefine</code> terms rather than
+commenting them out: doing so will undefine the term, even if it was
+defined somewhere else.</p>
+
+<p>You won't need to change a very much.</p>
+
+<p><p>In <code>include/config.h:</code></p>
+
+<p>Edit the file to the port you want to use.</p>
+
+<p><code>
+====================================<br>
+ &nbsp;  #define TINYPORT 8000<br>
+====================================
+</code></p>
+
+<p>Port numbers below 1024 are reserved for system processes; use
+something higher than 1024, and lower than 65,534.</p>
+
+<p>It's recommended that you leave all other settings the same, until
+you're familiar with each of them and have a specific reason for
+changing them.</p>
+
+<p>You shouldn't need to change anything in
+<code>include/params.h.</code></p>
+
+<p>In <code>game/restart:</code></p>
+
+<p>This file is a shell script, a set of commands that execute
+conditionally, rather like a <code>DOS</code> batch file. In addition to
+starting and restarting the <code>MUCK,</code> it does some logging and
+error checking: it bails out if the <code>MUCK</code> is already
+running, so you won't have duplicate processes running, keeps a log of
+when the <code>MUCK</code> was restarted, and warns of conditions such
+as missing or damaged database files, or insufficient memory. You will
+need to make a couple changes to this file.</p>
+
+<p>Near the top of the file, change the line which sets the variable
+holding the path name for the <code>MUCK.</code> If you left the name of
+the directory created when you un-tar'd the server as
+<code>fb6.0,</code> and didn't rename any sub-directories in the server
+directory, you would set the path variable as follows:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   set GAMEDIR = $HOME/fb6.0/game<br>
+====================================
+</code></p>
+
+<p>The port number needs to be specified in restart as well:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   set PORT = 8000<br>
+====================================
+</code></p>
+
+<p>The server process is called <code>`netmuck'</code> (the executable
+file that actually runs the server is <code>`netmuck'</code>).
+<code>`Restart'</code> includes necessary references to
+<code>`netmuck'.</code> On sites that have several <code>M*'s</code>
+running, it's polite to rename <code>`netmuck'</code> to something else,
+or to call it by an alias, so that the sysadmin can tell at a glance
+what's what. If you're running the <code>MUCK</code> on your own
+machine, and know you'll only have one <code>MUCK,</code> the following
+step can be omitted.</p>
+
+<p>Find the line that says...</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   You probably won't need to edit anything after this line.<br>
+====================================
+</code></p>
+
+<p>... so you'll know where to start making changes. A few lines into
+forbidden territory, you'll see the following line:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   set muck = `ps -aux | grep netmuck | wc -l`<br>
+====================================
+</code></p>
+
+<p>Replace the word <code>`netmuck'</code> with something indentifiable
+as your <code>MUCK.</code> If your <code>MUCK</code> is called
+<code>`Vanity Fair',</code> you might change it to:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   set muck = `ps -aux | grep VanFair | wc -l`<br>
+====================================
+</code></p>
+
+<p>And, the second to last line of the file:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   ./netmuck $DBIN $DBOUT $PORT &gt;& logs/stdouterr.log &<br>
+====================================
+</code></p>
+
+<p>Change <code>`netmuck'</code> here too.</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   ./VanFair $DBIN $DBOUT $PORT &gt;& logs/stdouterr.log &<br>
+====================================
+</code></p>
+
+
+<p><em>Compiling the Source Code</em>:</p>
+
+<p>Now it's time to compile the server. </p>
+
+<p>A very brief rundown on what's happening here: In addition to
+information files like <code>README</code> and
+<code>INSTALLATION,</code> and the server you just downloaded consists
+of quite a few files of `source code'...  human-readable text files
+written in the C programming language. You'll use the `make' and
+`configure' utilities to create machine-executable code from the source
+files.</p>
+
+<p>Change directories to <code>game/src,</code> the directory holding
+the source code.  Type <code>`configure'.</code> This determines what
+flavor of <code>UNIX</code> you're running under, the location of
+certain files and executables, and so forth. This part should be quite
+straightforward. If it's not &#151; if you get messages such as
+<code>`No processor installed'</code> or <code>`Welcome to
+Macintosh'</code> &#151; log onto a large <code>MUCK</code> and find
+someone who can help.</p>
+
+<p>Now, the (first) moment of truth: while still in
+<code>game/src,</code> type <code>`make'.</code>  Watch arcane messages
+scroll by. Then, when they seem to have all done so, type <code>`make
+install'.</code> Watch more arcane messages. You may see some labled
+<code>`Warning'.</code> As long as the warning isn't followed by a
+<code>`Fatal error',</code> you should be OK. (Fatal errors are
+bad.)</p>
+
+<p>If you get other compilation errors at this point, you'll need to
+track down a guru to help you out. Again, wizzes, helpstaff, and
+<code>@shouts</code> on large <code>MUCK's</code> are a good place to
+start looking for one.</p>
+
+<p>Once you have the server compiled, you should tidy up a bit. In the
+compilation process, a number of `object files' were created... Object
+files are intermediate files created as the compiler generates the
+executables. After compiliation, you don't need them any more; they just
+take up disk space. In the game/src directory, type <code>`make
+clean'</code> to get rid of them.</p>
+
+
+<p><em>Specifying Database Files</em>:</p>
+
+<p>You need to provide the server with a database to use at start up.
+You can use either the minimal database included with the server, or the
+standard start-up database included in <code>basedb.tar.gz.</code> The
+minimal database includes only two objects: Room <code>#0,</code> and
+God, player <code>#1.</code> The start-up database includes about 70
+objects, including important programs and a couple rooms.</p>
+
+<p>The start-up database is of course more convenient, but you may wish
+to use your own versions of the programs or to set aside some low dbrefs
+for players and other important objects. If you use the start-up
+database, the first objects you create will have dbrefs in the high
+60's.</p>
+
+<p>The minimal database is, well, minimal. You'll need to do a bit more
+work to get the place going, but you'll have greater control.</p>
+
+<p>The files to be used for the database are defined in the
+<code>`restart'</code> script. We didn't change those: the server will
+expect to find files <code>`std-db.db',</code>
+<code>`std-db.old',</code> and <code>`std-db.new'.</code> The default
+file names are fine, but we need to create the files themselves.</p>
+
+<p>In directory <code>game/data...</code> If you're using the start-up
+database</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   gunzip basedb.gz<br>
+====================================
+</code></p>
+
+<p>This should create a file named <code>`basedb.db'.</code> Type
+<code>ls</code> to make sure. If it created something else, use that
+file name below:</p>
+
+<p><code>
+====================================<br>
+    cp basedb.db std-db.db<br>
+    cp basedb.db std-db.old<br>
+    cp basedb.db std-db.new<br>
+====================================
+</code></p>
+
+If you're using the minimal database:
+
+<p><code>
+====================================<br>
+    cp minimal.db std-db.db<br>
+    cp minimal.db std-db.old<br>
+    cp minimal.db std-db.new<br>
+====================================
+</code></p>
+
+These commands will make copies of the database file where the server
+expects to find them.
+
+
+<p><em>Starting and Logging onto the Server</em>:</p>
+
+<p>You're now <em>almost</em> ready to start the <code>MUCK.</code> One
+last thing... If you're on a public site, and edited the restart script
+changing <code>`netmuck'</code> to something like
+<code>`VanFair',</code> you need to either rename
+<code>`netmuck',</code> or create an alias for it.</p>
+
+<p>In the <code>`game'</code> direcectory, type <code>ls.</code> You
+should see file <code>`netmuck'.</code>  Rename that file with the
+following command:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   mv netmuck VanFair<br>
+====================================
+</code></p>
+
+
+<p>If you made a copy of the <code>restart</code> file, you may need to
+make it executable at this point:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   chmod +x netmuck<br>
+====================================
+</code></p>
+
+<p>
+<p>...in the final column.</p>
+
+Now, type <code>`./restart'.</code> You should see some messages like
+<code>`restarting at &lt;time&gt;'</code>.</p>
+
+<p>Type <code>`ps -aux'.</code> This will list all the processes running
+on the machine.  If all is right with your world, you should see a
+process for it, a line with something like...</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   ./VanFair data/std-d<br>
+====================================
+</code></p>
+
+<p>...in the final column.</p>
+
+<p>If you see too much stuff, and can't tell if the server process is in
+the list, filter it with the <code>grep</code>:</p>
+
+<p><code>
+====================================<br>
+ &nbsp; ps -aux | grep VanFair<br>
+====================================
+</code></p>
+
+<p><em>Quick and Dirty Trouble-Shooting</em>:</p>
+
+<p>If the <code>MUCK</code> compiled correctly (you didn't get errors when
+compiling, and you have a file named <code>`netmuck'</code> in your game
+directory), but you don't have a process running, then something went
+awry in the restart script. You should confer with your sysadmin or some
+other knowledgable <code>UNIX</code>-type about it. Meanwhile, though, you
+can use a simplified restart script. If the problem truly is in the restart
+script, and not in the server, this should get you up and running while
+you enlist outside help.</p>
+
+<p>Move your current restart script to another file for safe
+keeping:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   mv restart restart.cp2<br>
+====================================
+</code></p>
+
+Edit a new, simplified restart script, that includes the following three
+lines:
+
+<p><code>
+====================================<br>
+ &nbsp;   mv data/std-db.db  data/std-db.old<br>
+ &nbsp;   mv data/std-db.new data/std-db.db<br>
+ &nbsp;   ./VanFair data/std-db.db data/std-db.new 8000 &gt;& logs/stdouterr.log &<br>
+====================================
+</code></p>
+
+<p>(<code>`VanFair'</code> and <code>`8000'</code> are specific to our
+example: use the <code>MUCK</code> name and port number for your
+<code>MUCK.</code>)
+
+<p>Make the new script executable:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   chmod +x restart<br>
+====================================
+</code></p>
+
+<p>This script won't provide all the error checking and logging that the
+full-blown one will, but there's also less to go wrong in it. With the
+new script in place, type <code>`./restart'</code> again.</p>
+
+<p>(A common reason for the restart script to fail: You are running your
+<code>MUCK</code> on a server that is also hosting other <code>MUCK</code>s,
+and neither you nor the other <code>MUCK</code> admins renamed
+`<code>netmuck</code>'. Because the restart script uses this file name to see
+if the server is already running when you try to restart, and bails out if so,
+your restart script fails because it sees someone else's <code>MUCK</code>
+running as a <code>netmuck</code> process. The fix: rename
+<code>netmuck</code> and edit the restart script appropriately.)</p>
+
+<p>We'll assume that you now have a <code>MUCK</code> process running.
+Congratulations.</p>
+
+<p>Now you need to log on. There is only one character on the
+<code>MUCK...</code> <code>#1,</code> who is probably named `One'.
+<code>#1's</code> initial password is `potrzebie'.  Connect to the
+<code>MUCK</code> with your normal client, and log in:</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   connect #1 potrzebie<br>
+====================================
+</code></p>
+
+<p>If you're running the minimal database, type <code>@stats:</code>
+savor this pristine and perfect universe.</p>
+
+<p><code><center><font color="red">
+   ***************************************<br>
+   *** IMPORTANT: CHANGE #1's PASSWORD ***<br>
+   ***************************************<br>
+</font></center></code></p>
+
+<p>It is imperative to change God's password from the default.</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   @password potrzebie = &lt;whatever&gt;<br>
+====================================
+</code></p>
+
+<p>You're done!</p>
+
+
+  <center>
+  <a href="techissues.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="dbsetup.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

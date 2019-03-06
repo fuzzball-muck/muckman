@@ -1,0 +1,81 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (9)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf8.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf10.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Calling Functions:</b></p>
+
+<p>So far, all versions of our program have only included one function, but
+programs can have as many functions as you want.</p>
+
+<p>Functions (also called `words') are blocks of code executed as a
+single unit. They begin with a colon followed by the name of the
+function, and end with a semi-colon. The name of a function can be
+pretty much anything you want, but should include at least one
+non-numeric character. You should also avoid using function names
+already defined in <code>MUF</code> (type man <code>&lt;word&gt;</code>
+to see if the function name is already being used.)</p>
+
+<p>Once they have been defined, functions can be called simply by including
+their name in the program's code. The following version of Tinker.muf
+does the same thing as the previous two, but this time the `greater' or
+`less than' notifications are handled by separate functions:</p>
+
+<p><code>
+====================================<br>
+lvar ourNumber<br>
+<br>
+: TellTrue<br>
+    <br>
+ &nbsp; &nbsp;    me @ "Yes, the number is greater than one million." notify<br>
+;<br>
+  <br>
+: TellFalse<br>
+    <br>
+ &nbsp; &nbsp;    me @ "No, the number is less than one million."
+ notify<br>
+;<br>
+<br>
+: main<br>
+    <br>
+ &nbsp; &nbsp;    random ourNumber !<br>
+    <br>
+ &nbsp; &nbsp;    ourNumber @ 1000000 &gt; if<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;        TellTrue<br>
+ &nbsp; &nbsp;    else<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;        TellFalse<br>
+ &nbsp; &nbsp;    then<br>
+    <br>
+ &nbsp; &nbsp;    me @ ourNumber @ intostr notify<br>
+;<br>
+====================================
+</code></p>
+
+
+  <center>
+  <a href="muf8.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf10.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

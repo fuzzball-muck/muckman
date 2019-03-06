@@ -1,0 +1,69 @@
+<html>
+<head>
+  <title>The MUCK Manual: Bogus Exits</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="locks.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="unsecex.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.3.1  Bogus Exits</b></p>
+
+<p>It is (or was) a relatively common practice to create lookable
+details and realism-enhancing actions in rooms by means of `bogus
+exits'... exits that do not lead anywhere. The exits can be given a
+description, so that doing <code>look &lt;exit&gt;</code> shows some
+detail of the room, and realistic messages can be put in the exit's
+<code>@fail/@ofail</code> or <code>@succ/@osucc</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; @open Grandma's Rocker;grandmas rocker;rocker;chair;sit<br>
+&nbsp;  Exit opened with number #5797.<br>
+&gt; @link chair = $nothing
+&nbsp;  Linked to gen-nothing(#114).<br>
+&gt; @desc chair = An old, old rocker that has been in the family <br>
+&nbsp;  for generations.<br>
+&nbsp;  Description set.<br>
+&gt; @succ chair = You take a seat in the old rocker.<br>
+&nbsp;  Message set.<br>
+&gt; @osucc chair = takes a seat in the old rocker.<br>
+&nbsp;  Message set.<br>
+====================================<br>
+</code></p>
+
+<p>The above example creates a `virtual chair'. Though it will not
+appear in the room's Contents list, people can look at it, and can sit
+in it by typing <code>sit</code> (or any of its other aliases).
+
+<p>Bogus exits may have their place, but builders should be aware that
+there are other ways of accomplishing the same goals without creating a
+separate exit for each item (an approach that quickly leads to dbase
+bloat). Lookable details can created with `looktraps' (see <a
+href="looktraps.html">Section 2.2.2</a>) and many events like the `sit'
+message in the above example can be handled by a single action (See <a
+href="mpiex.html">Section 3.1.2</a>, <code>MPI</code> Examples).</p>
+
+
+  <center>
+  <a href="locks.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="unsecex.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

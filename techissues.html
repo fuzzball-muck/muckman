@@ -1,0 +1,115 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Selecting a Site</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="admin.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="compiling.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><b>5.1  Technical Issues</b></p>
+
+<p><b>5.1.1  Selecting a Site</b></p>
+
+<p>Of the various matters you'll need to consider, selecting a site is
+in many ways the easiest. You need a 7 x 24 connection to the Internet
+and a stable <code>IP</code> address, for a machine running some version
+of <code>UNIX,</code> with permission to run a constant process. This
+may reduce the number of options to one or none. If it's one, the
+decision is made: go with the site you have. If it is none, and you're
+set on running a <code>MUCK,</code> your options are:</p>
+
+<ol>
+    <p><li>Buy 7 x 24 access, with a stable <code>IP</code> address. In
+    most markets, at the current time, this costs about $100 per month.
+    You will of course also need a computer at the receiving end of that
+    connection.</p>
+
+    <p><li>Find someone who will let you run a <code>MUCK</code> on
+    their site. This is not impossible. Both requests and offers for
+    sites appear rather frequently on the rec.games.mud.announce
+    newsgroup.  Bulletin board posts and public shouts on large
+    <code>M*'s</code> may well turn up altruists: the freeware and
+    volunteerism ethos remains alive and well in the <code>M*</code>
+    universe.</p>
+</ol>
+
+<p>If you are in the fortunate position of being able to choose sites,
+consider the following factors:</p>
+
+<ol>
+    <p><li>Connection reliability, connection speed, and sizable
+    <code>RAM</code> are all more important than processor speed. A
+    <code>MUCK</code> can be run quite successfully on a `486 under
+    Linux. A faster <code>CPU</code> is of course nicer, especially if
+    you do other things on the machine, but in all likelihood, processor
+    speed is the last bottleneck you'll hit.</p>
+
+    <p><li>It's hard to judge connection reliability ahead of time. If
+    you know someone who works on a site you're considering, or at least
+    through the same <code>ISP,</code> solicit their feedback.</p>
+
+    <p><li>Faster connection hardware is, obviously, better than slower
+    hardware. A 28.8 modem is adequate, but an <code>ISDN</code> is
+    better.  The new cable modem and <code>ASDN</code> links would work
+    quite nicely. A <code>T1</code> or partial <code>T1</code>
+    connection is also acceptable.</p>
+
+    <p><li>Hardware is not the only consideration for connection speed.
+    Some <code>ISP's</code> simply cannot provide reliably fast
+    connections.  Sometimes this is their own fault (they sold more
+    bandwidth than they have), and sometimes it's due to factors beyond
+    their control (the <code>ISP's</code> <code>ISP</code> sold more
+    bandwidth than <em>they</em> have, or the whole set up is situated
+    behind some chronic bottleneck).  You can get a rough idea of
+    comparative speeds by doing a traceroute to sites under
+    consideration. The first hops shown will be those on your end of the
+    connection, and are less relevant: other user's won't have to make
+    those hops. The last several hops, however, are telling. If one site
+    consistently posts better times than another on the last two or
+    three hops, this is worth taking into consideration. Although the
+    times you see are in scant milleseconds, final hops of more than 300
+    - 400 milleseconds may indicate a bottleneck at the server.  Also,
+    try pinging the sites (<code>ping &lt;address&gt;</code>) and comparing
+    the indicated times. Let ping run for a couple minutes, then stop it
+    with ctrl-c. You should see a percentage for `packets lost'.
+    Dropped packets have to be resent, which significantly slows
+    transmissions between a client and server.</p>
+
+    <p><li>You need adequate <code>RAM.</code> <code>MUCK</code> is
+    memory-based. That is, it keeps the database loaded in
+    <code>RAM</code> while operating. If this results in a process
+    larger than available <code>RAM,</code> portions of memory are
+    frequently swapped to disk (`paged'). This causes a significant
+    degradation in performance. So, have enough memory: for a small
+    <code>MUCK,</code> it's not a lot. A dbase with 2500 objects should
+    create a process of 4 - 4.5 megs.</p>
+
+<p>The ideal is to run the <code>MUCK</code> on a machine that you own:
+compiling the server will be considerably easier, and you'll be able to
+restart the <code>MUCK</code> quickly in the case of a power outage or
+other failure. Console access is also a significant security
+consideration: see <a href="security.html">Section 5.1.4</a></p>
+
+
+  <center>
+  <a href="admin.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="compiling.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

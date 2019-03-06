@@ -1,0 +1,148 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (7)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf6.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf8.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Conditional Statements:</b></p>
+
+<p>A conditional statement causes the program to do something only if a
+certain condition is true. The main form of a conditional statement in
+<code>MUF</code> is the <code>IF-THEN</code> statement.</p>
+
+<p><code>IF-THEN</code> works a bit differently in <code>MUF</code> than
+in some other programming languages. In <code>BASIC</code>, for example,
+the meaning is something like `<code>IF</code> <code>A</code> is true,
+<code>THEN</code> go do <code>B'.</code> In <code>MUF,</code> the
+meaning is more like `<code>IF</code> <code>A</code> is true, do this
+bit here... <code>B.</code> <code>THEN</code> do all this other stuff,
+the rest of the program.'</p>
+
+<p>'True', as far as <code>MUF</code> is concerned, means `any value other
+than the integer <code>0</code>, or the floating point number
+<code>0.0000</code>, or a null string ( <code>""</code> ), or the dbref for
+"nothing", which is <code>#-1</code>'.</p>
+  
+<p>
+<table border="0">
+  <tr">
+    <td rowspan="9"> &nbsp; &nbsp; &nbsp; &nbsp; </td>
+    <td><code>0       </code></td>
+    <td><code>&lt;----  False</code></td>
+  </tr><tr>
+	  <td><code>0.0000  </code></td>
+		<td><code>&lt;----  False</code></td>
+  </tr><tr>
+    <td><code>""      </code></td>
+    <td><code>&lt;----  False</code></td>
+  </tr><tr>
+    <td><code>#-1     </code></td>
+    <td><code>&lt;----  False</code></td>
+  </tr><tr>
+    <td>&nbsp; <br></td>
+  </tr><tr>
+    <td><code>1       </code></td>
+    <td><code>&lt;----  True</code></td>
+  </tr><tr>
+	  <td><code>3.14159&nbsp; </code></td>
+		<td><code>&lt;----  True</code></td>
+  </tr><tr>
+    <td><code>"Hiya!" </code></td>
+    <td><code>&lt;----  True</code></td>
+  </tr><tr>
+    <td><code>#123    </code></td>
+    <td><code>&lt;----  True</code></td>
+  </tr>
+</table>
+</p>
+  
+<p>An <code>IF</code> checks (and uses up) the top value on the stack. When
+this value is true, any code between the <code>IF</code> and its
+matching <code>THEN</code> will execute (every <code>IF</code> must have
+a matching <code>THEN</code>). When the value is false, the program
+skips over everything until it gets to the matching <code>THEN,</code>
+and resumes execution at that point. Here's an example...</p>
+
+<p><code>
+====================================<br>
+: main<br>
+ &nbsp; &nbsp;     <br>
+ &nbsp; &nbsp;     random 1000000 &gt; if<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;          me @ "Yes, the number is greater than one million." notify<br>
+ &nbsp; &nbsp;     then<br>
+ &nbsp; &nbsp;    <br>
+ &nbsp; &nbsp;    me @ "OK, we're done with the IF-THEN stuff." notify<br>
+;<br>
+====================================
+</code></p>
+
+<p><code>RANDOM</code> puts a random number between one and the largest
+integer it can generate (about 2.1 billion) on the stack. The
+<code>&gt;</code> greater than operator tests the two numbers right
+before it, and returns true (that is, puts a <code>1</code> on the
+stack) if the first number is greater than the second. If the first
+number is less than the second, it returns false (it puts a
+<code>0</code> on the stack). The two numbers being compared are used up
+in the process.</p>
+
+<p>So, when our little program gets to <code>IF</code> in the first
+line, there will either be a <code>1</code> or a <code>0</code> on the
+stack. If the value on the stack is <code>1</code> (which it will be the
+vast majority of the time), the <code>IF</code> test will be true, and
+the next line will execute: the program will notify the user with
+<code>`Yes, the number is greater than one million.'</code> Then it will
+continue past the <code>THEN</code> and do the next line, notifying the
+user <code>`OK, we're done with the IF-THEN stuff.'</code> If the random
+number were less than than one million, the <code>IF</code> test would
+be false, and the program would skip straight to the last line.</p>
+
+<p>You can also specify what should happen when the <code>IF</code> test
+is false by placing an <code>ELSE</code> between the <code>IF</code> and
+the <code>THEN.</code> The following version will notify whether the
+random number is greater or less than one million.</p>
+
+<p><code>
+====================================<br>
+: main<br>
+    <br>
+ &nbsp; &nbsp; random 1000000 &gt; if<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;  me @ "Yes, the number is greater than one million." notify<br>
+ &nbsp; &nbsp; else<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;  me @ "No, the number is less than one million." notify<br>
+ &nbsp; &nbsp; then<br>
+ &nbsp; &nbsp; <br>
+ &nbsp; &nbsp; me @ "OK, we're done with the IF-ELSE-THEN stuff." notify<br>
+;<br>
+====================================
+</code></p>
+
+<p>Intenting one level for each condition, as in these examples, is a
+common and helpful convention.</p>
+
+
+  <center>
+  <a href="muf6.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf8.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

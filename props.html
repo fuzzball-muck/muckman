@@ -1,0 +1,184 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Properties</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="flags.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="lists.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>Properties:</b></p>
+
+<p>A property is a named location on a database object that holds
+information. Both the server and user-created programs reference
+properties to obtain the data they need in order to carry out specific
+operations. For example, when someone looks at you, the server
+references your description property ( <code>_/de</code> ), retrieves
+the information stored there (your desc), and displays it to the person
+who's looking at you. Properties are often called just `props'.</p>
+
+<p>Props are organized into property directories (often called
+`propdirs'). The structure and syntax of property directories are very
+much like those of file directories in the <code>UNIX</code> or
+<code>DOS</code> operating systems, with props being analogous to files
+and propdirs being analogous to directories. A directory can contain
+props or additional directories; names of props and directories are
+separated by a slash; props and directories are organized in a
+hiearchical `tree' structure such that each prop has a unique path name.
+So, the desc prop mentioned above, <code>_/de</code>, is actually the
+<code>de</code> property in the <code>_</code> underscore directory.
+</p>
+
+<p>You can view the props on any object you control by examining it,
+syntax <code>ex &lt;object&gt; = &lt;path&gt;</code>. Typing <code>ex me
+= /</code> would show the `first level' or `root directory' of props and
+directories stored on your character. Typing <code>ex me = sex</code>
+would show your sex property.  Typing <code>ex me = _page/</code> would
+show properties stored in the propdir created and modified when you use
+the <code>page</code> command. Directories will be prefaced by
+<code>`dir'</code> and will end with a slash. Properties will be prefaced by
+something different (usually <code>str</code> for `string'), and will end with
+the value stored in the prop.</p>
+
+<p>Like flags, properties are set and removed with the <code>@set</code>
+command, though the syntax is slightly different. The syntax for setting
+a prop is <code>@set &lt;object&gt; = &lt;[path/]property&gt;:
+&lt;value&gt;</code>. For removing a prop, it's <code>@set
+&lt;object&gt; = &lt;[path/]property&gt;: </code> (that is, a property
+name followed by just a colon). To clear a directory, it's <code>@set
+&lt;object&gt; = &lt;propdir&gt;/: </code> You can remove all the
+properties you have set on an object by typing <code>@set &lt;object&gt;
+= :clear </code>. </p>
+
+<p><code>
+====================================<br>
+&gt;@set me = obstreperous:yes<br>
+&nbsp;&nbsp;Property set.<br>
+&gt;@set me = obstreperous:<br>
+&nbsp;&nbsp;Property removed.<br>
+&gt;@set me = personality_traits/obstreperous:yes<br>
+&nbsp;&nbsp;Property set.<br>
+&gt;@set me = personality_traits/lascivious:yes<br>
+&nbsp;&nbsp;Property set<br>
+&gt;@set me = personality_traits/:<br>
+&nbsp;&nbsp;Property removed.<br>
+&gt;@set me = :clear<br>
+&nbsp;&nbsp;All user owned properties removed. &nbsp; <font color="red">(* oops *)</font><br>
+====================================<br>
+</code></p>
+
+<p>It is common practice to separate words in a property name with
+underscores (<code>@set me = my_favorite_color:blue</code>), but spaces
+can be used in property names (<code>@set me = my favorite
+color:blue</code>). However, spaces at the beginning and end of property
+names are removed when the prop is set. (Spaces at the beginning or end
+of a property <em>value</em> are not stripped: you can store a string
+beginning or ending with spaces, or even a string consisting of only
+spaces.)</p>
+
+<p>The number, names, and content of properties are not pre-defined as
+they are in the case of flags. You can't `make up' a new kind of flag
+and set it on your character (<code>@set me = G</code> or <code>@set me
+= 9</code>, say), but you can create and set any property you like and
+store any information there, as long as the syntax is correct and the
+amount of information stored doesn't exceed certain limits . If you
+wanted to do <code>@set me = number_of_pickles_in_my_jar:32</code>, you
+could, though the information might not be especially useful. (There are
+some restrictions on what properties you can set, discussed in <a
+href="specprops.html">Section 2.1.1</a>)</p>
+
+<p>While you can set virtually any property, the server and user-created
+commands will expect specific information to be stored in specific,
+predefined properties. The server will always reference the
+<code>_/de</code> prop when obtaining a desc; the <code>hand</code>
+command will always check your <code>_hand_ok</code> prop. So, using a
+program or configuring an object is often a matter of determining what
+props are referenced (by reading #help or program documentation, or by
+asking players or staff) and setting them appropriately. Important and
+frequently used properties are stored in the correct location by server
+commands: <code>@desc, @success, @osuccess, @drop, @odrop, @fail,
+@ofail</code>, and various <code>@lock</code> commands all store
+information in the <code>_/</code> directory. (Properties in the
+<code>_/</code> directory and their values are often called `messages'
+and `locks'. See Sections <a href="messages.html">2.1.2</a> and <a
+href="locks.html">2.3.</a>)</p>
+
+<p><code>
+====================================<br>
+&gt;@create Feep<br>
+&nbsp;&nbsp;Feep created with number #1237<br>
+&gt;@desc feep = A cute little feep.<br>
+&nbsp;&nbsp;Description set.<br>
+&gt;@succ feep = You pick up the feep. It warbles contentedly.<br>
+&nbsp;&nbsp;Message set.<br>
+&gt;@osucc feep = picks up the feep. It warbles contentedly.<br>
+&nbsp;&nbsp;Message set.<br>
+&gt;@fail feep = You try to pick up the feep, but it scuttles away whimpering!<br>
+&nbsp;&nbsp;Message set.<br>
+&gt;@ofail feep = tries to pick up the feep, but it scuttles away whimpering!<br>
+&nbsp;&nbsp;Message set.<br>
+&gt;@drop feep = You set the feep down gently. It nuzzles your ankle.<br>
+&nbsp;&nbsp;Message set.<br>
+&gt;@odrop feep = sets the feep down gently. It nuzzles %p ankle.<br>
+&nbsp;&nbsp;Message set.<br>
+&gt;@lock feep = me<br>
+&nbsp;&nbsp;Locked.<br>
+&gt;@chlock feep = me<br>
+&nbsp;&nbsp;Chown lock set.<br>
+<br>
+&nbsp;&nbsp;&gt; ex feep = _/<br>
+&nbsp;&nbsp;lok /_/chlk:Mistral(#100PWX)<br>
+&nbsp;&nbsp;str /_/de:A cute little feep.<br>
+&nbsp;&nbsp;str /_/dr:You set the feep down gently. It nuzzles your ankle.<br>
+&nbsp;&nbsp;str /_/fl:You try to pick up the feep, but it scuttles away whimpering!<br>
+&nbsp;&nbsp;lok /_/lok:Mistral(#100PWX)<br>
+&nbsp;&nbsp;str /_/odr:sets the feep down gently. It nuzzles %p ankle.<br>
+&nbsp;&nbsp;str /_/ofl:tries to pick up the feep, but it scuttles away whimpering!<br>
+&nbsp;&nbsp;str /_/osc:picks up the feep. It warbles contentedly.<br>
+&nbsp;&nbsp;str /_/sc:You pick up the feep. It warbles contentedly.<br>
+====================================<br>
+</code></p>
+
+<p>The properties in the <code>_/</code> directory trigger events or
+messages when the object is used in a certain way. For example, the
+<code>@success</code> message is displayed to a player who Successfully uses
+the object. If the object is a thing, `successful use' means picking it up.
+For a room, `success' means looking at the room. For an exit, it means passing
+through the exit or using the exit as a command. The <code>@osuccess</code>
+message uses the same definitions of `success', but in this case the message
+is shown to Other players present, rather than the triggering player.</p>
+
+<p><code>@Fail</code> works similarly to <code>@success,</code> but in
+this case the message is shown when a player <em>fails</em> to use the
+object successfully, usually because it is locked against him (locks are
+discussed in <a href="locks.html">Section 2.3</a>), and <code>@ofail</code>
+has a similar relationship to <code>@osuccess.</p></code>
+
+<p>On a thing, a <code>@drop</code> message is shown to a player who
+drops the object; the <code>@odrop</code> message is shown to other
+players present when the object is dropped. When a <code>@drop</code>
+message is set on an exit, the message is shown to the player when he
+arrives in the destination room. The <code>@odrop</code> message is
+shown to other players in the destination room.</p>
+
+  <center>
+  <a href="flags.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="lists.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

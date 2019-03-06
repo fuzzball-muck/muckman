@@ -1,0 +1,125 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Toading</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="au.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="records.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><b>5.2.6  Toading</b></p>
+
+<p>The command for getting rid of players is <code>@toad</code>. The
+syntax is:</p>
+
+<p><code>
+  &nbsp; @toad &lt;player1&gt; [ = &lt;player2&gt; ]
+</code></p>
+
+<p>This turns the Player object for <code>player1</code> into an object
+of type Thing, and transfers ownership of all objects owned by
+<code>player1</code> to <code>player2</code>. If <code>player2</code>
+is not supplied, all objects owned by <code>player1</code> will be
+<code>@chowned</code> to the wizard issuing the <code>@toad</code> command.</p>
+
+<p>The Thing object will retain all properties that were set on the player.</p>
+
+<p>Occassionally you will need to toad players: sometimes for particularly
+grave violations of the AUP, more often because the player wants to
+leave the world or has simply stopped showing up and you want to reclaim
+unused dbase space.</p>
+
+<p><em>Some considerations:</em></p>
+
+<p>As discussed in <a href="security.html">Section 5.1.4, Security
+Concerns </a>, Wizards should examine the properties of objects they
+<code>@chown</code>. If you are <code>@toading</code> a large number
+of players, or <code>@toading</code> a player with a large number of
+objects, it's a very good idea to supply a non-wiz player for objects
+to be <code>@chowned</code> to when <code>@toading</code> (perhaps an
+<code>NPC</code> player object used just for this purpose). This is of
+course espcially important if the player is being <code>@toaded</code>
+as a disciplinary measure for security violations.</p>
+
+<p>If you are <code>@toading</code> idle players to reclaim database
+space, you will probably want to <code>@recycle</code> objects they
+own as well. It is advisable to proceed cautiously here. The player
+may have created rooms, actions, or things that are in public use.
+So, examine objects as you proceed. It will be much easier to keep
+track of which objects should be checked and potentially recycled if
+&#151; again &#151; you use a dedicated <code>NPC</code> character
+to <code>@chown</code> objects too when <code>@toading</code>.
+If you are consistent about supplying this character as the second
+argument to the <code>@toad</code> command, you can periodically review
+objects owned by this player (<code>@owned &lt;player name&gt;</code>),
+and <code>@recycle</code> private objects previously owned by
+<code>@toaded</code> players.</p>
+
+<p>Players often ask to be <code>@toaded</code> when something online
+upsets them. And, such players often change their minds. And, such
+players aren't likely to be in a receptive frame of mind if you grill
+them about whether they <em>really</em> want to leave. So... You can
+make your life and theirs easier if you institute a "silent grace
+period" policy. When players ask to be <code>@toaded</code>, just say
+"OK", and let them leave with a minimum of fuss. But, instead of
+actually <code>@toading</code> them at that point, give them a
+new password and new name, and move them to a holding area. This way,
+if they change their minds, they can come back easily... all you will
+need to do is rename and repassword the character object. And, you
+can take care of the database-related details of <code>@toading</code>
+at your leisure. Periodically, you can review characters in the holding
+area, and do an actual <code>@toad</code> on those who have been
+gone for an appreciable period.</p>
+
+<p><em>Fixing a mistake:</em></p>
+
+<p>It is not all that hard to accidently <code>@toad</code> someone. If
+you do, you can recreate the character exactly as it was, except for one
+thing: You'll have to give it a new password. Hopefully, you have access
+to the player's email address (see <a href="records.html">Record Keeping</a>),
+in which case, you can simply recreate the character and send email letting
+the player know what happened and telling him or her the new password. If you don't
+have their email address, recreate the character and wait for a grumpy Guest
+to show up, demanding to know what happened to his or her character.</p>
+
+<p>To recreate an accidentally slain character, copy all properties from the
+slimy toad object to a temporary holding object (so that you can reapply
+them to the new character), then recycle the slimy toad object and
+immediately <code>@pcreate</code> a new character with the same name (so that the new
+player will have the same dbref, which might be used in props and programs).
+Then, copy the properties back from the holding object to the new character.</p>
+
+<p>The <code>`cp'</code> and <code>`mv'</code> commands are the easiest way to
+shift the properties around, but, be aware that they will not move wizard or
+restricted properties unless the program is set <code>Wizard</code>...  And,
+be aware that if you are using the `stock' version of <code>cmd-mv-cp</code>,
+you should <em>not</em> leave it set <code>Wizard</code>: doing so creates a
+significant security hole. Two options: You can temporarily set
+<code>cmd-mv-cp</code> <code>Wizard</code>, make your changes, and then set
+<code>cmd-mv-cp</code> <code>not-Wizard</code>, or... you can install a
+modified version of <code>cmd-mv-cp</code> (available <a
+href="cmd-mv-cp.html">here</a>) that can safely be left at a
+<code>Wizard</code> setting.</p>
+
+
+  <center>
+  <a href="au.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="records.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

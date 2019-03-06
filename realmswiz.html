@@ -1,0 +1,110 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: The Realms Wizard System</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="makegohome.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="security.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<p><b>Setting Up the Database (cont't)</b>:</p>
+<p><em>Using the Realms Wizard System</em>:</p>
+
+<p>Realms Wizards are players who have extended control over objects within
+a certain area of the MUCK... that is, in rooms parented to a common
+environment room. There are advantages and disadvantages to the realms
+wizards system, discussed below. Whether you are going to use the system
+is not something you must decide immediately, but if you are going to
+use realms wizards, there a few advantages to doing so from the
+outset.</p>
+
+<p>In order to use the realms wizards system, the system parameter
+<code>realms_control</code> must be tuned to <code>`yes'.</code> The
+effect is to give the owners of rooms set <code>Wizard</code> extended
+control over objects in that room, and over objects in rooms parented to
+that room. A realm wizard can examine, set properties on, and link
+objects within his realm as though he owns them.  He cannot chown
+objects belonging to others, unless the objects are set
+<code>Chown_OK,</code> and he can only force objects that are set
+<code>xForcible</code> and force locked to him, but &#151 since he can
+<code>@force_lock</code> and set flags on objects in the realm &#151 he
+can essentially chown and force anything in the realm as well. He can
+<code>@teleport</code> anywhere within the realm, just as a wizard can.
+
+<p>There are decided advantages to making your staff builders realms
+wizards. The extended control is a genuine help as they construct the
+area, and their realm wizard status may well be a motivating factor:
+they are lord in their realms, but that will only be meaningful if
+people use the areas, so they have good reason to make the areas as well
+constructed and attractive as possible. Once the area is built, they
+will be able to help players with matters such as linking homes. Also,
+making staff builders realms wizards rather than wizards avoids the
+problem of having several surplus wizards once the world is
+constructed.</p>
+
+<p>The one significant disadvantage &#151; or at least consideration
+&#151; is security. Wizards have virtually unlimited control over the
+database, but they also have built-in accountability: all wizard
+commands are logged, regardless of whether <code>log_commands</code> is
+tuned to `yes' or `no'.  Within their realms, realms wizards have
+comparable control, but their commands are not automatically logged. A
+clever and malicious realms wizard could set locks and flags on a true
+wizard who enters his area, and use these to directly or indirectly
+force the true wizard to do something destructive or harmful elsewhere.
+If (im)properly handled, the properties could erase themselves once they
+have done their job, leaving no evidence, and the logs would show the
+true wizard as the guilty party. The only real safeguard is the same
+safeguard provided against true wizards: accountability. If you want to
+use the realms wizard system, turn on command logging.</p>
+
+<p>The realms wizard system works best if you set up a consistent,
+geographically structured environment tree. This is much easier if done
+when the <code>MUCK</code> is new. The following schematic shows how a
+science fiction <code>MUCK</code> might be set up to use realms wizards.
+Rooms <code>`Starport Env. Room'</code> and <code>`Earth Env.
+Room'</code> would be chowned to staff builders, and set
+<code>Wizard.</code> These players who own these two rooms would then
+have primary responsibility for and control over those two areas.
+Additional areas could be parented to <code>IC Environment Room,</code>
+and the two realms control rooms could also include environment rooms,
+perhaps with other players holding realms wizard control over those
+smaller areas. </p>
+
+<p><code>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Room #0<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Main Environment Room<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IC Environment Room&nbsp;&nbsp;&nbsp;&nbsp;OOC Environment Room<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;Starport Env. Room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Earth Env. Room&nbsp;&nbsp;&nbsp;&nbsp;|_ Guest Room<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Player Start<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Some room&nbsp;&nbsp;&nbsp;|_ Some room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Staff Offices<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Some room&nbsp;&nbsp;&nbsp;|_ Some room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Help Room<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Some room&nbsp;&nbsp;&nbsp;|_ Some room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ MUF Vault<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ etc.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ etc.<br>
+<br>
+</code></p>
+
+
+  <center>
+  <a href="makegohome.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="security.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

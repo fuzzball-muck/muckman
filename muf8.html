@@ -1,0 +1,156 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (8)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf7.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf9.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Stack Effects and Keeping Your Data:</b></p>
+
+<p>Recall that when we did <code>me @ "Hello, world!" notify,</code> the
+<code>NOTIFY</code> `used up' the dbref and the string. This is formally
+expressed in <code>NOTIFY</code>'s `stack effect comment'. Type
+<code>man notify</code> to see the manual entry for <code>NOTIFY.</code>
+The entry, like all entries for primitives, includes a stack effect
+comment: <code>( d s --&nbsp;  )</code>.
+
+<p>The stack effect comment provides a `before and after synopsis' of the
+primitive's effect on the stack: the items before the dash are what the
+primitive requires; the items after are what it leaves.  (<code>`d'</code>
+means `dbref'; <code>`s'</code> means `string'; <code>`i'</code> means
+integer; <code>`f'</code> means floating point number; <code>`v'</code> means
+a variable'; <code>`x'</code> means an item that can have various types.)  In
+this case, <code>NOTIFY</code> needs a dbref and a string &#151; in that order
+&#151; and leaves nothing in their place.</p>
+
+<p>Most primitives `use up' their data in this fashion, and this is a
+Good Thing. If they did not, programmers would need to put one or
+several <code>POPs</code> after each primitive to keep the stack from
+growing unmanageable, which would greatly increase the size of programs.
+However, this also means that when you are working with data that you
+will need again later in the program, you will need to store it, either
+by putting a copy of it on the stack or by storing it in a variable.</p>
+
+<p>The <code>DUP</code> primitive makes a copy of the top item on the
+stack; its stack effect comment is <code>( x -- x x ).</code> The
+following version of our program uses <code>DUP</code> to make an extra
+copy of the random number, and after the <code>IF-ELSE-THEN</code>
+section it tells the user what the random number is.</p>
+
+<p><code>
+====================================<br>
+: main<br>
+    <br>
+ &nbsp; &nbsp;    random dup 1000000 &gt; if<br>
+ &nbsp; &nbsp;&nbsp; &nbsp;         me @ "Yes, the number is greater than one million." notify<br>
+ &nbsp; &nbsp;    else<br>
+ &nbsp; &nbsp;&nbsp; &nbsp;         me @ "No, the number is less than one million." notify<br>
+ &nbsp; &nbsp;    then<br>
+ &nbsp; &nbsp;    <br>
+ &nbsp; &nbsp;    intostr me @ swap notify<br>
+;<br>
+====================================
+</code></p>
+
+<p>This time, because of the <code>DUP</code> in the first line, there
+are two copies of the random number beneath the <code>1000000</code>
+when the greater-than test is executed. The test will use one of them,
+but the other will remain on the stack. The <code>IF-ELSE-THEN</code>
+part will then execute, leaving this number unaffected.</p>
+
+<p>The last line tells the user what the random number was. When the program
+gets to this line, the only thing on the stack is the random number, in
+integer form. The stack effect of <code>NOTIFY</code> is <code>( d s --&nbsp;
+),</code> so we need to do a little rearranging: we need to use some `stack
+handling' primitives to convert the integer into a string and place the stack
+items in the correct order.</p>
+
+<p><code>INTOSTR</code> converts the random integer into a string. If
+the random integer were <code>23231874,</code> <code>INTOSTR</code>
+would remove this number from the stack and leave the string
+<code>"23231874"</code> in its place. <code>me @</code> puts the user's
+dbref on the stack. But now the two stack items are in the wrong order.
+The dbref needs to be in front of (or `below') the string.
+<code>SWAP,</code> one of several stack handling primitives, reverses
+the order of the top two items on the stack <code>( x y -- y x ).</code>
+So, if our stack were <code>`"23231874" #123',</code> <code>SWAP</code>
+would make it <code>`#123 "23231874"',</code> which will work for
+<code>NOTIFY.</code></p>
+
+<p>Instead of duplicating a datum on the stack, you can also store it in
+a variable. This is especially useful when the datum will be needed much
+later in the program, or when the program will need the same datum at
+different places. There are two steps to storing data in this way:
+declaring the variable, and storing the data.</p>
+
+<p>Declaring the variable is done simply by including the word
+<code>var</code> or <code>lvar</code> followed by the name of the
+variable in the program. The variable can be declared anywhere in the
+program, so long as it's somewhere <em>before</em> the variable is used
+in the code, and <em>outside</em> the definition of a function. So, it
+makes good sense to declare all your variables at the top of the
+program. <code>Var</code> declares a global variable (all programs can
+use it); <code>lvar</code> declares a local variable (only this program
+can use it). <em>Use local variables</em>. The data type of a variable
+does not have to be declared: once you define a variable, it can hold
+any type of data.</p>
+
+<p>(<em>Note</em>: Version <code>fb6.0</code> and following of the
+<code>MUCK</code> server support `scoped variables'... that is,
+variables that only exist within certain sections of code. On
+<code>fb6.0</code> and later, you can can use <code>lvar</code> within a
+function: the resulting variable will only be available within that
+function, and will be used in place of variables with the same name that
+exist at a higher, program-wide scope.)</p>
+
+<p>Once a variable has been declared, you can store data in it with the
+`store' operator, an <code>!</code> exclamation point <code>( x v -- &nbsp; 
+).</code> The following version of our program does the same thing as
+the previous one, but this time stores the random number as a variable
+instead of keeping it on the stack.</p>
+
+<p><code>
+====================================<br>
+lvar ourNumber<br>
+<br>
+: main<br>
+    <br>
+ &nbsp; &nbsp;    random ourNumber !<br>
+ &nbsp; &nbsp;    <br>
+ &nbsp; &nbsp;    ourNumber @ 1000000 &gt; if<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;        me @ "Yes, the number is greater than one million." notify<br>
+ &nbsp; &nbsp;    else<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;        me @ "No, the number is less than one million." notify<br>
+ &nbsp; &nbsp;    then<br>
+ &nbsp; &nbsp;    <br>
+ &nbsp; &nbsp;    me @ ourNumber @ intostr notify<br>
+;<br>
+====================================
+</code></p>
+
+
+  <center>
+  <a href="muf7.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf9.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

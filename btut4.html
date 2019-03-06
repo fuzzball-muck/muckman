@@ -1,0 +1,235 @@
+<html>
+<head>
+  <title>The MUCK Manual: Creating Rooms and Areas (cont'd)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="btut3.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="btut5.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<p><b>Creating Rooms and Areas (cont'd)</b></p>
+
+<p><em>Describing Rooms:</em></p>
+
+<p>Room descs are a somewhat demanding genre. You need to convey a sharp sense
+of place in a very brief space. You often need to describe a number of rooms
+with similar characteristics without becoming repetitive. The description
+often needs to incorporate cues that geographically orient the player. Since
+other events online are competing for the reader's attention, your writing
+needs to be exceptionally clear. The following discussion first covers
+technical aspects of setting room descs, then offers some editorial
+suggestions for writing them. </p>
+
+<p>As with any other object, the description of a room can be set with the
+<code>@desc</code> command. And, as with any other object, you may want to do
+some hanky-panky with <code>lsedit</code> and <code>MPI</code> to provide
+formatting (indentation, paragraph breaks, etc.) or flexibility (dynamically
+generated text describing the time of day, players present, or random events).
+A desc string bracketted with an <code>MPI</code> <code>{eval}</code> function
+will cause any <code>MPI</code> in the desc itself to be parsed. The following
+description of the tavern uses this technique to include the names of present
+players in the description.</p>
+
+<p><code>
+====================================<br>
+&gt; @desc here = {eval:{list:maindesc,here}}<br>
+&nbsp;  Description set.<br>
+> lsedit here = maindesc<br>
+<nobr>
+&nbsp;  &lt; &nbsp;&nbsp;&nbsp;Welcome to the list editor.  You can get help by entering '.h'&nbsp;&nbsp;&nbsp; &gt; 
+</nobr><br><nobr>
+&nbsp;  &lt; '.end' will exit and save the list.  '.abort' will abort any
+	changes. &gt; 
+</nobr><br><nobr>
+&nbsp;  &lt; &nbsp;&nbsp;&nbsp;To save changes to the list, and continue editing, use '.save'&nbsp;&nbsp; &gt; 
+</nobr><br>
+&nbsp;  &gt; Insert at line 1&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;The tavern is little changed from days when pirate sloops found haven<br>
+&nbsp; in the coves nearby: the beams are still low and smoke-stained, the tables<br>
+&nbsp; still rough-hewn and knife-hacked, the floorboards still trecherously<br>
+&nbsp; uneven. What light there is comes from three flickering oil-lamps and a<br>
+&nbsp; sharp-scented wood fire burning steadily on the hearth.  Glasses and<br>
+&nbsp; bottles along the back wall catch and toss the dim, moving light. The <br>
+&nbsp; innkeeper standing easily behind the bar is a grave of secrets.<br>
+&nbsp; {eval:{prop:_folks,here}}<br>
+&nbsp; .end<br>
+&nbsp;   &lt; Editor exited. &gt;<br>
+&nbsp;   &lt; list saved. &gt;<br>
+> @set here=_folks:{if:{commas:{lremove:{contents:here,player},{owner:me}}},<br>
+&nbsp; {commas:{lremove:{contents:here,player},{owner:me}}, and ,item,{name:<br>
+&nbsp; {&item}}} are here\, at various places in the room,Currently\, you're the
+	<br>
+&nbsp; only other one here}.  <br>
+&nbsp; Property set.<br>
+====================================
+</code></p>
+
+<p>If you don't want formatting such as paragraphs or the two-space
+indentation in the example above, it would be more efficient <em>not</em> to
+embed the desc in a list</p>
+
+<p><code>
+====================================<br>
+> @desc here = The tavern is little changed from days when pirate sloops <br>
+&nbsp; found haven in the coves nearby: the beams are still low and smoke-, <br>
+&nbsp; stained, the tables still rough-hewn and knife-hacked, the floorboards <br>
+&nbsp; still trecherously uneven. What light there is comes from three flickering<br>
+&nbsp; oil-lamps and a sharp-scented wood fire burning steadily on the hearth.<br>
+&nbsp; bottles along the back wall catch and toss the dim, moving light. The <br>
+&nbsp; innkeeper standing easily behind the bar is a grave of secrets.
+<br>
+&nbsp; {eval:{prop:_folks,here}}<br>
+&nbsp; Description set.<br>
+====================================
+</code></p>
+
+Including queues that indicate looktraps and local commands is a common and
+helpful convention. A clueful <code>MUCKer</code> would deduce from the
+following room desc that it's worth taking a look at the innkeeper and sign:
+
+<p><code>
+====================================<br>
+> @desc here = The tavern is little changed from days when pirate sloops <br>
+&nbsp; found haven in the coves nearby: the beams are still low and smoke-, <br>
+&nbsp; stained, the tables still rough-hewn and knife-hacked, the floorboards <br>
+&nbsp; still trecherously uneven. What light there is comes from three flickering<br>
+&nbsp; oil-lamps and a sharp-scented wood fire burning steadily on the hearth.<br>
+&nbsp; bottles along the back wall catch and toss the dim, moving light. The <br>
+&nbsp; 'innkeeper' standing easily behind the bar is a grave of secrets.<br>
+&nbsp; {eval:{prop:_folks,here}} There is a small 'sign' sitting <br>
+&nbsp; on the end of the bar.<br>
+&nbsp; Description set.<br>
+<br>
+&gt; @open ip;is = $nothing  <font color="red"> ( create a local command
+)</font><br>
+&nbsp;  Exit opened with number 4808.<br>
+&nbsp; Trying to link....<br>
+&nbsp; Linked to do-nothing.muf(#97)<br>
+&gt; @succ ip = {exec:{&cmd}}<br>
+&nbsp;  Message set.<br>
+&gt; @set ip = ip:{null:{tell:Ishmael {&arga}},{otell:Ishmael {&arg}}}<br>
+&nbsp;  Property set.<br>
+&gt; @set is = is:{null:{tell:Ishmael growls, "{&arg}"},{otell:Ishmael growls, "{&arg}"}}<br>
+&nbsp;  Property set.<br>
+&gt; @set is = D &nbsp; <font color="red">( set the exit dark, so it won't show up as an obv-exit )</font><br>
+<br>
+  &nbsp; &nbsp;   <font color="red">( set some looktraps to indicate the presense of local commands )</font><br>
+&gt; @set here=_details/innkeeper:Call him Ishmael. This ancient wolf looks
+<br>
+&nbsp;  old enough to have been on a first name basis with the
+aforementioned<br>
+&nbsp; pirates. ('look sign')<br>
+> @set here=_details/sign:{list:signtext}<br>
+&nbsp; lsedit here = signtext<br>
+<nobr>
+&nbsp; &lt; &nbsp;&nbsp;&nbsp;Welcome to the list editor.  You can get help by entering '.h' &nbsp;&nbsp;&nbsp; &gt; <br>
+</nobr><nobr>
+&nbsp; &lt; '.end' will exit and save the list.  '.abort' will abort any
+changes. &gt; <br>
+</nobr><nobr>
+&nbsp; &lt; &nbsp;&nbsp;&nbsp;To save changes to the list, and continue editing, use '.save'&nbsp;&nbsp;&nbsp; &gt; <br>
+</nobr>
+&nbsp; &lt; Insert at line 1 &gt; <br>
+	 <br>
+&nbsp; The innkeeper, Ishmael, is interactive:<br>
+	  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;ip &lt;pose&gt; ....... Ishmael &lt;pose&gt; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;is &lt;comment&gt; .... Ishmael growls, "&lt;comment&gt;"<br>
+<br>
+&nbsp; .end<br>
+&nbsp; &lt; Editor exited. &gt; <br>
+&nbsp; &gt; list saved. &gt; <br>
+<br>
+&gt; l sign<br>
+	 <br>
+&nbsp; The innkeeper, Ishmael, is interactive:<br>
+	  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;ip &lt;pose&gt; ....... Ishmael &lt;pose&gt; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;is &lt;comment&gt; .... Ishmael growls, "&lt;comment&gt;"  <br>
+<br>
+&gt; is What will you have, stranger?<br>
+&nbsp;  Ishmael growls, "What will you have, stranger?"<br>
+====================================
+</code></p>
+
+<p>(Note that we avoided creating a puppet object for Ishmael... the room desc
+says that he's here, and a named object in the room's contents list is not
+really necessary for our purposes. Also, the two commands &#151; `ip' and `is'
+&#151; are created using one exit object, and we could modify the action to
+provide additional local commands using the multi-action technique discussed
+in <a href="multiacttut.html">Section 4.2</a>. It is especially worthwhile to
+follow such dbase-conserving practices when building large areas.)</p>
+
+<p>Some builders feel that the obvious exit list after room descs is intrusive
+and artificial looking. If you decide not to use an obvious exit list, you
+should include text in the desc that will tell a careful reader which ways she
+can go.</p>
+
+<p><code>
+====================================<br>
+> @desc here = The tavern is little changed from days when pirate sloops <br>
+&nbsp; found haven in the coves nearby: the beams are still low and smoke-, <br>
+&nbsp; stained, the tables still rough-hewn and knife-hacked, the floorboards <br>
+&nbsp; still trecherously uneven. What light there is comes from three flickering<br>
+&nbsp; oil-lamps and a sharp-scented wood fire burning steadily on the hearth.<br>
+&nbsp; bottles along the back wall catch and toss the dim, moving light. The <br>
+&nbsp; innkeeper standing easily behind the bar is a grave of secrets.<br>
+&nbsp; {eval:{prop:_folks,here}} There is a small 'sign' sitting <br>
+&nbsp; on the end of the bar. A sturdy wooden door opens onto a hallway<br>
+&nbsp; to the west; another, at the front of the tavern, opens onto
+the<br>
+&nbsp; village green.<br>
+&nbsp; Description set.<br>
+====================================
+</code></p>
+
+<p>Modern graphic workstations can display a huge amount of text, but the
+standard computer terminal only displays a screen 80 characters wide and 24
+lines tall. While standard character terminals may seem obsolete to some, it's
+worthwhile to respect this `lowest common denominator': a number of people do
+still access <code>M*'s</code> through standard terminals... either
+<code>UNIX</code>/Linux computers on which they have chosen not to install or
+run graphics, or virtual terminals being run from a shell account. Further,
+the vast majority of these <code>UNIX</code> folks will be using
+TinyFugue as their client.  With TinyFugue's `visual' mode turned on,
+the bottom four lines are used as a typing window.  Additionally, not
+all clients can display the full width of 80 characters. So, if you want
+people to be able to see the entire desc in one screen (a good thing to
+strive for), you should limit descriptions to a 78 x 20 field of text.
+You can choose to violate this guideline, of course, and often will be
+justified in doing so...  but be aware of the tradeoff you make.</p>
+
+<p>A further `less-is-more' point: a common mistake made by new builders is to
+create rooms that serve only to provide a way to get from point A to point B.
+A forest path leading from the stream to the glade, a foyer leading from the
+street to office lobby, etc. Such rooms (and the extra exits required to link
+them) seldom earn their keep: they take up extra space in the database, eat up
+your quota, and make the area feel bland or `loose'. As an alternative,
+consider setting detailed <code>@succ</code> and <code>@drop</code> messages
+that convey a sense of travel over a distance. Or, in cases where the effect
+is still too fast and a greater sense of distance is required, consider
+writing or using a program that generates a travel event of some sort (one
+such program is provided <a href="slomo.html">here</a>).</p>
+
+
+  <center>
+  <a href="btut3.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="btut5.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

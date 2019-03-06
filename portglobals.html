@@ -1,0 +1,213 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Porting Global Programs</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="dbsetup.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="otherport.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+
+<p><b>Setting Up the Database (cont't)</b>:</p>
+<p><em>Porting Global Programs</em>:</p>
+
+<p>The files provided in the <code>fbmuf.tar</code> are a genuine help.
+These are upload scripts that not only provide necessary programs, but
+also set up necessary exits, macros, and properties. To install them,
+uncompress and extract the files (<code>`gunzip fbmuf.tar.gz',</code>
+<code>`tar -xvf fbmuf.tar'</code>), and quote, paste, or upload the
+resulting files onto the <code>MUCK,</code> using whatever method works
+best for you.</p>
+
+<p>The file for <code>cmd-@register</code> should be uploaded first: the
+other upload scripts will use the <code>@register</<em></code> command in
+installing the programs. Next, install the libraries, in the following
+order:</p>
+
+<ul>
+  <li><code>lib-strings</code>
+  <li><code>lib-stackrng</code>
+  <li><code>lib-props</code>
+  <li><code>lib-lmgr</code>
+  <li><code>lib-edit</code>
+  <li><code>lib-editor</code>
+  <li><code>lib-match</code>
+  <li><code>lib-mesg</code>
+  <li><code>lib-mesgbox</code>
+  <li><code>lib-reflist</code>
+  <li><code>lib-index</code>
+  <li><code>lib-case</code>
+  <li><code>lib-look</code>
+</ul>
+
+<p>(<em>Note</em>: The README file in fbmuf lists `lib-case' as
+`lib-cases'. You will need to quote it by the name given here,
+`lib-case'.)</p>
+
+<p>The remaining programs can be installed in any order.</p>
+
+<p>If you're not uploading scripts from <code>fbmuf.tar,</code> you'll
+need to install all the programs `by hand'. Even if you are using
+<code>fbmuf.tar</code> or the standard database, you will need to
+install some programs without the benefit of a script. The following
+gives an example of porting a library; the same techniques can be used
+for any program. First, get the code, perhaps by <code>@listing</code>
+and logging the program on an established <code>MUCK.</code> The example
+uses the logging and quoting syntax for TinyFugue; other clients will
+have different syntax.</p>
+
+<p><code>
+====================================<br>
+On the established MUCK...<br>
+&gt; /log lib-props<br>
+ &nbsp; % Logging to file lib-props<br>
+&gt; @list $lib/props<br>
+<br>
+ &nbsp; &lt;output output output&gt;<br>
+  <br>
+&gt; /log off<br>
+  <br>
+On your MUCK...<br>
+&gt; @prog lib-props<br>
+ &nbsp; Program created with number 26.<br>
+ &nbsp; Entering editor.<br>
+&gt; i<br>
+ &nbsp; Entering insert mode.<br>
+&gt; /quote -0 `lib-props<br>
+&gt; .<br>
+&gt; c<br>
+ &nbsp; Error in line 78: Unrecognized word lines.<br>
+&gt; 78 l<br>
+ &nbsp; 77 lines displayed.<br>
+&gt; 78 d<br>
+ &nbsp; 1 lines deleted.<br>
+&gt; c<br>
+ &nbsp; Compiler done.<br>
+&gt; q<br>
+ &nbsp; Editor exited.<br>
+====================================
+</code></p>
+
+<p>As the example indicates, listing and quoting a program picks up an
+extra, unwanted line: the <code>@list</code> command follows its output
+with a line indicating how many lines of program code were listed... 77
+in this case. You need to remove that line, either with a text editor on
+your system, or &#151; as in this example &#151; by uploading,
+compiling, noting and deleting the offending line, and then
+re-compiling.</p>
+
+<p>Once you have the program compiled, you need to set its flags
+appropriately. All libraries should be set <code>M3</code> and
+<code>L;</code> <code>lib-lmgr,</code> <code>lib-props,</code> and
+<code>lib-reflist</code> should also be set <code>S,</code>
+<code>B,</code> and <code>H.</code> <code>Lib-look</code> should be set
+<code>S.</code> Other programs should be set with whatever flags they
+have on the <code>MUCK</code> you're porting from.</p>
+
+<p>Libraries &#151; and other programs frequently used by players, such
+as <code>do-nothing</code> and <code>obv-exits</code> &#151; will need
+to be registered. You can do this either with the <code>@register</code>
+command, or by setting the property directly.</p>
+
+<p><code>
+====================================<br>
+&gt; @reg lib-props = lib/props<br>
+ &nbsp; Now registered as _reg/lib/props: lib-look(#26FLM3) on Room Zero(#0R)<br>
+<br>
+or...<br>
+<br>
+&gt; @propset #0 = dbref:_reg/lib/props:#26<br>
+ &nbsp; Property set.<br>
+====================================
+</code></p>
+
+<p>Some programs will also need properties set. For libraries, this
+information is readily available with the <code>@view</code> command;
+for other programs, you will probably need to get a wizard or the
+program owner to help you view the props.</p>
+
+<p><code>
+====================================<br>
+&gt; @view $lib/look<br>
+ &nbsp; Command to view: @list $lib/props=1-20<br>
+ &nbsp; Run this command? (y/n)<br>
+&gt; n<br>
+ &nbsp; Read definitions? (y/n)<br>
+&gt; y<br>
+ &nbsp; .envprop = "$lib/props" match "envprop" call<br>
+ &nbsp; .envsearch = "$lib/props" match "envsearch" call<br>
+ &nbsp; .locate-prop = "$lib/props" match "locate-prop" call<br>
+ &nbsp; .setpropstr = "$lib/props" match "setpropstr" call<br>
+ &nbsp; envprop = "$lib/props" match "envprop" call<br>
+ &nbsp; envsearch = "$lib/props" match "envsearch" call<br>
+ &nbsp; locate-prop = "$lib/props" match "locate-prop" call<br>
+ &nbsp; setpropstr = "$lib/props" match "setpropstr" call<br>
+====================================
+</code></p>
+
+The first bit of output in this series...
+
+<p><code>
+ &nbsp; Command to view: @list $lib/props=1-20
+</code></p>
+
+<p>...tells you that the program documentation appears in lines 1 - 20
+of the program. To set things up so that players on your
+<code>MUCK</code> can view the program, set the <code>_docs</code>
+property on the program:</p>
+
+<p><code>
+====================================<br>
+&gt; @set lib-props = _docs:@list $lib/props=1-20<br>
+ &nbsp; Property set.<br>
+====================================
+</code></p>
+
+<p>The definitions are stored in propdir <code>_defs/</code> on the
+program object. They provide information needed for calling programs to
+communicate with the library. The definition...</p>
+
+<p><code>
+ &nbsp;   .envprop = "$lib/props" match "envprop" call
+</code></p>
+
+<p>... means `Where a program that uses this library contains the word
+`.envprop', use the function <code>`envprop'</code> in this
+library'.</p>
+
+<p>Set the <code>_def</code> properties for each definition.</p>
+
+<p><code>
+====================================<br>
+&gt; @set lib-props = _defs/.envprop:"$lib/props" match "envprop"
+call<br>
+ &nbsp; Property set.<br>
+ &nbsp; &lt;Etc. Copy, find/replace, and paste are your friends.&gt;<br>
+====================================
+</code></p>
+
+<p>Setting up libraries is also discussed in <a
+href="muflibs.html">Section 3.2.2</a>, <code>MUF</code> Libraries.</p>
+
+
+  <center>
+  <a href="dbsetup.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="otherport.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<html>
+<head>
+  <title>The MUCK Manual: Registered Names</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="triggers.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="patmatch.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.1.5  Registered Names</b></p>
+
+<p>Objects can be specified by `registered names' as well as by names
+and dbrefs. A registered name is an alias that can (like a dbref) be
+used regardless of the object's location, but (like a name) consisting
+of a memorable string. The primary use is to provide a convenient,
+memorable way of specifying an item, regardless of its location and
+ownership. For example, a player on a large <code>MUCK</code> might have
+a puppet with a long, difficult to remember dbref, such as
+<code>#128629.</code> If the player frequently wanted to teleport the
+puppet to her from somewhere else, she would need to either memorize the
+dbref or repeatedly retrieve it with the <code>@find</code> command. As
+an alternative, she could give the puppet an easy-to-remember registered
+name such as `pup'.  From that point on, the puppet could be specified
+with the name `pup' preceeded by a <code>$</code> dollar sign, rather
+than by dbref.</p>
+
+<p>Players can create registered names &#151; usuable only by the player
+&#151; with the <code>@register</code> command, syntax <code>@reg #me
+&lt;object&gt; = &lt;registered name&gt;</code>. (The information is
+stored in the player's <code>_reg/</code> directory.)</p>
+
+<p><code>
+====================================<br>
+&gt; @find Squiggy<br>
+&nbsp;  Squiggy(#128629XZ)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  1 objects found.<br>
+&gt; @reg #me #128629 = pup<br>
+&nbsp;  Now registered as _reg/pup: Squiggy(#128629XZ) on Jessy(#2PWQX)<br>
+&gt; @tel $pup = me<br>
+&nbsp;  Teleported.<br>
+&gt; i<br>
+&nbsp;  You are carrying:<br>
+&nbsp;  Squiggy(#128629XZ)<br>
+&nbsp;  You have 5086 pennies.<br>
+===================================<br>
+</code></p>
+
+<p>Individual registered names may also be set when an object is
+created. The standard creation commands &#151; <code>@create, @dig,
+@action</code>, and <code>@open</code> &#151; each take two optional
+argument fields, separated by = equals signs. The first of these fields
+is specific to each command; the second field for all four may be used
+to specify a registered name. </p>
+
+<p><pre>
+     @create &lt;name&gt; = &lt;cost in pennies&gt; = &lt;reg name&gt;
+     @dig &lt;name&gt;    = &lt;parent room&gt;     = &lt;reg name&gt;
+     @action &lt;name&gt; = &lt;source&gt;          = &lt;reg name&gt;
+     @open &lt;name&gt;   = &lt;link&gt;            = &lt;reg name&gt;
+</pre></p>
+
+<p><code>
+====================================<br>
+&gt; @create Mary Poppins Umbrella == umbi<br>
+&nbsp;  Mary Poppins Umbrella created with number 226.<br>
+&nbsp;  Registered as $umbi<br>
+&gt; ex $umbi<br>
+&nbsp;  Mary Poppins Umbrella(#226) Owner: Mistral<br>
+&nbsp;  Type: THING<br>
+&nbsp;  Created:     Fri May 09 14:33:47 1997<br>
+&nbsp;  Modified:    Fri May 09 14:33:47 1997<br>
+&nbsp;  Last used:   Fri May 09 14:33:47 1997<br>
+&nbsp;  Usecount:    0<br>
+&gt; ex me=_reg/<br>
+&nbsp;  ref /_reg/umbi:Mary Poppins Umbrella(#226)<br>
+<br>
+&gt; @dig OOCafe = #143 = cafe<br>
+&nbsp;  OOCafe created with room number 225.<br>
+&nbsp;  Trying to set parent...<br>
+&nbsp;  Parent set to OOC Environment(#143RL).<br>
+&nbsp;  Room registered as $cafe<br>
+<br>
+&gt; @open Enter Garden = $garden = gogard<br>
+&nbsp;  Exit opened with number 224.<br>
+&nbsp;  Trying to link...<br>
+&nbsp;  Linked to Secret Garden(#455R).<br>
+&nbsp;  Registered as $gogard<br>
+====================================<br>
+</code></p>
+     
+<p>Wizards can set global registered names &#151; usuable by all players &#151;
+syntax <code>@reg &lt;object&gt; = &lt;registered name&gt;</code>. A
+frequent and convenient use of global registered names is to provide an
+alias for publicly available programs such as `do-nothing' and
+`obvious-exits'.  Without global registered names, players would need to
+find the dbrefs of these programs each time they needed them for
+building purposes.  Since the players do not control these programs,
+finding the dbrefs can be difficult. (To create a personal registered
+name as a wizard, use the <code>#me></code> option: <code>@reg #me
+&lt;object&gt; = &lt;registered name&gt;)</p>
+
+<p><code>
+====================================<br>
+&gt; @find obv<br>
+&nbsp;  gen-Obvexits(#2002FLM3)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  1 objects found.<br>
+&gt; @reg #2002 = exits<br>
+&nbsp;  Now registered as _reg/exits: gen-Obvexits(#2002) on The Void(#0R)<br>
+&gt; @succ here = @$exits<br>
+&nbsp;  Message set.<br>
+====================================<br>
+</code></p>
+
+
+  <center>
+  <a href="triggers.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="patmatch.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

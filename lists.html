@@ -1,0 +1,125 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Lists</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="props.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="specprops.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>Lists:</b></p>
+  
+<p>In addition to directories, props can also be organized in `lists'. A
+list is a group of properties which are handled together in such a way
+that they emulate a document or computer file. Lists can be created and
+edited with the list editor, command <code>lsedit,</code> syntax
+<code>lsedit &lt;object&gt; = &lt;list name&gt;</code>. This is useful
+for descriptions that need formatting such as paragraph breaks,
+indentations, and so forth. Complex <code>MPI</code> strings can be
+stored in a list rather than a property as well, in which case
+indentation and other whitespace can be used to make the code more
+readable than it would be as one long uninterrupted string. There are
+other uses.</p>
+
+<p><code>
+====================================<br>
+&gt;lsedit here = maindesc<br>
+<font size="small">
+&nbsp;&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the list editor. You can get help by entering `.h'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;<br>
+&nbsp;&nbsp;&lt; `.end' will exit and save the list. `.abort' will abort any changes. &gt;<br>
+&nbsp;&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;To save changes to the list, and continue editing, use `.save'&nbsp;&nbsp;&nbsp;&nbsp;&gt;<br>
+</font>
+&nbsp;&nbsp;&lt; Insert at line 1 &gt;<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;you type type type some text text text&gt;<br>
+	<br>
+&gt; .end<br>
+&nbsp;&nbsp;&lt; Editor exited. &gt;<br>
+&nbsp;&nbsp;&lt; list saved. &gt;<br>
+====================================<br>
+</code></p>
+
+<p>Lists are stored as a set of properties sharing the same path name,
+and ending with <code>#/&lt;line number&gt;</code>. </p>
+
+<p><code>
+====================================<br>
+&gt; ex here = maindesc#/<br>
+&nbsp;&nbsp;str /maindesc#/1: (a line of text you entered... )<br>
+&nbsp;&nbsp;str /maindesc#/2: (another line... )<br>
+&nbsp;&nbsp;str /maindesc#/3: (another line... )<br>
+&nbsp;&nbsp;(etc)<br>
+====================================<br>
+</code></p>
+
+<p>The list name can be a path name that includes propdirs. For example,
+you could store multiple descs in propdir <code>_descs</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; lsedit me = _descs/snazzy<br>
+&nbsp;&nbsp;&lt;enter your `snazzy' desc&gt;<br>
+&gt; .end<br>
+<br>
+&gt; lsedit me = _descs/grungy<br>
+&nbsp;&nbsp;&lt;enter your `grungy' desc&gt;<br>
+&gt; .end<br>
+====================================<br>
+</code></p>
+
+<p>(The server, recall, always references the <code>_/de</code> property
+for a description. If you write a description with lsedit, you will need
+to put an <code>MPI</code> string in this property that tells the server
+where to find the description and how to display it.</p>
+
+<p><code>
+====================================<br>
+&gt; lsedit me = _descs/snazzy<br>
+&nbsp;&nbsp;&lt;enter `snazzy' desc... &gt;<br>
+&gt; look me<br>
+&nbsp;&nbsp;You see nothing special.<br>
+&gt; @desc me = {list:_descs/snazzy}<br>
+&nbsp;&nbsp;Description set.<br>
+&gt; look me<br>
+&nbsp;&nbsp;Ooo la la! Today Mistral is modeling the latest from the Spiegal<br> 
+&nbsp;&nbsp;Catalogue: a gownless evening strap with... (etc etc)<br>
+====================================
+</code></p>
+
+<p>The <code>MPI</code> string stored in <code>_/de</code> can be made
+considerably more elaborate and flexible than the one shown here. (See
+<a href="mpi.html">Section 3.1</a> for a more complete discussion of
+<code>MPI.</code>)</p>
+
+<p>The syntax for removing a list is <code>@set &lt;object&gt; =
+&lt;[path/]list name&gt;#/:</code></p>
+
+<p><code>
+====================================<br>
+&gt; @set me = descs/snazzy#/:<br>
+&nbsp;&nbsp;Property removed.<br>
+====================================<br>
+</code></p>
+
+
+  <center>
+  <a href="props.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="specprops.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

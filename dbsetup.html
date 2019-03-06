@@ -1,0 +1,93 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Setting up the Database</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="compiling.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="portglobals.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><b>5.1.3  Setting Up the Database</b></p>
+
+<p>Growing the database into a lively and attractive world is of course an
+on-going, never-ending process. When you're just starting out, the
+primary concerns are installing the necessary programs and setting up
+some kind of organization.</p>
+
+
+<p><em>Initial Tidiness</em>:</p>
+
+<p>If you used the minimal database with an eye toward setting aside low
+dbrefs for Very Important Players and the like, <code>@create</code>
+some things to hold the dbrefs until needed, before you create other
+objects.</p>
+
+<p><code>
+====================================<br>
+ &nbsp;   @create 2<br>
+ &nbsp;   @create 3<br>
+ &nbsp;   @create 4<br>
+ &nbsp;   @create 5<br>
+ &nbsp;   .<br>
+ &nbsp;   .<br>
+ &nbsp;   .<br>
+ &nbsp;   etc.<br>
+====================================
+</code></p>
+
+<p>Then, when you want to use a low dbref for a player,
+<code>@recycle</code> the appropriate object and immediately
+<code>@pcreate.</code></p>
+
+<p><code>
+====================================<br>
+&gt; @rec #2<br>
+ &nbsp; Thank you for recycling.<br>
+&gt; @pcreate Agamemnon = bartlegast<br>
+ &nbsp; Player Agamemnon created as object #2. <br>
+====================================
+</code></p>
+
+<p>Setting up at least a minimal environment tree now, while things are
+manageable, also saves effort later on. Most <code>MUCKs</code> end up
+with a storage room for <code>MUFs,</code> a room for new players to
+start in, and a guest room.  Most also have a central meeting place. Use
+whatever structure you like, but something like the following should
+work well while you're getting started:</p>
+
+<p><code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Room #0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Main Environment Room<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IC Environment Room&nbsp;&nbsp;&nbsp;&nbsp;OOC Environment Room<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Village Well&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Guest Room<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ Player Start<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_ MUF Vault<br>
+</code></p>
+
+<p>(See <a href="rooms1.html">Section 2.2</a> for information on parenting rooms.)</p>
+<br>
+
+  <center>
+  <a href="compiling.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="portglobals.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,1674 @@
+<html>
+<head>
+  <title>The MUCK Manual: Server Command Reference</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="flagref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="usercomref.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.6  Server Command Reference</b></p>
+
+<a name="a">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@action">
+<p><code>@ACTION &nbsp;|&nbsp; @ACT</code><br>
+<code>@action &lt;name&gt;=&lt;source&gt; [=&lt;regname&gt;]</code></p>
+
+<p>Creates a new action and attaches it to the thing, room, or player
+specified. If a <code>&lt;regname&gt;</code> is specified, then the
+<code>_reg/&lt;regname&gt;</code> property on the player is set to the
+dbref of the new object. This lets players refer to the object as
+<code>$&lt;regname&gt;</code> (eg: <code>$mybutton</code>) in
+<code>@locks</code>, <code>@sets</code>, etc. You may only attach
+actions you control to things you control. Creating an action costs 1
+penny. The action can then be linked with the command <a
+href="#@link"><code>@link</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@armegeddon">
+<p><code>@ARMEGEDDON</code><br>
+<code>@armedeggon</code></p>
+
+<p>Shuts down the <code>MUCK</code> without first doing a save. The
+primary purpose is to avoid over-writing the saved database if it
+becomes apparent the current database is corrupt, or when someone
+(usually a wizard) has done something quite stupid, destroying a large
+amount of objects or data. (Wizard only) [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@attach">
+<p><code>@ATTACH &nbsp;|&nbsp; @ATT</code><br>
+@attach &lt;action&gt; = &lt;new source&gt; </p>
+
+<p>Removes the action from where it was and attaches it to the new
+source. You must control the action in question. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="b">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@boot">
+<p><code>@BOOT</code><br>
+<code>@boot &lt;player&gt;</code></p>
+
+<p>Disconnects a player from the game. If a player is connected more
+than once it affects the most recent connection. (Wizard only) [<a href="#top">top</a>]</p><hr>
+ 
+<a name="c">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@chown">
+<p><code>@CHOWN</code><br>
+<code>@chown &lt;object&gt; [=&lt;player&gt;]</code></p>
+
+<p>Changes the ownership of <code>&lt;object&gt;</code> to
+<code>&lt;player&gt;</code>, or if no player is given, to yourself. If
+the <code>MUCK</code> is compiled with <code>player_chown,</code> all
+players are allowed to take possession of objects, rooms, and actions,
+provided the <code>Chown_OK</code> flag is set, with the following
+exception: mortals may <code>@chown</code> an exit if they own the
+object it is attached to, or an object it is linked to. Mortals cannot
+take ownership of a room unless they are standing in it, and may not
+take ownership of an object unless they are holding it. Wizards have
+absolute power over all ownership. [<a href="#top">top</a>]</p><hr> 
+
+<a name="@chlock">
+<p><code>@CHOWN_LOCK &nbsp;|&nbsp; @CHLOCK</code><br>
+<code>@chown_lock &lt;object&gt; = &lt;lock expression&gt;</code></p>
+
+<p>Locks <code>&lt;object&gt;</code> such that it may only be chowned by
+players for whom <code>&lt;lock expression&gt;</code> is true. The
+object's <code>Chown_OK</code> flag must be set as well. Wizards may
+chown any item, regardless of its <code>chown_lock.</code>  [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@conlock">
+<p><code>@CONLOCK</code><br>
+<code>@conlock &lt;object&gt; = &lt;lock expression&gt;</code></p>
+
+<p>Locks <code>&lt;object&gt;</code> such that only those for whom
+<code>&lt;lock expression&gt;</code> is true may place things in or
+remove things from <code>&lt;object&gt;</code>. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@contents">
+<p><code>@CONTENTS</code><br>
+<code>@contents [&lt;object&gt;] [= &lt;flags/types&gt; = [&lt;output
+type&gt;]]</code></p>
+
+<p>Searches the given object for items & exits that match the given flag
+string.</p>
+
+<p>For an explanation of the flags/types modifiers and the output types,
+see the help entry for <a href="#@find">@find</a>.</p> <p>Example:
+<code>@contents here = DE = owner</code> will list all Dark Exits
+attached to your current location, giving the owner of each one. See
+also <a href="#@find">@find</a>, <a href="#@owned">@owned</a>, <a
+href="#@entrances">@entrances</a> [<a href="#top">top</a>]</p><hr>
+
+<a name="@create">
+<p><code>@CREATE</code><br>
+<code>@create &lt;object&gt; [=&lt;cost&gt; [=&lt;regname&gt;]]</code></p>
+
+<p>Creates a new object and places it in your inventory. This costs at
+least ten pennies. If <code>&lt;cost&gt;</code> is specified, you are
+charged that many pennies, and in return, the object is endowed with a
+value according to the formula: ((cost / 5) - 1). Usually the maximum
+value of an object is 100 pennies, which would cost 505 pennies to
+create. If a <code>&lt;regname&gt;</code> is specified, then the
+<code>_reg/&lt;regname&gt;</code> property on the player is set to the
+dbref of the new object. This lets players refer to the object as
+<code>$&lt;regname&gt;</code> (eg: <code>$mybutton</code>) in
+<code>@locks, @sets</code>, etc. Only a builder may use this
+command. [<a href="#top">top</a>]</p><hr>
+
+<a name="@credits">
+<p><code>@CREDITS</code><br>
+<code>@credits</code></p>
+
+<p>Displays a screen listing the names of people and places who have
+contributed to TinyMUCK's development. [<a href="#top">top</a>]</p><hr>
+
+<a name="d">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@describe">
+<p><code>@DESCRIBE &nbsp;|&nbsp; @DESC</code><br>
+<code>@describe &lt;object&gt; [=&lt;text&gt;]</code></p>
+
+<p>Sets the description field of <code>&lt;object&gt;</code> to
+<code>&lt;text&gt;</code>. If <code>&lt;text&gt;</code> is not
+specified, the description field is cleared. This is the same as
+<code>@set &lt;object&gt; = _/de:&lt;text&gt;</code>. A description is
+what is seen when a player looks at something. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@dig">
+<p><code>@DIG</code><br>
+<code>@dig &lt;room&gt; [=&lt;parent&gt; [=&lt;regname&gt;]]</code></p>
+
+<p>Creates a new room, sets its parent, and gives it a personal
+registered name. If no parent is given, it defaults to the first
+<code>Abode</code> room down the environment tree from the current room.
+If it fails to find one, it sets the parent to the global environment,
+which is typically room #0. If no regname is given, then it doesn't
+register the object. If one is given, then the object's dbref is
+recorded in the player's <code>_reg/&lt;regname&gt;</code> property, so
+that they can refer to the object later as
+<code>$&lt;regname&gt;</code>. Digging a room costs 10 pennies, and you
+must be able to link to the parent room if specified. Only a builder may
+use this command. [<a href="#top">top</a>]</p><hr>
+
+<a name="drop">
+<p><code>DROP</code><br>
+<code>drop &lt;object&gt;</code></p>
+
+<p>Drops the <code>&lt;object&gt;</code> if you are holding it. It moves
+the object to the room you are in, unless its Sticky flag is set (in
+which case the object will go to its home), or the room has a drop-to
+(in which case the object will go to the room's drop-to). Programs are
+much like objects but are not affected by room droptos or Sticky flags.
+A `drop' message can be set, which will be shown to the player dropping
+the object, and an `odrop', which will be shown to the other players in
+the room. See <a href="#@drop><code>@drop</code></a>, <a
+href="#@odrop"><code>@odrop</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@drop">
+<p><code>@DROP</code><br>
+<code>@drop &lt;object&gt; [=&lt;text&gt;]</code></p>
+
+<p>Sets the drop field of <code>&lt;object&gt;</code> to
+<code>&lt;text&gt;</code>. If <code>&lt;text&gt;</code> is not specified, the
+drop field is cleared.  The drop message on an object is displayed when you
+drop it. On an exit, it is displayed upon entering the destination room. On a
+player it is displayed to whoever kills him or her. On a room, it is displayed
+when an object is dropped there. This is the same as <code>@set &lt;object&gt;
+= _/dr:&lt;text&gt;</code>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@dump">
+<p><code>@DUMP</code><br>
+<code>@dump [filename]</code></p>
+
+<p>Saves the database from memory to disk. Automatically occurs every
+three hours, and when <code>@shutdown</code> is used. On a large
+<code>MUCK,</code> this can take a significant amount of time (ten or
+more minutes). If a filename is given, it will save the database to that
+file, and save any subsequent dumps to it as well. (Wizard only) [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="e"> <p><nobr> [<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@edit">
+<p><code>@EDIT</code><br>
+<code>@edit &lt;program&gt;</code></p>
+
+<p>Searches for a program and if a match is found, puts the player into
+edit mode. Programs must be created with <a
+href="#@program"><code>@program</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@entrances">
+<p><code>@ENTRANCES &nbsp;|&nbsp; @ENT</code><br>
+<code>@entrances [&lt;object&gt;] [= &lt;flags/types&gt; = [&lt;output type&gt;]]</code></p>
+    
+<p>Searches through the database for items that you control linked to
+&lt;object&gt;.</p>
+  
+<p>For an explanation of the flags/types modifiers and the output types,
+see the help entry for <a href="#@find><code>@find</code></a>.</p>
+  
+<p>Example:  <code>@entrances here = ED = location</code> will list all
+Dark Exits that are linked to your current location, giving the location
+of each one. See also <a href="#@find"><code>@find</code></a>, <a
+href="#@owned"><code>@owned</code></a>, <a
+href="#@contents"><code>@contents</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="examine">
+<p><code>EXAMINE &nbsp;|&nbsp; EX</code><br>
+<code>examine &lt;object&gt; [=propdir]</code></p>
+
+<p>If you control <code>&lt;object&gt;</code>, <code>examine</code> will
+give you a complete breakdown of all fields, flags, etc., that are
+associated with the object. If the optional propdir field is supplied,
+then it instead lists out all the properties directly under that
+propdir. To list the base propdir of an object, use <code>ex
+&lt;object&gt;=/</code>. Program-executing fields are displayed as their
+true text, rather than executing the program in question. If you do not
+control <code>&lt;object&gt;</code>, however, it prints the owner of the
+object in question, and, again, displays the true text of the
+description. [<a href="#top">top</a>]</p><hr>
+
+<a name="f">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@fail">
+<p><code>@FAIL</code><br>
+<code>@fail &lt;object&gt; [=&lt;message&gt;]</code></p>
+
+<p><code>&lt;Object&gt;</code> can be a thing, player, exit, or room,
+specified as <code>&lt;name&gt;</code> or <code>#&lt;number&gt;</code>
+or `me' or `here'. Sets the fail message for
+<code>&lt;object&gt;</code>. The message is displayed when a player
+fails to use <code>&lt;object&gt;</code>. Without a message argument, it
+clears the message. This is the same as: <code>@set
+&lt;object&gt;=_/fl:[text]</code>. See also <a
+href="#@ofail"><code>@ofail</code></a> and <a
+href="#@desc"><code>@desc</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@find">
+<p><code>@FIND</code><br>
+<code>@find [&lt;name&gt;] [= &lt;flags/types&gt; = [&lt;output
+type&gt;]]</code></p>
+
+<p>Searches through the database for items that you control matching
+<code>&lt;name&gt;</code>. Players control only objects they own;
+wizards control all objects, so <code>@find</code> searches the entire
+database when they use it.</p>
+  
+<p>Flags or types can be specified, to specify that you only want to
+list objects that have that flag set, or that are of that type. You can
+also specify to list objects that are <em>not</em> of that specific
+type, or that do <em>not</em> have that flag. (A ! not operator before
+the modifier indicates that it is to be inverted.)</p>
+  
+<p>The flags that you can specify are: <code>Abode, Builder/Block,
+Chown_OK, Dark/Debug, Haven, Interactive, Jump_OK, Kill_OK, Link_OK,
+Mucker, Quell, Sticky/Silent, Vehicle, Wizard, Xforcible</code>, and
+<code>Zombie</code> (use the initial capitalized letter only).  </p>
+
+<p>You can also specify Mucker Levels by the level number: 1, 2, 3, or
+4.</p>
+  
+<p>The types that you can specify are: <code>Exit, muF program, Garbage,
+Player, Room,</code> and <code>Thing</code> (use the capitalized letter
+only).</p>
+  
+<p>There are a few other modifiers you can specify:</p>
+
+<p><table>
+  <tr><td> &nbsp; &nbsp; </td><td>
+  <dl>
+  <dt><code>Unlinked</code><dd>Specifies that you want to list only
+  unlinked objects.
+  <dt><code>@</code><dd>Specifies to list objects longer than about 90
+  days old.
+  <dt><code>~size</code><dd>Will match all objs whose current memory usage
+  is greater than or equal to size bytes. This must be the last modifier
+  in the list of modifiers.
+  <dt><code>^size</code><dd>Will match all objs whose total memory usage,
+  when fully loaded, is greater than size bytes. To do this, it loads the
+  entire object into memory from disk. This modifier is only available to
+  wizards. For regular players, this acts like <code>~size.</code> This
+  must be the last modifier in the list of modifiers.  </dl>
+  </td>
+  </tr>
+</table></p>
+
+<p>Again, use only the initial capital letter for <code>Unlinked.</code>
+
+<p>The output types that can be given are owners, links, size, count, &
+location. For output types, use the whole name rather than just the
+initial letter. You can use only one at a time.</p>
+
+<table>
+  <tr><td> &nbsp; &nbsp; </td><td>
+  <dl>
+  <dt><code>owners</code><dd>Lists who owns each object.
+  <dt><code>links<dd>Shows what each object is linked to, or
+  <code>*UNLINKED*,</code> or, for exits linked to multiple things,
+  <code>*METALINK*</code>
+  <dt>size</code><dd>Displays how much memory is currently being used by
+  an object. If this option is used with the ^ modifier, (see above)
+  then this will display the true full size of the object, and not just
+  how much is currently being used.
+  <dt><code>count</code><dd>Causes nothing to be shown but how many
+  objects the <code>@find</code>, etc would match. That is, it doesn't
+  display any of the matched objects.
+  <dt><code>location</code><dd>shows where the object is located.
+  </dl>
+  </td></tr>
+</table>
+
+<p>The rules for matching on names are as follows:</p>
+
+<p><ul>
+<li>Individual words can be matched as <code>{word1|word2|...}</code>
+<li>Individual characters can be matched as <code>[abc...]</code>
+<li>A ? question mark matches any single character.
+<li>An * asterix matches any number of characters, including none.
+<li>Any of these special charcters can be matched by putting a \
+backslash before it.
+</ul></p>
+  
+<p>Examples:</p>
+
+<p><code>@find north = EU = location</code><br>
+Finds all of your unlinked exits named `north' and prints them along
+with their locations.</p>
+
+<p><code>@find {big|little} = R!L</code><br>
+Finds all your rooms whose names contain `big' or `little' and are not
+Link_OK.</p>
+
+<p><code>@find w[ei]ll</code><br>
+Find everything you control whose name contains `will' or `well'.</p>
+
+<p><code>@find = E =links</code><br>
+Will list all exits that you control, and display where they are linked
+to.</p>
+
+<p><code>@find button == locations</code><br>
+Will list all objects you control with `button' in the name, and it will
+display where thay are located.</p>
+ 
+<p><code>@find = ~2000 = size</code><br>
+Will list all your objects whose current memory usage is 2000 bytes or
+more, and it will display their size.</p>
+
+<p><code>@find = ^2000 = size</code><br>
+Will, for a wizard, find all objects in the database that are 2000 or
+more bytes in total size, when fully loaded, and it will show their
+sizes. Note that this will load all of each object into memory to make
+the size determination. On some systems this can take a while, and on
+all systems this is an abuse to the diskbasing cache. (Wizard only)</p>
+  
+<p>See also <a href="#@owned"><code>@owned</code></a>, <a
+href="#@entrances"><code>@entrances</code></a>,and <a
+href="#@contents"><code>@contents</code></a> [<a href="#top">top</a>]</p><hr>
+
+<a name="@force">
+<p><code>@FORCE</code><br>
+<code>@force &lt;player&gt;=&lt;command&gt;</code></p>
+
+<p>Causes the game to process <code>&lt;command&gt;</code> as if typed
+by <code>&lt;player&gt;</code>. With the compile option
+<code>god_priv,</code> God cannot be forced by his or her
+sub-wizards. [<a href="#top">top</a>]</p><hr>
+
+<a name="@flock">
+<p><code>@FORCE_LOCK &nbsp;|&nbsp; @FLOCK</code><br>
+<code>@force_lock</code> &lt;object&gt; = &lt;lock expression&gt;</code></p>
+
+<p>Locks <code>&lt;object&gt;</code> such that it may only be
+<code>@forced</code> by players or other object types for whom
+<code>&lt;lock expression&gt;</code> is true, provided that the
+<code>XForcible</code> flag is set. Wizards may force any object, except
+God. [<a href="#top">top</a>]</p><hr>
+
+<a name="g">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="get">
+<p><code>GET</code><br>
+<code>get &lt;object&gt;</code></p>
+
+<p>Attempts to pick up <code>&lt;object&gt;.</code> The lock on
+<code>&lt;object&gt;</code> is checked for a success (true), and the
+normal path of success/fail is then taken. On success the object is
+placed in your inventory.</p> 
+
+<p>Another variation on this is <code>get
+&lt;container&gt;=&lt;object&gt;</code>, which attempts to get
+<code>&lt;object&gt;</code> from the given container. The
+<code>_/clk</code> lock property on <code>&lt;container&gt;</code> is
+tested, and if it is true, when it checks to see if the standard
+<code>_/lok</code> lock property on <code>&lt;object&gt;</code> tests
+true. If both locks pass, then <code>&lt;object&gt;</code> is moved into
+the player's inventory. If there is no <code>_/clk</code> property on
+<code>&lt;container&gt;</code> it defaults to failing. The
+<code>_/lok</code> property, on <code>&lt;object&gt;,</code> on the
+other hand, defaults to passing. <code>@succ/@fail</code> messages are
+not displayed, when fetching something from a container. [<a href="#top">top</a>]</p><hr>
+
+<a name="goto">
+<p><code>GOTO &nbsp;|&nbsp; GO</code><br>
+<code>go[to] &lt;direction&gt;; go[to] home</code><br>
+
+<p>Goes in the specified direction. <code>go home</code> returns you to
+your starting location. The word <code>goto</code> or <code>go</code>
+may be (and usually is) omitted. <code>Move</code> is the same as
+<code>go</code>. [<a href="#top">top</a>]</p><hr>
+
+<a name="give">
+<p><code>GIVE</code><br>
+<code>give &lt;player&gt; = &lt;# pennies&gt;</code></p>
+
+<p>Gives <code>&lt;# pennies&gt; to &lt;player&gt;</code>. For mortals,
+<code>&lt;# pennies&gt;</code> must be a positive number less than or
+equal to the number of pennies they have. <code>&lt;# pennies&gt;</code>
+is subtracted from the giving player's inventory. Wizards may give any
+amount from positive <code>max_integer</code> to negative
+<code>max_integer.</code> Giving does not affect the wizard's own
+inventory of pennies. [<a href="#top">top</a>]</p><hr>
+
+<a name="gripe">
+<p><code>GRIPE</code><br>
+<code>gripe &lt;message&gt;</code></p>
+
+<p>Sends <code>&lt;message&gt;</code> to the system maintainer. Gripes
+are logged for later reference; also, if the system maintainer is
+connected he will receive the gripe real-time when the gripe is
+made. [<a href="#top">top</a>]</p><hr>
+
+<a name="h">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="help">
+<p><code>HELP</code><br>
+<code>help &lt;topic&gt;</code></p>
+
+<p>Shows an online help document for <code>&lt;topic&gt;.</code>
+<code>Help</code> with no argument shows a brief list of basic commands.
+<code>Help help</code> shows a list of index topics.</p><hr> 
+
+<a name="home">
+<p><code>HOME</code><br>
+<code>home</code></p>
+
+<p>Sends you home, no matter where you are. You retain your pennies, but
+any objects you are carrying leave your inventory and return to their
+own homes. [<a href="#top">top</a>]</p><hr>
+
+<a name="i">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@idescribe">
+<p><code>@IDESCRIBE &nbsp;|&nbsp; @IDESC</code><br>
+<code>@idescribe &lt;object&gt; [=&lt;text&gt;]</code></p>
+
+<p>Sets the <code>idescription</code> field of
+<code>&lt;object&gt;</code> to <code>&lt;text&gt;.</code> If
+<code>&lt;text&gt;</code> is not specified, the description field is
+cleared. This is the same as <code>@set
+&lt;object&gt;=_/ide:&lt;text&gt;</code>. An idescription is what is seen
+on the inside of a vehicle, when a player inside it looks
+around. [<a href="#top">top</a>]</p><hr>
+
+<a name="info">
+<p><code>INFORMATION &nbsp;|&nbsp; INFO</code><br>
+<code>information &lt;topic&gt;</code></p>
+
+<p>Shows an online document about <code>&lt;topic&gt;.</code> If no
+topic is supplied, a list of available topics will be shown. [<a
+href="#top">top</a>]</p><hr>
+
+<p>INVENTORY &nbsp;|&nbsp; INV &nbsp;|&nbsp; I<br>
+<code>inventory</code></p>
+
+<p>Lists what you are carrying. This can be abbreviated to
+<code>inv</code> or <code>i</code>. [<a href="#top">top</a>]</p><hr>
+
+<a name="j">
+<a name="k">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="kill">
+<p><code>KILL</code><br>
+<code>kill &lt;player&gt; [=&lt;cost&gt;]</code><br>
+
+<p>A successful kill sends the player home, sends all objects in the
+player's inventory to their respective homes. The probability of killing
+the player is <code>&lt;cost&gt;</code> percent. Spending 100 pennies
+always works except against Wizards who cannot be killed. Players cannot
+be killed in rooms which have the <code>Haven</code> flag set. On
+systems where the <code>Kill_OK</code> flag is used, you cannot kill
+someone unless both you and they are set <code>Kill_OK</code>. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@kill">
+<p><code>@KILL</code><br>
+<code>@kill &lt;processid|playername|programdbref|"all"&gt;</code></p>
+
+<p>If passed a processid (a number without an # octothorpe preceeding it), it
+will kill the given process, if the player controls it. If passed a player
+name, it will kill all the processes controlled by that player. If passed a
+program dbref, it will kill all processes that that program is running in. If
+the argument passed is <code>all,</code> and the player is a wizard, it will
+kill all processes on the timequeue. [<a href="#top">top</a>]</p><hr>
+
+<a name="l">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="leave">
+<p><code>LEAVE</code><br>
+<code>leave</code></p>
+
+<p>Leave the vehicle you are currently inside. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@link">
+<p><code>@LINK</code><br>
+<code>@link &lt;object1&gt;=&lt;object2&gt; [; &lt;object3&gt;; ...
+&lt;objectn&gt; ].</code><br>
+
+<p>Links <code>&lt;object1&gt;</code> to <code>&lt;object2&gt;,</code>
+provided you control <code>&lt;object1&gt;,</code> and
+<code>&lt;object2&gt;</code> is either controlled by you or linkable.
+Actions may be linked to more than one thing, specified in a list
+separated by semi-colons. [<a href="#top">top</a>]</p><hr>
+
+<a name="@list">
+<p><code>@LIST</code><br>
+<code>@list &lt;program&gt; [=[line1] [-] [line2]].</code></p>
+
+<p>Lists lines in a program, provided you control it or it is
+<code>Link_OK.</code> Zero, one, or two line numbers may be specified,
+denoting the range of lines to list. If no lines are given, the entire
+program is listed. [<a href="#top">top</a>]</p><hr>
+
+<a name="@lock">
+<p><code>@LOCK</code><br>
+<code>@lock &lt;object&gt; = &lt;key&gt;</code></p>
+
+<p>Locks <code>&lt;object&gt;</code> to a specific key(s).
+<code>&lt;Object&gt;</code> can be specified as
+<code>&lt;name&gt;</code> or <code>#&lt;number&gt;,</code> or as `me' or
+`here'. Boolean expressions are allowed, using <code>&</code> (and),
+<code>|</code> (or), <code>!</code> (not), and parentheses (`(` and `)')
+for grouping. To lock to a player, prefix their name with `*' (ex.
+<code>*Igor</code>). A key may be a player, an object, or
+`property:value'. [<a href="#top">top</a>]</p><hr>
+
+<a name="look">
+<p><code>LOOK</code><br>
+<code>look &lt;object&gt;</code></p>
+
+<p>Looks around at the current room, or at <code>&lt;object&gt;</code>
+if specified. For players, displays their description and inventory, for
+things, their description, and for rooms, their name, description,
+succ/fail message, and contents. Also triggers osucc/ofail messages on
+rooms. Programs are triggered accordingly on desc/succ/fail
+fields. [<a href="#top">top</a>]</p><hr>
+
+
+<a name="m">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="man">
+<p><code>MAN</code><br>
+<code>man [&lt;subject&gt;]</code></p>
+
+<p>Displays the programmer's manual or a quick reference for
+<code>MUF.</code>  [<a href="#top">top</a>]</p><hr>
+
+<a name="move">
+<p><code>MOVE</code>&nbsp;  See <a href="#goto"><code>GOTO</code></a>. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="mpi">
+<p><code>MPI</code><br> 
+<code>mpi [&lt;subject&gt;]</code></p>
+
+<p>Displays the programmer's manual or a quick reference for
+<code>MPI.</code>  [<a href="#top">top</a>]</p><hr>
+
+<a name="n">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@name">
+<p><code>@NAME</code><br>
+<code>@name  &lt;object&gt;=&lt;name&gt; [&lt;password&gt;]</code></p>
+
+<p>Sets  the name field of <code>&lt;object&gt;</code> to
+<code>&lt;name&gt;.</code> <code>&lt;Name&gt;</code> cannot be empty; a
+null name is illegal. <code>&lt;Password&gt;</code> must be supplied to
+rename a player. Wizards can rename any player but still must include
+the password. [<a href="#top">top</a>]</p><hr>
+
+<a name="@newpassword">
+<p><code>@NEWPASSWORD</code><br>
+<code>@newpassword &lt;player&gt; [=&lt;password&gt;]</code></p>
+
+<p>Changes <code>&lt;player&gt;'s</code> password, informing
+<code>&lt;player&gt;</code> that you changed it. Must be typed in full.
+If <code>god_priv</code> was defined, nobody can change God's password.
+(Wizard only) [<a href="#top">top</a>]</p><hr>
+
+<a name="news">
+<p><code>NEWS</code><br>
+<code>news [&lt;topic&gt;]</code></p>
+
+<p>Displays the current news file for the game. Must be typed in full.
+If a topic is given, then it displays the information on that specific
+topic. [<a href="#top">top</a>]</p><hr>
+
+<a name="o">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@odrop">
+<p><code>@ODROP</code><br>
+<code>@odrop &lt;object&gt; [=&lt;text&gt;]</code></p>
+
+<p>Sets the odrop field of <code>&lt;object&gt;</code> to
+<code>&lt;text&gt;.</code> If <code>&lt;text&gt;</code> is not
+specified, the odrop field is cleared. Odrop on an object is displayed
+prefixed by the player's name when s/he drops that object. On an exit,
+it is displayed upon a player's arrival to the destination room (or the
+location of the destination player). On a player, it is displayed after
+the `name killed victim!' message. On a room, it is displayed when an
+object is dropped there, prefixed by the object's name. This is the same
+as: <code>@set &lt;object&gt;=_/odr:&lt;text&gt;</code>. See also <a
+href="#@drop"><code>@drop</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@oecho">
+<p><code>@OECHO</code><br>
+<code>@oecho &lt;vehicle object&gt; = &lt;echo prepend string&gt;</code></p>
+
+<p>Sets a string to prepend to messages relayed to the interior of a
+vehicle in the vehicle's <code>_/oecho</code> property. By default, the
+name of the vehicle object, followed by a <code>&gt;</code> greater-than
+character is used to prepend such messages. [<a href="#top">top</a>]</p><hr>
+
+<a name="@ofail">
+<p><code>@OFAIL</code><br>
+<code>@ofail &lt;object&gt; [=&lt;message&gt;]</code></p>
+
+<p>The <code>@ofail</code> message, prefixed by the player's name, is
+shown to others when the player fails to use
+<code>&lt;object&gt;.</code> Without a message argument, it clears the
+message. <code>&lt;object&gt;</code> can be specified as
+<code>&lt;name&gt;</code> or <code>#&lt;number&gt;,</code> or as `me' or
+`here'. This is the same as: <code>@set
+&lt;object&gt;=_/ofl:&lt;text&gt;</code>. See also <a
+href="#@fail"><code>@fail</code></a>.  [<a href="#top">top</a>]</p><hr>
+
+<a name="@open">
+<p><code>@OPEN</code><br>
+<code>@open &lt;exit&gt; [=&lt;object&gt; [; &lt;object2&gt;; ... &lt;objectn&gt; ] [=&lt;regname&gt;]]</code></p>
+
+<p>Opens an exit in the current room, optionally attempting to link it
+simultaneously. If a <code>&lt;regname&gt;</code> is specified, then the
+<code>_reg/&lt;regname&gt;</code> property on the player is set to the
+dbref of the new object. This lets players refer to the object as
+<code>$&lt;regname&gt;</code> (eg: <code>$mybutton</code>) in
+<code>@locks, @sets</code>, etc. Opening an exit costs a penny, and an
+extra penny to link it, and you must control the room where it is being
+opened. [<a href="#top">top</a>]</p><hr>
+
+<a name="outputprefix">
+<p><code>OUTPUTPREFIX</code><br>
+<code>OUTPUTPREFIX [string]</code></p>
+
+<p>Must be in all capitals, and typed in full. Prints the given line
+before the output of every command, setting them apart from other
+messages. [<a href="#top">top</a>]</p><hr>
+
+<a name="outputsuffix">
+<p><code>OUTPUTSUFFIX</code><br>
+<code>OUTPUTSUFFIX [string]</code></p>
+
+<p>Must be in all capitals, and typed in full. Prints the given line
+after the output of every command, setting them apart from other
+messages. [<a href="#top">top</a>]</p><hr>
+
+<a name="@osuccess">
+<p><code>@OSUCCESS&nbsp;  |&nbsp;  @OSUCC</code><br>
+<code>@osuccess &lt;object&gt; [=&lt;message&gt;]</code></p>
+
+<p>The <code>@osuccess</code> message, prefixed by the player's name, is
+shown to others when the player successfully uses
+<code>&lt;object&gt;.</code> Without a message argument, it clears the
+<code>@osuccess</code> message. It can be abbreviated
+<code>@osucc.</code> <code>&lt;Object&gt;</code> can be specified as
+<code>&lt;name&gt;</code> or <code>#&lt;number&gt;,</code> or as `me' or
+`here'. This is the same as <code>@set
+&lt;object&gt;=_/osc:&lt;text&gt;</code>. See also <a
+href="#@success"><code>@success</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@owned">
+<p><code>@OWNED</code><br>
+<code>@owned &lt;name&gt; [= &lt;flags/types&gt; = [&lt;output
+type&gt;]]</code></p>
+
+<p>Searches through the database for items that
+<code>&lt;name&gt;</code> controls.</p>
+  
+<p>For an explanation of the flags/types modifiers and the output types,
+see the entry for <a href="#@find"><code>@find</code></a>.</p>
+  
+<p>Example:  <code>@owned Revar=F!L3=location</code> will list all
+Mucker Level 3 (<code>3</code>) programs (<code>F</code>) owned by
+Revar, that are <em>not</em> set <code>Link_OK</code> (<code>!L</code>),
+and it will show the location of each one.</p> 
+
+<p>Note that only wizards can do an <code>@owned</code> on other people.
+See also <a href="#@entrances"><code>@entrances</code></a>, <a
+href="#@find"><code>@find</code></a>, and <a
+href="#@contents"><code>@contents</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="p">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="page">
+<p><code>PAGE</code><br>
+<code>page &lt;player&gt; [= &lt;message&gt;]</code></p>
+
+<p>This tells a player that you are looking for them. They will get a
+message in the form of `You sense <code>&lt;pager&gt;</code> is looking
+for you in <code>&lt;location&gt;.'</code> A
+<code>&lt;message&gt;</code> is optional, and is delivered in the form
+of <code>&lt;pager&gt; pages: &lt;message&gt;</code>. Your location is
+not revealed in message pages. If a player is set <code>Haven,</code>
+you cannot page them, and they will not be notified that you tried. You
+will instead be told, `That player does not wish to be disturbed.'
+(Note: Most systems use a user-created program with a global
+<code>page</code> action, which takes the place of the built-in
+<code>page</code> command, and has more features.) [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@password">
+<p><code>@PASSWORD</code><br>
+<code>@password &lt;old password&gt; = &lt;new password&gt;</code></p>
+
+<p>This changes your password. [<a href="#top">top</a>]</p><hr>
+
+<a name="@pcreate">
+<p><code>@PCREATE</code><br>
+<code>@pcreate &lt;player&gt; = &lt;password&gt;</code></p>
+
+<p>This command creates a new player. It may only be used if
+<code>registration</code> is enabled. (Wizard only) [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@pecho">
+<p><code>@PECHO</code><br>
+<code>@pecho &lt;puppet object&gt; = &lt;echo prepend string&gt;</code></p>
+
+<p>Sets a string to prepend to messages relayed from a puppet in the
+puppet's <code>_/pecho</code> property. By default, the name of the
+puppet object, followed by a &gt; greater than character is used to
+prepend such messages. [<a href="#top">top</a>]</p><hr>
+
+<a name="pose">
+<p><code>POSE</code><br>
+<code>pose &lt;message&gt; or :&lt;message&gt;</code></p>
+
+<p>Causes <code>&lt;message&gt;</code> to be displayed to the room,
+prepended by your name. [<a href="#top">top</a>]</p><hr>
+
+<a name="@program">
+<p><code>@PROGRAM</code><br>
+<code>@program &lt;program&gt;</code></p>
+
+<p>Create a new program, or enter edit mode on an existing one. See also
+<a href="#@edit"><code>@edit</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@propset">
+<p><code>@PROPSET</code><br>
+<code>@propset &lt;object&gt; = &lt;data type&gt; : &lt;property&gt; :
+&lt;value&gt;</code></p>
+
+<p>Sets <code>&lt;object's&gt;</code> <code>&lt;property&gt;</code> to
+<code>&lt;value&gt;,</code> with <code>&lt;value&gt;</code> stored as
+data type <code>&lt;data type&gt;</code>. You must control
+<code>&lt;object&gt;</code>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@ps">
+<p><code>@PS</code><br>
+<code>@ps</code></p>
+
+<p>Lists the status of the currently running <code>MUF</code> program
+processes. This lists all processes for a Wizard. Non-Wizards only see
+the muf processes that they can <code>@kill.</code> See <a
+href="#@kill"><code>@kill</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="put">
+<p><code>PUT</code><br>
+server: <code>put &lt;object&gt;</code><br>
+user-created: <code>put &lt;object&gt; in &lt;container&gt;</code></p>
+
+<p>The server version of <code>put</code> is an alias of
+<code>drop.</code> The standard start-up database supplies a user
+created command that moves <code>&lt;object&gt;</code> into
+<code>&lt;container&gt;,</code> provided that you are holding both
+<code>&lt;object&gt;</code> and <code>&lt;container&gt;</code> and that
+<code>&lt;container&gt;</code> is not <a
+href="#@conlock"><code>@conlocked</code></a> against you. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="q">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="quit">
+<p><code>QUIT</code><br>
+<code>QUIT</code></p>
+
+<p>Must be in all capitals, and typed in full. Logs out of your
+character and leaves the game. Your character remains at the location
+you are in when you log out, although it might be moved elsewhere while
+you are `asleep.'  [<a href="#top">top</a>]</p><hr>
+
+<a name="r">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="read">
+<p><code>READ</code><br>
+<code>read [&lt;object&gt;]</code></p>
+
+<p>An alias for <code>look.</code> The standard start-up dbase supplies
+a bulletin board program for which <code>read</code> is a command to
+read bulletins. [<a href="#top">top</a>]</p><hr>
+
+<a name="@recycle">
+<p><code>@RECYCLE &nbsp;|&nbsp; @REC</code><br>
+<code>@recycle &lt;object&gt;</code></p>
+
+<p>Destroy an object and remove all references to it within the
+database. The object is then added to a free list, and newly created
+objects are assigned from the pool of recycled objects first. You
+<em>must</em> own the object being recycled: even wizards must use the
+<code>@chown</code> command to recycle someone else's belongings. [<a href="#top">top</a>]</p><hr>
+
+<a name="@restrict">
+<p><code>@RESTRICT</code><br>
+<code>@restrict</code> &lt;on|off&gt;</code></p>
+
+<p>Turning restriction on allows only wizards to log onto the
+<code>MUCK.</code> Turning it off returns to unrestricted
+access. [<a href="#top">top</a>]</p><hr>
+
+<a name="rob">
+<p><code>ROB</code><br>
+<code>rob &lt;player&gt;</code></p>
+
+<p>Attempts to steal one penny from <code>&lt;player&gt;.</code> The
+only thing you can steal are pennies.  [<a href="#top">top</a>]</p><hr>
+
+<a name="s">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="say">
+<p><code>SAY</code><br>
+<code>say &lt;message&gt; or "&lt;message&gt; </code></p>
+
+<p>Says <code>&lt;message&gt;</code> out loud. See also <a
+href="#pose"><code>pose</code></a>, <a
+href="#page"><code>page</code></a>, and <a
+href="#whisper"><code>whisper</code></a>.</p><hr>
+
+<a name="score">
+<p><code>SCORE</code><br>
+<code>score</code></p>
+
+<p>Displays how many pennies you are carrying. [<a href="#top">top</a>]</p><hr>
+
+<a name="@set">
+<p><code>@SET</code><br>
+<code>@set &lt;object&gt; = [!] &lt;flag&gt; -or-</code><br>
+<code>@set &lt;object&gt; = &lt;property&gt; : [ &lt;string&gt; ]
+-or-</code><br>
+<code>@set &lt;object&gt; = :</code></p>
+  
+<p><code>@set</code> does one of three things on TinyMUCK: it can modify
+flags, add properties to an object, or remove properties from an
+object.</p>
+  
+<p>Using the first format, you may set flags, which are: <code>Wizard,
+Link_OK, Dark [Debug], Filter, Sticky [SetUID], Jump_OK, Builder
+[Bound], Quell, Chown_OK, Havan [HardUID], Abode [Autostart], Vehicle,
+Zombie</code>, or <code>Mucker.</code> You can also set the Mucker (or
+Priority) Level of an object by using <code>0,</code> <code>1,</code>
+<code>2,</code> or <code>3</code> as the flag name. An optional flag
+which may or may not be on a given site is <code>Kill_OK</code>.</p> 
+<p>The second format sets <code>&lt;property&gt;</code> on
+<code>&lt;object&gt;</code> to <code>&lt;string&gt;,</code> or if
+<code>&lt;string&gt;</code> is not given, removes
+<code>&lt;property&gt;.</p></code>
+  
+<p>The third format removes all properties from an object. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@shutdown">
+<p><code>@SHUTDOWN</code><br>
+<code>@shutdown</code></p>
+
+<p>Shuts down the game. Must be typed in full. (Wizard only) [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@stats">
+<p><code>@STATS</code><br>
+<code>@stats [&lt;player&gt;]</code></p>
+
+<p>For mortal players, returns the highest number in the database, which
+includes garbage that has been generated with <code>@recycle.</code> For
+Wizards, gives this number as well as a breakdown of each type of
+object: rooms, exits, things, programs, players, and garbage. Wizards
+may also specify &lt;player&gt; which returns a similar display limited
+to the possessions of <code>&lt;player&gt;</code>. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@success">
+<p><code>@SUCCESS &nbsp;|&nbsp; @SUCC</code><br>
+<code>@success &lt;object&gt; [=&lt;message&gt;]</code></p>
+
+<p>Sets the success message for <code>&lt;object&gt;.</code> The message
+is displayed when a player successfully uses
+<code>&lt;object&gt;.</code> Without a message argument, it clears the
+message. It can be abbreviated <code>@succ.</code>
+<code>&lt;object&gt;</code> can be specified as
+<code>&lt;name&gt;</code> or <code>#&lt;number&gt;,</code> or as `me' or
+`here'. This is the same as <code>@set
+&lt;object&gt;=_/dr:&lt;text&gt;</code>. See also <a
+href="#@osuccess"><code>@osuccess</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@sweep">
+<p><code>@SWEEP</code><br>
+<code>@sweep [&lt;object&gt;]</code></p>
+
+<p>Returns a list of objects that are listening to
+<code>&lt;object&gt;.</code> <code>&lt;Object&gt;</code> defaults to
+`here'. [<a href="#top">top</a>]</p><hr>
+
+<a name="t">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="take">
+<p><code>TAKE</code> &nbsp;&nbsp; See <a href="#get"><code>GET</code></a>. [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@teleport">
+<p><code>@TELEPORT &nbsp;|&nbsp; @TEL</code><br>
+<code>@teleport &lt;arg1&gt; [=&lt;destination&gt;]</code></p>
+
+<p>Moves <code>&lt;arg1&gt;</code> to <code>&lt;destination&gt;,</code>
+if <code>&lt;destination&gt;</code> is not given, moves you to
+<code>&lt;arg1&gt;.</code> Wizards may teleport anything to anywhere,
+provided it makes sense, and mortals are allowed to do two things:
+teleport rooms to change their parent fields, and the may teleport
+things to a room they can link to, provided they control either the
+thing or its location. [<a href="#top">top</a>]</p><hr>
+
+<a name="throw">
+<p><code>THROW</code><br>
+server: <code>put &lt;object&gt;</code><br>
+user-created: <code>throw &lt;object&gt; to &lt;player&gt;</code></p>
+
+<p>The server version of <code>throw</code> is an alias of
+<code>drop.</code> Most <code>MUCKs</code> have a user-created program
+that moves <code>&lt;object&gt;</code> to <code>&lt;player&gt;,</code>
+announcing the move, provided that you are holding
+<code>&lt;object&gt;</code> and that you, <code>&lt;object&gt;,</code>
+and <code>&lt;player&gt;</code> are each configured in such a way as to
+allow the throw. [<a href="#top">top</a>]</p><hr>
+
+<a name="@toad">
+<p><code>@TOAD</code><br>
+<code>@toad &lt;player1&gt; [= &lt;player2&gt;]</code></p>
+
+<p>Turns <code>&lt;player1&gt;</code> into a slimy toad, destroying
+their character. All possessions of <code>&lt;player1&gt;</code> are
+<code>@chowned</code> to <code>&lt;player2&gt;.</code> If no owning
+player is specified, objects will be <code>@chowned</code> to the wizard
+who is executing <code>@toad.</code> Must be typed in full. (Wizard
+only) [<a href="#top">top</a>]</p><hr>
+
+<a name="@trace">
+<p><code>@TRACE</code></br>
+<code>@trace &lt;object&gt; [=&lt;depth&gt;]</code></p>
+
+<p>Starts with <code>&lt;object&gt;</code> and traces all location
+fields, until the global-environment room is reached or the optional
+<code>&lt;depth&gt;</code> is specified. This is generally useful for
+finding which rooms are parents in your heirarchy. If you cannot link to
+a particular location its name is replaced by
+<code>**MISSING**</code>. [<a href="#top">top</a>]</p><hr>
+
+<a name="u">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@uncompile">
+<p><code>@UNCOMPILE</code><br>
+<code>@uncompile &lt;program&gt;</code></p>
+
+<p>Uncompiles all programs in the database. (Wizard only) [<a
+href="#top">top</a>]</p><hr>
+
+<a name="@unlink">
+<p><code>@UNLINK</code><br>
+<code>@unlink &lt;exit&gt;; @unlink here</code></p>
+
+<p>Removes the link on the exit in the specified direction, or removes
+the drop-to on the room. Unlinked exits may be picked up and dropped
+elsewhere. Be careful, anyone can relink an unlinked exit, becoming its
+new owner (but you will be reimbursed your 1 penny). See <a
+href="#@link"><code>@link</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@unlock">
+<p><code>@UNLOCK</code><br>
+<code>@unlock &lt;object&gt;</code></p>
+
+<p>Removes the lock on <code>&lt;object&gt;.</code> See <a
+href="#@lock"><code>@lock</code></a>. [<a href="#top">top</a>]</p><hr>
+
+<a name="@usage">
+<p><code>@USAGE</code><br>
+<code>@usage</code></p>
+
+<p>Displays system resource usage stats for the muck server process.
+(Wizard only) [<a href="#top">top</a>]</p><hr>
+
+<a name="v">
+<a name="w">
+<p><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></p>
+
+<a name="@wall">
+<p><code>@WALL</code><br>
+<code>@wall &lt;message&gt;</code></p>
+
+<p>Only wizards may use this command. Shouts something to every player
+connected. Must be typed in full. [<a href="#top">top</a>]</p><hr>
+
+<a name="whisper">
+<p><code>WHISPER</code><br>
+<code>whisper &lt;player&gt;=&lt;message&gt;</code></p>
+
+<p>Whispers the message to the named person, if they are in the same
+room as you. No one else can see the message. Wizards can <code>whisper
+*&lt;player&gt;=&lt;message&gt;</code> to whisper to players in other
+rooms.  (Note: Most systems use a user-created program in place of the
+built in whisper command. These programs generally provide many more
+useful features.) [<a href="#top">top</a>]</p><hr>
+
+<a name="who">
+<p><code>WHO</code><br>
+<code>WHO [&lt;player&gt;]</code></p>
+
+<p>Must be in all capitals, and typed in full. Lists the name of every
+player currently logged in, and how long they have been inactive. If
+given a player name, it displays only the matching names and idle times.
+By typing <code>WHO*</code> wizards also get a display of the host the
+player is connected from. [<a href="#top">top</a>]</p><hr>
+
+<a name="x">
+<a name="y">
+<a name="z">
+
+  <center>
+  <a href="flagref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="usercomref.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

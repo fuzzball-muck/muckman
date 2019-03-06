@@ -1,0 +1,89 @@
+<html>
+<head>
+  <title>The MUCK Manual: Protected, Restricted, and Wizard Properties</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="lists.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="messages.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>2.1.1  Protected, Restricted, and Wizard Props</b></p>
+
+<p>Property handling is governed by a system of privileges, though in
+most cases this will be transparent to the user: you will usually be
+able to set the properties you want without even being aware that the
+server is checking to see if you're allowed to do so. Besides `normal'
+props, there are three classes of priviledged properties: protected,
+restricted, and wizard. The class of a property or propdir is determined
+by the first character in its name. A prop or propdir beginning with an
+<code>_</code> underscore, <code>%</code> percent sign, or
+<code>.</code> period is `protected'. A prop or propdir beginning with a
+<code>~</code> tilde is `restricted'. A prop or propdir beginning with
+an <code>@</code> at-mark is `wizard'. If the prop or propdir begins
+with any other character, it is `normal' or `unprotected'. (Note: the
+`first character' restriction applies to any property or propdir. So,
+<code>@email, @/email</code>, and <code>data/personal/@email</code> are
+all wizard props: each includes a prop or propdir that begins with an
+<code>@</code> at-mark.)</p>
+
+<p>Properties beginning with a an <code>_</code> underscore can only be
+written to by the owner of the object on which the property is stored,
+or by programs owned by the owner, or by programs running at
+<code>M3</code> or <code>W</code>.</p>
+
+<p>Properties beginning with a <code>.</code> period can only be written
+to <em>or read</em> by the owner of the object on which the property is
+stored, or by programs owned by the owner, or by programs running at
+<code>M3</code> or <code>W</code>.</p>
+
+<p>Properties beginning with a <code>%</code> percent sign, like _
+underscore properties, can only be written to by the owner or by
+programs owned by the owner. The <code>%</code> percent sign properties
+have the additional function of over-riding pronoun and name
+substitutions. For example, if Jessy does <code>@set me = %n:the
+Scamper Gal</code>, the prop will be protected, and will serve the
+additional function of causing <code>`the Scamper Gal'</code> instead of
+<code>`Jessy'</code> to be substituted in messages that use the
+<code>`%n'</code> substitution string.  (See <a
+href="pronounsubs.html">Section 2.1.7</a> for additional information on
+substitution strings.)</p>
+
+<p>A restricted property ( <code>~</code> ) may be read like an
+unprotected prop, however it may only be modified by a wizard or a
+wizbitted program. A common use of restricted props is appointing
+non-wiz staff members.  Staff commands, exits to administrative areas,
+and so forth, can be locked so that they may only be used by characters
+with specific restricted prop, such as <code>`~staff'</code>.</p>
+
+<p>A wizard property ( <code>@</code> ) may only be read or modified by
+a wizard or a wizbitted program. The server records connection data in
+players' propdir <code>@/.</code> On some <code>MUCKs,</code> wizard
+props and propdirs are used to record administrative information such as
+players' email addresses. Some wizbitted programs record potentially
+sensitive data such as mail in a wizard propdir stored on players.</p>
+
+<p>Locks can read any property&#151;including restricted and wizard
+properties&#151;but may only check for matches with a specific value.
+(See <a href="locks.html">Section 2.3</a>.)</p>
+
+  <center>
+  <a href="lists.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="messages.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

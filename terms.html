@@ -1,0 +1,300 @@
+<html>
+<head>
+  <title>The MUCK Manual: Terms and Abbreviations</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="about.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="connect.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<h2>1.0  Basic Commands and Setting up a Character</h2>
+
+<b>1.1  Some Terms and Abbreviations</b>
+
+<p>Frequently used terms:</p>
+
+<dl>
+<p><dt>Player: <dd>The person reading this manual; the entity who types
+things on behalf of a character.</p>
+
+<p><dt>Character: <dd>The virtual person or creature inhabiting the
+<code>MUCK,</code> controlled by a player. Players have characters;
+characters have players.  The terms `player' and `character' are often
+used interchangebly.</p>
+
+<p><dt>Puppet: <dd>A player-like object controlled by a character. A
+`virtual character', as it were. A puppet can move and act independently
+of the character; everything the puppet sees and hears is relayed to the
+character and player.</p>
+
+<p><dt>Zombie: <dd>Same thing as a puppet.</p>
+
+<p><dt>Robot (or `bot): <dd>An object programmed to act like a character, or 
+a character under the control of a program that causes her to perform 
+certain actions automatically. `Bots are sometimes called
+<code>AI's</code> (from `artificial intelligence').</p>
+
+<p><dt>Flag: <dd>A setting on an object that influences or restricts its 
+behavior. Flags are also called `bits'. Flags are discussed in 
+<a href="flags.html">Section 2.1</a>.</p>
+
+<p><dt>Object Type: <dd>An object may be a <code>PLAYER,</code>
+<code>THING,</code> <code>ROOM,</code> <code>EXIT,</code> or
+<code>PROGRAM.</code> </p>
+
+<p>A <code>PLAYER</code> is something that can be connected to via a name and
+password, can own things, and can act independently. Because this object type
+is called `player' rather than `character', many help documents (including
+this manual) will often use this term, though what's meant is the character
+object, not the living person who controls it. A <code>THING</code> is a
+mobile object that may be picked up, dropped, handed, and otherwise
+manipulated. A <code>ROOM</code> is a place in the world of the
+<code>MUCK,</code> though it need not be described as an interior room: rooms
+can also be described to simulate an outdoor area, or described in an abstract
+way so that moving through the room shows characters useful text (for example,
+a tutorial on building might be set up as a series of rooms, with the
+description of each room serving as a `page' in a maunal).  An
+<code>EXIT</code> is a link between two objects on the <code>MUCK.</code>
+Exits may be created such that they serve as virtual doors between rooms, or
+they may serve as user-created commands. (<code>EXITs</code> are also called
+<code>ACTIONS</code>.) A <code>PROGRAM</code> is a special instance of class
+<code>THING</code> which contains the code of an executable program. The type
+of an object is determined when it is created, and indicated by a flag. An
+object with a <code>P</code> flag is a <code>PLAYER</code>; an object with an
+<code>R</code> flag is a <code>ROOM</code>; an object with an <code>E</code>
+flag is an <code>EXIT</code>; an object with an <code>F</code> flag is a
+program. If an object has none of these flags, it is a <code>THING</code> .
+The collective term for all of these is is `object': players, rooms, etc. are
+all objects.</p>
+
+<p><dt>Dbref: <dd>Every object in the database has a unique identifying 
+number: its `database reference number', or `dbref' for short. (Many objects 
+may have the same name.) A dbref is usually preceeded by an # octothorpe, 
+e.g. <code>#123.</code> </p>
+
+<p><dt>Client: <dd>A program that replaces <code>Telnet</code> as a
+means to connect to the <code>MUCK</code> server. Clients have numerous
+special features specifically applicable to <code>M*'s,</code> such as
+automated logon, the capacity to switch between several worlds, hiliting
+certain kinds of text, line-wrapping, separating text being typed from
+text being displayed by the <code>MUCK,</code> paging, and scrollback.
+Different platforms require different clients.  <em>TinyFugue</em> is a
+popular <code>UNIX</code> client. <em>MUDDweller</em> is a widely used
+Macintosh client. <em>SimpleMU</em>, <em>Pueblo</em>, <em>Phoca</em>,
+and <em>ZMud</em> are common Windows clients. A single client can
+connect to different servers... that is, you don't need a separate
+client for <code>MUSH,</code> <code>MUCK,</code> and <code>MUD.</code>
+Virtually all client programs are distributed as freeware or shareware,
+and are widely available over the Internet (see <a
+href="appenda.html">Appendix A</a>).</p>
+
+<p><dt>Penny: <dd>The unit of currency on a <code>MUCK.</code> Money is
+usually a non-issue on <code>MUCKs,</code> though some commands require
+an expenditure of pennies. The administrators of a <code>MUCK</code> may
+set the name of the currency: it might be pennies, or it might be
+pop-tarts, fleas, or lurid fantasies. You will often find money simply
+by moving through the <code>MUCK,</code> and will see a message such as
+`You find a penny!' or `You find a reason for living!' Many
+<code>MUCKs</code> also have banks or other places where you can get
+more pennies.</p>
+
+<p><dt>Save: <dd>A period in which the server backs up the database to disk.
+At scheduled intervals, the server automatically executes relatively brief
+saves in which only those objects changed or created since the last save are
+backed up (`delta saves'), as well as longer saves in which the entire database
+is backed up ('full saves' or `database saves').  In addition to automated
+saves, wizards may initiate a save via the <code>@dump</code> command. ('Saves'
+are also called `dumps'.) During a save, activity on the <code>MUCK</code> is
+frozen: commands you enter during a save will be queued and executed after the
+save completes. On a very large <code>MUCK,</code> a full save can take ten or
+more minutes.</p>
+
+<p><dt>Lag: <dd>(noun) A perceptible delay between the time you enter a 
+command and the time it is executed. Lag may be caused by an overloaded server 
+(too many people logged on or too many programs running), by an overly 
+large database (the database is larger than available RAM, necessitating 
+frequent swaps to disk), or by problems on the Internet. (verb) To 
+experience lag or a `locked-up' screen.</p>
+
+<p><dt>Spam: <dd>(noun) Text scrolling by too fast to be read comfortably. 
+(verb) To act or use programs in such a way that those around you are 
+subjected to an excessive amount of frivolous or repetitive text.</p>
+
+<p><dt>Idle: <dd>To be logged onto the <code>MUCK</code> but not doing
+anything.</p>
+
+<p><dt>Mav: <dd>To say aloud something meant to be whispered. By extention, 
+to say aloud something meant to be paged, or to whisper or page to 
+the wrong person. Maving is a potential source of embarrassment or 
+awkwardness. The name derives from a character in the early days of 
+<code>M*s</code> who was chronically prone to this particular faux pas.</p>
+
+<p><dt>God: <dd>The <code>MUCK's</code> overall controller or
+administrator, and the player object with dbref <code>#1.</code> God has
+access to a few commands unavailable to all other players, and may not
+be <code>@forced.</code> The term `God' is used less frequently on
+<code>MUCKs</code> than on <code>MUSHes</code> and <code>MUDs.</code> In fact,
+leadership by a single wizard player is relatively rare. More often, a core
+group of wizards share responsibility for administering the <code>MUCK,</code>
+with each having access to the God character's password.</p>
+
+<p><dt>Wizard: <dd>An administrator of the <code>MUCK,</code> and a
+player with the <code>W</code> flag.  Wizards have control over all
+objects in the database, and may use restricted commands available only
+to them. ('Wizard' is often shortened to `wiz'.)</p>
+
+<p><dt>Realm Wizard or Realms Wizard: <dd>An administrator of a certain
+area within a <code>MUCK.</code> Realms wizards have partial command
+over objects and players within their area, but cannot use wiz commands.
+Use of the realms wizard system is somewhat uncommon.</p>
+
+<p><dt>Mortal: <dd>A non-wizard character. This term too is used less
+frequently on <code>MUCKs</code> than on <code>MUSHes</code> and
+<code>MUDs.</code> While wizards are technically players, people usually
+refer simply to `wizzes' on the one hand and `players' on the other.
+(Where the distinction is important, this manual will use the term
+`mortal'.)</p>
+
+<p><dt>Staff: <dd>A <code>MUCK</code> administrator, who may or may not
+be a wizard, and may or may not have access to restricted commands. A
+common staff position is `helpstaff': someone who agrees to help new
+players and answer questions, but seldom has access to restricted
+commands. Most wizards are staff, but occassionally a player will be
+given a wizbit without staff responsibilities and privileges. In other
+words, `staff' is an administrative rather than technical term.</p>
+
+<p><dt><code>MPI:</code> <dd>An online programming language with a
+<code>LISP</code>-like syntax. <code>MPI</code> is available to all
+players. Because it is universally available, <code>MPI</code> includes
+a number of security features that restrict its power. <code>MPI</code>
+is covered in <a href="mpi.html">Section 3.</a></p>
+
+<p><dt><code>MUF:</code> <dd>An online programming language with a
+<code>FORTH</code>-like syntax. <code>MUF</code> security is handled
+through a system of privileges. In order to program in <code>MUF,</code>
+one must have a `Mucker bit' (an <code>M</code> flag). Mucker bits range
+from <code>M1</code> (highly restricted) to <code>M3</code> (almost as
+powerful as a <code>Wizard</code> flag).  On well established
+<code>MUCKS,</code> only highly trusted players with demonstrated
+programming skill are given <code>M3</code> bits. The power and
+efficiency of <code>MUF</code> make <code>MUCK</code> readily
+user-extensible. <code>MUF</code> is covered in <a
+href="muf.html">Section 3.</a></p>
+ 
+<p><dt>User-Created Command or User-Created Program: <dd>These terms are
+not commonly used on <code>MUCKs,</code> but are often used in this
+manual, and so are mentioned here. Many of the commands people are
+accustomed to using on <code>MUCKs</code> are not part of the
+<code>MUCK</code> server, but rather separate programs created by
+players and wizards. Soft-coded commands, in other words.  Some (such as
+the <code>say,</code> <code>page,</code> and <code>whisper</code>
+commands used on most <code>MUCKs</code> ) are enhancements of server
+commands. Others (such as <code>ride,</code> <code>lsedit,</code> and
+<code>lookat</code>) are basic utilities that do something the server
+itself cannot. A large <code>MUCK</code> will also have a great many
+other user-created commands and programs: some invaluable, some highly
+specialized, and some frivolous.</p>
+
+<p><dt>Control: <dd>This term too is used quite frequently in the manual. In 
+almost all cases, your permission to change an object is determined by 
+whether or not you control it. For mortals, control is essentially 
+synonymous with ownership: you control everything you own; you don't 
+control things you don't own, with one exception: anyone can control 
+an unlinked exit. Wizards and realms wizards have extended control: 
+Realms wizards control anything in their realm, including players; 
+wizards control everything.</p>
+</dl>
+
+<hr>
+
+<b><p>Frequently used abbreviations:</p></b>
+
+<dl>
+<p><dt><code>VR:</code> <dd>Virtual Reality. The <code>MUCK</code> world or
+worlds. Characters live there.</p>
+
+<p><dt><code>RL:</code> <dd>Real Life. The world outside the
+<code>MUCK.</code> Most players live there.</p>
+
+<p><dt><code>M*</code> or <code>M***:</code> <dd>A generic abbreviation
+for all flavors of text-based, Internet-accessible, interactive
+programs, including <code>MUD,</code> <code>MUSH,</code>
+<code>MUX,</code> <code>MOO,</code> <code>MUSE,</code> and
+<code>MUCK</code>.</p>
+
+<p><dt><code>IC:</code> <dd>In Character. Acting or speaking as your
+character, rather than as you, the player.</p>
+
+<p><dt><code>OOC:</code> <dd>Out of Character. Acting or speaking as
+you, the player, rather than the character. Medieval warriors arguing
+about Mac vs. Windows are <code>OOC.</code> In some situations, on some
+<code>MUCKs,</code> being <code>OOC</code> without signalling that you
+are doing so (by putting something like <code>`(OOC)'</code> or
+<code>`notes OOC'</code> before your poses and comments) is considered a
+breach of etiquette.</p>
+
+<p><dt><code>IMHO:</code> <dd>In My Humble (or Holy) Opinion, &
+<code>IMO,</code> In My Opinion</p>
+
+<p><dt><code>LOL:</code> <dd>Laughs Out Loud</p>
+
+<p><dt><code>AFK:</code> <dd>Away From Keyboard</p>
+
+<p><dt><code>BRB:</code> <dd>Be Right Back</p>
+
+<p><dt><code>BBL:</code> <dd>Be Back Later</p>
+
+<p><dt><code>TS:</code> <dd>TinySex. To make love or have sex on the
+<code>MUCK,</code> via the gestures and comments of your character.
+<code>TS</code> is both a verb and noun.</p>
+
+<p><dt><code>TP:</code> <dd>TinyPlot. A role-played, jointly-authored,
+predominantly improvised storyline acted out by a group of players.
+<code>TPs</code> are usually consensual: players agree ahead of time to
+participate in the <code>TP,</code> though other players may be drawn
+into the <code>TP</code> by the storyline's development. Usually players
+will plan the main conflict, premise, or events ahead of time &#151; at
+least provisionally &#151; and improvise their characters' individual
+contributions and reactions. (The terms 'TinySex' and `TinyPlot' derive
+from `TinyMUD', an early server from which <code>MUCK</code> grew out
+of.)</p>
+
+<p><dt><code>RP:</code> <dd>Role Playing. Acting <code>IC</code> in a
+way that is consistent with either the overall theme of the
+<code>MUCK,</code> a TinyPlot in which one is participating, or both.
+Some <code>MUCKs</code> are predominantly places to <code>RP;</code>
+some are mostly places to socialize, where <code>RP</code> is
+sporadic.</p> </dl>
+
+<p>Sidebar: <code>MUCK</code> itelf is not an abbreviation or acronym.
+The names of other <code>M*</code> servers are: <code>MUD</code> stands
+for Multi-User Dungeon or Multi-User Domain; <code>MUSH</code> for
+Multi-User Shared Hallucination; <code>MOO</code> for <code>MUD,</code>
+Object Oriented. <code>MUCK</code> is simply a name with a sound and
+connotations rather like those of <code>MUD</code> and
+<code>MUSH.</code> Purportedly, the name derives from the fact that
+<code>MUF</code> gives players the ability to `muck around with' the
+database.</p>
+
+
+  <center>
+  <a href="about.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="connect.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

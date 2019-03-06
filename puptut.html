@@ -1,0 +1,135 @@
+<html>
+<head>
+  <title>The MUCK Manual: Tutorials: Making Puppets</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="multiacttut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="vehicletut.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>4.3  Making Puppets</b></p>
+  
+<p>A puppet (or `zombie') is a player-like object of type thing, set up so
+that it can move and act independently, relaying everything it sees and
+hears to the controlling character.</p>
+
+<p>In the strictest sense, all that is required to turn an object into a
+zombie is to set its <nobr><code>Z(ombie)</code></nobr> flag. This will cause
+it to relay messages, and to be treated as a zombie by programs which
+distinguish between zombies and players. In practice, two other steps are
+required to create a working puppet: locking and setting the puppet so that it
+can be forced, and creating an action to control it. First, create the puppet
+object. Since the puppet will often be in a different location than your
+character, it's a good idea to give it a registered name as well. Then, set
+its <nobr><code>Z(ombie)</code></nobr> flag.</p>
+
+<p><code>
+====================================<br>
+&gt; @create Squiggy == pup<br>
+ &nbsp; Squiggy created with number 128629.<br>
+ &nbsp; Registered as $pup<br>
+&gt; @set squig = Z<br>
+ &nbsp; Flag set.<br>
+====================================
+</code></p>
+
+<p>Next, set the puppet's <code>X(forcible)</code> flag, and
+<code>force_lock</code> it to you.</p>
+
+<p><code>
+====================================<br>
+&gt; @set squiggy = X<br>
+ &nbsp; Flag set.<br>
+&gt; @flock squiggy = me<br>
+ &nbsp; Force lock set.<br>
+====================================
+</code></p>
+
+<p>It would be possible to stop at this point, and use the
+<code>@force</code> command to make the puppet do what you want.</p>
+
+<p><code>
+====================================<br>
+&gt; @force $pup =:jumps!<br>
+ &nbsp; Squiggy jumps!<br>
+====================================
+</code></p>
+
+<p>In practice, it will be more convenient to create an action that simplifies
+frequent typing. Use an action name that's short and easy to type, and won't
+conflict with other common exit names. <code>`Z'</code> is a frequently used
+command name for controlling a zombie. Then, link the action to a do-nothing
+program, lock it to a condition that always fails, such as
+<code>`me&!me',</code> and set its fail with an <code>MPI</code> string that
+forces the puppet. </p>
+
+<p><code>
+====================================<br>
+&gt; @act z = me<br>
+ &nbsp; Action created with number 128630 and attached.<br>
+&gt; @link z = $nothing<br>
+ &nbsp; Linked to do-nothing.muf(#197FLM2)<br>
+&gt; @lock z = me&!me<br>
+ &nbsp; Locked.<br>
+&gt; @fail z = {force:$pup,{&arg}}<br>
+ &nbsp; Message set.<br>
+====================================
+</code></p>
+
+<p><code>'&arg'</code> is a variable: it holds whatever was typed after
+the command. If you typed <code>`z</code> :jumps!',</code>
+<code>&arg</code> would hold the string <code>`:jumps!'.</code> The fail
+set on the control action would force the puppet with
+<code>`:jumps!'.</code></p>
+
+<p><code>
+====================================<br>
+&gt; z :jumps!<br>
+ &nbsp; Squiggy jumps!<br>
+&gt; z out<br>
+ &nbsp; Squiggy heads out to the park.<br>
+ &nbsp; Squiggy has departed.<br>
+ &nbsp; Squiggy&gt; You head out to the park...<br>
+ &nbsp; Squiggy&gt; Alcot Park<br>
+ &nbsp; Squiggy&gt; A sweep of close-cropped green grass extends...<br>
+====================================
+</code></p>
+
+As indicated in the example above, output from the puppet is preceded
+with the puppet's name, and a &gt; greater than symbol to distinguish it
+from your own output. This prefix string can be changed with the
+<code>@pecho</code> command: <code>@pecho &lt;puppet object&gt; =
+&lt;prefix string&gt;</code> </p>
+
+<p><code>
+====================================<br>
+&gt; @pecho squiggy = *<br>
+ &nbsp; Message set.<br>
+&gt; z look<br>
+ &nbsp; *Alcaot Park<br>
+ &nbsp; *A sweep of close-cropped grass extends...<br>
+====================================
+</code></p>
+
+
+  <center>
+  <a href="multiacttut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="vehicletut.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

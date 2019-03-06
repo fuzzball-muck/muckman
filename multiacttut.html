@@ -1,0 +1,166 @@
+<html>
+<head>
+  <title>The MUCK Manual: Tutorials: Making a Multi-Action</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="lsedittut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="puptut.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>4.2  Making a Multi-Action</b></p>
+
+<p>Over time, many players end up creating several handy little macro
+commands that provide shortcuts for frequent tasks, or create rooms that
+have a number of specific, local commands. Rather than creating a
+separate action for each command (an approach that quickly leads to
+dbase bloat and eats up your quota), you can combine a number of
+commands in a single action. The basic technique is to give the action
+an alias name for each command, store <code>MPI</code> strings in
+properties with the same names as the aliases, and use the command name
+typed by the user to determine which property should be executed.</p>
+
+<p>The following example creates a multi-action that lets you determine the
+dbref of something in the same room, enter or review a page of `to do'
+notes, and remotely lock or unlock the door into your home. First,
+create the action attached to your character, and lock it to a condition
+that always fails. Since the action is attached to you, no one else
+should be able to use it... Nonetheless, it would be a good idea to
+secure the exit by linking it to something, such as a do-nothing
+program.</p>
+
+<p><code>
+====================================<br>
+&gt; @act ref;note;notes;lockhome;unlockhome = me<br>
+ &nbsp; Action created with number 9456 and attached.<br>
+&gt; @lock ref = me&!me<br>
+ &nbsp; Locked.<br>
+&gt; @link ref = $nothing<br>
+&nbsp;  Linked to gen-nothing.muf(#363FLM2).<br>
+====================================
+</code></p>
+
+<p>The lock will fail unless the user <em>is</em> and <em>is not
+you</em>... it will always fail. Now, set the action's
+<code>@fail</code> with an <code>MPI</code> string that will cause other
+<code>MPI</code> strings stored in properties on the object to be
+executed.</p>
+
+<p><code>
+====================================<br>
+&gt; @fail ref = {exec:{&cmd}}<br>
+ &nbsp; Message set.<br>
+====================================
+</code></p>
+
+<p><code>{&cmd}</code> is a variable... it holds whatever command name
+the user typed.  If you used the action by typing <code>`ref',</code>
+then the string <code>`ref'</code> would be substituted for
+<code>{&cmd}</code> when the <code>@fail</code> is parsed; if you used
+the the action by typing <code>`notes',</code> then <code>`notes'</code>
+would be substituted for <code>{&cmd}.</code></p>
+
+<p><code>{exec}</code> evaluates the property following it, executing
+any <code>MPI</code> contained in it, and returning any resulting
+strings to the user. So, typing <code>`notes'</code> would cause the
+<code>`notes'</code> property on the object to be evaluated:
+<code>{&cmd}</code> would be replaced by <code>`notes',</code> and
+<code>{exec}</code> would use this value to determine which property it
+should evaluate.</p>
+
+<p>Now, set a property for each alias, containing <code>MPI</code> that
+performs a function. One of the simplest ways to do this, is to force
+yourself to use a command. In order to do so, you need to be set
+<code>X(forcible)</code> and <code>force_locked</code> to yourself.</p>
+
+<p><code>
+====================================<br>
+&gt; @set me = X<br>
+ &nbsp; Flag set.<br>
+&gt; @flock me = me<br>
+ &nbsp; Force lock set.<br>
+  <br>
+&gt; @set ref =ref:{ref:{&arg}}<br>
+ &nbsp; Property set.<br>
+&gt; @set note =note:{force:me,lsedit notes=notes}<br>
+ &nbsp; Property set.<br>
+&gt; @desc note ={list:notes}<br>
+ &nbsp; Description set.<br>
+&gt; @set notes =notes:{force:me,look notes}<br>
+  &nbsp; Property set.<br>
+&gt; @set lockhome =lockhome:{force:me,@lock #17212=me&!me}<br>
+  &nbsp; Property set.<br>
+&gt; @set unlockhome =unlockhome:{force:me,@unlock #17212}<br>
+  &nbsp; Property set.<br>
+====================================
+</code></p>
+
+<p>The one action can now be used to do several different things. Typing
+<code>`ref here'</code> would show the dbref of the room you are in
+<code>({&arg},</code> like <code>{&cmd},</code> a variable: it holds
+whatever was typed following the command name. If you typed <code>`ref
+here',</code> the <code>&arg</code> variable would hold the string
+<code>`here'</code>). Typing <code>`note'</code> would force you to use
+<code>lsedit</code> to edit your page of notes. Typing
+<code>`notes'</code> would force you to look at the notes: the list
+would be printed on your screen. Typing <code>`lockhome'</code> would
+force you to lock the exit into your home, specifying it by dbref so
+that it doesn't matter where on the <code>MUCK</code> you are located.
+Typing <code>`unlockhome'</code> would unlock the exit in the same
+way.</p>
+ 
+<p>(Notice that several of the actions world by `forcing' you to do
+something. This is an easy way to make little macro commands. However,
+be aware that in order for it to work, you must be set 'Xforcible', and
+you must be 'force_locked' to yourself. So, do the following as
+well:</p>
+
+<p><code>
+====================================<br>
+&gt; @set me=X<br>
+ &nbsp; Flag set.<br>
+&gt; @flock me=me<br>
+ &nbsp; Locked.<br>
+====================================<br>
+</code>)</p>
+
+
+<p>A single multi-action like this can be extended indefinitely, by adding
+aliases and a corresponding prop. To add a `look at my watch and check
+the time' function, you could rename the action and set a `watch'
+property that uses simple <code>MPI.</code></p>
+
+<p><code>
+====================================<br>
+&gt; @name ref = ref;note;notes;lockhome;unlockhome;watch<br>
+  &nbsp; Name set.<br>
+&gt; @set watch = watch:You glance at your watch. The time is
+{time}.<br>
+  &nbsp; Property set.<br>
+  <br>
+&gt; watch<br>
+  &nbsp; You glance at your watch. The time is 14:18:46.<br>
+====================================
+</code></p>
+
+
+  <center>
+  <a href="lsedittut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="puptut.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

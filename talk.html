@@ -1,0 +1,116 @@
+<html>
+<head>
+  <title>The MUCK Manual: Basic Commands: Talking</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="move.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="who.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>1.4.3  Talking</b></p>
+
+<p>The <code>say</code> command (abbreveated as a " quotation mark) causes your
+character to say something hearable by all other characters in the same
+room. Thus, if Cara's player types...</p>
+
+<p><code> &nbsp; &nbsp; say Hi there! </code></p>
+
+<p>or </p>
+
+<p><code> &nbsp; &nbsp; "Hi there!</code></p>
+
+<p>people in the same room will see </p>
+
+<p><code> &nbsp; &nbsp; Cara says, "Hi there!"</code></p>
+
+<p>Characters can communicate via gestures or `poses' as well as speech.
+The <code>pose</code> command (abbreated as a : colon) causes your
+character to do something seeable by all other characters in the same
+room. So, if Cara's player types... </p>
+
+<p><code> &nbsp; &nbsp; pose waves.</code></p>
+
+<p>or </p>
+
+<p><code> &nbsp; &nbsp; :waves.</code></p>
+
+<p>people in the same room will see </p>
+
+<p><code> &nbsp; &nbsp; Cara waves.</code></p>
+
+<p>The pose command handles punctuation intelligently, omitting the
+space between the character's name and the pose when the text begins
+with punctuation. Thus, if Cara's player typed...</p>
+
+<p><code> &nbsp; &nbsp; :'s going to go see a friend</code> </p>
+
+<p>characters around her would see... </p>
+
+<p><code> &nbsp; &nbsp; Cara's going to go see a friend.</code></p>
+
+<p>rather than </p>
+
+<p><code> &nbsp; &nbsp; Cara 's going to go see a friend.</code></p>
+
+<p>You can communicate with a specific player, or a group of players,
+rather than the whole room, via the <code>whisper</code> command
+(abbreviated as `w' or `wh'). The syntax is <code>w &lt;name or
+names&gt; = &lt;message&gt;</code>  For example, if Clearsong's player
+typed </p>
+
+<p><code> &nbsp; &nbsp; w cashmere = What say we blow this joint?</code></p>
+
+<p>...Cashmere would see... 
+
+<p><code> &nbsp; &nbsp; Clearsong whispers, "What say we blow this
+joint?" (to<br> &nbsp; &nbsp; you)</code></p>
+
+<p>If Clearsong's player had typed <code>w cashmere cara = I thought
+that was illegal.</code>, both Cashmere and Cara would receive the
+whisper. To format a whisper as a pose, put a colon before the whispered
+message. For example, Cashmere could answer Clearsong by typing... </p>
+
+<p><code> &nbsp; &nbsp; w clearsong = :nods.</code> </p>
+
+<p>Whisper will search the room for partial name matches. Thus, if there
+is no one else named Clear&lt;something&gt; present, typing <code>w
+clear = :nods</code> would send the whisper to Clearsong.  The whisper
+command `remembers' the last person you whispered to, so to continue a
+whispered conversation, the name may be omitted: <code>w =
+&lt;message&gt;</code>.</p> 
+
+<p>You can communicate with people in other rooms via the
+<code>page</code> command (abbreviated as `p'). The syntax for pages,
+page poses, and pages to multiple players is the same as that of
+whisper: <code>p &lt;name or names&gt; = &lt;message&gt;</code> (for a
+page) and <code>p &lt;name or names&gt; = : &lt;pose&gt;</code> (for a
+page pose).  Like whisper, the page `remembers' the last person you
+paged to and the name may be omitted.</p>
+
+<p>(Note: Spaces have been placed around the = equal sign in the above
+examples for clarity. The spaces are not necessary, but can be
+included.)</p>
+
+
+  <center>
+  <a href="move.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="who.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

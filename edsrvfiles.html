@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Editing Server Files</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="sysparms.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="guests.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<p><b>Setting Up the Database (cont't)</b>:</p>
+<p><em>Editing Server Files</em>:</p>
+
+<p>The screen shown at log in, and the information provided in
+<code>`info',</code> <code>`news',</code> <code>`help',</code>
+<code>`man',</code> <code>`mpi',</code> and <code>`motd'</code> (Message
+of the Day) are all stored in the server directory
+<code>game/data.</code></p>
+
+<p>One of your first tasks will be providing a new log in screen, to
+replace the <em>TygressMUCK</em> screen supplied with the server. To do
+so, edit the file game/data/welcome.txt. Note: Though many players
+currently have large screens, it's a good idea to limit the file to 78
+characters by 20 rows. This is all that can be seen at one time by
+someone running TinyFugue in `visual' mode on a standard 80 x 24
+monitor, or a similarly limited terminal program on some other
+platform.</p>
+
+<p>You can add to or edit the documentation provided in
+<code>`news',</code> <code>`info',</code> <code>`help',</code>
+<code>`man',</code> and <code>`mpi'</code> by editing the files
+<code>`news.txt',</code> <code>`info.txt',</code>
+<code>`help.txt',</code> <code>`man.txt',</code> and
+<code>`mpihelp.txt'</code> respectively. Or, you can add files to the
+directories <code>`news',</code> <code>`info',</code>
+<code>`help',</code> <code>`man',</code> and <code>`mpihelp'.</code>
+Adding a file called <code>`join'</code> to the <code>`news'</code>
+directory would create an entry that players can read by typing
+<code>`news join'.</code></p>
+
+<p>The <code>MOTD</code> will usually be updated online, with the
+<code>`motd'</code> command (syntax: <code>`motd &lt;message&gt;'</code>
+to add an entry; <code>`motd clear'</code> to clear all entries). The
+<code>motd</code> command gives no control over formatting, however, and
+you can only clear <em>all</em> the entries, not one or some. If you
+want to make more precise changes to the <code>MOTD,</code> edit the
+file <code>game/data/motd.txt.</code></p>
+
+  <center>
+  <a href="sysparms.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="guests.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

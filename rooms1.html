@@ -1,0 +1,139 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Rooms and the Environment Tree</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="pronounsubs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="rooms2.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.2  Overview: Rooms and the Environment Tree.</b></p>
+
+<p>Rooms are objects created with the <code>@dig</code> command and
+having the type flag <code>R.</code> </p>
+
+<p>The syntax for the <code>@dig</code> command is</p>
+
+<p><pre>
+    @dig &lt;room&gt; [=&lt;parent&gt; [=&lt;regname&gt;]]
+</pre></p>
+
+<p>The position of rooms &#151;and the resulting `geography' of the
+<code>MUCK</code> &#151; is determined in two ways. In addition to named
+exits creating the illusion of spatial relationships (e.g. having a room
+called `The Village Green' that can be reached by travelling West from
+`The Cove'), rooms exist in a hierarchical tree structure known as the
+`environment tree'. One can lead a rich <code>VR</code> life without
+ever needing to know about the <code>MUCK's</code> environment tree, but
+builders and administrators will profit from an understanding of how it
+works.</p>
+
+<p>As an analogy, one might think of the rooms on a <code>MUCK</code> as
+numerous nested boxes. Room <code>#0,</code> the `global parent', would
+in our analogy be a large box containing all the other boxes... all the
+other rooms. Rooms inside <code>#0</code> can also contain rooms: the
+boxes can contain other boxes, in an unending series. The boxes (rooms)
+can contain items (players, things, etc) as well as other boxes. A room
+that contains another room is said to be a `parent room'; a room
+contained in another room is said to be a `daughter room'. A given room
+can be contained in another and at the same time contain other rooms: in
+this case, the room is both a parent and daughter room. Intermediate
+rooms of this type are often called `environment rooms'. (Or, another
+analogy: rooms are like directories in a computer file system: the root
+directory is analogous to Room <code>#0;</code> environment rooms and
+rooms are analogous to directories and subdirectories within the root
+directory; players and objects in rooms are analogous to files in these
+directories.) Environment rooms are used to define areas of a
+<code>MUCK</code> and to provide commands or features that should only
+be available in certain areas (more on this below). </p>
+
+<p>You can view the series of rooms containing the room you are located
+in by typing <code>@trace here</code>.</p>
+
+<p><code>
+====================================<br>
+&gt; @trace here<br>
+&nbsp;  Sinshe Village, by the Pier(#687RJ)<br>
+&nbsp;  Sinshe Parent Room(#635RA)<br>
+&nbsp;  Environment: Lowlands(#285RA)<br>
+&nbsp;  Rainforest Parent Room(#121RWA)<br>
+&nbsp;  Rainforest: Main Prarent(#118RA)<br>
+&nbsp;  Master Environment(#101RA)<br>
+&nbsp;  **Missing**<br>
+====================================<br>
+</code></p>
+
+<p>In this example, the administrators of the <code>MUCK</code> have
+carefully laid out a consistent, hierarchical environment tree. In
+addition to the `geographical position' of Sinshe Village, each room on
+the <code>MUCK</code> has a specific and meaningful place in the
+environment tree. The village pier is nested inside &#151; or `parented
+to' &#151; the <code>Sinshe Parent Room (#635),</code> which presumably
+contains all the rooms that make up the village of Sinshe. This room is
+in turn parented to <code>Environment: Lowlands (#285),</code> which
+would contain the parent rooms for all areas in the lowlands. The series
+continues up through rooms <code>#121,</code> <code>#118,</code>
+<code>#101,</code> and finally, room <code>#0,</code> which appears on
+this list as <code>**Missing**</code> (to mortals, rooms not set
+<code>Abode</code> and not controlled by them appear as
+<code>**Missing**</code> on a <code>@trace</code>; for security reasons,
+the global parent of a <code>MUCK</code> is usually not set
+<code>Abode,</code> and as a result the last item on the list will be
+<code>**Missing**</code>.)</p>
+
+<p>In fact, not only rooms but all objects on a <code>MUCK</code> have a
+position in the environment tree. Exits are considered to be located in
+or on the object to which they are attached. Players and things are
+always located in a specific room or thing... but, unlike rooms and
+exits, they move around. The <code>@trace</code> command works on any
+object. If a player were holding an object called `paper sack',
+<code>@trace paper sack</code> would show the sack's current position in
+the environment tree.</p>
+
+<p><code>
+====================================<br>
+&gt; @trace paper sack<br>
+&nbsp;  paper sack(#5474)<br>
+&nbsp;  Jessy(#2WQJ)<br>
+&nbsp;  Sinshe Village, by the Pier(#687RJ)<br>
+&nbsp;  Sinshe Parent Room(#635RA)<br>
+&nbsp;  Environment: Lowlands(#285RA)<br>
+&nbsp;  Rainforest Parent Room(#121RWA)<br>
+&nbsp;  Rainforest: Main Prarent(#118RA)<br>
+&nbsp;  Master Environment(#101RA)<br>
+&nbsp;  **Missing**<br>
+====================================<br>
+</code></p>
+
+<p>A newly created room is parented to the first room above it that is
+set <code>Abode,</code> or the first room controlled by the player
+issuing the <code>@dig</code> command. If no rooms in the environment
+path meet one of these criteria, it is parented to Room <code>#0.</code>
+Keeping parent rooms set Abode will insure that new rooms are correctly
+parented: if Jessy stood on the pier and typed <code>@dig Under the
+Pier</code>, the new room would be correctly parented to <code>Sinshe
+Parent Room(#635RA)</code>, the same parent as that of the pier
+proper.</p>
+
+  <center>
+  <a href="pronounsubs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="rooms2.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

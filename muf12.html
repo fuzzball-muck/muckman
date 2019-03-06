@@ -1,0 +1,407 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (12)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf11.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="mucklev.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Refining the Program (Last Page!):</b></p>
+
+There are some weak points to this version of tinker.muf. If it is an
+<code>M1</code> program, and someone tried to use it in a room she
+doesn't own, the program would crash with a <code>Permission
+denied</code> error. Also, there are no comments. And, it doesn't
+include online documentation such as a <code>#help</code> function.
+We'll rectify these weaknesses and add some new capabilities in our
+final version, and in the process cover new aspects of <code>MUF</code>
+programming.</p>
+
+<p>Tinker.muf, final product...</p>
+
+<p><pre>
+====================================
+( tinker.muf, v1.0, by jessy @ genericmuck  5/96
+  
+  A builder's utility program that checks the exits in a room to make 
+  sure they have @succ, @osucc, @odrop and @desc messages, and that
+  none are unlinked.
+  
+  This program was written to accompany the MUF tutorial in the muck 
+  manual. While it is slightly more convenient than examining all the 
+  exits -- and possibly overlooking some -- its primary purpose is to 
+  introduce different aspects of MUF. Besides, your MUCK probably 
+  already has a @check command which does the same thing better.
+  
+  INSTALLATION:
+  
+  Port the program and set it Link_ok if it is to be public. Create 
+  an action and link it to the program. If the program is set M2 or
+  higher, edit the first line of code following the header comment
+  to read `$def runningM2'. The program requires the standard libarary
+  lib-match, which should be available on any established muck.
+  
+  USE:
+  
+  Typing the action name checks all exits in the room. Typing the action 
+  name followed by an exit name checks just that exit.
+  
+  Clean up:
+  
+  Your MUCK really doesn't need multiple copies of tinker.muf lying 
+  around. If you are using this program while learning muf with the 
+  muck manual, it would be best to recycle it and the action when 
+  finished or -- better yet -- put your own new program in it.
+  
+  Tinker.muf may be freely ported. Please comment any changes.
+)
+
+                               ( define owner's mucker level. if not m1, 
+	   		            replace `runningM1' with `runningM2' )
+$def runningM1
+
+$define tell me @ swap notify $enddef
+
+                           ( include lib-match for finding exits by name )
+$include $lib/match
+
+lvar ourExit                                         ( stores exit dbref )
+lvar counter                ( store count of exits checked as an integer )
+
+: help  (  --  )                                      ( show help screen )
+    
+    "tinker.muf v1.0" tell
+    " " tell
+    "a builder's utility that checks to make sure all exits "
+    "in a room have a @succ, @osucc, @odrop and @desc set."
+    strcat tell
+    " " tell
+    "to use, simply type \"" command @ strcat "\"." strcat tell
+    " " tell
+    "to check a specific exit, type \"" command @ strcat 
+    " &lt;exit name&gt;\"." strcat tell   
+;
+  
+: plural?  ( s -- s i )                    ( return true if s is not "1" )
+                                            ( leave test string on stack )  
+    dup "1" smatch if
+        0
+    else
+        1
+    then
+;
+  
+: checkexits  (  --  )                                 ( report on exits )
+               
+    0 counter !                                           ( init counter )
+          
+    dup if                                 ( match specified exit name   )
+        .noisy_match not if                ( couldn't find it;           )
+            exit                           ( lib-match will notify; exit )
+        else
+            ourExit !             ( found it; store dbref; store 9999 in ) 
+            9999 counter !        ( counter; will use for loop-exit test )      
+        then
+    else
+        pop                                ( not doing a specific match; )
+        loc @ exits ourExit !              (   init ourExit to first one )
+    then
+    
+    begin                                     ( BEGIN EXIT-CHECKING LOOP )
+    
+        ourExit @ while                         ( break if no more exits )
+        
+        ourExit @                            ( put current exit on stack )
+        
+        dup getlink not if                                ( exit linked? )
+            dup unparseobj 
+            " is unlinked (not secure)." strcat
+            me @ swap notify
+        then                                             
+     
+        $ifdef runningM2       ( only check room-to-room exits; M2+ only )
+        dup getlink room? not if 
+            pop ourExit @ next ourExit !
+            continue
+        then  
+        $endif
+        
+        dup "_/sc" getpropstr not if                      ( has a @succ? )
+            dup unparseobj 
+            " needs a success message." strcat 
+            me @ swap notify
+        then
+                                 
+        dup "_/osc" getpropstr not if                      ( ... @osucc? )
+            dup unparseobj 
+            " needs an osuccess message." strcat 
+            me @ swap notify
+        then
+                                   
+        dup "_/odr" getpropstr not if                      ( ... @odrop? )
+            dup unparseobj 
+            " needs an odrop message." strcat 
+            me @ swap notify
+        then 
+                               
+        dup "_/de" getpropstr not if                        ( ... @desc? )
+            dup unparseobj 
+            " needs a description." strcat 
+            me @ swap notify
+        then
+        
+        pop
+        counter @ 9999 = if           ( break if we're only checking one )
+             break
+        then
+        
+        counter @ 1 + counter !                      ( increment counter )
+        
+        ourExit @ next ourExit !                     ( increment ourExit )
+        
+    repeat                                      ( END EXIT-CHECKING LOOP )
+    
+    counter @ intostr                   ( report how many exits checked. )
+    Plural? if
+       " exits"
+    else
+       " exit" 
+    then
+    " checked." strcat strcat Tell                           ( all done! )
+;
+  
+: main
+    
+    strip
+    "me" match me !
+    
+    dup if                                          ( check: wants help? )
+        "#help" smatch if
+            Help exit
+        then
+    then
+    
+    $ifdef runningM1          ( bail out if someone else's room; M1 only )
+    loc @ owner me @ dbcmp not if    
+        "Sorry, this program is only for rooms that you own."
+        me @ swap notify exit
+    then
+    $endif
+    
+    CheckExits                                    ( go check those exits )
+;
+====================================
+</pre></p>
+    
+<p><em>Comments</em>: </p>
+
+<p>This version is properly commented. A header comment provides the
+author of the program, its purpose, discusion of how to install and use
+it, and a statement of conditions for porting the program to other
+<code>MUCKs.</code> Each function includes a stack effect comment, which would
+be helpful when debugging the program and would be useful for someone deciding
+whether to borrow a function for use in another program.  Additional comments
+provide a close narration of the program's execution, making it considerably
+easier for someone to read through the code and figure out what is (or should
+be) doing what.
+
+
+<p><em>Compiler Directives</em>: </p>
+
+<p>This version makes use of several `compiler directives' (also called
+`preprocessor directives')...  additional steps the compiler performs
+before compiling the program. (Compiler directives are discussed more
+fully in <a href="mufcomp.html">Section 3.2.4</a>)</p>
+
+<p><code>$define</code> replaces all occurances of the first word
+following <code>$define</code> with any remaining words between the
+first word and the <code>$enddef</code> directive.</p>
+
+<p>The first of these directives, <code>$define runningM1 "yes"
+$enddef,</code> defines the word <code>runningM1</code> as the string
+<code>"yes".</code> </p>
+
+<p>Because the term <code>runningM1</code> is defined, the
+<code>$ifdef</code> in <code>main</code> will test true, and it will
+check to see if the user owns the room. If the program were running at a
+higher Mucker Level, we should delete, or comment out, or replace this
+line.</p>
+
+<p><code>$define runningM1 "yes" $enddef</code> simply causes the statement
+<code>runningM1</code> to be replaced with the string
+<code>"yes"</code>, a true value. There are other ways we could use
+<code>$define</code>, however. If all we want to do is to see whether
+its defined with <code>$ifdef,</code> we don't have to give it a
+specific value (<code>$define runningM1 $enddef</code> would have worked
+just as well for our purposes). Or, we could use <code>$define</code> to
+create an `abbrevation' for a frequently used snippet of code. For
+example, we migh have a program that frequently uses a small loop to
+clear the stack:
+
+<p><pre>
+  begin depth while pop repeat
+</pre><p>
+
+Rather than include all this every time we want to clear the stack, and
+rather than putting in a separate function that the program would have
+to jump to each time we use it (a slight additional overhead), we could
+put...
+
+<p><pre>
+  $define NukeStack begin depth while pop repeat $enddef
+</pre></p>
+
+...somewhere near the top of the program, and use <code>NukeStack</code>
+whenever we want to clear the stack. (This technique is known as
+`in-lining' or creating an `in-line' function. The effeciency gained by
+not having to jump to a separate function can be significant in a tight
+loop that can run many times.)
+
+<p><em>Libraries</em>:</p>
+
+<p>This version makes uses of a <code>MUF</code> library, lib-match. At
+the beginning of the <code>checkexits</code> function, it checks the top
+of the stack to see if the user passed an argument to the command
+(<code>dup if</code>), and if so just checks that exit. The statement
+<code>.noisy_match</code> (which takes a string and matches it to
+objects and notifies the user if it cannot find it) is defined in
+lib-match. We can use it here because we `included' the library with the
+directive:</p>
+  
+<p><pre>
+  $include $lib/match
+</pre></p>
+
+<p>(The server is able to find the right library because we're specifying
+it by its registered name of <code>$lib/match</code>: by convention, all
+<code>MUF</code> libraries are registered in the <code>_reg/lib/</code>
+directory of room #0.)</p>
+
+<p><code>MUF</code> libraries are discussed in more depth in Sections <a
+href="muflibs.html">3.2.2</a> and <a href="muflibref.html">3.2.6</a>.</p>
+
+<p><em>Error Checking:</em></p>
+
+In this instance, we're doing a little bit of error checking: If the
+program is running at Mucker Level 1, it checks &#151; toward the end of
+main &#151; if the user owns the room. If not, it gracefully bails out,
+instead of crashing.
+
+<p><pre>
+====================================
+    $ifdef runningM1          ( bail out if someone else's room; M1 only )
+    loc @ owner me @ dbcmp not if    
+        "Sorry, this program is only for rooms that you own."
+        me @ swap notify exit
+    then
+    $endif
+====================================
+</pre></p>
+
+<p>Good error checking is one of the most difficult aspects of writing
+solid programs: As you're writing the code, <em>you</em> know how the
+program is supposed to be used, and may tend to make unconscious
+assumptions based on that. At such-and-such point in the program, it
+asks the user for &#151 say &#151 the amount of pennies to charge. <em>Of
+course</em> this should be a number... but rest assured, someday someone
+will enter not "100" or the like, but "All of them" or "I don't know".</p>
+
+<p>So, get in the habit of thinking `What could go wrong? What assumptions
+am I making that might not always be true?', and include code to check
+for and manuever around these conditions. Cultivate friends with wacko
+sick minds that never do what they're supposed to, and ask them to test
+your programs.</p>
+
+<p>Different programs will have different error-checking needs, but here
+are some common error conditions:</p>
+
+<ul>
+  <p><li><em>Non-numerical Data</em>: Your program needs a number, but
+  the user might enter something else. Check the input with the
+  <code>NUMBER?</code> primitive.</p>
+
+  <p><li><em>Numeric Sign</em>: Your program needs a <em>positive</em>
+  number, but the user might enter a negative number. Use <code>DUP ATOI
+  0 < IF</code> to make sure that the number is not negative.
+
+  <p><li><em>Division by Zero</em>: You're going to be doing some
+  division... Is it <em>possible</em> that the number you divide by
+  could be zero? Check for this... <code>DUP ATOI 0 = IF</code></p>
+
+  <p><li><em>Data Type</em>: Your program expects a string, or an
+  integer, or a dbref... Is it possible that something else is on the
+  stack? Check with <code>STRING?,</code> <code>INT?,</code> and
+  <code>DBREF?.</p></code>
+
+  <p><li><em>Object Type</em>: Your program expects that a database
+  object be of a particular type: an exit, a room, etc. Check the type
+  of the dbref on top of the stack with <code>PLAYER?</code>
+  <code>EXIT?</code> <code>ROOM?</code> <code>THING?</code> and
+  <code>PROGRAM?.</p></code>
+
+  <p><li><em>Object No Longer Exists</em>: You're pulling data from,
+  say, a prop that stored the dbrefs of a group of players. What if one
+  of those players was <code>@toaded</code> and no longer exists? Check
+  whether a dbref is valid with the <code>OK?</code> primitive. As
+  needed, make sure that the existing dbref is of the right type with
+  the type-checking primitives listed above.</p>
+
+	<p><li><em>Stack Overflow</em>: The <code>MUF</code> stack can only
+	handle 512 items at a time.  Is it possible that your stack could grow
+	larger than that?  Check with the <code>DEPTH</code> primitive, and
+	take action as needed.</p>
+
+	<p><li><em>Special Dbref</em>: The two dbrefs <code>#-2</code> and
+	<code>#-3</code> require special handling. They come up when you're
+	matching a user-provided string to a dbref. If the match is ambiguous
+	(the room contains an `ankle bracelet' and an `ankle biter'; the user
+	types `ankle'), the <code>MATCH</code> primitive will put
+	<code>#-2</code> on the stack (that is, <code>#-2</code> is the dbref
+	for an ambiguous match). If the user types `home', <code>MATCH</code>
+	will put <code>#-3</code> on the stack (that is, <code>#-3</code> is
+	the dbref for `my home'). Note that these are both <em>true</em>
+	<code>MUF</code> values. But, usually you can't do anything with
+	them. So, when matching a user-provided string to a dbref, include a
+  few lines of code to trap these special cases.</p>
+</ul>
+
+<p>Of course, these aren't the only possible error conditions... but
+these do tend to pop up repeatedly in <code>MUF</code> programming, so
+get in the habit of checking for them.</p>
+
+<p><em>Formatting</em>:</p>
+
+<p>This version reports how many exits were checked. Before doing so, it
+looks at the number with the <code>Plural?</code> function, which
+returns false if the string on top of the stack is <code>"1"</code>, and
+true otherwise. This will let us avoid output like <code>"1 exits
+checked."</code> Attention to this kind of formatting detail can have a
+significant effect on how well your program is received: remember, users
+don't see what goes on under the hood... Your program could use the
+slickest, most effecient algorithms imaginable, but if the output is
+clunky, it will seem like a clunky program.</p>
+
+  <center>
+  <a href="muf11.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="mucklev.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

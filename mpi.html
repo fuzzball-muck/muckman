@@ -1,0 +1,224 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MPI</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="programming.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="mpimacs.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>3.1  Overview: MPI</b></p>
+
+<p><code>MPI</code> is an interpretted language with a
+<code>LISP</code>-like syntax available to all players. Because it is
+universally available, <code>MPI</code> includes some security features
+that restrict its power. In general, <code>MPI</code> can only read
+props on the triggering object and on objects controlled by the
+controller of the object on which the <code>MPI</code> string is stored,
+and can only set props on the latter... on objects controlled by the
+owner of the <code>MPI</code> object. Other than setting props as
+mentioned, it is difficult (but not impossible) to significantly modify
+the database with <code>MPI,</code> but is ideally suited for
+message-handling. And because it is interpretted, it is well-suited for
+one-off programming tasks: no separate compiling and linking operations
+are needed, nor is a separate program object for holding the code.</p>
+
+<p> <code>MPI's</code> syntax consists of nested functions enlcosed in
+curly braces that are evaluated left-to-right and `from the inside out',
+much like mathematical expressions are evaluated outward from the
+innermost set of parentheses. For example...</p> 
+
+<p><code>
+ &nbsp; &nbsp; {if:{eq:{ref:me},#1},Hey it's God!,Hello world!}
+</code></p>
+  
+<p>The <code>MPI</code> parser will first evaluate the innermost
+function, <code>{ref:me}.</code> The <code>{ref}</code> function returns
+the dbref of its single argument &#151; which in this case is
+<code>`me'</code> &#151; so, <code>{ref:me}</code> returns the user's
+dbref. The returned expression `replaces', as it were, the function. So,
+if the user's dbref were <code>#123,</code> the <code>MPI</code> string
+would in effect and at this moment be...</p>
+
+<p><code>
+ &nbsp; &nbsp; {if:{eq:#123,#1},Hey it's God!,Hello world!.}
+</code></p>
+  
+<p>Then the next-innermost expression, effectively
+<code>{eq:#123,#1},</code> would be evaluated. The <code>{equals}</code>
+function returns true if the two arguments supplied are the same;
+otherwise it returns false. In this case, the two arguments are not the
+same, so <code>{equals}</code> will return false. At this point, the
+<code>MPI</code> value for false &#151; the string "0" &#151; will
+replace the function.  (A "" null string is also false in
+<code>MPI.</code> Any value other than "" or "0" is considered true.)
+So, at this point the string would in effect be...</p>
+
+<p><code>
+ &nbsp; &nbsp;  {if:"0",Hey it's God!,Hello world!}
+</code></p>
+   
+<p>Finally, this, the outermost function will be evaluated. The
+<code>{if}</code> function takes three arguments. If the first argument
+is true, it returns the second argument. If the first argument is false,
+it returns the third argument. In this example, the first argument is
+false, so the the third argument will be returned: <code>MPI</code> will
+return the string <code>"Hello world!"</code> to player
+<code>#123.</code> If God had triggered the string, the
+<code>{if}</code> test would have been true, and the string <code>"Hey
+it's God!"</code> would have been returned instead.</p>
+
+<p>The <code>{debug}</code> function displays the progress of the
+parser. Enclosing the whole of our example in a <code>{debug}</code>
+function will show the process described above.</p>
+
+<p><code>
+====================================<br>
+<nobr>&gt; @succ testmpi = {debug:{if:{eq:{ref:me},#1},Hey it's God!,Hello world!}}</nobr><br>
+&nbsp;  Message set.<br>
+&gt; testmpi<br>
+&nbsp;  (@Succ) {IF:"{eq:{ref:me},#1}", "Hey it's God!", "Hello world!"}<br>
+&nbsp;&nbsp;&nbsp;  (@Succ)   {EQ:"{ref:me}", "#1"}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  (@Succ)     {REF:"me"}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  (@Succ)       "me"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  (@Succ)     {REF:"me"} = "#123"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  (@Succ)     "#1"<br> 
+&nbsp;&nbsp;&nbsp;  (@Succ)   {EQ:"#123", "#1"} = "0"<br>
+&nbsp;&nbsp;&nbsp;  (@Succ)   "Hello world!"<br>
+<nobr>&nbsp;  (@Succ) {IF:"{eq:{ref:me},#1}", "Hey it's God!", "Hello world!"} = "Hello world!"</nobr><br>
+&nbsp;  Hello world!<br>
+====================================<br>
+</code></p>
+
+<p>In the lines from the first half of the debugging output &#151; where
+indentation is moving to the right &#151; the parser is essentially
+finding the innermost, left-most function to be evaluated. The remaining
+portion, with lines ending in ` <code>= &lt;value&gt;</code> ' and
+indentation moving back to the left, depicts the series of returned
+expressions described above.</p>
+
+<hr>
+
+<p>The keywords <code>`me'</code> and <code>`here'</code> can be used as
+normal. In addition, <code>MPI</code> supports the keyword `this', which
+will be replaced by the dbref of the object on which the
+<code>MPI</code> is stored.</p>
+
+<hr>
+
+<p>The variable functions <code>{&cmd},</code> <code>{&arg},</code> and
+<code>{&how}</code> may be used to retrive information about how
+<code>MPI</code> was triggered. <code>{&cmd}</code> stores the command
+name typed to trigger the <code>MPI.</code> <code>{&arg}</code> stores
+any arguments typed along with the command. <code>{&how}</code> stores
+the method by which <code>MPI</code> was triggered, and will have values
+such as <code>(@desc),</code> <code>(@succ),</code>
+<code>(@osucc),</code> <code>(@lock),</code> etc.</p>
+
+<hr>
+
+<p>Functions can be nested up to 26 levels deep. Loops may iterate a
+maximum of 256 times, at which point the automatically exit. Lists may
+have a maximum of 256 lines, or 4096 characters, whichever is less.</p>
+
+<hr>
+
+<p>An <code>MPI</code> string that appears in a <code>_/</code> prop (a
+<code>@succ</code> message, a <code>@desc,</code> and so forth) will be
+parsed automatically. For other triggering props, the parser must be
+called by an & ambersand at the beginning of the prop string.</p>
+
+<p><code>
+====================================<br>
+&gt; @set me=_oarrive/aaa:&{null:{otell:pads in quietly.}}<br>
+&nbsp;  Property set.<br>
+====================================<br>
+</code></p>
+
+<hr>
+
+<p>The arguments of functions are separated by commas. Commas appearing
+in argument strings will confuse the parser: functions will seem &#151;
+to it &#151; to have too many arguments. So, commas in argument strings
+must be `escaped'... i.e., preceded with a <code>\</code> backslash
+escape character, which tells the parser to treat the next character
+literally, rather than as an <code>MPI</code> instruction. For example,
+if we wanted our first example to say <code>"Hey, it's God!"</code> or
+<code>"Hello, world!",</code> the commas would need to be escaped with a
+backslash character.</p>
+
+<p><code>
+  &nbsp; &nbsp; {if:{eq:{ref:me},#1},Hey\, it's God!,Hello\, world!}
+</code></p>
+
+<hr>
+
+<p>Complex or very long <code>MPI</code> instructions are often better
+stored in a list, where whitespace can be used to make the code more
+readable, rather than in a single prop where all will run together in an
+opaque mass of characters. A simple pointing string using the
+<code>{lexec}</code> (`execute list') function can then be placed in the
+triggering prop.</p>
+
+<p><code>
+====================================<br>
+&gt; lsedit harley = bikecode<br>
+<nobr>
+&nbsp;  &lt; &nbsp;&nbsp;&nbsp;Welcome to the list editor. You can get help by
+entering `.h'  &nbsp;&nbsp;&nbsp; &gt;<br>
+</nobr><nobr>
+&nbsp;  &lt; `.end' will exit and save the list. `.abort' will abort any changes. &gt;<br>
+</nobr><nobr>
+&nbsp;  &lt; &nbsp;&nbsp;&nbsp;To save changes to the list, and continue
+editing, use `.save'  &nbsp;&nbsp;&nbsp;&gt;<br>
+</nobr>
+  <br>
+&gt;&nbsp;{null:<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;{if:<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(lots of complicated really cool <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;motorcycle code goes here)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&gt; }<br>
+&gt; .end<br>
+&nbsp;  &lt; Editor exited. &gt;<br>
+&nbsp;  &lt; list saved. &gt;<br>
+  <br>
+&gt; @succ ride harley;ride motorcycle;ride cycle = {lexec:bikecode}<br>
+&nbsp;  Message set.<br>
+  <br>
+&gt; ride harley<br>
+&nbsp;  (The Harley does something amazing.)<br>
+====================================<br>
+</code></p>
+
+<p>The <code>{lexec}</code> function executes <code>MPI</code> in a
+list. The <code>{exec}</code> function executes <code>MPI</code> in a
+property, and thus provides another way to break code up into managable
+pieces. <code>MUSH</code> coders especially might find this method more
+intuitive.</p>
+
+
+  <center>
+  <a href="programming.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="mpimacs.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

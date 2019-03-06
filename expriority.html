@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>The MUCK Manual: Exit Priorities</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="unsecex.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="usercoms.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.3.3  Exit Priorities</b></p>
+
+<p>In our discussion of the environment tree, it was noted that the
+server searches up the environment tree for commands matching users'
+input. If more than one command with the same name is found, the server
+must resolve which command to execute. This is determined by the
+`priority' of the exits, and the order of the search path. Both are
+affected by the system parameter <code>compatible_priorities</code>.</p>
+
+<p>Wizards can set Mucker bits on exits as well as on programs and
+players. An exit with a higher Mucker bit runs at higher priority than
+an exit with a lower Mucker bit, or one with no Mucker bit. </p>
+
+<p>For example, suppose a <code>MUCK</code> has a global exit named
+`bank' linked to a program  that gives players 100 pennies, and a player
+has an exit in his room named `bank' linked to a program that gives
+players 500 pennies. If neither exit has a Mucker bit set, both are
+considered `Priority 0' (zero). The <em>first</em> exit found in the
+search path would be executed: a player standing in the room with the
+`local' exit would receive 500 pennies; elsewhere, the global `bank'
+command would run, and the player would receive 100 pennies.</p>
+
+<p>However, if a wizard set the global `bank' exit <code>M1,</code> the
+global exit would now have higher priority. Even in the room with the
+`local' exit, typing `bank' would execute the global exit, and players
+would receive 100 pennies.</p>
+
+<p>As indicated, if there are two exits with the same name and the same
+priority, the server executes the <em>first</em> exit found. But the
+order of the search path changes depending on whether the system
+parameter <code>compatible_priorities</code> is set to `no' or `yes'.
+(Wizards may set system parameters with the <code>@tune</code>
+command.)</p>
+
+<p>If <code>compatible_priorities</code> is set to `no', all
+non-prioritied exits (i.e., exits with no Mucker bit set) are considered
+`priority 0', and the server uses the following search order:</p>
+
+<ol>
+  <li>On the room the player is located in
+  <li>On objects the player's inventory
+  <li>On objects in the room's inventory
+  <li>On the player
+  <li>Environment rooms containing the present room, beginning with the `closest' room... the room furthest from room <code>#0</code>
+  <li>Room <code>#0</code>
+  <li>The server
+</ol>
+
+<p>If <code>compatible_priorities</code> is set to `yes', all
+non-prioritied exits are considered `priority 1', and the server uses
+the following search order:
+  
+<ol>
+  <li>On the room the player is located in
+  <li>On the player
+  <li>Environment rooms containing the present room, beginning with the `closest' room... the room furthest from room <code>#0</code>
+  <li>Room <code>#0</code>
+  <li>Objects in the player's inventory
+  <li>Objects in the room's inventory
+  <li>The server
+</ol>
+
+<p>In our example, the wizard had just set the global `bank' exit
+<code>M1,</code> so it had a higher priority than the local
+<code>M0</code> exit. If the wizard then did <code>@tune
+compatible_priorities = yes</code>, both exits would now be considered
+`priority 1': the global is priority 1 because it is set
+<code>M1,</code> and the local is considered priority 1 because the
+system parameter is set to run all unprioritied exits at priority 1. The
+search order for players and inventories has changed, but in both cases
+the local room is checked before the global parent <code>#0.</code> So,
+now the local exit would run when player's type `bank' in the room with
+the local exit. If the wizard then set the global exit <code>M2,</code>
+it would again have higher priority than the local exit, and would run
+regardless of where a player is standing when typing `bank'.</p>
+
+<p>If you have difficulty getting a local or personal exit to run in
+preference to a global of the same name, contact a wizard and discuss
+modifying priorities, either by raising your exit's priority, or by
+changing the system parameter.</p>
+
+  <center>
+  <a href="unsecex.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="usercoms.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

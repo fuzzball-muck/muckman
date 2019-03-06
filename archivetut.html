@@ -1,0 +1,106 @@
+<html>
+<head>
+  <title>The MUCK Manual: Archiving Your Belonings</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="btut5.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="admin.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<p><b>4.6  Archiving Your Belongings</b></p>
+
+<p>The <code>@archive</code> command (syntax <code>@archive
+&lt;object&gt;</code>) `decompiles' objects. That is, it examines them, and
+then outputs the commands that would be necessary to recreate them. Unless you
+simply want to create an epic amount of spam, you need to capture this output
+in some way in order to make use of it. The normal way is to use your client
+to start a log file, and then issue the <code>@archive</code> command, then
+close the log. The resulting file can be used to recreate the object(s) if you
+accidently mess them up, or if the <code>MUCK</code> experiences database loss
+or corruption, or if you want to move the object to a different
+<code>MUCK.</code> To do so, simply quote or paste the file into your client
+window on the destination <code>MUCK.</code></p>
+
+<p>The command operates in a recursive fashion: a single <code>@archive</code>
+command will decompile the specified object, and any objects contained within
+it. This is usually a good thing: you can, for example, <code>@archive</code>
+an entire area with a single command by <code>@archiving</code> the area's
+parent room. But a minor warning: if you issue the command while you are in
+the area, your character object will be archived as well. This isn't a
+calamity, but it's probably not the best approach. The resulting archive file
+will be much larger than it needs to be, and if you quote it back without
+deleting the portions that apply to your character, you will get a great many
+error messages. So, if you want to <code>@archive</code> a room or area, do so
+by moving to a remote location before issuing the <code>@archive</code>
+command. (You can, of course, <code>@archive</code> your character as well...
+it's a good idea in fact. You would need the help of a wizard to recreate the
+character object, but once this is done, you could use the file to return your
+character to a previous state).</p>
+
+<p>In the following example, we <code>@archive</code> the area created in the previous tutorial, using the logging commands for the TinyFugue client. Other clients will have other logging commands.</p>
+
+<p><code>
+====================================<br>
+&gt; gohome &nbsp; <font color="red">( leave area, so character won't be
+archived )</font><br>
+&nbsp;  ShadowKat's Lair<br>
+&nbsp;	.<br>
+&nbsp;	.<br>
+&nbsp;	.<br>
+<br>
+&gt; /log amberside<br>
+&gt; @archive $ae<br>
+&nbsp;  .<br>
+&nbsp;	.<br>
+&nbsp;	.    ( lots of text scrolls by )<br>
+&nbsp;	.<br>
+&nbsp;	.<br>
+&gt; /log off<br>
+====================================
+</code></p>
+
+<p>That's all there is to it! Since the <code>@archive</code> command is
+recursive, and since the whole area is &#151; directly or indirectly &#151;
+contained within the environment room referenced by the registered name
+<code>$ae,</code> the whole area will be <code>@archived.</code></p>
+
+To recreate the area, we would simply quote the log file:
+
+<p><code>
+====================================<br>
+&gt; /quote -S 'amberside<br>
+====================================
+</code></p>
+
+<p>It is normal to see a few error messages when you recreate something from a
+log file. Common causes are exits that cannot be properly relinked because
+they led to something not included in the log and restricted properties that
+the <code>@archive</code> command could read but that you cannot set when you
+quote the file. Other, less obvious problems are sometimes caused by dbrefs
+included in properties: if you are moving the object to a different
+<code>MUCK,</code> these dbrefs will now be inaccurate. The effects of this
+will vary, but regardless you need to examine and test objects recreated from
+archive files.</p>
+
+
+  <center>
+  <a href="btut5.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="admin.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

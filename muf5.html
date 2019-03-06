@@ -1,0 +1,227 @@
+<html>
+<head>
+  <title>The MUCK Manual: </title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf4.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf6.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>The Stack:</b></p>
+
+<p>Everything in <code>MUF</code> is done by manipulating the stack. The
+stack is the area in the computer's memory that holds the data for your
+program, the information it uses as it does its job. So try thinking of
+it as a <code>RAM</code> disk, a storage device. In this case, the
+information is stored by putting pieces of information `on top of each
+other' instead of in tracks or sectors. Each time the program is used
+(each `process'), it gets its own fresh new stack.</p>
+
+<p>The <code>MUF</code> stack is a <code>LIFO</code> stack: `Last in,
+first out.' When you add something to the stack, it goes on top of the
+stack, and it's the only thing that's immediately accessible. Previous
+items are still there, in the computer's memory, but they're
+`underneath' whatever you just added, and you'd need to use some stack
+handling functions to get them so your program can use them. A good
+analogy is a stack of plates. If you put a red plate on top of a blue
+plate, and then a white plate on top of the red one, you'd have a
+stack:</p>
+    
+<p><code>
+ &nbsp; &nbsp;   white plate<br>
+ &nbsp; &nbsp;   red plate<br>
+ &nbsp; &nbsp;   blue plate
+</code></p>
+    
+<p>All three plates are there, but the only one you can pick up without
+rearranging the stack is the white one.</p>
+
+<p>Within a function, <code>MUF</code> reads the code left to right, top
+to bottom. We only have one line in our little program, so it reads that
+line left to right, coming first to the variable <code>me.</code> We
+haven't yet told <code>MUF</code> to do anything with the variable;
+we've just supplied it. So it puts that variable on the stack. Here it
+is:</p>
+
+<p><code>
+ &nbsp; &nbsp;   me
+</code></p>
+
+<p>Our stack is pretty short right now, just one item. Notice that our one
+item right now is the variable <code>me</code>, as opposed to the information
+stored in that variable (a dbref). Then <code>MUF</code> reads along our
+line of code and comes to the <code>@</code> operator. The operator is
+not data. It's an instruction to do something with the data that's
+present, in this case the variable <code>me</code>. So the
+<code>@</code> doesn't go on the stack. Instead, it does its little
+operation: it fetches the value that's stored inside <code>me</code>.
+When it does so, it `uses up' the variable <code>me</code>. Imagine that
+the fetch operator picks up the <code>me</code>, opens it like a box,
+pulls out what's inside, and throws the box away. So, let's say your
+dbref is <code>#123.</code> Now the stack looks like this:</p>
+
+<p><code>
+ &nbsp; &nbsp;   #123
+</code></p>
+
+<p>Still pretty short. Then, reading along, <code>MUF</code> comes to
+the string <code>"Hello,</code> world!".</code> We haven't told
+<code>MUF</code> what to do with this string, we've just supplied it. So
+it goes on top of the stack:
+
+<p><code>
+ &nbsp; &nbsp;   "Hello, world!"<br>
+ &nbsp; &nbsp;   #123
+</code></p>
+
+<p>Now we have a stack that actually looks like a stack. The string
+<code>"Hello,</code> world!"</code> is stacked on top of the dbref
+<code>#123.</code> Next <code>MUF</code> comes to the primitive
+<code>NOTIFY</code>.  Like operators, primitives are instructions to do
+things with data, rather than data to be put on the stack.
+<code>NOTIFY</code> is a predefined set of instructions that say `Take
+the string that's on top of the stack, go find the player with the dbref
+that's right underneath that string, and tell her the string. And forget
+you ever heard of this string and this dbref'. The program does what
+it's told, and the player with dbref <code>#123</code> suddenly sees
+Hello, world! on her screen (she won't see the quotation marks: they're
+what define the string as a string, and not part of the string itself).
+In the process, <code>NOTIFY</code> `uses up' the two pieces of data
+that it requires, and the stack is now empty. Since the program ends at
+this point, that's fine. But if we did something else that required data
+(like tack another <code>NOTIFY</code> on the end of our line), then
+we'd get `stack underflow', and the program would crash.
+
+<p><b>Watching the Stack with the Debug Mode:</b></p>
+
+You can see exactly what's going on as your program runs by putting it
+in debug mode. A <code>D</code> flag set on a program means `turn on
+debugging.'
+
+<p><code>
+====================================<br>
+&gt; @set tinker.muf = D<br>
+  Flag set.<br>
+&gt; test<br>
+  Debug&gt; 1 ("") (main)<br>
+  Debug&gt; 2 ("") V0<br>
+  Debug&gt; 2 ("", V0) @<br>
+  Debug&gt; 2 ("", #123) "Hello, world!"<br>
+  Debug&gt; 2 ("", #123, "Hello, world!") NOTIFY<br>
+  Hello, world!<br>
+  Debug&gt; 3 ("") EXIT<br>
+====================================
+</code></p>
+
+<p>The first bit of these lines, <code>Debug&gt;,</code> simply tells you
+that what follows is output from the debugger (as opposed to stuff like
+the line - <code>Hello, world!</code> - , which is output from the
+program). The number immediately following is the line number of the
+program that's currently executing. The items in parentheses, separated
+by commas, are the stack: the left end of the line is the `bottom' of
+the stack; the right end is the `top'. The last item (after the
+parentheses) is what <code>MUF</code> is reading at this exact point in
+the program's execution.</p>
+
+On the first line, our stack is <code>"",</code> an empty string (this
+is called a "null string"). So our discussion above was slightly
+inaccurate. When a program is called, the argument to the trigger action
+(whatever was typed after the trigger command) is pushed onto the stack.
+We typed just `test' by itself, so nothing was pushed onto the stack. In
+this case, `nothing' looks like "", a string with nothing in it. Run the
+program again, with an argument this time, to see the difference. Type
+`test pickle'. The first line of debugging will now look like...</p>
+
+<p><code>
+ &nbsp; &nbsp;     Debug&gt; 1 ("pickle") (main)
+</code></p>
+
+<p>That <code>V0</code> is our <code>me</code>. We call it <code>me</code>;
+<code>MUF</code> calls it <code>V0</code>... <code>V</code> for
+`variable', followed by a zero because it's the first variable it
+defined and computers start counting at zero. Study what happens to the
+stack as each successive item is read by <code>MUF</code> to get an idea
+of how the stack works.</p>
+
+<p>You might try adding another line to tinker.muf to see the stack at work
+a bit more clearly. Change tinker.muf so that now it reads...</p>
+
+<p><code>
+ &nbsp; &nbsp;    ( tinker.muf. A practice program. )<br>
+ &nbsp; &nbsp;<br>
+ &nbsp; &nbsp;     : main<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;    <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         me @ "Hello, world!" notify<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         "mink" "otter" "linsang" <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         <br>
+ &nbsp; &nbsp; &nbsp; &nbsp;         pop pop pop<br>
+ &nbsp; &nbsp;     ;<br>
+ &nbsp; &nbsp;<br>
+</code></p>
+
+<p><code>
+====================================<br>
+&gt; @edit tinker.muf<br>
+&gt; 1 99 d<br>
+&gt; i<br>
+&gt; ( tinker.muf. A practice program. ) <br>
+&gt;  <br>
+&gt; : main<br>
+&gt;     <br>
+&gt;     me @ "Hello, world!" notify<br>
+&gt;<br>
+&gt;     "mink" "otter" "linsang" <br>
+&gt;<br>
+&gt;     pop pop pop<br>
+&gt; ;<br>
+&gt; .<br>
+&gt; c<br>
+&gt; q<br>
+&gt; test<br>
+  Debug&gt; 1 ("") (main)<br>
+  Debug&gt; 2 ("") V0<br>
+  Debug&gt; 2 ("", V0) @<br>
+  Debug&gt; 2 ("", #123) "Hello, world!"<br>
+  Debug&gt; 2 ("", #123, "Hello, world!") NOTIFY<br>
+  Hello, world!<br>
+  Debug&gt; 3 ("") "mink"<br>
+  Debug&gt; 3 ("", "mink") "otter"<br>
+  Debug&gt; 3 ("", "mink", "otter") "linsang"<br>
+  Debug&gt; 3 ("", "mink", "otter", "linsang") POP<br>
+  Debug&gt; 3 ("", "mink", "otter") POP<br>
+  Debug&gt; 3 ("", "mink") POP<br>
+  Debug&gt; 4 ("") EXIT<br>
+====================================
+</code></p>
+
+<p>The <code>POP</code> primitive takes whatever's on top of the stack
+and gets rid of it. <code>POP</code> pops it off the top, into oblivion.
+If we added one more <code>POP,</code> the null string would be popped
+off the stack right at the end of the program, and it would exit with
+nothing on the stack. If we added yet another one, it would try to pop
+something that isn't there, and crash.</p>
+
+  <center>
+  <a href="muf4.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf6.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

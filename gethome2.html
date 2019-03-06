@@ -1,0 +1,100 @@
+<html>
+<head>
+  <title>The MUCK Manual: Getting a Home (cont'd)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="gethome.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="gethelp.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>Linking to the Rest of the Muck: Worst-Case Scenario</b></p>
+
+<p>If you want to link your home to the rest of the <code>MUCK,</code>
+and no programs or staff members are able to do this for you, you will
+need to work in concert with another player (the owner of the room where
+you want your home to be). The two of you will create two exits: one
+leading from your home to the other person's room, and one leading from
+the other person's room to your home. By working together, you will be
+able to work within a basic security restriction: a player may not
+attach an exit in a room owned by someone else.</p>
+
+<p>There are a number of ways to accomplish this, and a number of
+different orders in which the steps could be performed. The method and
+order in the following example will work fine. Cashmere has dug his den,
+and he has found a place where he'd like to put his home: The Deep Dark
+Woods, owned by Fin. Cashmere and Fin go to the Deep Dark Woods together
+and begin. Both players will set their rooms <code>Link_OK,</code> so
+that others may make exits that lead to them. Fin will make an exit in
+the Woods, leading to the Den (she owns the Woods, so she can make an
+exit there, and the Den is set <code>Link_OK,</code> so she can link the
+exit to the Den).  Cashmere will use the new exit to go to his Den. From
+there, he will make an exit leading out to the Woods (he owns the Den,
+so he can make an exit there, and the Woods are set
+<code>Link_OK,</code> so he can link the exit to the Woods)</p>
+
+<p><code>
+====================================<br>
+C&gt;@set #1234 = L &nbsp;&nbsp; <font color="red">(* Cash sets Den Link_OK *)</font><br> 
+&nbsp;&nbsp;Flag set.<br>
+F&gt;@set here = L &nbsp;&nbsp; <font color="red">(* Fin sets Woods Link_OK *)</font><br>
+&nbsp;&nbsp;Flag set.<br>
+F&gt;@open Cashmere's Den;cd &nbsp;&nbsp; <font color="red">(* Fin makes new exit *)</font><br>
+&nbsp;&nbsp;Exit created with number #5222<br>
+F&gt;"What's the dbref of your room?<br>
+&nbsp;&nbsp;Fin says, "What's the dbref of your room?"<br>
+C&gt;"#1234<br>
+&nbsp;&nbsp;Cashmere says, "#1234"<br>
+F&gt;@link cd = #1234 &nbsp;&nbsp; <font color="red">(* Fin links exit to Den *)</font><br>
+&nbsp;&nbsp;Linked to Cashmere's Den(#1234RJL).<br>
+F&gt;"OK, done. `Cashmere's Den', alias `cd'"<br>
+&nbsp;&nbsp;Fin says, "OK, done. `Cashmere's Den', alias `cd'"<br>
+C&gt;"What's the dbref here?<br>
+&nbsp;&nbsp;Cashmere says, "What's the dbref here?"<br>
+F&gt;"#3209<br>
+&nbsp;&nbsp;Fin says, "#3209"<br>
+C&gt;:nods... "Thanks. BRB."<br>
+&nbsp;&nbsp;Cashmere nods... "Thanks. BRB."<br>
+C&gt;cd &nbsp;&nbsp; <font color="red">(* Cash uses new exit to go to Den *)</font><br>
+&nbsp;&nbsp;Cashmere's Den(#1234RJL)<br>
+C&gt;@open Out;ou;o &nbsp;&nbsp; <font color="red">(* Cash makes a new exit *)</font><br>
+&nbsp;&nbsp;Exit created with number #5223<br>
+C&gt;@link out = #3209 &nbsp;&nbsp; <font color="red">(* Cash links exit to Woods *)</font><br>
+&nbsp;&nbsp;Linked to The Deep Dark Woods(#3209RJL)<br>
+C&gt;@set here = !L &nbsp;&nbsp; <font color="red">(* Cash sets Den not-Link_OK *)</font><br>
+C&gt;out &nbsp;&nbsp; <font color="red">(* Cash uses new exit to go to Woods *)</font><br>
+&nbsp;&nbsp;The Deep Dark Woods<br>
+&nbsp;&nbsp;.<br>
+&nbsp;&nbsp;.<br>
+&nbsp;&nbsp;.<br>
+<br>
+F&gt;@set here = !L &nbsp;&nbsp; <font color="red">(* Fin sets the woods not-Link_OK *)</font><br>
+====================================<br>
+</code></p>
+
+<p>Finally, note that it is quite feasible to simply move in with
+someone else. All that is necessary is that the other player's home be
+set <code>A</code> or <code>Abode.</code> This flag lets other players
+set it as their homes.  To do so, simply go there and type <code>@link
+me = here</code>.</p>
+
+  <center>
+  <a href="gethome.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="gethelp.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

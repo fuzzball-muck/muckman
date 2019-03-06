@@ -1,0 +1,230 @@
+<html>
+<head>
+  <title>The MUCK Manual: Pattern Matching</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="regnames.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="outtypes.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.1.6  Pattern Matching and Output Types</b></p>
+
+<p>As indicated, the <code>@find</code> command can be used to locate
+items with a given name. For more flexible searches, you can use pattern
+matching (a limited version of regular expressions) to find objects
+whose name matches a certain pattern, rather than matching the name
+string literally. A pattern consists of logical and grouping operators,
+wildcard characters, and/or literal characters. <code>@Find</code>
+&#151;and the related search commands <code>@owned, @contents</code>,
+and <code>@entrances</code> &#151; can be used with a subset of standard
+regular expression conventions, and additional parameters that specify
+`output types' (parameters for values such as memory used, time since
+used or modified, etc.)</p>
+
+<p>Suppose that you have created a Coral Reef area, with interesting
+scenery and games: players try to avoid sharks, wrestle octopi, and find
+sunken treasure before they run out of breath and are forced to return
+to the surface. To use the rooms and games, a player must have a
+snorkle. You have set up a <code>`make snorkle'</code> action linked to
+an <code>M2</code> program that changes an object into a snorkle (it
+sets all the properties used by your games). And, you have a Snorkle
+Rental Booth: a room where can people rent snorkles or read `The
+Complete Book of Snorkles' and `Field Guide to the Lesser Coral Reef'
+(help on how to use the area). The reef rooms have names like `Coral
+Reef, Sandy Wash' and `Coral Reef, Moray's Lair'. Occassionally, you
+need to find these objects... to recall and update your snorkles or
+track down your wandering shark-bot, for example.</p>
+
+<p>You can use literal matches to find objects whose name includes the
+string you are trying to match. Matching is not case-sensitive.</p>
+
+<p><code>
+====================================<br>
+&gt; @find complete book<br>
+&nbsp;  The Complete Book of Snorkles(#811SJ)<br>
+&nbsp;  1 objects found.<br>
+<br>
+&gt; @find coral reef<br>
+&nbsp;  Field Guide to the Lesser Coral Reef(#810SJ)<br>
+&nbsp;  Coral Reef, Sandy Wash(#802RJ)<br>
+&nbsp;  Coral Reef, Moray's Lair(#805RJ)<br>
+&nbsp;  Coral Reef, Near the Surface(#809RJ)<br>
+&nbsp;  Coral Reef, Weed-Shrouded Cave(#812RJ)<br>
+&nbsp;  Coral Reef, Sunken Hull(#815RJ)<br>
+&nbsp;  Coral Reef, Dark Cave(#817RJ)<br>
+&nbsp;  &lt;etc.&gt;<br>
+&nbsp;  &lt;etc.&gt;<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  16 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>*</code> and <code>?</code> wildcard characters allow you
+to search for names that match a pattern, rather than a literal string.
+The <code>*</code> asterix wildcard (sometimes called a `glob') matches
+any zero or more characters; the <code>?</code>  question mark matches
+any single character.</p>
+
+<p>You could find your two cave rooms in the coral reef area (and leave
+out other cave rooms you might have) by beginning putting a glob between
+`Coral' and `Cave'.</p>
+
+<p><code>
+====================================<br>
+&gt; @find coral*cave<br>
+&nbsp;  Coral Reef, Weed-Shrouded Cave(#812RJ)<br>
+&nbsp;  Coral Reef, Dark Cave(#817RJ)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  2 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>You could find all the reef rooms, leaving out the book `Field Guide
+to the Lesser Coral Reef', by searching for `reef' followed by a
+<code>?</code> question mark, which would require that there be at least
+one character after the string `reef'.</p>
+
+<p><code>
+====================================<br>
+&gt; @find reef?<br>
+&nbsp;  Coral Reef, Sandy Wash(#802RJ)<br>
+&nbsp;  Coral Reef, Moray's Lair(#805RJ)<br>
+&nbsp;  Coral Reef, Near the Surface(#809RJ)<br>
+&nbsp;  &lt;etc.&gt;<br>
+&nbsp;  &lt;etc.&gt;<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  15 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>{curly braces}</code> grouping operators delimit word
+patterns. To find all your snorkle objects and the `<code>make
+snorkle</code>' action, but omit `The Complete Book of Snorkles', you
+could delimit `snorkle' as a word, and not simply a string.</p>
+
+<p><code>
+====================================<br>
+&gt; @find {snorkle}<br>
+&nbsp;  Snorkle Rental Booth(#856RJ)<br>
+&nbsp;  make snorkle(#857ED)<br>
+&nbsp;  Snorkle 1(#854)<br>
+&nbsp;  Snorkle 2(#859)<br>
+&nbsp;  Snorkle 3(#881)<br>
+&nbsp;  Snorkle 4(#882)<br>
+&nbsp;  Snorkle 5(#883)<br>
+&nbsp;  Snorkle 6(#884)<br>
+&nbsp;  Snorkle 7(#885)<br>
+&nbsp;  Snorkle 8(#886)<br>
+&nbsp;  Snorkle 9(#887)<br>
+&nbsp;  Snorkle 10(#888)<br>
+&nbsp;  Snorkle 11(#889)<br>
+&nbsp;  Snorkle 12(#890)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  13 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>One can search for objects whose names include words from a group of
+valid words by separating the words with the `or' operator, a
+<code>|</code> vertical bar. For example, you could find all objects
+that include the words `sunken' or `surface'.</p>
+
+<p><code>
+====================================<br>
+&gt; @find {sunken|surface}<br>
+&nbsp;  Coral Reef, Near the Surface(#809RJ)<br>
+&nbsp;  Coral Reef, Sunken Hull(#815RJ)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  2 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>The <code>[square brackets]</code> grouping operators delimit
+character groups or ranges or characters. </p>
+
+<p>A group of characters in square brackets are treated as valid single
+characters. A find for <code>`coral reef, [wdn]'</code> would find the
+coral reef rooms with either `w', `d', or `n' following the string
+`coral reef,
+`.</p>
+
+<p><code>
+====================================<br>
+&gt; @find coral reef, [wdn]<br>
+&nbsp;  Coral Reef, Near the Surface(#809RJ)<br>
+&nbsp;  Coral Reef, Weed-Shrouded Cave(#812RJ)<br>
+&nbsp;  Coral Reef, Dark Cave(#817RJ)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  3 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>Instead of typing each valid character, you can also designate a
+range of valid characters, such as <code>[0-9],</code>
+<code>[a-z],</code> or <code>[A-Z].</code> You could find all your
+snorkle objects, which all have a numeric character following the string
+`Snorkle `, by using <code>[0-9]</code> as the range of characters.</p>
+
+<p><code>
+====================================<br>
+&gt; @find snorkle [0-9]<br>
+&nbsp;  Snorkle 1(#854)<br>
+&nbsp;  Snorkle 2(#859)<br>
+&nbsp;  Snorkle 3(#881)<br>
+&nbsp;  Snorkle 4(#882)<br>
+&nbsp;  Snorkle 5(#883)<br>
+&nbsp;  Snorkle 6(#884)<br>
+&nbsp;  Snorkle 7(#885)<br>
+&nbsp;  Snorkle 8(#886)<br>
+&nbsp;  Snorkle 9(#887)<br>
+&nbsp;  Snorkle 10(#888)<br>
+&nbsp;  Snorkle 11(#889)<br>
+&nbsp;  Snorkle 12(#890)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  12 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>Note that the <code>[square brackets]</code> delimit <em>character
+ranges</em>, not <em>numeric ranges</em>. A find for <code>`snorkles
+[1-12]'</code> won't work...  or won't work as one might intend. It
+finds all objects with either characters in the range of <code>`1 to
+1'</code> or the character <code>`2'</code> following the string
+`snorkles `.</p>
+
+<p><code>
+====================================<br>
+&gt; @find snorkle [1-12]<br>
+&nbsp;  Snorkle 1(#8454)<br>
+&nbsp;  Snorkle 2(#8459)<br>
+&nbsp;  snorkle 10(#8488)<br>
+&nbsp;  snorkle 11(#8489)<br>
+&nbsp;  snorkle 12(#8490)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  5 objects found.<br>
+====================================<br>
+</code></p>
+
+
+  <center>
+  <a href="regnames.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="outtypes.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<html>
+  <head>
+    <title>slomo.muf</title>
+  </head>
+  <body bgcolor="white">
+    <pre>
+@q
+@program SloMo.muf
+1 9999 d
+i
+( SloMo.muf, by Jessy @ FurryMUCK   10/17/95
+  
+  SloMo.muf makes 'slow exits', to simulate semi-realistic travel.  It is
+  a simpler, less flexible, and far more user-friendly companion to
+  TravelSim.muf.  The program moves the user to an 'enroute' room -- 
+  typically desc'd as a vehicle -- and, optionally, displays 'travel events'...
+  lists saying what happens along the way.  After travel events are 
+  displayed, the program moves the user to a destination room.
+  To use SloMo.muf, @dig a room where the user will be while travelling.
+  In rooms linked via SloMo.muf -- rooms served by the simulated vehicle,
+  as it were -- @open an exit and @link it to SloMo.muf.  On the *exit*, set
+  the following props, without # signs where a dbref is used:
+  
+    @set &lt;exit&gt; = destination:&lt;dbref of room where user will go&gt;
+    @set &lt;exit&gt; = enroute:&lt;dbref of vehicle room&gt;
+  
+  Those two props are necessary; the following are optional.
+   
+    lsedit &lt;exit&gt; = message&lt;N&gt;a list that will be shown to travellers, to 
+       be used for 'events' along the way.  N is the number of the message.
+       For a trip that includes three events, you would make lists 
+       message1, message2, and message3.&gt;
+    @set &lt;exit&gt; = sleepfor:&lt;number of seconds between events.  Defaults 
+       to 10&gt;
+ 
+  The vehicle room can have a standard desc, or it can have a desc that 
+  changes depending on which exit the player used, either for increased 
+  realism or to let one vehicle room act as several different kinds of 
+  vehicles.  To use changing descs,...
+  
+    @set &lt;exit&gt; = desc:&lt;desc text&gt;
+  
+  Since SloMo.muf adds an extra room to the process of moving from 
+  one room  to another, succ, osucc, drop, and odrop messages may not 
+  work as intended.  If so, leave these unset and instead set props _succ,
+  _osucc, _drop, and _odrop on the exit.  MPI embedded in these prop 
+  strings will be parsed as normal.
+  
+  SloMo.muf may be freely ported. Please comment any changes.
+)
+ 
+lvar counter1
+lvar counter2
+lvar thismessage
+lvar saypose
+: parsethis  ( d s -- s )   ( returns d's prop s, parsed for MPI )
+   dup 3 pick swap getpropstr 0 parseprop
+;
+   
+: tell  ( s --  )    ( notify user with s )
+   me @ swap notify
+;
+   
+: ltell  ( s --  )    ( notify players at loc with s )
+   me @ location swap 0 swap notify_exclude
+;
+   
+: thissucc  (  --  )    ( display an emulated @succ message )
+   trigger @ trigger @ "_succ" getpropstr "_succ" swap 0 parseprop
+   tell
+;
+   
+: thisosucc  (  --  )    ( display an emulated @osucc message )
+   trigger @ trigger @ "_osucc" getpropstr "_osucc" swap 0 parseprop
+   me @ name " " strcat swap strcat
+   ltell
+;
+   
+: thisdrop  (  --  )    ( display an emulated @drop message )
+   trigger @ trigger @ "_drop" getpropstr "_drop" swap 0 parseprop
+   tell
+;
+   
+: thisodrop  (  --  )    ( display an emulated @odrop message )
+   trigger @ trigger @ "_odrop" getpropstr "_odrop" swap 0 parseprop
+   me @ name " " strcat swap strcat
+   ltell
+;
+   
+: pause  (  --  )   ( sleep for set number of seconds, or default of 10 )
+   trigger @ "sleepfor" getpropstr dup not if
+      pop 10 sleep 
+   else
+      atoi sleep
+   then
+   exit
+;
+   
+: ridetell  ( s --  )  ( notify 'me' and anyone carried by me with s )
+    thismessage !
+    me @ thismessage @ notify
+    me @ "RIDE/ontaur" getpropstr if
+    "zrbrt"
+       me @ "RIDE/ontaur" getpropstr " " explode pop
+       begin
+          dup "zrbrt" smatch not if
+             1 strcut swap pop atoi dbref thismessage @ notify
+             else exit
+          then
+       repeat
+    then
+    "zzz"
+    exit
+;
+   
+: main
+  
+    trig "enroute"     getpropstr
+    trig "destination" getpropstr and not if
+      "You can't go that way." .tell
+      trig owner me @ dbcmp if
+        "You need to set the exit's `destination' and `enroute' "
+  "properties before it can be used with slomo.muf." strcat .tell 
+      then
+      exit
+    then
+( go background, so user can do other stuff while enroute )
+    background
+      
+( initialize counters)
+    "1" counter1 !
+    "1" counter2 !
+      
+( set enroute desc unique to triggering exit, if present)
+    trigger @ "desc" getpropstr if
+        trigger @ "enroute" getpropstr atoi dbref
+        trigger @ "desc" getpropstr
+        setdesc
+    then
+      
+( run emulated @succ/@osucc, if present )
+   trigger @ "_succ" getpropstr if
+      thissucc
+   then
+   trigger @ "_osucc" getpropstr if
+      thisosucc
+   then
+      
+( move user to enroute room )
+   me @ trigger @ "enroute" getpropstr atoi dbref moveto
+    pause
+      
+( loop, telling user trip event messages )
+    begin
+       
+( see if user has left enroute room prematurely.  if so, exit )
+    trigger @ "enroute" getpropstr atoi dbref
+    me @ location
+    dbcmp not if
+        exit
+    then
+      
+( any more messages in this loop?  if not, exit )
+       trigger @ "message" counter1 @ strcat "#/1" strcat getpropstr dup
+       not if
+      
+( run emulated @drop/@odrop, if present )
+          trigger @ "_drop" getpropstr if
+             thisdrop
+          then
+          trigger @ "_odrop" getpropstr if
+              thisodrop
+          then
+     
+( move to dest, and quit )
+          me @ trigger @ "destination" getpropstr atoi dbref moveto
+          exit
+       then
+      
+( reinitialize list counter )
+       "1" counter2 !
+      
+( quick loop telling user a listed message )
+       begin
+          trigger @ "message" counter1 @ strcat "#/" strcat 
+          counter2 @ strcat 
+          parsethis dup
+          not if
+             pop
+             "1" counter2 !
+             break
+          then
+          ridetell
+          pop
+          counter2 @ atoi 1 + intostr counter2 !
+       repeat
+      
+( loiter for the appointed amount of time )
+       pause
+       counter1 @ atoi 1 + intostr counter1 !
+      
+( let's try it again )
+    repeat
+;
+.
+c
+q
+    </pre>
+  </body>
+</html>

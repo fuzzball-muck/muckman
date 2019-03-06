@@ -1,0 +1,2958 @@
+<html>
+<head>
+  <title>The MUCK Manual: MUF Library Refrence</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mufref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="tutorials.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<p><b>3.2.4  MUF Library Reference</b></p>
+
+<p>The standard database and package of programs includes the following
+programming libraries:</p>
+
+<p>
+<table>
+  <tr>
+    <td>lib-case
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    </td>
+    <td>lib-edit
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    </td>
+    <td>lib-editor
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    </td>
+    <td>lib-index
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    </td>
+    <td>lib-lmgr
+    </td>
+  </tr><tr>
+	  <td>lib-look</td>
+    <td>lib-match</td>
+    <td>lib-mesg</td>
+    <td>lib-mesgbox</td>
+    <td>lib-props</td>
+  </tr><tr>
+    <td>lib-reflist</td>
+    <td>lib-strings</td>
+    <td>lib-stackrng</td>
+  </tr>
+</table>
+</p>
+
+<p>Note: Since the libararies were written, many of the functions they
+provide have been defined as <code>MUF</code> primitives. The libraries
+are retained in their current form for compatibility with existing
+programs. If a primitive  providing the functionality you want is
+available, it will be more efficient than a library call. For more
+information on using libraries, see <a href="muflibs.html">Section
+3.2.2</a>.</p>
+
+<p>Functions by Library:</p>
+
+<p>
+<center>
+<table border="0">
+  <tr>
+    <td colspan="5"><em>Lib-Case</em> <br>
+		An ingenious library that uses a few simple <code>$defines</code> to
+		give <code>MUF</code> `case' or `switch' handling like you would
+		find in other programming languages. See the program's header
+		comment for a good, terse explanation.
+    </td>
+  </tr><tr>
+    <td><code><a href="#case">case</a></td>
+    <td><code><a href="#default">default</a></td>
+    <td><code><a href="#end">end</a></td>
+    <td><code><a href="#endcase">endcase</a></td>
+    <td><code><a href="#default">default</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Edit</em> <br>
+    This library includes string-editing routines, with capabilities for
+    handling ranges of strings such as would be present by reading a
+    list or range from a list onto the stack.
+    </td>
+  </tr><tr>
+    <td><code><a href="#editcenter">EDITcenter</a></td>
+    <td><code><a href="#editcopy">EDITcopy</a></td>
+    <td><code><a href="#editdisplay">EDITdisplay</a></td>
+    <td><code><a href="#editformat">EDITformat</a></td>
+    <td><code><a href="#editfmt_rng">EDITfmt_rng</a></td>
+  </tr><tr>
+    <td><code><a href="#editjoin">EDITjoin</a></td>
+    <td><code><a href="#editjoin_rng">EDITjoin_rng</a></td>
+    <td><code><a href="#editindent">EDITindent</a></td>
+    <td><code><a href="#editleft">EDITleft</a></td>
+    <td><code><a href="#editlist">EDITlist</a></td>
+  </tr><tr>
+    <td><code><a href="#editmove">EDITmove</a></td>
+    <td><code><a href="#editreplace">EDITreplace</a></td>
+    <td><code><a href="#editright">EDITright</a></td>
+    <td><code><a href="#editsearch">EDITsearch</a></td>
+    <td><code><a href="#editshuffle">EDITshuffle</a></td>
+  </tr><tr>
+    <td><code><a href="#editsort">EDITsort</a></td>
+    <td><code><a href="#editsplit">EDITsplit</a></td>
+    <td><code><a href="#instring">instring</a></td>
+    <td><code><a href="#strasc">STRasc </a></td>
+    <td><code><a href="#strchr">STRchr</a></td>
+  </tr><tr>
+    <td><code><a href="#strright">STRright</a></td>
+    <td><code><a href="#rinstring">rinstring</a></td>
+  </tr><tr>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </td>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </td>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </td>
+    <td><code> 
+    <nobr>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </nobr>
+    </td>
+    <td><code>&nbsp;</td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Editor</em><br>
+    A set of functions providing an interface with the list editor.
+    Note: this library is in the public domain, but its terms of use
+    state that the author of the library, Foxen, must be credited in the
+    header comment of any program that makes use of it.
+    </td>
+  </tr><tr>
+    <td><code><a href="#editor">EDITOR</a></td>
+    <td><code><a href="#editorloop">EDITORloop</a></td>
+    <td><code><a href="#editorparse">EDITORparse</a></td>
+    <td><code><a href="#editorheader">EDITORheader</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Index</em><br>
+    This library provides a set of routines for handling `indexes'. See
+    <a href="#indexes">Indexes</a>. <em>Note</em>: There are two
+    versions of this library in circulation. Currently,
+    <code>basedb.db</code> and <code>fbmuf</code> provide the older
+    version. The second version &#151; which may or may not be available
+    on your <code>MUCK</code> &#151; provides the additional public
+    routines <code>index-setmatchstr,</code>,
+    <code>index-getmatchstr,</code> and <code>index-propname.</code> Use
+    <code>@view $lib/index</code> to determine which version you have.
+    The standard version is discussed here. Also, the standard version
+    as implemented by <code>basedb.db</code> and the upload script in
+    <code>fbmuf</code> only set <code>_def/</code> props in the
+    <code>.period-prefix</code> form: routine names must be joined with
+    a leading period in your code, unless the wizards on your
+    <code>MUCK</code> have added the no-period form.  Example: to use
+    the routine <code>index-add,</code> put <code>.index-add</code> in
+    your code. (The newer version may or may not require the
+    <code>.format</code>). There are some problems with the
+    implementation of several functions in this library, as discussed in
+    individual entries below.  </td>
+  </tr><tr>
+    <td><code><a href="#index-add">index-add</a></td>
+    <td><code><a href="#index-add-sort">index-add-sort</a></td>
+    <td><code><a href="#index-delete">index-delete</a></td>
+    <td><code><a href="#index-envmatch">index-envmatch</a></td>
+    <td><code><a href="#index-match">index-match</a></td>
+  </tr><tr>
+    <td><code><a href="#index-matchrange">index-matchrange</a></td>
+    <td><code><a href="#index-remove">index-remove</a></td>
+    <td><code><a href="#index-set">index-set</a></td>
+    <td><code><a href="#index-value">index-value</a></td>
+    <td><code><a href="#index-write">index-write</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Match</em><br>
+    A library of matching functions.
+    </td>
+  </tr><tr>
+   <td><code><a href="#noisy_match">.noisy_match</a></td>
+   <td><code><a href="#noisy_pmatch">.noisy_pmatch</a></td>
+   <td><code><a href="#controls">.controls</a></td>
+   <td><code><a href="#match_controlled">.match_controlled</a></td>
+   <td><code><a href="#multi_rmatch">.multi_rmatch</a></td>
+  </tr><tr>
+   <td><code><a href="#table_match">.table_match</a></td>
+   <td><code><a href="#std_table_match">.std_table_match</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-LMGR</em><br>
+    Lib-Lmgr is one of several libraries holding functions used by
+    <code>lsedit.</code>  These functions are also useful for other
+    programs that need to manipulate lists without going through the
+    list editor, or to create their own list editors. <em>Note</em>: The
+    documentation provided in the program's header comment, and listed
+    with <code>@view,</code> is inaccurate. The function
+    <code>LMGR-CopyRange</code> (listed in the header) does not exist,
+    but the following undocumented public functions do: <a
+    href="#lmgr-putbrange"><code>LMGR-PutBRange,</code></a> <a
+    href="#lmgr-getcount"><code>LMGR-GetCount,</code></a> and <a
+    href="#lmgr-setcount"><code>LMGR-SetCount.</code></a> The public
+    function <code>LMGR-ExtractRange</code> (undocumented, but included
+    as a <code>_def/</code>) does not work.  Despite the inaccuracies of
+    documentation, the functions provided by <code>Lib-Lmgr</code> are
+    useful and efficient, and provide a number of capabilities not
+    duplicated by primitives.
+    </td>
+  </tr><tr>
+    <td><code><a href="#lmgr-clearelem"><nobr>LMGR-ClearElem</nobr></a></td>
+    <td><code><a href="#lmgr-clearrange"><nobr>LMGR-ClearRange</nobr></a></td>
+    <td><code><a href="#lmgr-deletelist"><nobr>LMGR-DeleteList</nobr></a></td>
+    <td><code><a href="#lmgr-deleterange"><nobr>LMGR-DeleteRange</nobr></a></td>
+    <td><code><a href="#lmgr-fullrange"><nobr>LMGR-FullRange</nobr></a></td>
+  </tr><tr>
+    <td><code><a href="#lmgr-getbrange"><nobr>LMGR-GetBRange</nobr></a></td>
+    <td><code><a href="#lmgr-getcount"><nobr>LMGR-GetCount</nobr></a></td>
+    <td><code><a href="#lmgr-getelem"><nobr>LMGR-GetElem</nobr></a></td>
+    <td><code><a href="#lmgr-getlist"><nobr>LMGR-Getlist</nobr></a></td>
+    <td><code><a href="#lmgr-getrange"><nobr>LMGR-GetRange</nobr></a></td>
+  </tr><tr>
+    <td><code><a href="#lmgr-insertrange"><nobr>LMGR-InsertRange</nobr></a></td>
+    <td><code><a href="#lmgr-moverange"><nobr>LMGR-MoveRange</nobr></a></td>
+    <td><code><a href="#lmgr-putbrange"><nobr>LMGR-PutBRange</nobr></a></td>
+    <td><code><a href="#lmgr-putelem"><nobr>LMGR-PutElem</nobr></a></td>
+    <td><code><a href="#lmgr-putrange"><nobr>LMGR-PutRange</nobr></a></td>
+  </tr><tr>
+    <td><code><a href="#lmgr-setcount">LMGR-SetCount</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Look</em><br>
+    A set of routines adapted to `look' functions. <em>Note</em>: the
+    standard version of <code>lib-look</code> as implemented by
+    <code>basedb.db</code> and the upload script in <code>fbmuf</code>
+    only set <code>_def/</code> props in the <code>.period-prefix</code>
+    form: routine names must be joined with a leading period in your
+    code, unless the wizards on your <code>MUCK</code> have added the
+    no-period form.  Example: to use the routine
+    <code>`safecall',</code> put <code>`.safecall'</code> in your code.  
+    </td>
+  </tr><tr>
+    <td><code><a href="#contents-filter">contents-filter</a></td>
+    <td><code><a href="#cmd-look">cmd-look</a></td>
+    <td><code><a href="#db-desc">db-desc</a></td>
+    <td><code><a href="#dbstr-desc">dbstr-desc</a></td>
+    <td><code><a href="#get-contents">get-contents</a></td>
+  </tr><tr>
+    <td><code><a href="#list-contents">list-contents</a></td>
+    <td><code><a href="#long-display">long-display</a></td>
+    <td><code><a href="#safecall">safecall</a></td>
+    <td><code><a href="#short-display">short-display</a></td>
+    <td><code><a href="#short-list">short-list</a></td>
+  </tr><tr>
+    <td><code><a href="#str-desc">str-desc</a></td>
+    <td><code><a href="#unparse">unparse</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Mesg</em><br>
+    This library provides functions for handling `messages'. See <a
+    href="#messages">Messages</a>.
+    </td>
+  </tr><tr>
+    <td><code><a href="#msg-append">MSG-append</a></td>
+    <td><code><a href="#msg-count">MSG-count</a></td>
+    <td><code><a href="#msg-create">MSG-create</a></td>
+    <td><code><a href="#msg-destroy">MSG-destroy</a></td>
+    <td><code><a href="#msg-info">MSG-info</a></td>
+  </tr><tr>
+    <td><code><a href="#msg-insitem">MSG-insitem</a></td>
+    <td><code><a href="#msg-item">MSG-item</a></td>
+    <td><code><a href="#msg-message">MSG-message</a></td>
+    <td><code><a href="#msg-setinfo">MSG-setinfo</a></td>
+    <td><code><a href="#msg-setitem">MSG-setitem</a></td>
+  </tr><tr>
+    <td><code><a href="#msg-delitem">MSG-delitem</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Mesgbox</em><br>
+    A library of message and message-box handling routines. See <a
+    href="#messages">Messages</a>.
+    </td>
+  </tr><tr>
+    <td><code><a href="#mbox-append">MBOX-append</a></td>
+    <td><code><a href="#mbox-badref_">MBOX-badref?</a></td>
+    <td><code><a href="#mbox-count">MBOX-count</a></td>
+    <td><code><a href="#mbox-create">MBOX-create</a></td>
+    <td><code><a href="#mbox-delmesg">MBOX-delmesg</a></td>
+  </tr><tr>
+    <td><code><a href="#mbox-destroy">MBOX-destroy</a></td>
+    <td><code><a href="#mbox-insmesg">MBOX-insmesg</a></td>
+    <td><code><a href="#mbox-message">MBOX-message</a></td>
+    <td><code><a href="#mbox-msginfo">MBOX-msginfo</a></td>
+    <td><code><a href="#mbox-num2ref">MBOX-num2ref</a></td>
+  </tr><tr>
+    <td><code><a href="#mbox-ref2num">MBOX-ref2num</a></td>
+    <td><code><a href="#mbox-ref2prop">MBOX-ref2prop</a></td>
+    <td><code><a href="#mbox-setinfo">MBOX-setinfo</a></td>
+    <td><code><a href="#mbox-setmesg">MBOX-setmesg</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Props</em><br>
+    This library contains several useful property-handling functions.
+    </td>
+  </tr><tr>
+    <td><code><a href="#setpropstr">setpropstr</a></td>
+    <td><code><a href="#envprop">envprop</a></td>
+    <td><code><a href="#envsearch">envsearch</a></td>
+    <td><code><a href="#locate-prop">locate-prop</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Reflist</em><br>
+    A library of reflist-handling routines. See <a
+    href="#reflists">Reflists</a>.
+    </td>
+  </tr><tr>
+    <td><code><a href="#ref-add">REF-add</a></td>
+    <td><code><a href="#ref-delete">REF-delete</a></td>
+    <td><code><a href="#ref-first">REF-first</a></td>
+    <td><code><a href="#ref-next">REF-next</a></td>
+    <td><code><a href="#ref-inlist_">REF-inlist?</a></td>
+  </tr><tr>
+    <td><code><a href="#ref-list">REF-list</a></td>
+    <td><code><a href="#ref-allrefs">REF-allrefs</a></td>
+    <td><code><a href="#ref-filter">REF-filter</a></td>
+    <td><code><a href="#ref-editlist">REF-editlist</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Strings</em><br>
+    This library provides a number of routines for formating strings.
+    </td>
+  </tr><tr>
+    <td><code><a href="#instring">instring</a></td>
+    <td><code><a href="#rinstring">rinstring</a></td>
+    <td><code><a href="#strasc">STRasc</a></td>
+    <td><code><a href="#strblank_">STRblank?</a></td>
+    <td><code><a href="#strchar">STRchar</a></td>
+  </tr><tr>
+    <td><code><a href="#strcenter">STRcenter</a></td>
+    <td><code><a href="#strfillfield">STRfillfield</a></td>
+    <td><code><a href="#strleft">STRleft</a></td>
+    <td><code><a href="#strrsplit">STRrsplit</a></td>
+    <td><code><a href="#strright">STRright</a></td>
+  </tr><tr>
+    <td><code><a href="#strsls">STRsls</a></td>
+    <td><code><a href="#strsms">STRsms</a></td>
+    <td><code><a href="#strsplit">STRsplit</a></td>
+    <td><code><a href="#strstrip">STRstrip</a></td>
+    <td><code><a href="#strsts">STRsts</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+    <td colspan="5"><em>Lib-Stackrng</em><br>
+    This library provides routines for handling items within a specified
+    range of the stack. See <a href="#ranges">Ranges</a>
+    </td>
+  </tr><tr>
+    <td><code><a href="#sr-catrng">sr-catrng</a></td>
+    <td><code><a href="#sr-copyrng">sr-copyrng</a></td>
+    <td><code><a href="#sr-deleterng">sr-deleterng</a></td>
+    <td><code><a href="#sr-extractrng">sr-extractrng</a></td>
+    <td><code><a href="#sr-filterrng">sr-filterrng</a></td>
+  </tr><tr>
+    <td><code><a href="#sr-insertrng">sr-insertrng</a></td>
+    <td><code><a href="#sr-poprng">sr-poprng</a></td>
+    <td><code><a href="#sr-swaprng">sr-swaprng</a></td>
+  </tr><tr>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+    <td><code> &nbsp; </td>
+  </tr><tr>
+</table>
+</center>
+</p>
+<hr>
+
+<a name="a">
+<a name="b">
+<a name="c">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="case">
+<p><code>case &nbsp; (  --  )</code></p>
+
+<p>Begins a <code>case</code> statement. See header for lib-case.
+(Lib-Case)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="cmd-look">
+<p><code>cmd-look  &nbsp; ( s --  )</code></p>
+
+<p>Does a <code>match</code> function on <code>s,</code> then calls
+<code>db-desc</code> with the results, simulating the server
+<code>look</code> command. (Lib-Look)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+       
+
+<a name="contents-filter">
+<p><code>contents-filter  &nbsp; ( a d -- d' ... d'' i )</code></p>
+
+<p>Takes the address of a `filter' function and a dbref, and returns the
+objects from <code>d's</code> contents for which the filter function
+returns true (<code>1</code>) as a range on the stack. The first item
+found (the `top' of a <code>Contents</code> or <code>Carrying</code>
+list) will be at the start of the range. Example:</p>
+
+<p><pre>
+    : PlayerCheck   ( d -- i )  
+        player? if 1 else 0 then
+    ;
+    : GetPlayers   ( -- d' ... d'' i )
+        `PlayerCheck me @ location contents-filter
+    ;
+</pre></p>
+
+<p>This code puts all the players in the room on the stack as a range of
+dbrefs, filtering out objects of other types. <code>`PlayerCheck</code>
+(a function name joined with an <code>`</code> apostrophe) puts the
+address of the the filter function <code>PlayerCheck</code> function on
+the stack. (Lib-Look)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="controls">
+<p><code>.controls  &nbsp; ( d1 d2 -- i )</code></p>
+
+<p>Returns true if player <code>d1</code> controls object
+<code>d2.</code> The same capability is provided by the <a
+href="mufref.html#controls"><code>CONTROLS</code></a> primitive.
+(Lib-Match)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+
+<a name="d">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="db-desc">
+<p><code>db-desc   &nbsp; ( d --  )</code></p>
+
+<p>Prints a description of <code>d,</code> including the name and
+triggering succ and fail if <code>d</code> is a room. The desc is not
+parsed for <code>MPI.</code> Programs run with <code>d</code> stored in
+the variable <code>trigger.</code> (Lib-Look)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="dbstr-desc">
+<p><code>dbstr-desc  &nbsp; ( d s --  )</code></p>
+
+<p>Prints <code>s</code> as a description, like <code>str-desc,</code>
+using <code>d</code> as the effective trigger value. The string is not
+parsed for <code>MPI.</code> (Lib-Look)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="default">
+<p><code>default &nbsp; ( x --  )</code></p>
+
+<p>Declares default action to take if no cases in a <code>case</code>
+statement test true. See header for lib-case. (Lib-Case)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="e">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="editcenter">
+<p><code>EDITcenter  &nbsp; ( range ... offset i1 i2 i3 -- range' )</code></p>
+
+<p>Center justifies all strings between <code>position1</code> and
+<code>position2</code> for a screen <code>i1</code> characters wide.
+That is, the strings are padded to a length of <code>i1</code>
+characters with leading and trailing spaces.  (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="editcopy">
+<p><code>EDITcopy  &nbsp;  ( {rng} ... offset dest start end -- {rng'}
+... )</code></p>
+      
+<p>Copies text within a string range from one line to another, inserting
+it in the new location. (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="editdisplay">
+<p><code>EDITdisplay  &nbsp; ( range --  )</code></p>
+
+Displays the range of strings on the stack to the user. See also <a
+href="#editlist"><code>EDITlist.</code></a> (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="editformat">
+<p><code>EDITformat  &nbsp; ( range ... c i1 i2 -- range' )</code></p>
+
+<p>Formats the strings in <code>range</code> to strings between right
+margin <code>i1</code> and wrap margin <code>i2</code> in length. Short
+strings are joined to fill this field width; long strings are split at
+the last occurance of split character <code>c</code> found between
+<code>i1</code> and <code>i2.</code> See aslo <a
+href="#editfmt_rng"><code>EDITfmt_rng.</code></a> (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="editfmt_rng">
+<p><code>EDITfmt_rng  &nbsp; ( range ... offset i position1 position2 --
+range' )</code></p>
+
+<p>Formats the strings of the range between <code>position1</code> and
+<code>position2</code> to strings <code>i</code> characters wide,
+splitting long strings and joining short strings. A string that consists
+only of spaces is considered a paragraph delimiter and is not joined.
+<code>i</code> must be equal to or greater then <code>20.</code> The
+string at <code>position1</code> must <code>2</code> or more characters
+long. See also <a href="#editformat"><code>EDITformat.</code></a>
+(Lib-Edit)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="editindent">
+<p><code>EDITindent  &nbsp; ( range ... offset i position1 position2 --
+range' )</code></p>
+
+<p>Indents all strings between <code>position1</code> and
+<code>position2</code> by <code>i</code> spaces. That is, the strings
+are padded with <code>i</code> space characters. If <code>i</code> is a
+negative number, it reduces indentation by <code>i</code> characters,
+but will not unindent past the left margin. (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="editjoin">
+<p><code>EDITjoin  &nbsp; ( range -- s )</code></p>
+
+<p>Joins a range of strings on the stack into one string.
+(Lib-Edit)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+
+<a name="editjoin_rng">
+<p><code>EDITjoin_rng  &nbsp; ( range ... offset position1 position2 --
+range' )</code></p>
+
+<p>Joins the lines of the subrange between <code>position1</code> and
+<code>position2</code> into a single string, returning the string range
+that results. Leading and trailing spaces are stripped from the strings
+to be joined, and a single space is inserted in the combined string at
+points where strings were joined. See also <a
+href="#editjoin"><code>EDITjoin.</code></a> (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="editleft">
+<p><code>EDITleft  &nbsp; ( range ... offset position1 position2 --
+range' )</code></p>
+
+<p>Left justifies all strings between <code>position1</code> and
+<code>position2.</code> That is, leading spaces are stripped from these
+strings. (Lib-Edit)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+ 
+<a name="editlist">
+<p><code>EDITlist  &nbsp; ( range ... offset i1 i2 i3 -- range
+)</code></p>
+      
+<p>Prints the strings <code>i2</code> to <code>i3</code> from range to
+the user's screen. If <code>i1</code> is true, the lines will be
+prepended with line numbers. See also <a
+href="#editdisplay"><code>EDITdisplay.</code></a> (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="editor">
+<p><code>EDITOR  &nbsp; ( range -- range' s )</code></p>
+
+<p>Puts the user in the list editor, using range as the values for the
+list. The list can be interactively edited as with command lsedit. Exits
+with the modified range and the editor's exit string (<code>end</code>
+or <code>abort</code>) on the stack. See also <a
+href="#editorloop"><code>EDITORloop.</code></a> (Lib-Editor)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="editorheader">
+<p><code>EDITORheader  &nbsp; (  --  )</code></p>
+
+<p>Prints the standard header informing the user that he is entering the
+list editor and giving succinct help. Called automatically by
+<code>EDITOR.</code></p>
+  
+<p><code><center>
+  &lt; Entering editor.  Type `.h' on a line by itself for help.
+  &gt;<br>
+  &lt; `.end' will exit the editor.   `.abort' aborts the edit.
+  &gt;<br>
+  &lt;  Poses and says will pose and say as usual.  To start a
+  &gt;<br>
+  &lt;   line with : or " just preceed it with a period  (`.')   &gt;
+</center></code></p>
+
+(Lib-Editor)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="editorloop">
+<p><code>EDITORloop  &nbsp; ( range s1 i1 -- range' s1 i2 s2 i3 i4 s3
+)</code></p>
+
+<p>Puts the user in the list editor, using <code>range</code> as the
+values for the lines of the list. The list can be interactively edited
+as with command <code>lsedit.</code> The <a
+href="#editor"><code>EDITOR</code></a> function provides similar
+functionality; <code>EDITORloop</code> gives greater control over data
+passed to and from the editor.</p>
+
+<p><code>EDITORloop</code> takes a range, a space-separated string
+<code>s1</code> containing any commands that can be used to return from
+the editor in addition to <code>end</code> and <code>abort,</code>
+cursor position <code>i1,</code> and the first editor command to be
+executed.</p>
+
+<p><code>EDITORloop</code> returns the modified range, the string
+<code>s1,</code> the cursor postion at time-of-exit, exit arguments
+<code>s2,</code> <code>i3,</code> and <code>i4,</code> and the command
+string used to exit the editor on the stack. Exit arguments are
+parameters returned to the program when <code>EDITORloop</code> exits.
+They follow the syntax of other editor commands:  
+
+<p><code>
+  &nbsp; command start_line end_line = argument_string  
+</code></p>
+
+<p><code>start_line</code> is <code>i3.</code> <code>end_line</code> is
+<code>i4.</code> <code>argument_string</code> is <code>s2.</code></p>
+
+<p>Example: Suppose you create a program that allows players included in a
+list holding their dbrefs to update documents in a news reader program.
+The program includes and <code>#admin</code> function that puts the user
+into the editor to modify this list. You want to include, in your
+version of the editor, a command that shows the names of the players who
+are currently in the list, optionally followed by information such as
+the last time they logged on or their position/title in the
+<code>MUCK</code> news staff. The user could then display the names (and
+other information) for players whose dbrefs are in the list, or a range
+from the list, by entering <code>.names</code> or <code>.names
+&lt;range&gt;</code> or <code>.names [&lt;range&gt;] =
+&lt;field&gt;.</code>  You could do this by reading the list onto the
+stack and supplying <code>names</code> as a command string that would
+cause <code>EDITORloop</code> to return, with code such as the
+following:</p>
+   
+<p><pre>
+   "_staff" trig LMGR-Getlist       (*read list onto stack as a range*)
+   "names" over 1 + ".i" EDITORloop (*put user in editor, ready to insert
+                                      text, at the next free line, with
+                                      `names' defined as a .command that
+                                      will cause EDITORloop to return*)
+</pre></p>
+ 
+<p>If the user typed <code>.names</code> while at line 6 of a 12-line
+list of dbrefs, the following would be put on the stack:</p>
+   
+<p><code>
+  &nbsp; ... #123, 12, "names", 6, "", 0, 0, "names"
+</code></p>
+   
+<p>Using comparison primitives such as <code>SMATCH</code> or <code>STRINGCMP,</code> you could check the top value on the stack and, if it is the string <code>"names"</code> (as it is here), execute a <code>ShowNames</code> function in your program, then return to the editor with another instance of <code>EDITORloop.</code></p>
+
+<p>If the user had typed <code>.names 1 8,</code> the following would be
+put on the stack:</p>
+
+<p><code>
+  &nbsp; ... #123, 12, "names", 6, "", 1, 8, "names"
+</code></p>
+   
+<p>Your <code>ShowNames</code> function would need to use the values
+<code>1</code> and <code>8</code> to show only names for the dbrefs in
+lines 1 - 8. </p>
+
+<p>If the user had typed <code>.names 1 - 8 = title,</code> the
+following would be put on the stack:</p>
+
+<p><code>
+  &nbsp; ... #123, 12, "names", 6, "title", 1, 8, "names"
+</code></p>
+
+<p><code>ShowNames</code> would use this information to show the names
+of players listed in lines 1 - 8 of the list, concattenated with their
+title... perhaps a value stored in their <code>_news/title</code>
+property.  See also <a href="#editor"><code>EDITOR.</code></a>
+(Lib-Editor)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="editorparse">
+<p><code>EDITORparse  &nbsp; ( range s1 i1 s2 --  range' s1 i1 i2 )</code></p>
+
+<p>Parses range with the editor command <code>s2,</code> returning the
+modified range, the original paramaters <code>s1</code> and
+<code>i1,</code> and the last line handled as <code>i2.</code></p>
+ 
+Example:
+   
+<p><code>
+  &nbsp; "mink" "otter" "linsang" 3
+  &nbsp; "quit" 1 ".indent 1 3 = 5" EDITORparse
+</code></p>
+
+<p>This would enter and exit the editor, indenting each string in the
+range by 5 spaces, with the last line handled on top of the stack as
+<code>i2.</code> The standard editor output would be shown to the user:
+
+<p><code>
+  &nbsp;  &lt; Indented 3 lines starting at line 1, 5 columns. &gt;
+</code></p>
+
+<p>(Lib-Editor)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="editmove">
+<code>EDITmove  &nbsp; ( {rng} ... offset dest start end -- {rng'} ...
+)</code></p>
+
+<p>Moves text within a string range from one line to another location,
+deleting the original. (Lib-Edit)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="editreplace">
+<p><code>EDITreplace  &nbsp; ( range ... offset s1 s2 position1
+position2 -- range' )</code></p>
+
+<p>Performs a case-sensitive seach of the range items from
+<code>position1</code> to <code>position1,</code> inclusive, for all
+occurances of string <code>s1,</code> replacing each with string
+<code>s2.</code> (Lib-Edit)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="editright">
+<p><code>EDITright  &nbsp; ( range ... offset i position1 position2 --
+range' )</code></p>
+
+<p>Right justifies all strings between <code>position1</code> and
+<code>position2</code> for a screen width of <code>i</code> characters.
+That is, these strings are padded with trailing spaces to a string
+length of <code>i</code> characters. (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="editsearch">
+<p><code>EDITsearch  &nbsp; ( range ... offset s position -- range ... i2
+)</code></p>
+    
+<p>Perfroms a case-sensitive search of the strings in <code>range</code>
+for an occurance of string <code>s.</code> The search begins with the
+item at <code>position.</code> <code>i2</code> is the position of the
+first item that includes an occurance of string <code>s.</code>
+(Lib-Edit)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="editshuffle">
+<p><code>EDITshuffle  &nbsp; ( range -- range' )</code></p>
+
+<p>Randomizes the order items in a range. (Lib-Edit)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+ 
+<a name="editsort">
+<p><code>EDITsort  &nbsp; ( range i1 i2 -- range' )</code></p>
+
+<p>Alphabetically sorts <code>range.</code> If <code>i1</code> is true,
+the sort will be in descending order: <code>"aardvark"</code> would be
+near the top of the stack and <code>"zebra"</code> would be near the
+bottom. If <code>i2</code> is true, the sort will be case-sensitive:
+<code>"Leviathon"</code> would be come before <code>"lapidary",</code>
+since <code>"L"</code> and <code>"l"</code> are two different characters
+in a case-sensitive comparison, with <code>"L"</code> preceding
+<code>"l".</code> (Lib-Edit)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="editsplit">
+<p><code>EDITsplit  &nbsp; ( s c i1 i2 -- range )</code></p>
+
+<p>Splits string <code>s</code> on the last split character
+<code>c</code> found between right margin <code>i1</code> and wrap
+margin <code>i2.</code> If no split character is found in this range,
+the string is split at right margin <code>i1.</code> (Lib-Edit)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="end">
+<p><code>end &nbsp; (  --  )</code></p>
+
+<p>Declares the end of an action block in a <code>case</code> statement.
+See header for lib-case. (Lib-Case)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="endcase">
+<p><code>endcase &nbsp; (  --  )</code></p>
+
+<p>Ends a <code>case</code> statement. See header for lib-case.
+(Lib-Case)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="envprop"> 
+<p><code>envprop  &nbsp; ( d s -- s' )</code></p>
+
+<p>Searches up the environment tree from object <code>d,</code> looking
+for a property with the name <code>s.</code> <code>Envprop</code>
+returns the value stored in the first occurance of prop <code>s</code>
+found, or a null string if it wasn't found. (Lib-Props)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="envsearch">
+<p><code>envsearch  &nbsp; ( d s -- d' )</code></p>
+
+<p>Searches up the environment tree from object <code>d</code> for an
+occurance of property <code>s.</code> <code>Envsearch</code> returns the
+dbref of the first object the property is found on, or <code>#-1</code>
+if the propety is not found.  (Lib-Props)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="f">
+<a name="g">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="get-contents">
+<p><code>get-contents  &nbsp; ( d -- d' ... d'' i )</code></p>
+
+<p>Passes the contents of object <code>d</code> through a standard
+filter that emulates a server contents list: dark rooms do not have
+contents lists, unless you control the objects or the room; dark objects
+you don't control do not show; you do not show. Those objects which
+would show in a <code>Contents/Carrying</code> list by these criteria
+are returned as a range of dbrefs. The first contained object (the `top'
+of a <code>Contents</code> or <code>Carrying</code> list) is at the
+start of the range. (Lib-Look)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="h">
+<a name="i">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="index-add">
+<p><code>index-add  &nbsp; ( d s1 s2 s3 -- i )</code></p>
+
+<p>Adds name <code>s2,</code> associated with value <code>s3,</code> to
+index <code>s1</code> on object <code>d.</code> Returns error code
+<code>i.</code> If <code>s2</code> is already a member of the index
+(matching exactly), index-add returns error code <code>0,</code> and no
+changes are made to the index.  Otherwise, the name and value are added
+to the index and error code <code>1</code> is returned (operation
+successful). See also <a href="#indexes">Indexes</a> and <a
+href="#std-index-add"><code>std-index-add</code></a>. (Lib-Index)
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-add-sort">
+<p><code>index-add-sort  &nbsp; ( d s1 s2 s3 -- i )</code></p>
+
+<p>Like <code>index-add,</code> <code>index-add-sort</code> adds name <code>s2</code> and value <code>s3</code> to index <code>s1,</code> stored on object <code>d.</code> index-add always adds a name to the end of the index; <code>Index-add-sort,</code> <em>in theory</em>, inserts the new name in alphabetical order, immediately before the element it would precede alphabetically.  <em>In theory</em>, if names are always added to the index with this routine, the index will remain in alphabetical order.  However, this function does not behave as advertised: like <code>index-add,</code> it always puts new names at the end of the index. Returns error code <code>i:</code> <code>1</code> is <code>`no error: item added',</code> <code>0</code> is <code>`error: name already a member of index; index unchanged'.</code> See also <a href="#indexes">Indexes</a> and <a href="#std-index-add"><code>std-index-add</code></a>.  (Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-delete">
+<p><code>index-delete  &nbsp; ( d s1 s2 --  )</code></p>
+
+<p>Removes name <code>s2,</code> and its associated value, from index
+<code>s1</code> on object <code>d,</code> with no error checking. See
+also <a href="#indexes">Indexes</a> and <a
+href="#std-index-delete"><code>std-index-delete</code></a>. (Lib-Index)
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-first">
+<p><code>index-first &nbsp; ( d s1 -- s2 )</code></p>
+
+<p>Returns the first name in index <code>s1</code> on object
+<code>d</code> as <code>s2.</code> See also <a
+href="#indexes">Indexes</a> and <a
+href="#std-index-first"><code>std-index-first</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-envmatch">
+<p><code>index-envmatch  &nbsp; ( d s1 s2 -- d2 s3 i )</code></p>
+
+<p>Returns name <code>s2</code> from index <code>s1</code> on object
+<code>d</code> as <code>s3,</code> the object on which the name was
+found as <code>d2,</code> and error code <code>i</code> (<code>1</code>
+if no error; <code>0</code> if no match).  If no match is found on
+<code>d,</code> continues searching up the environment tree, checking
+indexes called <code>s2</code> on these objects as well. If index
+<code>s1</code> is was created with <code>index-add,</code> or with
+<code>index-setmatchstr</code> with the <code>`w'</code> name parameter,
+<code>index-envmatch</code> will return the first match found. That is,
+there is no check for ambiguity. See also <a href="#indexes">Indexes</a>
+and <a href="#std-index-envmatch"><code>std-index-envmatch</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-last">
+index-last  ( d s1 -- s2 )
+
+<p><em>In theory</em>, returns the last name in index <code>s1</code> on
+object d as <code>s2.</code> In practice, returns a null string. See
+also <a href="#indexes">Indexes</a> and <a
+href="#std-index-last"><code>std-index-last</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-match">
+<p><code>index-match  &nbsp; ( d s1 s2 -- s2' i )</code></p>
+
+<p>Returns name <code>s2</code> from index <code>s1</code> on object
+<code>d</code> and error code <code>1</code> (no error) if
+<code>s2</code> is a member of index <code>s1.</code> If <code>s2</code>
+is not a member of <code>s1,</code> <code>index-match</code> returns a
+null string and error code <code>0</code> (<code>error: no
+match</code>). If index <code>s1</code> was created with
+<code>index-add,</code> or with <code>index-setmatchstr</code> with the
+<code>`w'</code> name parameter, <code>index-match</code> will return
+the first match found. That is, there is no check for ambiguity. If the
+index was created with <code>index-setmatchstr</code> without the
+<code>`w'</code> parameter, only complete, explicit matches will be
+returned, in which case ambiguity is impossible. See also <a
+href="#indexes">Indexes</a> and <a
+href="#std-index-match"><code>std-index-match</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-matchrange">
+<p><code>index-matchrange  &nbsp; ( d s1 s2 -- string_range )</code></p>
+
+<p>Performs a partial-word match search on all members of index
+<code>s1</code> on object <code>d,</code> returning those which match
+true as a string range (see <a href="#ranges">Ranges</a>). Ignores
+match-type parameters: any full or partial matches will be returned. Not
+available in <code>`std-'</code> form.  See also <a
+href="#indexes">Indexes</a>. (Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="index-next">
+<p><code>index-next &nbsp; ( d s1 s2 -- s3 )</code></p>
+
+<p>Returns the name immediately following name <code>s2</code> from
+index <code>s1</code> on object <code>d.</code> See also <a
+href="#indexes">Indexes</a> and <a
+href="#std-index-next"><code>std-index-next</code></a>.(Lib-Index)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-prev">
+<p><code>index-prev &nbsp; ( d s1 s2 -- s3 )</code></p>
+
+<p>Returns the name immediately preceding name <code>s2</code> from
+index <code>s1</code> on object <code>d.</code> See also <a
+href="#indexes">Indexes</a> and <a
+href="#std-index-prev"><code>std-index-prev</code></a>.(Lib-Index)
+
+
+<a name="index-remove">
+<p><code>index-remove  &nbsp; ( dbref index name -- error )</code></p>
+
+Removes name s2 and its associated value from index s1 on object d, and
+returns an error code: 1 if the name existed in the index and was
+successfully removed, and 0 otherwise. See also <a
+href="#indexes">Indexes</a> and <a
+href="#std-index-remove"><code>std-index-remove</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-set">
+<p><code>index-set &nbsp;  ( d s1 s2 s3 -- i  )</code></p>
+
+<p>Adds name <code>s2,</code> associated with value <code>s3,</code> to
+index <code>s1</code> on object <code>d,</code> and returns error code
+<code>i.</code> Unlike <code>index-add</code> and
+<code>index-write,</code> this routine does not check for and return
+errors: if the name is not presently a member of the index, it will be
+added; if the name is already a member, its value will be edited. See
+also <a href="#indexes">Indexes</a> and <a
+href="#std-index-set"><code>std-index-set</code></a>. (Lib-Index)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-value">
+<p><code>index-value  &nbsp; ( d s1 s2 -- s3 )</code></p>
+
+<p>Returns the value associated with name <code>s2</code> in index
+<code>s1</code> on object <code>d.</code> If the index does not include
+name <code>s1,</code> <code>s3</code> will be a null string.See also <a
+href="#indexes">Indexes</a> and <a
+href="#std-index-value"><code>std-index-value</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="index-write">
+<p><code>index-write  &nbsp; ( d s1 s2 s3 -- i )</code></p>
+
+<p>In index <code>s1</code> on object <code>d,</code> sets the value of
+existing index member with name <code>s2</code> to value
+<code>s3.</code> Returns error code <code>i:</code> <code>1</code> is
+<code>`no error: value changed',</code> <code>0</code> is <code>`error:
+name not a member of this index; index unchanged'.</code> See also <a
+href="#indexes">Indexes</a> and <a
+href="#std-index-write"><code>std-index-write</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="indexes">
+<p>Indexes</p>
+
+<p>"In theory, there's no difference between theory and practice. But in
+practice, there is." Keep this firmly in mind when working with
+Lib-Index functions. The following is a brief discussion of how
+Lib-Index functions are supposed to work. However, several do not behave
+as advertised. Such cases are noted in the entries for specific
+Lib-Index functions.</p>
+
+<p>An index is a set of name/value pairs. The index as a whole is stored
+as a set of associated properties, in a single propdir, consisting of a
+list of all elements (stored as a single string) and a property for each
+`name', which holds a `value' associated with the name.</p>
+
+<p>Most routines are also available in <code>`std-'</code> form (the
+routine name is prefaced with <code>std-,</code> such as
+<code>.index-add</code> to <code>.std-index-add</code>). Routines which
+store information (add members to the index) have the following stack
+effect:</p>
+
+<p><code>
+  &nbsp;  ( d s1 s2 s3 -- d s1 s2 s3 i )
+</code></p>
+    
+<p>where <code>d</code> is the object the index is stored on, <code>s1</code> is the name of the index, <code>s2</code> is the `name' value, and <code>s3</code> is the `value' value. All four items are left on the stack unchanged, and an integer error code is returned: <code>1</code> for <code>`no error: item successfully added',</code> and <code>0</code> for <code>`error: s2 is already a member of the index; index unchanged'.</code></p>
+    
+<p>Routines that retrieve information (perform matches) have the
+following stack effect:</p>
+    
+<p><code>
+  &nbsp;  ( d s1 s2 s3 -- d s1 s2' s4 i )
+</code></p>
+    
+<p>where <code>d</code> is the object the index is stored on,
+<code>s1</code> is the name of the index, <code>s2</code> is the name to
+be matched, and <code>s3</code> is a string holding 1 - 3 characters
+specifying matching criteria:</p>
+
+<p><pre>
+    x: exact match only, ignores the index itself
+    e: exit-style match: exact match of ;-separated value, and select the
+       first match found if there are more than one
+    w: normal operation: match the beginning of a space separated word, 
+       and fail if more than one matched. So, `mat' matches `mattress' 
+       and `lit match', but not `rematch'.
+</pre></p>
+ 
+<p>Arguments <code>d</code> and <code>s1</code> are left on the stack
+unchanged. The name to be matched is, if found, returned as
+<code>s2'.</code> If the match was unsuccessful, <code>s2'</code> will
+be a null string. If <code>s2</code> were a partial match,
+<code>s2'</code> would be returned as the full name. The match criteria
+paramters, <code>s3,</code> are returned as null string <code>s4.</code>
+Finally, an error code is returned (<code>1</code> is no error, match
+successful; <code>0</code> is error, match unsuccessful).</p>
+
+<p>The default matching criteria (employed with routines called
+<em>without</em> the <code>std-</code> prefix) is <code>xew</code>: all
+three criteria are used, and the first match made by any of the criteria
+will be returned.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="instring">
+<p><code>instring  &nbsp; ( s1 s2 -- i )  </code></p>
+
+<p>Returns the position of the first occurance of <code>s2</code> in
+<code>s1,</code> case-insensitive. The same capability is provided by
+the <a href="mufref.html#instring"><code>INSTRING</code></a> primitive.
+(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="j">
+<a name="k">
+<a name="l">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="list-contents">
+<p><code>list-contents  &nbsp; ( s d --  )</code></p>
+
+<p>Calls <code>get-contents</code> followed by <code>long-display</code>
+to print out all of the contents of the given dbref. If there are any
+contents listed, then the string on the stack is printed out, for
+<code>"Contents:"</code> or the like. If the contents list is empty, the
+string is ignored. The triggering player's name is omitted from the
+contents list of a room (that is, you don't see yourself listed).
+(Lib-Look)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+
+<a name="lmgr-clearelem">
+<p><code>LMGR-ClearElem  &nbsp; ( i s d --  )</code></p>
+
+<p>Clears the content of line <code>i</code> from list <code>s</code> on
+object <code>d.</code> The size of the list (number of lines) remains
+unchanged.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="lmgr-clearrange">
+<p><code>LMGR-ClearRange  &nbsp; ( i1 i2 s d --  )</code></p>
+
+<p>Clears <code>i1</code> lines from list <code>s</code> on object
+<code>d,</code> beginning with line <code>i2.</code> The number of lines
+in the list does not change. See also <a
+href="#lmgr-deleterange"><code>LMGR-DeleteRange</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="lmgr-deletelist">
+<p><code>LMGR-DeleteList  &nbsp; ( s d --  )</code></p>
+
+<p>Deletes list <code>s</code> from object <code>d.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+ 
+<a name="lmgr-deleterange">
+<p><code>LMGR-DeleteRange  &nbsp; ( i1 i2 s d --  )</code></p>
+
+<p>Deletes <code>i1</code> lines from list <code>s</code> on object
+<code>d,</code> beginning with line <code>i2.</code> Lines in the
+orginal list positioned after line <code>i2</code> are shifted to
+earlier positions. See also <a
+href="#lmger-clearrange"><code>LMGR-ClearRange.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="lmgr-fullrange">
+<p><code>LMGR-FullRange  &nbsp; ( s d -- i 1 s d )</code></p>
+ 
+<p>Returns the count of lines in list <code>s,</code> an index value of
+<code>1,</code> and string <code>s</code> and dbref <code>d</code>
+unchanged. These are the parameters that would be needed to put a
+complete list on the stack using <a
+href="#lmgr-getrange"><code>LMGR-GetRange.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+ 
+<a name="lmgr-getbrange">
+<p><code>LMGR-GetBRange  &nbsp; ( i1 i2 s d -- range )</code></p>
+
+<p>Returns puts <code>i1</code> lines from list <code>s</code> on object
+<code>d,</code> followed by their count, on the stack, beginning with
+line <code>i2.</code> The first line of the list will be closest to the
+top of the stack.  See also <a
+href="#lmgr-getrange"><code>LMGR-GetRange.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="lmgr-getcount">
+<p><code>LMGR-GetCount  &nbsp; ( s d -- i )</code></p>
+
+<p>Returns the count of lines in list <code>s</code> on object
+<code>d.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="lmgr-getelem">
+<p><code>LMGR-GetElem  &nbsp; ( i s d --  )</code></p>
+
+Returns the content of line <code>i</code> from list <code>s</code> on
+object <code>d.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="lmgr-getlist">
+<p><code>LMGR-Getlist  &nbsp; ( s1 d -- s s' ... s'' i )</code></p>
+
+<p>Puts the contents of list <code>s1</code> on object <code>d</code>
+and the total number of lines on the stack.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+ 
+<a name="lmgr-getrange">
+<p><code>LMGR-GetRange  &nbsp; ( i1 i2 s d -- range )</code></p>
+
+<p>Puts <code>i1</code> lines from list <code>s</code> on object
+<code>d,</code> followed by their count, on the stack, beginning with
+line <code>i2.</code> The last line of the list will be closest to the
+top of the stack.  See also <a
+href="#lmgr-getbrange"><code>LMGR-GetBRange.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="lmgr-insertrange">
+<p><code>LMGR-InsertRange  &nbsp; ( sx sx' ... sx'' i1 i2 s d --
+)</code></p>
+ 
+<p>Inserts <code>i1</code> strings (range <code>sx sx' ... sx''</code>)
+in list <code>s</code> on object <code>d,</code> beginning with line
+<code>i1.</code> Lines in the original list positioned after
+<code>i2</code> are shifted to later positions. See also <a
+href="#lmgr-putrange"><code>LMGR-PutRange</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="lmgr-moverange">
+<p><code>LMGR-MoveRange  &nbsp; ( i1 i2 i3 s d --  )</code></p>
+
+<p>Moves the contents of the <code>i2</code> lines of list
+<code>s</code> on object <code>d,</code> beginning at line
+<code>i3,</code> to the lines beginning at line <code>i1.</code> The
+contents of lines <code>i1</code> to <code>i1+i2</code> are
+over-written.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="lmgr-putbrange">
+<p><code>LMGR-PutBRange  &nbsp; ( sx sx' ... sx'' i1 i2 s d --
+)</code></p>
+
+<p>Stores <code>i1</code> strings (<code>range sx sx' ... sx''</code>)
+in list <code>s</code> on object <code>d,</code> beginning with line
+<code>i2.</code> The string at the top of the range is stored at line
+<code>i2,</code> and the remaining strings are stored on successive
+lines (in other words, strings are stored in descending order). on The
+previous contents of the lines are over-written. See also <a
+href="#lmgr-putrange"><code>LMGR-PutRange</code></a> and <a
+href="#lmgr-insertrange"><code>LMGR-InsertRange.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+ 
+<a name="lmgr-putelem">
+<p><code>LMGR-PutElem  &nbsp; ( s1 i s2 d --  )</code></p>
+
+<p>Stores string <code>s1</code> in line <code>i</code> of list
+<code>s2</code> on object <code>d.</code> The previous contents of the
+line are over-written.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="lmgr-putrange">
+<p><code>LMGR-PutRange  &nbsp; ( sx sx' ... sx'' i1 i2 s d --
+)</code></p>
+
+<p>Stores <code>i1</code> strings (<code>range sx sx' ... sx''</code>)
+in list <code>s</code> on object <code>d,</code> beginning with line
+<code>i2.</code> The string at the bottom of the range is stored at line
+<code>i2,</code> and the remaining strings are stored on successive
+lines (in other words, strings are stored in ascending order). on The
+previous contents of the lines are over-written. See also <a
+href="#lmgr-putbrange"><code>LMGR-PutBRange</code></a> and <a
+href="#lmgr-insertrange"><code>LMGR-InsertRange.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="lmgr-setcount">
+<p><code>LMGR-SetCount  &nbsp; ( i s d --  )</code></p>
+
+<p>Sets the count of lines for list <code>s</code> on object d to
+<code>i.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="locate-prop">
+<p><code>locate-prop  &nbsp; ( d s -- d' )</code></p>
+
+<p>Given a property name and dbref, locate-prop finds the property,
+whether on the dbref itself, an environment of the dbref, or a proploc
+of the dbref. If no matching property is found, returns
+<code>#-1.</code> (Lib-Props)&nbsp; [<a href="#top">top</a>]</p><hr>
+         
+
+<a name="long-display">
+<p><code>long-display  &nbsp; ( d' ... d'' i --  )</code></p>
+
+<p>Prints the string form of a range of dbrefs to the user's screen, using unparse to determine the strings' format. The start of the range is printed first. Example:</p>
+
+<p><pre>
+    me @ location get-contents long-display
+</pre></p>
+
+<p>This code duplicates the <code>Contents</code> portion of a server
+look in a room (note: the same effect could be achieved with a single
+library call to `list-contents'). (Lib-Look)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+         
+<a name="m">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+ 
+<a name="match_controlled">
+<p><code>.match_controlled  &nbsp; ( s -- d )</code></p>
+
+<p>Searches the vacinity for objects with names matching <code>s,</code>
+like .noisy_match and with similar messages for negative or ambiguous
+results, but returns <code>#-1</code> and prints <code>"Permission
+denied."</code> if the user does not control the found object.
+(Lib-Match)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+      
+<a name="mbox-append">
+<p><code>MBOX-append  &nbsp; ( range s1 s2 d -- i )</code></p>
+
+<p>Creates a new message with base <code>s2</code> on object
+<code>d,</code> with items <code>range,</code> on object <code>d,</code>
+appending it to existing messages in the box. The newly-created
+message's number is returned. (Lib-Mesgbox)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="mbox-badref_">
+<p><code>MBOX-badref?  &nbsp; ( i s d -- i' )</code></p>
+
+<p>Returns true if message item <code>i</code> in the message with base
+<code>s</code> on object <code>d</code> does not exist.
+(Lib-Mesgbox)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+      
+<a name="mbox-count">
+<p><code>MBOX-count  &nbsp; ( s d -- i )</code></p>
+
+<p>Returns the number of messages contained in message box is on object
+<code>d.</code>  (Lib-Mesgbox)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+
+<a name="mbox-create">
+<p><code>MBOX-create  &nbsp; ( s d --  )</code></p>
+
+<p>Creates a new message box with base <code>s</code> on object
+<code>d</code> with no messages in it. This consists of a property
+<code>`&lt;base&gt;#/i'</code> with the string <code>0</code> stored in
+it. (Lib-Mesgbox)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+      
+<a name="mbox-delmesg">
+<p><code>MBOX-delmesg  &nbsp; ( refnum base dbref -- )</code></p>
+
+<p>Delete the given message number in the message box. It moves the rest
+of the messages after it up in the message box.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+ 
+<a name="mbox-destroy">
+<p><code>MBOX-destroy  &nbsp; ( s d --  )</code></p>
+
+<p>Destroys message box <code>s</code> on object <code>d</code> and all
+of its contents.  (Lib-Mesgbox)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+      
+<a name="mbox-insmesg">
+<p><code>MBOX-insmesg  &nbsp; ( range s1 i1 s2 d -- i2 )</code></p>
+
+<p>Creates a new message with the given message items and info string
+and inserts it before the given message number in the message box.
+Returns the message's number.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+      
+<a name="mbox-message">
+<p><code>MBOX-message &nbsp; ( refnum base dbref -- {strrange}
+)</code></p>
+
+<p>Returns the contents of the given message number in the message box as a range of strings.&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+ 
+<a name="mbox-msginfo">
+<p><code>MBOX-msginfo &nbsp; ( refnum base dbref -- infostr )</code></p>
+
+<p>Returns the info string of the goven message number in the message
+box.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="mbox-ref2num">
+<p><code>MBOX-ref2num  &nbsp; ( i s d -- i' )</code></p>
+
+<p>Returns the absolute message number (the number assigned when the
+message was created) for the message with base <code>s</code> on object
+<code>d</code> with reference number <code>i</code> (the reference
+number of a message is its current position in the message list). Note:
+the first message created has absolute message number <code>0.</code>
+This is also the value that will be returned if no message at postion
+<code>i</code> exists. Code that uses <code>MBOX-ref2num</code> should
+include error checking to deal with this contingency. See also <a
+href="#mbox-num2ref"><code>MBOX-num2ref</code></a> and <a
+href="#mbox-ref2prop"><code>MBOX-ref2prop.</code></a>
+(Lib-Mesgbox)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="mbox-ref2prop">
+<p><code>MBOX-ref2prop  &nbsp; ( i s d -- s' d )</code></p>
+
+<p>Returns the propterty name of message number <code>i</code> in the
+message box with base <code>s</code> on object <code>d.</code> Note: The
+first message created for a box, number 1, is stored in property
+<code>&lt;base&gt;#/0</code> (example: &nbsp; <code>"1" "+news" trig
+MBOX-ref2prop</code>  &nbsp; would return &nbsp; <code>"+news/0#"
+#123</code>). This is also the the data that will be returned if message
+<code>i</code> does not exist. Code that uses <code>MBOX-ref2prop</code>
+should include error checking to deal with this contingency. See also <a
+href="#mbox-ref2num"><code>MBOX-ref2num</code></a> and <a
+href="#mbox-num2ref"><code>MBOX-num2ref.</code></a> (Lib-Mesgbox)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="mbox-num2ref">
+<p><code>MBOX-num2ref  &nbsp; ( i s d -- i' )</code></p>
+
+<p>Returns the reference number (the current position in the message
+list) for the message with base <code>s</code> on object <code>d</code>
+that has the absolute number <code>i</code> (the number assigned when
+the message was created). If no such message exits, <code>0</code> is
+returned. See also <a href="#mbox-ref2num"><code>MBOX-ref2num</code></a>
+and <a href="#mbox-ref2prop"><code>MBOX-ref2prop.</code></a>
+(Lib-Mesgbox)&nbsp; [<a href="#top">top</a>]</p><hr>
+      
+
+<a name="mbox-setinfo">
+<p><code>MBOX-setinfo &nbsp; ( refnum base dbref -- )</code></p>
+
+<p>Sets the info string for the given message number in the message
+box.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="messages">
+<p>Messages</p>
+
+<p>A message is a set of associated list properties consisting of a `base'
+(the list name), one or more `items' (lines in the list), `item strings'
+(the strings stored in the list, usually holding players' dbrefs or
+names), and an `information' string (the content of the message).  Some
+Lib-Mesg functions handle `string ranges': sets of strings adjacent on
+the stack, followed by their count. Multiple, related messages are
+stored in a propdir that constitutes a `message box'.  Example:</p>
+    
+<pre>
+  str /msgs/1#/1:2
+  str /msgs/1#/2:3
+  str /msgs/1#/3:13
+  str /msgs/1#/i:This is the content of a message for players
+                 with dbrefs #2, #3, and #13.
+</pre>
+
+This message has three items (<code>1,</code> <code>2,</code> and
+<code>3</code>) holding the item strings <code>"2",</code>
+<code>"3",</code> and <code>"13"</code> respecitively. Its base is
+<code>msgs/1.</code> Its information string is <code>"This is the
+content of a message for players with dbrefs #2, #3, and #13."</code>
+The message is stored in message box <code>msgs.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="mbox-setmesg">
+<p><code>MBOX-setmesg &nbsp; ( {strrange} infostr refnum base dbref --
+)</code></p>
+
+<p>Sets the given message number in the given message box to contain the given message items and info string.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="msg-append">
+<p><code>MSG-append  &nbsp; ( s1 s2 d --  )</code></p>
+
+<p>Appends message item <code>s1</code> to the message with base
+<code>s2</code> on object <code>d.</code> (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="msg-count">
+<p><code>MSG-count  &nbsp; ( s d -- i )</code></p>
+
+<p>Returns the number of items in message with base <code>s</code> on
+object <code>d.</code>  (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="msg-create">
+<p><code>MSG-create  &nbsp; ( range s1 s2 d --  )</code></p>
+
+<p>Creates a new message with the items in a stringe range and the
+information string <code>s1,</code> stored as list properties with base
+<code>s2</code> on object <code>d.</code></p>
+
+<p>Example: The following code reads list <code>_staff</code> from the
+trigger action onto the stack as a range, and creates a message with the
+contents of lvar ourString for each staff member.</p>
+    
+<p><pre>
+    "_staff" trig LMGR-Getlist        (*read list onto stack as range*)
+    ourString @                       (*put message on stack *)
+    "st-msgs/" dup trig LMGR-Getcount (*get next available line number*)
+    1 + intostr strcat                (*use count to create message base*)
+    trig MSG-create                   (*create message, stored on trig*)
+    
+                                      (*note: this same effect could be
+                                        achieved more efficiently with
+                                        MSG-append or MBOX-append*)
+</pre></p>
+
+<p>Assume that a staff memeber uses the <code>stnews</code> command
+(<code>#555</code>) with the message <code>"Please check `+read
+17'";</code> that list <code>_staff</code> contains 5 lines, each
+holding a staff member's dbref in string form (<code>2, 3, 13, 99, and
+244</code>); and that there are currently two other staff messages. In
+this case, the code would put the following values on the stack:</p>
+
+<p><pre>
+    "2", "3", "13", "99", "244", 5, "Please check `+read 17'",
+    "st-msgs/3", #555
+</pre></p>
+
+<p>Then, <code>MSG-create</code> would be called, creating propdir
+<code>st-msgs/3#/,</code> which other functions could use to relay the
+message to staff members online, at log-in, or when they check staff
+news. <code>Ex #555 = st-news/3#/</code> would show the following
+values:</p>
+
+<p><pre>
+    str /st-msgs/3#/1:2
+    str /st-msgs/3#/2:3
+    str /st-msgs/3#/3:13
+    str /st-msgs/3#/4:99
+    str /st-msgs/3#/5:244
+    str /st-msgs/3#/i:Please check `news staff'
+</pre></p>
+    
+<p>The data passed to <code>MSG-create</code> would be cleared from the
+stack.  (Lib-Mesg)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="msg-delitem">
+<p><code>MSG-delitem  &nbsp; ( i s d --  )</code></p>
+
+<p>Deletes message item <code>i</code> from the message with base
+<code>s</code> on object <code>d.</code>  (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="msg-destroy">
+<p><code>MSG-destroy  &nbsp; ( s d --  )</code></p>
+
+<p>Clears and removes the message with base <code>s</code> from object
+<code>d.</code> (Lib-Mesg)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="msg-info">
+<p><code>MSG-info  &nbsp; ( s d -- s2 )</code></p>
+
+<p>Returns the information string for the message with base
+<code>s</code> on object <code>d.</code>  (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="msg-insitem">
+<p><code>MSG-insitem  &nbsp; ( s1 i s2 d --  )</code></p>
+
+<p>Inserts a new message item with string value <code>s1</code> at
+position <code>i</code> into the message with base <code>s2</code> on
+object <code>d.</code> (Lib-Mesg)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+
+<a name="msg-item">
+<p><code>MSG-item  &nbsp; ( i s d -- s2 )</code></p>
+
+<p>Returns item number <code>i</code> from message with base
+<code>s</code> on object <code>d.</code> (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+ 
+<a name="msg-message">
+<p><code>MSG-message  &nbsp; ( s d -- range )</code></p>
+
+<p>Reads the items for the message with base <code>s</code> on object
+<code>d</code> onto the stack as a string range. (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="msg-setinfo">
+<p><code>MSG-setinfo  &nbsp; ( s1 s2 d --  )</code></p>
+
+<p>Sets the <code>s1</code> as the information string for message with
+base <code>s2</code> on object <code>d.</code> (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="msg-setitem">
+<p><code>MSG-setitem  &nbsp; ( s1 i s2 d --  )</code></p>
+
+<p>Sets the value of item <code>i</code> in message <code>s2</code> on
+object do the the string value <code>1.</code> (Lib-Mesg)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="multi_rmatch">
+<p><code>.multi_rmatch  &nbsp; ( d s -- d' ... d'' i )</code></p>
+
+<p>returns all objects contained by object <code>d</code> whose name
+matches string <code>s,</code> with the total number of successful
+matches. the search string can include wildcard and grouping operators
+such as those used by the <code>smatch</code> primitive. See also <a
+href="mufref.html#smatch"><code>SMATCH.</code></a> (lib-match)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+ 
+<a name="n">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="noisy_match">
+<p><code>.noisy_match  &nbsp; ( s -- d )</code></p>
+
+<p>Checks the room, objects in the room, the player, objects carried by
+the player, and exits that the player may use for objects whose name
+matches <code>s,</code> returning the dbref. Partial name strings will
+work, provided that enough characters are specified to distinguish the
+object from other similarly named objects. The function is `noisy' in
+that it supplies explanatory messages for negative or ambiguous results.
+If no matching object is found, <code>#-1</code> will be returned, and
+the string <code>"I don't see that here!"</code> will be printed to the
+user's screen. If the match is ambiguous, <code>#-2</code> will be
+returned, and the string <code>"I don't know which one you mean!"</code>
+will be printed. (Lib-Match)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="noisy_pmatch">
+<p><code>.noisy_pmatch  &nbsp; ( s -- d )</code></p>
+
+<p>returns the dbref of the player with name <code>s.</code> the player
+need not be in the vacinity of the user, but the name must be supplied
+completely (not case-sensitive). the function is `noisy' in that it
+supplies explanatory messages for negative or ambiguous results. if no
+matching player is found, <code>#-1</code> will be returned, and the
+string <code>"i don't recognize anyone by that name."</code> will be
+printed to the user's screen.  (lib-match)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="o">
+<a name="p">
+<a name="q">
+<a name="r">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+<a name="stackrange">
+<a name="ranges">
+<p>Ranges</p>
+
+<p>A number of library functions handle `ranges': sets of related items
+adjacent to each other on the stack. The documentation for these
+functions uses the following terms:</p>
+
+<dl>
+    <p><dt>range:
+    <dd>A set of related items on the stack, and their count.  Example:
+    "mink" "otter" "linsang" 3</p>
+               
+    <p><dt>count:
+    <dd>The number of items in a range. The count of the range in the above
+    example is 3.</p>
+               
+    <p><dt>offset:
+    <dd>The number of stack items between the range and the parameters such
+    as `offset', `position', & `number'.  That is, how `deep' in the stack
+    the specified range lies.  Example: "mink" "otter" "linsang" 3
+    "wolf" The range of three items has an offset of 1.</p>
+               
+    <p><dt>position:
+    <dd>The position of the first item in a subrange within a range. The
+    first item in a range is at position 1.  Example: "wolf" "mink"
+    "otter" "linsang" 3 Within this range, "mink" is at position 1,
+    "linsang" is at position 3, and "wolf" is at position 0.</p>
+    
+    <p><dt>number:
+    <dd>The number of items within a to handle (e.g., to copy or
+    delete).</p>
+               
+    <p><dt>start:
+    <dd>The first item in a range, farthest from the top of the
+    stack.</p>
+               
+    <p><dt>end:
+    <dd>The last item in a range, closest to the top of the stack.</p>
+</dl>
+
+<hr>
+
+
+<a name="ref-add">
+<p><code>REF-add &nbsp;  ( d1 s d2 --  )</code></p>
+
+<p>Adds dbref <code>d2</code> to reflist <code>s</code> on object
+<code>d1.</code> If <code>d1</code> is already a member of the list, it
+is moved to the final position in the list. <code>REF-add</code> does
+not check to ensure that <code>d1</code> is a valid dbref.
+(Lib-Reflist)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="ref-allrefs">
+<p><code>REF-allrefs  &nbsp; ( d s -- d' ... d'' i )</code></p>
+
+<p>Returns the contents of reflist <code>s</code> on object
+<code>d</code> as a range of dbrefs (Lib-Reflist)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="ref-delete">
+<p><code>REF-delete  &nbsp; ( d1 s d2 --  )</code></p>
+
+<p>Removes dbref <code>d2</code> from reflist <code>s</code> on object
+<code>d1.</code> (Lib-Reflist)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="ref-editlist">
+<p><code>REF-editlist &nbsp; ( i d s --  )</code></p>
+
+<p>Puts the user in an interactive editor that allows dbrefs to be added
+and removed from reflist <code>s</code> on object <code>d.</code> If
+<code>i</code> is true, only player dbrefs may be added. If
+<code>i</code> is false, objects of any type may be entered. In either
+case, the editor rejects invalid dbrefs. The reflist must exists, and
+all dbrefs contained in it must be valid. <code>REF-editlist</code>
+displays the following header when the user enters the editor: </p>
+
+<p><pre>
+   To add an object, enter its name or dbref.  To remove an object, 
+   enter its name or dbref with a ! in front of it.  ie: `!button'.  
+   To display the list, enter `*' on a line by itself.  To clear the 
+   list, enter'#clear'.  To finish editing and exit, enter `.' on a 
+   line by itself.Enter `#help' to see these instructions again.
+</pre></p>
+
+<p>(Lib-Reflist)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="ref-filter">
+<p><code>REF-filter  &nbsp; ( a d s -- d' ... d'' i )</code></p>
+
+<p>Tests each dbref in reflist <code>s</code> on object <code>d</code>
+in the filter function at address <code>a,</code> returning the those
+for which the function returns true as a range of dbrefs. The filter
+function (supplied by your code) should return <code>1</code> for true
+or <code>0</code> for false.</p>
+
+<p>Example: the following code tests the dbrefs in reflist
+<code>_members,</code> stored on the trigger action, filtering out
+garbage dbrefs and returning the others as a range.</p>
+
+<p><pre>
+   : CheckRefs
+       ok? if 1 else 0 then
+   ;
+
+   : GetMembers
+       `CheckRefs
+       trig "_members"
+       REF-Filter
+   ;
+</pre></p>
+
+<p>In function <code>GetMembers,</code> <code>`CheckRefs</code> (a function named joined with an apostrophe) puts a pointer to the <code>CheckRefs</code> function on the stack. The next line reads the reflist onto the stack. <code>REF-Filter</code> then tests each dbref in the list, using the test provided in <code>CheckRefs:</code> those dbrefs which are currently valid will be returned as a range.
+ 
+
+<a name="ref-first">
+<p><code>REF-first  &nbsp; ( d s -- d' )</code></p>
+
+<p>Returns the first dbref in reflist <code>s</code> on object
+<code>d.</code> (Lib-Reflist)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="ref-inlist_">
+<p><code>REF-inlist? &nbsp; ( d1 s d2 -- i )</code></p>
+
+<p>Returns true (<code>1</code>) if dbref <code>d2</code> is a member of
+reflist <code>s</code> on object <code>d1,</code> or false
+(<code>0</code>) if it is not.   (Lib-Reflist)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="ref-list">
+<p><code>REF-list &nbsp; ( d s -- s' )</code></p>
+
+<p>Returns a string containing a comma-separated list of the names of
+all objects with dbrefs in reflist <code>s</code> on object
+<code>d.</code> (Lib-Reflist)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+
+<a name="ref-next">
+<p><code>REF-next &nbsp;  ( d1 s d2 --  )</code></p>
+
+<p>Returns the next dbref after <code>d2</code> from reflist
+<code>s</code> on object <code>d1.</code> If there are no dbrefs after
+<code>d1,</code> <code>#-1</code> is returned. (Lib-Reflist)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="reflists">
+<p>Reflists</p>
+
+A `reflist' is string, stored in a property, containing space- and
+<code>#</code> octothorpe-delimited dbrefs, such as <code>"#2 #3 #13
+#3175 #244".</code> A reflist will contain only one instance of any one
+dbref. Like all strings stored in properties, a reflist is limited to
+4096 characters (about 500 dbrefs).&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="rinstring">
+<p><code>rinstring  &nbsp; ( s1 s2 -- i )  </code></p>
+
+<p>Returns the position of the last occurance of <code>s2</code> in
+<code>s1,</code> case-insensitive. The same capability is provided by
+the <a href="mufref.html#rinstring"><code>RINSTRING</code></a>
+primitive. (Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="s">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="safecall">
+<p><code>safecall  &nbsp; ( x d --  )</code></p>
+
+<p>Calls program <code>d,</code> passing <code>x</code> (usually a
+string) as an argument. This routine ensures no garbage is left on the
+stack by the program called, and that the variables <code>`me',</code>
+<code>`loc',</code> <code>`trigger',</code> or <code>`command'</code>
+are unchanged: even if they are modified by program <code>d,</code> they
+will have their original values after the program call. (Lib-Look)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="setpropstr">
+<p><code>setpropstr  &nbsp; ( d s1 s2 -- )</code></p>
+  
+<p>Sets <code>d's</code> property <code>s1</code> to the string value
+<code>s2,</code> or removes prop <code>s1</code> if <code>s2</code> is a
+null string. Similar capability is provided by the <a
+href="mufref.html#setprop"><code>SETPROP</code></a> primitive.
+(Lib-Props)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="short-display">
+<p><code>short-display  &nbsp; ( d' ... d'' i --  )</code></p>
+
+<p>Calls <code>short-list</code> for the range of dbrefs on the stack,
+then prints <code>"You see &lt;contents string&gt;"</code> to the user.
+<em>Note</em>: Contrary to documentation provided with
+<code>@view,</code> <code>short-display</code> will crash if not passed
+a range of valid dbrefs containing at least one member.
+(Lib-Look)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="short-list">
+<p><code>short-list  &nbsp; ( d' ... d'' i -- s )</code></p>
+
+<p>Returns a range of dbrefs as a space- and comma-separated string,
+punctuated and formatted intellegently. For example, the contents of a
+room might be returned as</p>
+
+<p><pre>
+    "Kenya, Passiflora, PowerMac 7100, and Sign"
+</pre></p>
+
+(Lib-Look)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="sr-catrng">
+<p><code>sr-catrng  &nbsp; ( range1 range2 -- range )</code></p>
+
+<p>Concatenates two ranges into one range. (Lib-Stackrng)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="sr-copyrng">
+<p><code>sr-copyrng  &nbsp; ( range ... offset number position -- range
+... range2 )</code></p>
+
+<p>Copies a subrange of <code>number</code> items out of a range in the
+stack, beginning with the item at <code>position.</code> For
+example,</p>
+    
+<p><code>
+  &nbsp;&nbsp;  "a" "b" "c" "d" 4 0 3 2 sr-copyrng
+</code></p>
+
+<p>would make take the 4-item stack <code>"a" "b" "c" "d",</code> and
+copy from it, making a new, 3-item range, beginning with the second item
+in the 4-item range.</p>
+
+<p><code>
+   &nbsp;&nbsp; "a" "b" "c" "d" 4 "b" "c" "d" 3
+</code></p>
+    
+<p>would be left on the stack. (Lib-Stackrng)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+ 
+
+<a name="sr-deleterng">
+<p><code>sr-deleterng  &nbsp; ( range ... offset number position --
+range' )</code></p>
+
+<p>Deletes a subrange of <code>number</code> items from a range on the
+stack, beginning with the item at <code>position.</code> For
+example,</p>
+
+<p><code>
+   &nbsp;&nbsp; "a" "b" "c" 3 "d" 1 2 1 sr-deleterng
+</code></p>
+    
+<p>would delete 2 items, beginning with the first item in the range,
+from the 3-item range. The range has an offset of 1: that is, there is 1
+item (<code>"d"</code>) between the range and the parameters for
+<code>sr-deleterng.</code> This would leave</p>
+
+<p><code>
+   &nbsp;&nbsp; "c" 1
+</code></p>
+    
+<p>on the stack. (Lib-Stackrng)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="sr-extractrng">
+<p><code>sr-extractrng  &nbsp; ( range ... offset number position --
+range' ... subrange )</code></p>
+
+<p>Extracts a subrange of <code>number</code> items from a range in the
+stack, beginning with the item at <code>position.</code> The subrange is
+removed from the original range, and placed on top of the stack as a new
+range. For example,</p>
+ 
+<p><code>
+   &nbsp;&nbsp; "a" "b" "c" "d" 4 0 2 2 sr-extractrng
+</code></p>
+    
+<p>would remove 2 items from the 4-item range, beginning with the second
+item, leaving</p>
+
+<p><code>
+  &nbsp;&nbsp; "a" "d" 2 "b" "c" 2
+</code></p>
+   
+<p>on the stack. (Lib-Stackrng)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="sr-filterrng">
+<p><code>sr-filterrng  &nbsp; ( range function_address -- range'
+filtered_range )</code></p>
+
+<p>Passes each item in a range to the function at
+<code>function_address.</code> If this function returns a non-zero
+value, <code>sr-filterrng</code> removes that item from range and puts
+it in <code>filtered_range.</code> The items in range may be of any
+type. To determine the address of a function, preceed the function name
+with an ` apostrophe. For example, the following code extracts the items
+of type string from all items on the stack.</p>
+
+<p><code>
+   &nbsp;&nbsp; : StringTest  <br>
+   &nbsp;&nbsp;    string? if 1 else 0 then <br>
+   &nbsp;&nbsp; ;<br>
+    <br>
+   &nbsp;&nbsp; : PullStrings<br>
+   &nbsp;&nbsp;     depth `StringTest sr-filterrng<br>
+   &nbsp;&nbsp; ;
+</code></p>
+
+<p>Calling PullStrings with</p>
+    
+<p><code>
+   &nbsp;&nbsp; #123 "a" "b" 666 "c"
+</code></p>
+    
+<p><em>should</em> leave</p>
+
+<p><code>
+   &nbsp;&nbsp; #123 666 2 "a" "b" "c" 3
+</code></p>
+    
+<p>on the stack. Unfortunately, this potentially useful function does
+not work as advertised. The code above will actually leave</p>
+
+<p><code>
+   &nbsp;&nbsp; #123 "a" 666 3 "c" "b"
+</code></p>
+    
+<p>on the stack. (Lib-Stackrng)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="sr-insertrng">
+<p><code>sr-insertrng  &nbsp; ( range1 ... range2 offset position --
+range )</code></p>
+
+<p>Inserts a subrange into a range on the stack, between the items at
+<code>position</code> and <code>position + 1.</code>
+(Lib-Stackrng)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="sr-poprng">
+<p><code>sr-poprng  &nbsp; ( range1  --  )</code></p>
+
+<p>Removes a range from the stack. Also defined as <code>popn</code> in
+<code>lib-stackrng.</code>  The same capability is provided by the <a
+href="mufref.html#popn"><code>POPN</code></a> primitive.
+(Lib-Stackrng)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+ 
+<a name="sr-swaprng">
+<p><code>sr-swaprng  &nbsp; ( range1 range2 -- i range2 range1
+)</code></p>
+   
+<p>Swaps two ranges on the stack, inserting a 0-length range before the
+two ranges. There must be <code>x</code> items on the stack below
+<code>range1,</code> where <code>x</code> is equal to the larger of
+<code>range1's</code> count or <code>range2's</code> count. That is,</p>
+
+<p><code>
+   &nbsp;&nbsp; "" "a" "b" 2 "c" "d" "e" 3 sr-swaprng 
+</code></p>
+   
+<p>would crash due to stack underflow, but</p>
+
+<p><code>
+   &nbsp;&nbsp; "" "null" "null" "null" "a" "b" 2 "c" "d" "e" 3 sr-swaprng
+</code></p>
+    
+<p>would put</p>
+
+<p><code>
+   &nbsp;&nbsp; "" "null" "null" "null" 0 "c" "d" "e" 3 "a "b" 2
+</code></p>
+
+<p>on the stack. For this reason, it will often be necessary to copy a
+`work space' range with <code>sr-copyrng</code> before using
+<code>sr-swaprng.</code>  (Lib-Stackrng)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-add">
+<p><code>std-index-add  &nbsp; ( d s1 s2 s3 -- d s1 s2 s3 i )</code></p>
+
+<p>Like <code>index-add,</code> this routine adds name <code>s2</code>
+and value <code>s3</code> to index <code>s1,</code> stored on object
+<code>d.</code> All four items are left on the stack unchanged, and
+error code <code>i</code> is returned: <code>1</code> is <code>`no
+error: item added',</code> <code>0</code> is <code>`error: name already
+a member of index; index unchanged'.</code> See also <a
+href="#indexes">Indexes</a> and <a
+href="#index-add"><code>index-add</code></a>. (Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-add-sort">
+<p><code>std-index-add-sort &nbsp; ( d s1 s2 s3 -- d s1 s2 s3 i
+)</code></p>
+
+<p>Alphabetically adds a name/value pair to an index, like
+<code>index-add-sort,</code> but leaves all four items on the stack,
+returning error code <code>i:</code> <code>1</code> is <code>`no error:
+item added',</code> <code>0</code> is <code>`error: name already a
+member of index; index unchanged'.</code> <em>In theory</em>, it should
+add the name to the index in alphabetical order, but in practice and
+like <code>index-add,</code> it simply adds the name to the end of the
+index. See also <a href="#indexes">Indexes</a> and <a
+href="#index-add-sort"><code>index-add-sort</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-delete">
+<p><code>std-index-delete  &nbsp; ( d s1 s2 -- d s1 s2 )</code></p>
+
+<p>Removes name <code>s2,</code> and its associated value, from index
+<code>s1</code> on object <code>d,</code> with no error checking. All
+three items are left on the stack unchanged.  See also <a
+href="#indexes">Indexes</a> and <a
+href="#index-delete"><code>index-delete</code></a>.  (Lib-Index)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-envmatch">
+<p><code>std-index-envmatch  &nbsp; ( d s1 s2 s3 -- d s1 s2' s4 i )</code></p>
+
+<p>Performs an environment match like <code>index-envmatch,</code> using
+the match criteria specified in paramater string <code>s3.</code>
+Arguments <code>d</code> and <code>s1</code> are left on the stack;
+parameter string <code>s3</code> is returned as null string
+<code>s4.</code> See also <a href="#indexes">Indexes</a> and <a
+href="#index-envmatch"><code>index-envmatch</code></a>.
+(Lib-Index)&nbsp; [<a href="#top">top</a>]</p><hr>
+ 
+
+<a name="std-index-first">
+<p><code>std-index-first &nbsp; ( d s1 s2 s3 -- d s1 s2' s4 )</code></p>
+
+<p>Takes object to holding index (<code>d</code>), an index name
+(<code>s1</code>), and two null strings (<code>s2</code> and
+<code>s3</code>). Returns four items, with <code>s2</code> being
+replaced by <code>s2',</code> the first name in the index. See also <a
+href="#indexes">Indexes</a> and <a
+href="#index-first"><code>index-first</code></a>. (Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-last">
+<p><code>std-index-last &nbsp; ( d s1 s2 s3 -- d s1 s2' s4 )</code></p>
+
+<p><em>In theory</em>, takes object to holding index (<code>d</code>), an
+index name (<code>s1</code>), and two null strings (<code>s2</code> and
+<code>s3</code>), returning four items, with <code>s2</code> being
+replaced by <code>s2',</code> the last name in the index. In practice,
+<code>s2'</code> will still be a null string.  See also <a
+href="#indexes">Indexes</a> and <a
+href="#index-last"><code>index-last</code></a>.  (Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-match">
+<p><code>std-index-match  &nbsp; ( d s1 s2 s3 -- d s1 s2' s4 i
+)</code></p>
+
+<p>Performs a name match like <code>index-match,</code> using the match
+criteria specified in parameter string <code>s3.</code>  Arguments
+<code>d</code> and <code>s1</code> are left on the stack; parameter
+string <code>s3</code> is returned as null string <code>s4.</code> See
+also <a href="#indexes">Indexes</a> and <a
+href="#index-match"><code>index-match</code></a>.(Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-next">
+<p><code>std-index-next &nbsp; ( d s1 s2 s3 -- d s1 s2' s3 )</code></p>
+
+<p>Takes object holding index (<code>d</code>), an index name
+(<code>s1</code>), a name (<code>s2</code>), and a null string
+(<code>s3</code>), returning the four items with <code>s2</code>
+modified to <code>s2',</code> the name in the index immediately
+following <code>s2.</code> See also <a href="#indexes">Indexes</a> and
+<a href="#index-next"><code>index-next</code></a>.(Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-prev">
+<p><code>std-index-prev &nbsp; ( d s1 s2 s3 -- d s1 s2' s3 )</code></p>
+
+Takes object holding index (<code>d</code>), an index name
+(<code>s1</code>), a name (<code>s2</code>), and a null string
+(<code>s3</code>), returning the four items with s2 modified to s2', the
+name in the index immediately preceding s2. See also <a
+href="#indexes">Indexes</a> and <a
+href="#index-prev"><code>index-prev</code></a>.(Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-remove">
+<p><code>std-index-remove &nbsp; ( d s1 s2 s3 -- d s1 s2 s3 i
+)</code></p>
+
+<p>Takes object holding index (<code>d</code>), an index name
+(<code>s1</code>), a name (<code>s2</code>), and a null string
+(<code>s3</code>), and removes name s2 and its associated value from the
+list. The four initial arguments and an error code are left on the
+stack. See also <a href="#indexes">Indexes</a> and <a
+href="#index-remove"><code>index-remove</code></a>.(Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-set">
+<p><code>std-index-set &nbsp;  ( d s1 s2 s3 -- d s1 s2 s3 )</code></p>
+ 
+<p>Adds a name/value pair to an index, with no error checking, like
+index-set. All four items are left on the stack unchanged. See also <a
+href="#indexes">Indexes</a> and <a
+href="#index-set"><code>index-set</code></a>.(Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-value">
+<p><code>std-index-value &nbsp; ( d s1 s2 s3 -- d s1 s2' s4 )</code></p>
+
+<p>Performs a match for name <code>s2</code> in index <code>s1</code> on
+object <code>d,</code> using matching criteria specified in parameter
+string <code>s3.</code> The dbref and index name are left on the stack
+unchanged. Name <code>s2</code> is returned in complete form (partial
+matches are expanded). Returns the value associated with name
+<code>s3</code> as string <code>s4.</code> If the match was
+unsuccessful, <code>s4</code> will be a null string. See also <a
+href="#indexes">Indexes</a> and <a
+href="#index-value"><code>index-value</code></a>.(Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std-index-write">
+<p><code>std-index-write  &nbsp; ( d s1 s2 s3 -- d s1 s2 s3 i
+)</code></p>
+
+<p>Sets a value for an existing index member, like
+<code>index-write,</code> but leaves all four items on the stack and
+returns an error code. See also <a href="#indexes">Indexes</a> and <a
+href="#index-write"><code>index-write</code></a>.(Lib-Index)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="std_table_match">
+<p><code>.std_table_match  &nbsp; ( x1 x2 sn pn ... s1 p2 i sm -- sx px
+| x1 | x2 ) </code></p>
+
+<p>The standard table match takes <code>i</code> comparator/data pairs
+in the same manner as <code>.table_match,</code> and performs a
+<code>SMATCH</code> on each comparator, matching against string
+<code>sm.</code> Comparators must be strings; it is not necessary to
+supply a matching functin and its address. <code>.Std_table_match</code>
+returns the comparator/data pair that matchs <code>sm,</code> or
+<code>x1</code> if no match was found, or <code>x2</code> if more than
+one match was found. See also <a
+href="#table_match"><code>.table_match</code></a> and <a
+href="mufref.html#smatch"><code>SMATCH.</code></a> (Lib-Match)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="str-desc">
+<p><code>str-desc  &nbsp; ( s --  )</code></p>
+
+<p>Prints <code>s</code> as a description, matching the
+<code>`@###'</code> and <code>`@$prog'</code> values properly, and uses
+them with the present trigger value. If neither of these exist, or if
+they are invalid, the string is simply printed. The string is not parsed
+for <code>MPI.</code> (Lib-Look)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strasc">
+<p><code>STRasc  &nbsp;  ( s -- i )</code></p>
+
+<p>Converts character <code>s</code> to its <code>ASCII</code> number
+equivalent. The same capability is provided by the <a
+href="mufref.html#ctoi"><code>CTOI</code></a> primitive.
+(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strblank_">
+<p><code>STRblank?  &nbsp;  ( s -- i )  </code></p>
+
+<p>Returns true if <code>s</code> null string or only spaces.
+(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strcenter">
+<p><code>STRcenter  &nbsp;  ( s i -- s )</code></p>
+
+<p>Centers <code>s</code> in a field <code>i</code> characters wide.</p>
+
+<p><code>
+   &nbsp; &nbsp;  "Welcome to " "muckname" sysparm 78 STRcenter .tell
+</code></p>
+    
+<p>...would display a welcome line including the name of the
+<code>MUCK</code> centered for a standard screen. (Lib-Strings)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="strchr">
+<p><code>STRchr  &nbsp; ( i -- s )  </code></p>
+
+<p>Converts <code>ASCII</code> code number <code>i</code> to its
+character equivalent. The same capability is provided by the <a
+href="mufref.html#itoc"><code>ITOC</code></a> primitive. (<em>Note</em>:
+the header document for Lib-Strings lists the name of this funtions as
+<code>STRchar,</code> but this is incorrect: use <code>STRchr</code>.)
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strfillfield">
+<p><code>STRfillfield  &nbsp;  ( s1 s2 i -- s3  ] </code></p>
+
+<p>Returns a string consisting of as many characters <code>s2</code> as would be needed to concattenate with <code>s1</code> to create a string <code>i</code> characters long. Useful for aligning columns of output.</p>
+
+<p><pre>
+   &nbsp; &nbsp;  me @ name " " 20 STRfillfield strcat
+</pre></p>
+    
+<p>...would return...</p>
+    
+<p><pre>
+    "Jessy               "
+</pre></p>
+
+<p>(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strleft">
+<p><code>STRleft  &nbsp;  ( s i -- s )  </code></p>
+
+<p>Returns <code>s,</code> padded with trailing spaces to a string
+length of <code>i</code> characters. (Lib-Strings)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="strright">
+<p><code>STRright  &nbsp;  ( s i -- s )  </code></p>
+
+<p>Returns <code>s,</code> padded with leading spaces to a string
+length of <code>i</code> characters. (Lib-Strings)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="strrsplit">
+<p><code>STRrsplit  &nbsp;  ( s1 s2 -- s3 s4 )</code></p>
+
+<p>Splits <code>s1</code> on last occurence of delimiter string
+<code>s2.</code> </p>
+
+<p><code>
+    "#add here=detail=chair" "=" STRrsplit
+</code></p>
+    
+<p>...would put...</p>
+
+<p><code>
+    "#add here=detail", "chair"
+</code></p>
+    
+<p>...on the stack. If <code>s1</code> does not include <code>s2,</code>
+<code>s3</code> will be identical to <code>s1</code> and <code>s4</code>
+will be a null string. The same capability is provided by the <a
+href="mufref.html#rsplit"><code>RSPLIT</code></a> primitive. See also <a
+href="#strsplit"><code>STRsplit.</code></a> (Lib-Strings)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="strsts">
+<p><code>STRsts  &nbsp;  ( s -- s' )</code></p>
+
+<p>Strips leading spaces from <code>s.</code> The same capability is
+provided by the <a
+href="mufref.html#striplead"><code>STRIPLEAD</code></a> primitive.
+(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strsls">
+<p><code>STRsls  &nbsp;  ( s -- s' )</code></p>
+
+<p>Strip trailing spaces from <code>s.</code> The same capability is
+provided by the <a
+href="mufref.html#striptail"><code>STRIPTAIL</code></a> primitive.
+(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strsms">
+<p><code>STRsms  &nbsp;  ( s -- s' )</code></p>
+
+<p>Strips multiple internal spaces from <code>s.</code></p>
+
+<p><code>
+   &nbsp; "It's    a    long    way    to    Tipperary" STRsms
+</code></p>
+    
+<p>...would return...</p>
+
+<p><code>
+   &nbsp; "It's a long way to Tipperary"
+</code></p>
+ 
+<p>(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strstrip">
+<p><code>STRstrip  &nbsp;  ( s -- s' )</code></p>
+
+<p>Strips leading and trailing spaces from <code>s.</code> The same
+capability is provided by the <a
+href="mufref.html#strip"><code>STRIP</code></a> primitive.
+(Lib-Strings)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="strsplit">
+<p><code>STRsplit  &nbsp;  ( s1 s2 -- s3 s4 ]  </code></p>
+
+<p>Splits <code>s1</code> at the first occurence of delimiter string
+<code>s2.</code></p>
+
+<p><code>
+   &nbsp; "mink otter linsang" "otter" STRsplit
+</code></p>
+    
+<p>...would put...</p>
+
+<p><code>
+   &nbsp; "mink ", " linsang"
+</code></p>
+    
+<p>...on the stack. If <code>s1</code> does not include <code>s2,</code>
+<code>s3</code> will be identical to <code>s1</code> and <code>s4</code>
+will be a null string. The same capability is provided by the <a
+href="mufref.html#split"><code>SPLIT</code></a> primitive. See also <a
+href="#strrsplit"><code>STRrsplit.</code></a> (Lib-Strings)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="t">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+ 
+<a name="table_match">
+<p><code>.table_match  &nbsp; ( x1 x2 cn pn ... c1 p1 i x3 address -- cx
+px )</code></p>
+
+<p>This function tests successive pairs of `comparator' and `data'
+elements with a separate function (that you create), returning the pair
+that (according to your function's criteria) `matches'. Although
+<code>.table_match</code> is supplied as a matching function, it can
+have other applications: the comparator/data pairs in effect constitute
+a hash table, and the `matching' function can perform whatever
+operations you require.</p>
+
+<p><code>.Table_match</code> takes parameters <code>x1</code> &#151; the
+item to be returned if no match is found &#151; and <code>x2</code>
+&#151; the item to be returned if more than one pair matches.
+<code>x1</code> and <code>x2</code> can be of any type. Example:
+<code>#-1</code> and <code>#-2</code> are the conventional items used to
+indicate negative or ambiguous match results for objects of type dbref.
+These parameters are followed by comparator/data pairs: the comparator
+is the item to be tested for a match; the data item is a stack item
+associated with the comparator. An integer specifying the number of such
+pairs to be tested is then supplied, followed by the value
+<code>x3</code> &#151; which will be used to test the match &#151; and
+the address of the testing function. The testing function should return
+<code>1</code> for true results and <code>0</code> for false results.
+<code>.Table_match</code> returns the comparator/data pair that matches
+(<code>cx px</code>), or the paramters for negative or ambiguous results
+(<code>x1</code> or <code>x2</code>)</p>
+
+<p>Example: Suppose you want a function supplementing
+<code>.pmatch</code> and <code>.noisy_pmatch</code> that can find
+players by `nicknames', which are often set as a player's
+<code>%n</code> property. One way (among many possibilities) to create
+such a function would be to supply comparator/data pairs of players'
+<code>%n</code> properties and their dbrefs, and calling
+<code>.table_match.</code> The nickname to be matched is stored in
+<code>lvar ourString.</code> Function <code>GetPairs</code> puts the
+prop/dbref pairs and their count on the stack. Function
+<code>CheckNick</code> performs a <code>SMATCH,</code> returning
+<code>1</code> if a comparator matches ourString, and <code>0</code> if
+it does not. Code for calling <code>.table_match</code> might then look
+like this:</p>
+    
+<p><code>
+  &nbsp;  #-1 #-2 GetPairs ourString @ `CheckNick .table_match
+</code></p>
+    
+<p>If a player calls the program with a search for <code>"Dr.
+Cat",</code> and <code>GetPairs</code> returns three players who have
+<code>%n</code> nicknames (and thus are candidates for possible matches)
+the stack created by this code might have values such as the following
+immediately before <code>.table_match</code> is called: </p>
+    
+<p><code>
+  &nbsp;  #-1, #-2, "the Scamper Gal", #2, "the terribly velvet-furred linsang",<br>
+  &nbsp;  #13, "Dr. Cat" #244, "Dr. Cat", `CheckNick
+<p></code>
+    
+<p><code>#-1</code> and <code>#-2</code> are the codes
+<code>.table_match</code> is to return for negative and ambiguous
+matches. The next six items on the stack are three comparator/data
+pairs: The dbrefs of players <code>#2,</code> <code>#13,</code> and
+<code>#244,</code> paired with their nicknames. The next item (the
+second occurance of string <code>"Dr.  Cat"</code>) is the string to be
+matched, which was fetched from <code>lvar ourString.</code>
+<code>`CheckNick</code> &#151; a function name preceded by an
+<code>`</code> apostrophe &#151; is a pointer to the address for the
+<code>CheckNick</code> function.</p>
+
+<p>In this case, the results are not negative or ambiguous: one of the
+players does have the nickname to be matched: player <code>#244</code>
+is Dr. Cat.  <code>.Table_match</code> would clear all the above data
+from the stack, and return...</p>
+
+<p><code>
+  &nbsp;  "Dr. Cat", #244
+</code></p>
+    
+<p>See also <a
+href="#std_table_match"><code>.std_table_match.</code></a> (Lib-Match)
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="u">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="unparse">
+<p><code>unparse  &nbsp; ( d -- s )</code></p>
+
+<p>Returns the name of object <code>d,</code> concattenated with its
+dbref and flags (such as <code>"Bulletin Board(#177S)"</code>) if the
+user controls object <code>d.</code> If the user does not control
+<code>d,</code> or if the user is set <code>Silent,</code> only its name
+is returned (<code>"Bulletin Board"</code>). (Lib-Look)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="v">
+<a name="w">
+<a name="x">
+<a name="y">
+<a name="z">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a> 
+| <a href="#c">C</a> 
+| <a href="#d">D</a> 
+| <a href="#e">E</a> 
+| <a href="#f">F</a> 
+| <a href="#g">G</a> 
+| <a href="#h">H</a> 
+| <a href="#i">I</a> 
+| <a href="#j">J</a> 
+| <a href="#k">K</a> 
+| <a href="#l">L</a> 
+| <a href="#m">M</a> 
+| <a href="#n">N</a> 
+| <a href="#o">O</a> 
+| <a href="#p">P</a> 
+| <a href="#q">Q</a> 
+| <a href="#r">R</a> 
+| <a href="#s">S</a> 
+| <a href="#t">T</a> 
+| <a href="#u">U</a> 
+| <a href="#v">V</a> 
+| <a href="#w">W</a> 
+| <a href="#x">X</a> 
+| <a href="#y">Y</a> 
+| <a href="#z">Z</a> 
+]</nobr></center></p>
+
+
+<a name="when">
+<p><code>when &nbsp; ( x --  )</code></p>
+
+<p>Performs a <code>TRUE|FALSE</code> condition test within a
+<code>case</code> statement. See header for lib-case. (Lib-Case)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+  <center>
+  <a href="mufref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="tutorials.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

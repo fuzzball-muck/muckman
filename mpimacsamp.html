@@ -1,0 +1,67 @@
+<html>
+<head>
+  <title>The MUCK Manual: </title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mpimacs.html">prev</a>|
+  <a href="toc.html">toc</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>Example MPI Macros</b></p>
+
+<p><code>
+@set #0=/_msgmacs/after:{with:~af1,{instr:{:1},{:2}},{if:{and:{&~af1},{le:{add:{&~af1},{strlen:{:2}}},{strlen:{:1}}}},{midstr:{:1},{add:{&~af1},{strlen:{:2}}},-1}}}<br>
+@set #0=/_msgmacs/alive:{parse:player,{filter:awake,{contents:here,player},{awake:{&awake}}},{name:{&player}}}<br>
+@set #0=/_msgmacs/asleep:{parse:player,{filter:awake,{contents:here,player},{not:{awake:{&awake}}}},{name:{&player}}}<br>
+@set #0=/_msgmacs/before:{with:~bf1,{instr:{:1},{:2}},{if:{&~bf1},{midstr:{:1},1,{subt:{&~bf1},1}},{:1}}}<br>
+@set #0=/_msgmacs/change:{with:~cobj,{if:{:4},{:4},this},{store:{subst:{prop:{:1},{&~cobj}},{:2},{:3}},{:1},{&~cobj}}}<br>
+@set #0=/_msgmacs/desc/:{eval:{list:{:1}}}<br>
+@set #0=/_msgmacs/detail-tell:{null:{tell:[{name:me} looked at your '{&arg}'.],{owner:this}}}<br>
+@set #0=/_msgmacs/econcat:{eval:{concat:{:1},{if:{:2},{:2},this}}}<br>
+@set #0=/_msgmacs/elist:{eval:{list:{:1},{if:{:2},{:2},this}}}<br>
+@set #0=/_msgmacs/everyone:{parse:player,{contents:here,player},{if:{awake:{&player}},{name:{&player}},{name:{&player}}[asleep]}}<br>
+@set
+#0=/_msgmacs/hasflag:{if:{instr:{flags:{:1}},{toupper:{:2}}},1,0}<br>
+@set #0=/_msgmacs/item-tell:{null:{tell:[{name:me} looked at your {subst:{tolower:{&arg}},{tolower:{name:this}'s} ,}.],{owner:this}}}<br>
+@set #0=/_msgmacs/LLtoSL:{filter:~ls,{:1},1,\r, }<br>
+@set #0=/_msgmacs/look-notify:{if:{prop:_desc_objector,me},{if:{prop:_desc_objected,this},{exec:_desc_objected,this},{eval:{:1}}{nl}{exec:_desc_objector,me}},{eval:{:1}}{nl}{pronouns:{exec:_desc_notify_looker,me},this}{null:{tell:{pronouns:{exec:_desc_notify_looked,this},me},this}}}<br>
+@set #0=/_msgmacs/looknotify:{null:{tell:[{name:me} just looked in your direction!],this}}<br>
+@set #0=/_msgmacs/obj-notify:{null:{tell:[{name:me} looked at your '{name:this}'.],{owner:this}}}<br>
+@set #0=/_msgmacs/obj-tell:{null:{tell:[{name:me} looked at your '{name:this}'.],{owner:this}}}<br>
+@set #0=/_msgmacs/obvexits:{nl}{if:{prop:_prefs/obvheader,here},{prop:_prefs/obvheader,here},Obvious Exits:}{nl}    {parse:e,{exits:here},{if:{or:{not:{instr:{flags:{&e}},D}},{eq:{prop:_show_dark?,{&e}},yes}},{name:{&e}}},\r,      }<br>
+@set #0=/_msgmacs/phase:{with:pod,{with:now,{secsday:{:2}},{if:{or:{le:{&now},20700},{ge:{&now},67500}},Night,{if:{and:{ge:{&now},65700},{le:{&now},67500}},Dusk,{if:{and:{ge:{&now},20700},{le:{&now},22500}},Dawn,Day}}}},{if:{:1},{eq:{:1},{&pod}},{&pod}}}<br>
+@set #0=/_msgmacs/pronoun-ext:{with:px,,{muf:#1784,px}}<br>
+@set #0=/_msgmacs/pronouns-ext:{with:px,,{muf:#1784,px}<br>
+@set #0=/_msgmacs/pronouns-x:{muf:#1784,{:1}{if:{:2}, {:2}, me}}<br>
+@set #0=/_msgmacs/proploc:{muf:#1291,{:2}={:1}}<br>
+@set #0=/_msgmacs/px:{muf:#1784,{:1}}<br>
+@set #0=/_msgmacs/randmsg:{with:rn,{dice:{prop:{:1}#}},{null:{with:os,{prop:o{:1}#/{&rn}},{if:{or:{eq:*,{&os}},{eq:,{&os}}},,{otell:{name:me}{&os}}}}},{prop:{:1}#/{&rn}}}<br>
+@set #0=/_msgmacs/room-tell:{null:{tell:[{name:me} looked at room '{name:this}'.],{owner:this}}}<br>
+@set #0=/_msgmacs/secsday:{with:now,{if:{:1},{time:{:1}},{time}},{add:{add:{mult:3600,{midstr:{&now},1,2}},{mult:60,{midstr:{&now},4,5}}},{midstr:{&now},7,8}}}<br>
+dir /_msgmacs/sitstand/:(no value)<br>
+@set #0=/_msgmacs/SLadd:{LLtoSL:{mklist:{SLtoLL:{:1}},{:2}}}<br>
+@set #0=/_msgmacs/SLdel:{filter:~sld,{:1},{ne:{&~sld},{:2}}, , }<br>
+@set #0=/_msgmacs/SLtoLL:{filter:~sl,{:1},1, ,\r}<br>
+@set #0=/_msgmacs/unparseobj:{if:{if:{istype:{:2},player},{controls:{:1},{:2}},{controls:{:1}}},{name:{:1}}({ref:{:1}}{flags:{:1}}),{name:{:1}}}<br>
+@set #0=/_msgmacs/weather:{muf:#1425,{:1}}<br>
+</code></p>
+
+  <center>
+  <a href="mpimacs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

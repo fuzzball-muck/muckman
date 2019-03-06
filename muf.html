@@ -1,0 +1,118 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mpiref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf2.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>3.2  Overview: MUF</b></p>
+
+<p><code>MUF</code> &#151; a dialect of <code>FORTH</code> &#151; is one
+of two programming languages implemented on all <code>MUCKs,</code> the
+other being <code>MPI.</code> The speed and efficiency of
+<code>MUF</code> make <code>MUCKs</code> readily user-extensible:
+powerful new commands and programs can be soft-coded into the database.
+Although the only place you'll be able to use it is on
+<code>MUCKs,</code> <code>MUF</code> is a real programming language:
+once you've learned it, you can truthfully say you know how to program
+computers, and concepts and habits of thought you pick up as a Mucker
+will be useful in learning languages with widespread <code>RL</code>
+applications.
+
+<p><code>MUF</code> is an extensible, structured, stack-based, compiled
+language. 
+
+<dl>
+    <p><dt><em>Extensible</em>: 
+      <dd>If there isn't a command to do what you want, you can make
+      one.</p>
+
+    <p><dt><em>Structured</em>: 
+      <dd>A <code>MUF</code> program consists of `functions' or `words'
+      ... blocks of code that are executed as a unit and `call' each
+      other as needed.  It doesn't matter (to the computer) whether you
+      put all your code on one long line or every word on a new line (it
+      matters a lot to people who are trying to read your code). White
+      space (any combination of spaces, tabs, or new lines) separates
+      words, and the order of the words and their positioning between
+      the symbols that start and end a function are what matter. The
+      program is composed of `functions' or `words' that each perform a
+      specific task.</p> 
+
+    <p><dt><em>Stack-based</em>: 
+      <dd>You do everything by manipulating a stack, a set of
+      `last-in-first-out' values like HP calculators use.</p>
+        
+    <p><dt><em>Compiled</em>: 
+      <dd>You write a program that people can read, with semi-normal
+      words like <code>pop</code> and <code>rot</code> and
+      <code>remove_prop</code> (this is your source code) and then a
+      part of the server, the <code>MUF</code> compiler, turns it into
+      arcane stuff that computers can read (this is your object code).
+      You won't ever see the object code.</p> </dl>
+
+<p><b>Before You Begin:</b></p>
+
+<p>In order to program in <code>MUF,</code> you'll need a Mucker bit, a
+flag that lets you use the <code>MUF</code> editor. A wiz will need to
+set this, so page one and ask. There are three levels of mucker bits,
+<code>M1</code> (apprentice), <code>M2</code> (journeyman), and
+<code>M3</code> (master) (wizards are considered <code>M4</code>). </p>
+
+<p>As a new Mucker, you'll get an <code>M1</code> bit. <code>M1</code>'s
+have access to most of the functions, but not all; output from an
+<code>M1</code> program to anyone other than the owner of the program is
+prefaced by the user's name; and the program won't be able to send
+messages to or retrieve information from remote locations. An
+<code>M1</code> bit is essentially <code>MUF</code> with training
+wheels. Once you've written a couple <code>M1</code> programs that work,
+you can show them to a wiz and ask for an <code>M2</code> bit.
+<code>M2</code>'s can't use all the functions, but you can make truly
+useful programs at the <code>M2</code> level: bulletin board or book
+programs, specialized exits and locks, morphing programs, etc. </p>
+
+<p><code>M3</code> bits are dandy to have, but they are hard to come by
+on large mucks, and for good reason. An <code>M3</code> bit gives its
+owner considerable power over the data base, approaching that of a
+wizard: an inept or malintentioned <code>M3</code> coder could cause
+serious problems. In fact, <code>M3</code>'s are in some ways more of a
+security risk than Wizard bits: wiz bits are more powerful, but all
+commands issued by a wizard are logged; this is not necessarily true of
+<code>M3</code> programs and players. To get an <code>M3</code> bit on a
+well established <code>MUCK,</code> you will need to write some very
+good programs and have shown yourself to be a trustworthy player over
+time. In general, it's easier to get an <code>M3</code> on newer,
+smaller <code>MUCKs.</code> </p>
+
+<p>There are two commands that are good to know Before you Begin. One is
+<code>man,</code> the online manual command. Typing <code>man</code>
+<code>pop</code> would tell you about the <code>MUF</code> primitive
+<code>pop.</code> The other is <code>@q.</code> This aborts a foreground
+program you have running. If you find yourself in a run-away or
+locked-up program, type <code>@q</code> to get out of it.</p>
+
+
+  <center>
+  <a href="mpiref.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf2.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

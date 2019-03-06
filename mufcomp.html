@@ -1,0 +1,150 @@
+<html>
+<head>
+  <title>The MUCK Manual: MUF Compiler Directives</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mufmacs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="mufref.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2.4 MUF Compiler Directives</b></p>
+
+<p>Compiler directives &#151; additional instructions that the server
+executes before or while compiling your code &#151; were introduced in
+the <a href="muf12.html">MUF Overview</a>. Below is a more complete
+reference of the available compiler directives.</p>
+
+<hr>
+<p><code>$define &lt;definition name&gt; &lt;definition&gt; $enddef</code></p>
+
+<p>This redefines <code>&lt;definition name&gt;</code> such that all
+instances of it will be replaced with <code>&lt;definition&gt;</code>
+when the program is compiled.</p><hr>
+
+<p><code>$undef &lt;defname&gt;</code></p>
+
+<p>This undefines <code>&lt;defname&gt;</code>, making it an undefined
+value for the compiler. Its primary use is to allow compiler directives
+to be included in the source code without their being invoked by the
+compiler. For example, you might have a program that should be compiled
+differently if running at Mucker Level 3 rather than Mucker Level 2. You
+could include the following lines in your code...
+
+<p><code>
+====================================<br>
+$define&nbsp;MLev2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(* Undefine this if the program is set M3 *)<br>
+$undef&nbsp;&nbsp;MLev3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(* Define this if the program is set M2 *) <br>
+====================================
+</code></p>
+
+<p>This way, the person compiling the program would have an example of
+each valid form, even though only one is being invoked.</p><hr>
+
+<p><code>$echo &lt;string&gt;</code></p>
+
+This outputs &lt;string&gt; to the person compiling the program, at
+compile time. Example:
+
+<p><code>
+====================================<br>
+$echo Compiling multi-guest.muf... <br>
+$echo See header comment for configuration instructions.<br>
+====================================
+</code></p><hr>
+
+<p><code>__version</code></p>
+
+This is a pre-defined macro that is replaced at compile time with the
+current server version. It would be useful for tests to ensure that the
+server version can support all the primitives used in your program. The
+replacement string will be the same as that returned by the
+<code>VERSION</code> primitive.</p><hr>
+
+<p><code>$ifdef &lt;condition&gt; <br>
+&nbsp;&nbsp;&lt;compile-if-true&gt; <br>
+$else <br>
+&nbsp;&nbsp;&lt;compile-if-false&gt; <br>
+$endif<br>
+<br>
+$ifndef &lt;condition&gt; <br>
+&nbsp;&nbsp;&lt;compile-if-true&gt; <br>
+$else <br>
+&nbsp;&nbsp;&lt;compile-if-false&gt; <br>
+$endif<br></code>
+
+<p>These cause conditional compilation of blocks of code, based on
+<code>&lt;condition&gt;</code>. <code>&lt;Condition&gt;</code> can be a
+<code>$defined name</code>, or a test that consists of a comparator such
+as =, &lt;, or &gt; and a test value, all in one word, without
+whitespace. The else clause is optional. Comiler directives are
+nestable. Example:</p>
+
+<p><code>
+====================================<br>
+$ifndef __version&gt;Muck2.2fb3.5 <br>
+&nbsp;&nbsp;$define envprop .envprop $enddef <br>
+$endif<br>
+<br>
+$define ploc <br>
+<br>
+$ifdef proplocs .proploc $else $endif $enddef<br>
+====================================
+</code></p><hr>
+
+<p><code>$include &lt;program&gt;</code></p>
+
+<p>This creates <code>$defines</code> based on the <code>_defs/</code>
+propdir of <code>&lt;program&gt;.</code> For example, if object
+<code>#345</code> had the following properties...</p>
+
+<p><code>
+====================================<br>
+/_defs/desc: "_/de" getpropstr<br>
+/_defs/setpropstr: dup if 0 addprop else pop remove_prop then<br>
+/_defs/setpropval: dup if "" swap addprop else pop remove_prop then<br>
+/_defs/setprop: dup int? if setpropval else setpropstr then<br>
+====================================
+</code></p>
+
+<p>... then a program that contains the line <code>$include #345</code>
+would be compiled such that all instances of <code>desc,</code>
+<code>setpropstr,</code> <code>setpropval,</code> and
+<code>setprop</code> would be preplaced with their respective
+definitions on <code>#345</code>.</p><hr>
+
+<p>Escaped statements will be read literally, rather than interpreted and
+expanded by the compiler, which allows primitives and macros to be
+included in <code>$defines</code>. Example:
+
+<p><code>
+====================================<br>
+$define addprop over over or if \addprop else pop pop remove_prop<br>
+$enddef <br>
+====================================
+</code></p>
+
+<p>In this case, <code>ADDPROP</code> will be expanded in the program
+itself, but the compiler will not recursively expand it... it will call
+the actual, in-server <code>ADDPROP</code>.</p>
+
+  <center>
+  <a href="mufmacs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="mufref.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

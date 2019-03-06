@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>The MUCK Manual: MUF Macro Samples</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="otherport.html">prev</a>|
+  <a href="toc.html">toc</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><b>Example MUF Macros</b></p>
+
+<pre>
+def abs ( i -- i' ) dup 0 < if -1 * then
+def addpropstr ( d s --  ) dup not if pop remove_prop else 0 addprop then
+def addpropval (d s i -- ) "" swap addprop
+def after_match (d -- ) dup #-1 dbcmp swap #-2 dbcmp or if exit then
+def atodbref ( s -- d ) "" "#" subst atoi dbref
+def clearstack ( -- ) begin depth while pop repeat
+def confirm ( s -- i ) ( displays query string and waits for user input-- returns 1 if user said "y" ) me @ swap notify read 1 strcut pop "y" stringcmp not
+def debug-line ( -- ) prog "!d" over "d" set set (shows a single debug line)
+def debug-off ( -- ) prog "!D" set ( set a program !debug from this line )
+def debug-on ( -- ) prog "D" set ( set a program debug from this line )
+def envprop ( d s --  ) envpropstr swap pop
+def me_wiz? ( -- i ) ME @ .wizard?
+def muckerlevel ( d -- i ) dup "Wizard" flag? if mlevel if 4 else 0 then else mlevel then
+def no? ( s -- i ) (checks that string starts with "n", is "0", or is blank) dup if 1 strcut "n" stringcmp not if 1 else "0" strcmp not then else pop 1 then
+def notify_nospam (d1 d2 s -- ) (as notify_except, but excludes all set "_nospam?:yes")  1 4 pick contents begin dup ok? not if pop break then dup player? over "_nospam?" getpropstr "yes" strcmp not and if swap 1 + rot swap 3 pick then next repeat swap notify_exclude
+def otell loc @ me @ rot notify_except ( s -- ) ( Display string to everyone in my room except me )
+def pmatch #24 call ( playername -- dbref )
+def pmatch-f ( pmatch-free; pmatch with a penny rebate ) .pmatch .MAX_PENNIES ME @ owner pennies - "lookup_cost" sysparm atoi .min dup 0 > if ME @ owner swap addpennies else pop then
+def popn ( xn ... x2 x1 n -- ) begin dup 0 > while swap pop 1 - repeat pop
+def quote ( s -- s ) "\"" swap strcat "\"" strcat
+def rstrfmt ( s i -- s ) swap .spc80 swap strcat swap over strlen swap - strcut swap pop
+def safecall ( xi ... x2 x 1 d i -- ) ( a "stack safe" call ) .sqfuncs "safecall" call
+def spc80 ( -- s ) "                                                                                "
+def split ( s s1 -- s2 s3 ) over over instr dup 1 < if pop pop "" else rot swap 1 - strcut rot strlen strcut swap pop then
+def stringeq?  stringcmp if 0 else 1 then
+def stripspaces (s -- s) striplead striptail
+def tell ( d s -- ) me @ swap notify
+def truewizard? "truewizard" flag?
+def wizard? ( d -- i )"W" flag?
+def yes? ( s -- i ) ( checks that string starts with y ) 1 strcut pop "y" stringcmp not
+</pre>
+
+
+  <center>
+  <a href="otherport.html">prev</a>|
+  <a href="toc.html">toc</a>
+  <a href="#top">top</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

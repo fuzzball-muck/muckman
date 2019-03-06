@@ -1,0 +1,88 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (3)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf2.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf4.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>A First Program:</b></p>
+
+<p>Let's make a "Hello, world!" program, to practice with the mechanics
+of making a program, and because it's something of a rite of
+passage.</p>
+
+<p>Make a program. Let's call it tinker.muf, because we'll be tinkering
+around with it. Type <code>@prog tinker.muf.</code> The program
+is created and you go into the editor. At this point, either type
+<code>i</code> to enter `insert' mode and type the code below, or type
+<code>q</code> to get our of the editor and quote/paste it into the
+<code>MUCK</code> from your host computer, then compile the program and
+exit the editor (type <code>c,</code> then <code>q</code> while in the
+editor).</p>
+
+<p><code>
+====================================<br>
+&gt; @prog tinker.muf<br>
+&nbsp;  Program tinker.muf created with number 1230.<br>
+&nbsp;  Entering editor.<br>
+&gt; i<br>
+&nbsp;  Entering insert mode.<br>
+&gt; (tinker.muf. A practice program)<br>
+&gt; <br>
+&gt; : main<br>
+&gt;     me @ "Hello, world!" notify<br>
+&gt; ;<br>
+&gt; .<br>
+&gt; c<br>
+&nbsp;  Compiler done.<br>
+&gt; q<br>
+&nbsp;  Editor exited.<br>
+====================================<br>
+</code></p>
+
+<p>Create an action attached to yourself and linked to the program.</p>
+
+<p><code>
+====================================<br>
+&gt; @act test = me<br>
+&nbsp;  Action created with number #1231 and attached.<br>
+&gt; @link test = tinker.muf<br>
+&nbsp;  Linked to tinker.muf(#1230FM1)<br>
+====================================<br>
+</code></p>
+
+<p>Check your program by typing `test'.</p>
+
+<p><code>
+====================================<br>
+&gt; test<br>
+&nbsp;  Hello, world!<br>
+====================================<br>
+</code></p>
+
+
+  <center>
+  <a href="muf2.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf4.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

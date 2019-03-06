@@ -1,0 +1,55 @@
+<html>
+<head>
+  <title>The MUCK Manual: MPI Macros</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mpi.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="mpiex.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.1.1  MPI Macros</b></p>
+
+<p>Frequently used portions of <code>MPI</code> code can be defined as
+macros, by setting properties in the <code>_msgmacs/</code> directory of
+an object located in the command search path (see <a
+href="expriority.html">Section 2.3.3</a>. Macros defined in the
+<code>_msgmacs/</code> directory of room <code>#0</code> can be used by
+all players and objects.</p>
+
+<p>An example: To define a global `look-notify' &#151; a macro that
+tells users when someone looks at them &#151 we could set the following
+property:</p>
+
+<p><code>
+  <nobr>&nbsp;@set #0=_msgmacs/look-notify:{null:{tell:*{name:me}
+  looked at you*,this}}</nobr>
+</code></p>
+
+<p>Some standard <code>MPI</code> macros are listed <a
+href="mpimacsamp.html">here</a>. Wizards can copy these macros to the
+<code>MUCK's</code> global <code>MPI</code> macro directory.
+Alternatively, players can copy individual entries to
+<code>_msgmacs/</code> directory on themselves or objects they own.</p>
+
+
+  <center>
+  <a href="mpi.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="mpiex.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

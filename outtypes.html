@@ -1,0 +1,140 @@
+<html>
+<head>
+  <title>The MUCK Manual: Output Types</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="patmatch.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="pronounsubs.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.1.6 Output Types</b></p>
+
+<p>Searches with <code>@find</code> and the related commands
+(<code>@owned, @contents</code>, and <code>@entrances</code>) may also
+be narrowed by object type and several other values, and may return
+additional information such as the objects' owners and locations. The
+extended syntax is:</p>
+
+<pre>
+    @find &lt;name | pattern&gt; = &lt;parameter&gt; = &lt;output type&gt;
+</pre>
+
+<p>One or several search parameters may be used. Valid search parameters
+may be a type flag, a Mucker level, or the following special values:
+    
+<table>
+  <tr><td> &nbsp; &nbsp; </td><td>
+  <dl>
+    <p><dt> <code>U</code>
+    <dd>Show only unlinked objects</p>
+    <p><dt> <code>@</code>
+    <dd>Show only old and unused objects</p>
+    <p><dt> <code>~&lt;size&gt;</code>
+    <dd>Show only objects with current memory used greater than &lt;size&gt;</p>
+    <p><dt> <code>^&lt;size&gt;</code>
+    <dd>Show only objects with total memory used greater than &lt;size&gt;</p>
+  </dl>
+  </td></tr>
+</table>
+
+<p>An output type parameter must be typed in full; only one output type
+may be used per search. Valid types include:</p>
+
+<table>
+  <tr><td> &nbsp; &nbsp; </td><td>
+  <dl>
+    <p><dt><code>owners</code>
+    <dd>List owners along with objects</p>
+    <p><dt><code>links</code>
+    <dd>List links along with objects</p>
+    <p><dt><code>size</code>
+    <dd>Show memory size</p>
+    <p><dt><code>count</code>
+    <dd>Don't list objects: just show total found</p>
+    <p><dt><code>location</code>
+    <dd>Show objects' locations</p>
+  </dl>
+  </td></tr>
+</table>
+
+<p>Some examples:</p>
+
+<p>This search would list any unlinked exits you control...<br>
+<code>
+====================================<br>
+&gt; @find = EU<br>
+&nbsp;  South;sout;sou;so;s(#528E)<br>
+&nbsp;  North;nort;nor;no;n(#533E)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  2 objects found.<br>
+====================================<br>
+</code></p>
+  
+<p>This search would list any old and unused objects you control,
+along with their locations...<br>
+<code>
+====================================<br>
+&gt; @find = @ = location<br>
+&nbsp;  Faded rose(#761) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mistral(#100)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  1 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>Objects become `old and unused' if none of their
+<code>`created',</code> <code>`modified',</code> or <code>`last
+used'</code> timestamps is more recent than the <code>aging_time</code>
+system parameter.</p>
+
+<p>This search will find all your <code>M1</code> programs...<br>
+<code>
+====================================<br>
+&gt; @find = 1<br>
+&nbsp;  HelloWorld.muf(#976FM1)<br>
+&nbsp;  TrainingWheels.muf(#978FDM1)<br>
+&nbsp;  WhatsMyName.muf(#979FM1)<br>
+&nbsp;  CountMyBellyButton.muf(#980FM1)<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  4 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>This search will find any objects you control which use more than 
+2000 bytes of memory, along with the current memory size...<br>
+<code>
+====================================<br>
+&gt; @find = ~2000 = size<br>
+&nbsp;  Manhattan Phonebook(#1301) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1932373346 bytes.<br>
+&nbsp;  ***End of List***<br>
+&nbsp;  1 objects found.<br>
+====================================<br>
+</code></p>
+
+<p>For additional information on output types and pattern matching, see
+the entry for <code>@find</code> in the Server Command Reference (<a
+href="srvcomref.html">Section 2.6</a>) and the entry for
+<code>SMATCH</code> in the <code>MUF</code> Reference (<a
+href="mufref.html">Section 3.2.5</a>).</p>
+
+  <center>
+  <a href="patmatch.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="pronounsubs.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

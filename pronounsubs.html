@@ -1,0 +1,104 @@
+<html>
+<head>
+  <title>The MUCK Manual: Pronoun Substitutions</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="outtypes.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="rooms1.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.1.7  Pronoun and Name Substitution</b></p>
+
+<p>Messages returned by fields such as <code>@success, @drop</code>,
+etc., and also the formatting of a number of commands and programs such
+as page, may be dynamically formatted for a player's name and gender:
+substitution strings (a <code>%</code> percent mark followed by a key
+character) are replaced by the appropriate name or pronoun. Standard
+substitution strings are:</p>
+
+<p><pre>
+    %a (absolute)       = Name's, his, hers, its.<br>
+    %s (subjective)     = Name, he, she, it.<br>
+    %o (objective)      = Name, him, her, it.<br>
+    %p (possessive)     = Name's, his, her, its.<br>
+    %r (reflexive)      = Name, himself, herself, itself.<br>
+    %n (player's name)  = Name.<br>
+</pre></p>
+ 
+<p>Capitalizing the substitution string &#151; such as <code>%S</code>
+or %R <code>&#151;</code> causes the substitute value to be capitalized
+as well.  </p>
+
+<p>The server examines the <code>/sex</code> property of the triggering
+player (or other object type) and substitutes as needed. Supported
+values for the sex property are `male', `female', and `neuter'. If the
+property is not set, the player's name is used instead.
+
+<p><code>
+====================================<br>
+&gt; @set $pup = sex:male<br>
+&nbsp;  Property set.<br>
+&gt; @osucc bonk = bonks %r on the head. %S exclaims, "I could<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  have had a V8!"<br>
+&nbsp;  Message set.<br>
+&gt; pp bonk<br>
+&nbsp;  Squiggy bonks himself on the head. He exclaims, "I could<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  have had a V8!"<br>
+  
+&gt; @set $pup = sex:neuter<br>
+&nbsp;  Property set.<br>
+&gt; pp bonk<br>
+&nbsp;  Squiggy bonks itself on the head. It exclaims, "I could<br> 
+&nbsp;  have had a V8!"<br>
+====================================
+</code></p>
+
+<p>The values for these substitutions may be over-ridden by setting a
+property with the same name as the substitution string.
+
+These settings give Squiggy a nickname and some way <code>PC</code>
+pronouns...<br>
+
+<p><code>
+====================================<br>
+&gt; @set $pup = %n:The Squigmeister<br>
+&nbsp;  Property set.<br>
+&gt; @set $pup = %a:hes<br>
+&nbsp;  Property set.<br>
+&gt; @set $pup = %s:s/he<br>
+&nbsp;  Property set.<br>
+&gt; @set $pup = %o:hem<br>
+&nbsp;  Property set.<br>
+&gt; @set $pup = %p:hes<br>
+&nbsp;  Property set.<br>
+&gt; @set $pup = %r:hemself<br>
+&nbsp;  Property set.<br>
+<br>
+&gt; pp bonk<br>
+&nbsp;  Squiggy bonks hemself on the head. S/he exclaims, "I could<br>
+&nbsp;  have had a V8!"<br>
+====================================<br>
+</code></p>
+
+  <center>
+  <a href="outtypes.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="rooms1.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: MUF (11)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muf10.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muf12.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>3.2  Overview: MUF (cont'd)</b></p>
+
+<p><b>Putting it All Together</b></p>
+
+<p>You make a <code>MUF</code> program do what it is supposed to by defining
+functions and directing program flow with conditional statements and loops.
+There are a number of fine points, but these are the heart of <code>MUF</code>
+programming.  Once you have a good grasp of these, you are past the hard part.
+</p>
+
+<p>Now we will tinker with tinker.muf until it becomes a useful program,
+along the way covering most of the issues you will face in
+<code>MUF.</code> We will make tinker.muf into a program that checks all
+the exits in a room and makes sure that they have <code>@succ,</code>
+<code>@osucc,</code> <code>@odrop,</code> and <code>@desc</code>
+properties.</p>
+
+<p>First we'll do a rudimentary version with no error checking to
+concentrate on new topics, then a final version. Enter the following
+code in your program. </p>
+
+<p><pre>
+====================================
+@q
+@edit tinker.muf
+1 999 d
+i
+
+lvar ourExit
+  
+: desctell
+   
+  dup unparseobj " needs a description." .tell
+;
+  
+: succtell
+    
+  dup unparseobj " needs a success message." .tell
+;
+   
+: osucctell
+    
+  dup unparseobj " needs an osuccess message." .tell
+;
+  
+: odroptell
+    
+  dup unparseobj " needs an odrop message." .tell
+;
+  
+: main
+    
+  loc @ exits ourExit !
+   
+  begin
+    ourExit @ while
+    ourExit @
+    dup "_/de"  getpropstr not if
+       desctell
+    then
+    dup "_/sc"  getpropstr not if
+      succtell
+    then
+    dup "_/osc" getpropstr not if
+      osucctell
+    then
+    dup "_/odr" getpropstr not if
+      odroptell
+    then
+    ourExit @ next ourExit !
+  repeat
+;
+.
+c
+q
+====================================
+</pre></p>
+
+<p>The first line in function <code>main</code> uses the predefined
+<code>loc</code> variable to put the dbref of the user's location on the
+stack, and then uses the <code>EXITS</code> primitive to put the first exit in
+the room onto the stack (the room's dbref is used up). The exit's dbref is then
+stored in the local variable <code>ourExit.</code></p>
+
+<p>This is followed by a loop. The first line in the loop tests the exit
+condition: while there is a value in the <code>ourExit</code> variable,
+the loop will continue to execute.</p>
+
+<p>The next line fetches the value out of <code>ourExit</code> and
+places it on the stack. Then, the value is duplicated and tested four
+times, once for each message we're interested in.</p>
+
+<p><pre>
+  dup "_/de"  getpropstr not if
+    desctell
+  then
+</pre></p>
+
+<p><code>DUP</code> puts an extra copy of the exit's dbref on the stack,
+to be used in an <code>IF</code> test, leaving the first copy on the
+stack. Here, <code>GETPROPSTR</code> puts the value of the exit's
+<code>_/de</code> property on the stack... the exit's desc. We want to
+tell the user <code>IF</code> the exit <em>doesn't</em> have a desc, so
+we reverse the truth value of the top item on the stack with
+<code>NOT</code>. If the room <em>does</em> have a desc, the desc string
+will be on the stack... and a string other than <code>""</code> is true.
+The <code>NOT</code> will replace this string with <code>0</code> zero,
+and the <code>IF</code> test will be false... execution will jump to the
+line following then. However, if the exit <em>doesn</em>'t have a desc,
+the top item on the stack will be a <code>""</code> null string. The
+<code>NOT</code> will replace this with a <code>1</code> one, for
+`true'.  In this case, the <code>IF</code> test will be true, and the
+code between <code>IF</code> and its corresponding <code>then</code>
+will execute: the program will execute the function
+<code>desctell.</code></p>
+
+<p>The same process is then repeated for each of the messages we're
+interested in: <code>@succ,</code> <code>@osucc,</code> and
+<code>@odrop.</code></p>
+
+<p>Exiting this loop is controlled by the next primitive.
+<code>NEXT</code> takes the dbref of an exit or thing, and returns the
+next exit or thing in the room's inventory. So, the line... </p>
+
+<p><pre>
+  ourExit @ next ourExit !
+</pre></p>
+
+<p>Fetches the dbref of the current exit, gets the next exit, and stores
+that one in the <code>ourExit</code> variable.</p>
+
+<p>Execution then jumps back to the top of the loop: while we still have
+exits to check, the loop will continue to execute. But, when we run out
+of exits, there will be nothing in the <code>ourExit</code> variable.
+the <code>WHILE</code> test will be false, and execution will jump out
+of the loop.</p>
+
+
+  <center>
+  <a href="muf10.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muf12.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

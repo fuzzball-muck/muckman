@@ -1,0 +1,176 @@
+<html>
+<head>
+  <title>The MUCK Manual: MUF Libraries</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mucklev.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="mufmacs.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>MUF Libraries</b></p>
+
+<p>Libraries allow <code>MUF</code> programs to share code: frequently
+used, generic routines can be written and compiled once, in a library;
+other programs can use these routines by using an <code>$include</code>
+statement to include the library. Once a library has been included, any
+routines defined in the library can be used in the local program. A
+number of standard libraries are available, and will be needed to
+compile a number of the standard <code>MUF</code> programs. <a
+href="muflibref.html">Section 3.2.6</a>, the <code>MUF</code> Library
+Reference, gives comprehensive documentation of routines available from
+the standard libraries. In addition, you can create your own
+libraries.</p>
+
+<p><em>Using Library Functions</em>:</p>
+
+<p>To use library functions in your programs, include the library or
+libraries needed by placing an <code>$include</code> statement in your
+code, before any library functions are called, and outside of any
+functions. (Most programmers put all <code>$include</code> statements at
+the top of their programs).  Libraries are specified by their registered
+names. For example, to use the reflist-handling functions from
+lib-reflist, you would put the following line of code in your
+program:</p>
+
+<p><code>
+ &nbsp; &nbsp; $include $lib/reflist
+</code></p>
+
+<p>At any point after this line, functions defined in lib-reflist can be
+used in your program.</p>
+
+<p>To list the the libraries available on your <code>MUCK,</code> type
+<code>@register lib</code>. To view a library's documentation, type
+<code>@view $lib/&lt;library name&gt;</code>.</p>
+
+<p><em>Creating Libraries</em>:</p>
+
+<p>Creating libraries is relatively straightforward. You simply write
+code that could be useful to include in multiple programs, make
+individual functions available to other programs with the
+<code>public</code> declaration, and set some properties that give the
+server the information it will need to coordinate between programs and
+programmmers the information they will need in order to make good use of
+your library. The remainder of this page illustrates these by example:
+we'll create, configure, and use <a href="lib-sort.html">lib-sort</a>, a
+library of sorting functions. Take glance at the file now, and refer to
+it as we discuss its implementation.</p>
+
+<p><em>Step 1:</em> Create a program with useful, generic routines.  Programs
+frequently need to sort data, but neither <code>MUF</code> nor the standard
+libraries include functions for doing this. Lib-sort addresses this need. It
+uses a simple bubble sort to sort a stack range of items. (A `stack range' is
+a group of items on the stack and an integer indicating how many items are to
+be considered part of the range. A more complete discussion of stack ranges is
+available in <a href="muflibref.html#stackrange">Section 3.2.6</a>.) For
+example, if we had five strings on the stack that we wanted to sort
+alphabetically...</p>
+
+<p><code>
+  <nobr>
+  &nbsp; "mink" "timber wolf" "otter" "woolly pterydactyl" "linsang" 
+  </nobr>
+</code></p>
+
+<p>... we could do so by putting an integer that gives the `count' of
+the range on top of the stack, and then calling lib-sort's
+<code>sort</code> function...
+
+<p><code>
+  <nobr>
+  &nbsp; "mink" "timber wolf" "otter" "woolly pterydactyl" "linsang" 5<br>
+  </nobr>
+  &nbsp; sort
+</code></p>
+
+<p>Lib-sort would return the five items in alphabetical order, with the
+count integer removed:
+
+<p><code>
+  <nobr>
+  &nbsp; "linsang" "mink" "otter" "timber wolf" "woolly pterydactyl"
+  </nobr>
+</code></p>
+
+<p>Lib-sort provides two public functions: <code>sort</code>, which
+returns the range sorted in ascending order, and <code>sort-d</code>,
+which returns the range in descending order. All items in the range must
+be of the same data type (<code>string</code>, <code>integer</code>, or
+<code>dbref</code>). Lib-sort looks at the data type of the top item in
+the range to determine how to sort the range.</p>
+
+<p>(A bubble sort is not the most efficient algorithm: it is relatively
+slow when sorting large sets (though it is probably the most efficient
+algorithm for very small sets), and it does not finish any faster if the
+data is already sorted or mostly sorted. Other algorithms, such as a
+qsort, would be better in many situations. Implementing a sorting
+library with more sophisticated algorithms would be a good advanced
+<code>MUF</code> programming exercise.)</p>
+
+<p><em>Step 2</em>: Declare the appropriate public functions. Lib-sort
+includes a total of eight functions, but only two of them are meant to
+be called by other programs: <code>sort</code> and <code>sort-d</code>.
+These two functions look at the stack range and call one of the
+remaining six functions, which sort, ascending or descending, according
+to datatype. So, <code>sort</code> and <code>sort-d</code> need to be
+declared public, and the others should not be. We do this by putting the
+lines...
+
+<p><code>
+  &nbsp; public sort<br>
+  &nbsp; public sort-d
+</code></p>
+
+<p>...in the program, after the functions are defined, outside of any
+function definitions. Here, we put them after each function. Another
+common convention is to put all the public declarations at the end of
+the program.</p>
+
+<p><em>Step 3</em>: Document the program. Lib-sort uses the most common
+documentation method, a header comment. Lines 1 to 49 explain how to
+install and use the program.
+
+<p><em>Step 4</em>: Set the program's <code>_docs</code> property to
+allow users to <code>@view</code> the documentation: <code>@set
+lib-sort=_docs:@list $lib/sort=1-49</code> .</p>
+
+<p><em>Step 5</em>: Set the program <code>Link_OK</code>, so that other
+programs can access its public functions and users can view its
+documentation with <code>@view</code>: <code>@set lib-sort=L</code>.</p>
+
+<p><em>Step 6</em>: Configure the interface for each public function by
+setting a <code>_defs/</code> property. These properties give the server
+the information it needs to match statements in local programs to public
+functions in the library.</p>
+
+<p><code>
+  <nobr>
+  &nbsp; &nbsp; @set lib-sort=_defs/sort:"$lib/sort" match "sort" call<br>
+  </nobr><nobr>
+  &nbsp; &nbsp; @set lib-sort=_defs/sort-d:"$lib/sort-d" match "sort-d" call
+  </nobr>
+</code></p>
+
+<p>That's it!</p>
+
+  <center>
+  <a href="mucklev.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="mufmacs.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<html>
+<head>
+  <title>The MUCK Manual: Admin: Security</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="realmswiz.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="nontechissues.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+
+<p><b>5.1.4  Security Concerns</b></p>
+
+<p>Security problems are, fortunately, rather rare on
+<code>MUCKs.</code> Most <code>MUCKs</code> function &#151; quite
+successfully &#151; in a climate of trust, but giving thought to
+security issues is one of your responsibilities as an administrator. The
+issues are magnified if you become an administrator on a large
+<code>MUCK,</code> or if your <code>MUCK</code> attracts a sizeable
+player base.</p>
+
+<p>In this section, `security' is meant as `protection against unauthorized
+modification or destruction of the database itself, or of database objects'.
+This is somewhat different than the related issue of privacy.  Privacy
+issues are discussed in <a href="privacy.html">Section 5.2.4.</a></p>
+
+
+<p><em>Access to the MUCK Account</em>:</p>
+
+<p>Being able to log onto the server account the <code>MUCK</code> is
+run from is the trump card of all security concerns. With access to this
+account, someone bent on mischief or destruction can do anything: change
+God's password, alter logs, or destroy the database and all backups.
+Someone bent on safeguarding the <code>MUCK</code> can undo any damage:
+no matter what has gone wrong or been destroyed on the
+<code>MUCK,</code> the world can be restored to sane and healthy
+condition by restoring from back ups.</p>
+
+<p>So, control over and awareness of who has access to this account is
+the foremost security concern. If you own the machine the
+<code>MUCK</code> runs on, and are able and willing to do all site
+administration tasks, the issue is considerably simplified: don't give
+anyone else the password to the account.</p>
+
+<p>For most <code>MUCKs,</code> the situation is a bit more murky. Often
+someone else owns the machine. Sometimes the site administrator is a
+wizard on the <code>MUCK,</code> but only marginally involved in its
+day-to-day affairs. Sometimes several staff members end up having access
+to the account: God has access because it is, after all, her world; the
+site admin has access because it is, after all, his computer; the player
+relations and security wiz ends up getting access so he can review logs
+in situations where one player has charged another with some kind of
+offense; the wiz responsible for creating new characters gets access so
+she can check email for char requests; perhaps another wizard is given
+access so he can update news, info, and help files. (For some things,
+you can enlist server-side help from staff members without giving them
+access to the account. For example, a separate account could be set up
+for the security wiz, and you could copy the log back ups to a directory
+in that account, rather than <code>game/logs.</code> A separate account
+can be set up for the wizard who does character creation, with char
+requests to be mailed there, or mail can be forwarded to her.)</p>
+
+<p>If this is a team of trustworthy people, then things are grand. Work
+is shared among several people, and any one of them could log on to deal
+with an emergency, such as restarting the <code>MUCK</code> after a
+power failure.  But, be aware: if you share access to the
+<code>MUCK</code> account, you no longer have total assurance that the
+<code>MUCK</code> is safeguarded. It is conceivable that one of these
+people will get mad at you, or at life, the universe, and everything,
+and destroy the <code>MUCK,</code> or that one will give the account
+password to someone you don't know. </p>
+
+
+<p><em>Keeping Backups</em></p>
+
+<p>The server does a certain measure of backup on its own. At
+restart (assuming you are using the standard database filenames) the
+database used at the previous restart, <code>std-db.db,</code> is copied
+to <code>std-db.old,</code> and the most current form of the database
+(<code>std-db.new,</code> created from the most recent dump) is copied
+to <code>std-db.db.</code> So, at any given moment, you have three
+versions of the database on hand.</p>
+
+<p>You may want to take this a step further. Copying the most recent
+database file to another file and compressing it gives you a safe copy.
+Depending on your energy level and disk space, you may want to do a
+rotating swap of database back ups similar to the one suggested for
+logs.</p>
+
+<p><code>
+ &nbsp;   mv backup2.gz backup3.gz<br>
+ &nbsp;   mv backup1.gz backup2.gz<br>
+ &nbsp;   cp std-db.new backup1<br>
+ &nbsp;   gzip -9 backup1
+</code></p>
+
+<p>The reason for keeping older backups is that it's possible for a
+database to become corrupt during normal operation: some bug in the
+server or on-line programs creates inconsistencies in the database file.
+In this situation, the most recent backup file is not necessarily the
+best one: it too could be affected.</p>
+
+<p>Also, to safeguard against hardware or access problems, you may want to
+do an offsite back up. With File Transfer Protocol, this is a simple
+(but potentially time-consuming) process. <code>FTP</code> your most
+recent backup to some other host. If your server goes down, or one of
+your wizards goes bonkers and deletes the backups, you can set up on an
+alternate site.</p>
+
+
+<p><em>Access to #1</em>:</p>
+
+<p>Next in the hierarchy of security issues is access to the God
+character.  If the <code>MUCK</code> is compiled with God privileges,
+only God can set players <code>W</code> or <code>!W,</code> or change
+wizards' passwords. Also, only God can use the utilities for analyzing
+and repairing the database, <code>@sanity</code> and
+<code>@sanfix.</code></p>
+
+<p>On most established <code>MUCKs,</code> God is not used as an actual
+player. The primary wizard of the <code>MUCK</code> will create a wizard
+character for daily use, and only log onto <code>#1</code> to only set
+or unset players' wizbits or to use the database utilities. In part this
+is for security: just as <code>UNIX</code> sysadmins do their normal
+work from an account other than root, <code>MUCK</code> Gods do their
+normal work from a different character. In part it is simply a
+convenience: wizards sometimes need to force themselves, or use programs
+that force them, and <code>#1</code> can't be forced. Also,
+<code>#1</code> always gets the full-data <code>WHO</code> screen (which
+wizards see when typing <code>WHO*</code>), whether she wants it or not.
+And in part it's a matter of facilitating administration of the
+<code>MUCK.</code> Sometimes the <em>de facto</em> God of the
+<code>MUCK</code> (the overall administrator who appoints wizards,
+determines policy, etc.) and the most technically accomplished staff
+member (the person who would handle matters such as running
+<code>@sanfix</code>) are two different people, so both have reason for
+using <code>#1.</code> Or &#151; a rather common situation &#151; there
+is no single wizard with total control; rather, leadership is shared
+among a core group of wizards, each having access to the God
+character.</p>
+
+<p>Whatever set up you use, the password to <code>#1</code> is an
+important piece of information, and should only be given out on a
+need-to-know basis. </p>
+
+
+<p><em>Wizards</em>:</p>
+
+<p>Most wizards are committed to their worlds, and would never directly
+harm it, but the possibility exists. It's not unheard of for an immature
+wizard to get angry and destroy a world. The <code>MUCK</code> can
+recover from this by restoring from back ups, but obviously this is an
+unpleasant chore.</p>
+
+<p>More common problems come about inadvertently. Most are minor: a
+wizard with wayward fingers mistypes <code>#321</code> for
+<code>#312,</code> and recycles some important room or command. So, you
+fix it.</p>
+
+<p>Sometimes players <code>@force</code> lock themselves to each other.
+Wizards shouldn't. When you appoint a new wizard, check his force lock.
+When he was a player, it was fine for his roommate to be able to force
+his sleeping body downstairs when she had visitors, but it's not fine
+for her to be able to force him once he is a wizard.</p>
+
+<p>Wizards should also be aware of a specific line of attack that can be
+used to modify objects with the wizard's permissions. You can set
+properties on objects you control (you control everything). Also,
+objects you control can set properties on other objects you
+control (and you control everything). And, properties can include
+<code>MPI</code> that causes programs or other properties to execute.
+(This is true for players too, but the implications are less threatening.)
+For wizards, these events are carried out with wizard permissions. In short,
+and without providing specific recipes, a naughty player can make objects which
+&#151; if they are owned by a wizard &#151; can do naughty things. Whenever
+you <code>@chown</code> an object, examine its properties, with particular
+attention to <code>MPI</code> that stores values or calls properties or
+programs (<code>{store},</code> <code>{exec},</code> <code>{lexec},</code>
+<code>{muf},</code> and the like).</p>
+
+
+<p><em>Programs</em>:</p>
+
+<p>Wizard programs can do pretty much anything a wizard can do, and
+<code>M3</code> programs are quite powerful as well. As with security
+issues regarding wizards, the trick is to identify and support
+trustworty people (and programs), and to be aware of the issues, rather
+than trying to anticipate and safeguard against every possible
+threat.</p>
+
+<p>Your best defense against security breaches through programs is to
+appoint a good <code>MUF</code> wizard. This staff member determines who
+gets Mucker bits, with special attention to <code>M3's,</code> and
+reviews global and public programs, with special attention to programs
+that players ask to port from elsewhere. If you are not particularly
+<code>MUF</code> savvy, or if you are a good coder but lack the sneaky
+mindset necessary to be a good hacker or anti-hacker, you should recruit
+someone with these qualities.  (Surprisingly, it <code>is</code>
+possible to find honest sneaky people.)</p>
+
+<p>Some general points... </p>
+
+<p>The apparent purpose of a program is no guarantee of its potential
+threat or lack thereof. If someone asks you to port a 2000-line Poker
+program that needs to be set <code>Wizard</code> so it can keep scores
+in a protected .scores/ directory, approach it as a wizbitted program
+large enough to hide some Trojan horse feature, and not as `just a card
+game'. </p>
+
+<p>*</p>
+
+<p>Programs set <code>Link_OK</code> are public: they can be listed,
+linked to, and <em>called by other</em> programs. Many are a little too
+trusting: they assume that you (the person using the program) are who
+you're supposed to be.  And, if you use them in the normal way, you are.
+But it is a trival matter to concoct a small stub program that stores an
+incorrect dbref in the <code>`me'</code> variable, puts an argument
+string on the stack, and then calls a public program. An <code>M2</code>
+morphing program may seem perfectly safe &#151; after all, people won't
+put harmful things in their own descs &#151; but consider:
+<code>JoeHacker(#666PBJM2)</code> might be able to store <code>#1</code>
+or the dbref of some other wizard in <code>`me',</code> put a string
+holding naughty <code>MPI</code> onto the stack, and then call the morph
+program, creating a situation where the next time someone looks at the
+wizard, untoward things will happen. </p>
+
+<p>Fortunately, there is a rather simple way to plug this hole. Check all
+<code>Link_OK</code> programs; if they don't guard against such
+assualts, edit them, adding a line that does so. Before the first line
+of the last function in the program, insert the following line:</p>
+
+<p> &nbsp;   <code>"me" match me !</code></p>
+
+<p>This explicitly matches the dbref of the triggering player or puppet,
+and stores it in the <code>`me'</code> variable.</p>
+
+<p>*</p>
+
+<p>In general, any program should be run with with the lowest
+permissions level that will work. If a program will run at
+<code>M2,</code> set it <code>M2,</code> not <code>M3</code> or
+<code>W.</code> If a program doesn't need to be owned by a wizard,
+consider chowning it to some mortal, possibly an <code>NPC</code> you
+use for just this purpose.</p>
+
+<p>*</p>
+
+<p>You owe it to yourself and your players to make your policies on
+security and privacy concerns as they pertain to programming explicit.
+Providing a document stating this policy, readable through the
+<code>`news'</code> or <code>`info'</code> command, is a very good idea.
+A sample policy is provided in <a href="appendb.html">Appendix B</a>.
+The sample policy may be freely copied and edited to meet your
+<code>MUCK's</code> needs.</p>
+
+
+  <center>
+  <a href="realmswiz.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="nontechissues.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

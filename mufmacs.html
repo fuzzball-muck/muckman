@@ -1,0 +1,134 @@
+<html>
+<head>
+  <title>The MUCK Manual: MUF Macros</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="muflibs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="mufcomp.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>3.2.3  MUF Macros</b></p>
+
+<p>As with <code>MPI,</code> you can define macros &#151 snippets of
+reusable code called by a single statement &#151 with <code>MUF.</code>
+In fact, viewing defined macros and defining new ones is easier with
+<code>MUF</code> than with <code>MPI.</p></code>
+
+<p>To view, define, or delete <code>MUF</code> macros, you need to be in
+the <code>MUF</code> editor.  You can use any program when invoking the
+editor; the defined macros are available to all programs.</p>
+
+<p><em>Viewing Macros</em>: In the editor, type either <code>s</code>
+(to see the long version of macro definitions) or <code>a</code> (to see
+the abridged version). </p>
+
+(The example output below is slightly reformatted.)
+
+<p><code>
+====================================<br>
+> @edit tinker.muf<br>
+> s<br>
+<br>
+&nbsp;&nbsp;abs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jessy   ( i -- i' ) dup 0 < if -1 * then<br>
+<br>
+<nobr>
+&nbsp;&nbsp;after_match&nbsp;&nbsp;Jessy   (d -- ) dup #-1 dbcmp swap #-2 dbcmp or if exit then
+</nobr><br>
+<br>
+&nbsp;&nbsp;atodbref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jessy   ( s -- d ) "" "#" subst atoi dbref<br>
+<br>
+&nbsp;&nbsp;.<br>
+&nbsp;&nbsp;.            ( .... entries omitted .... )<br>
+&nbsp;&nbsp;.<br>
+<br>
+&nbsp;&nbsp;wizard?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jessy   (  -- i ) "W" flag?<br>
+<br>
+&nbsp;&nbsp;yes?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jessy   ( s -- i ) ( checks that string starts with y ) 1 <br>
+&nbsp;&nbsp;strcut pop "y" stringcmp not<br>
+<br>
+  &nbsp;&nbsp;End of list.<br>
+<br>
+> a<br>
+<br>
+<table>
+  <tr>
+    <td rowspan="5"> </td>
+    <td><code>abs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></code>
+    <td><code>addpropstr&nbsp;&nbsp;&nbsp;&nbsp;</td></code>
+    <td><code>after_match&nbsp;&nbsp;&nbsp;</td></code>
+    <td><code>atodbref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></code>
+    <td><code>confirm</td></code>
+  </tr><tr>
+    <td><code>debug-line</td></code>
+    <td><code>debug-off</td></code>
+    <td><code>debug-on</td></code>
+    <td><code>me_wiz?</td></code>
+    <td><code>no?</td></code>
+  </tr><tr>
+    <td><code>notify_nospam</td></code>
+    <td><code>otell</td></code>
+    <td><code>pmatch</td></code>
+    <td><code>puppet?</td></code>
+    <td><code>quote</td></code>
+  </tr><tr>
+    <td><code>rstrfmt</td></code>
+    <td><code>spc80</td></code>
+    <td><code>split</td></code>
+    <td><code>tell</td></code>
+    <td><code>wizard?</td></code>
+  </tr><tr>
+    <td><code>yes?</td></code>
+  </tr>
+</table>
+<br>
+<code>&nbsp;&nbsp;End of list.<br>
+====================================
+</code></p><br>
+
+<p><em>Defining Macros</em>: In the editor (but not while you are inserting
+code), type <code>def &lt;macro name&gt; &lt;macro
+definition&gt;</code>.</p>
+
+<p><code>
+====================================<br>
+&gt;&nbsp;@edit tinker.muf<br>
+&gt;&nbsp;def nukestack ( x..x' -- ) begin depth while pop repeat<br>
+&nbsp;&nbsp;Entry created.<br>
+====================================
+</code></p>
+
+<p><em>Deleting Macros</em>: Only wizards can delete macros, so, if you
+are a non-wizard Mucker entering macros, be sure you have it right
+when you enter it. If you are a wizard and want to delete a macro, type
+<code>&lt;macro name&gt; kill</code> while in the editor.</p>
+
+<p><code>
+====================================<br>
+&gt;&nbsp;@edit tinker.muf<br>
+&gt;&nbsp;nukestack kill<br>
+&nbsp;&nbsp;Macro entry deleted.<br>
+====================================
+</code></p>
+<br><br>
+
+  <center>
+  <a href="muflibs.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="mufcomp.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

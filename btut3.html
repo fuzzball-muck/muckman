@@ -1,0 +1,134 @@
+<html>
+<head>
+  <title>The MUCK Manual: Creating Rooms and Areas (cont'd)</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="buildtut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="btut4.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<p><b>Creating Rooms and Areas (cont'd)</b></p>
+
+<p><em>Creating and Propping Exits:</em></p>
+
+<p>To avoid leaving floating rooms lying about, it's a good idea to create the
+exits linking rooms immediately after <code>@digging</code> the rooms. As
+discussed in <a href="exits.html">Section 2.3</a>, exit names can include
+aliases: alternate names, separated by semi-colons, that can be used in place
+of the full name.  The first alias is the one that will be shown by
+obvious-exits programs. A common and worthwhile convention is to set the first
+alias as a combination of the full name and a notation indicating valid
+abbreviated aliases.</p>
+
+<p>And, since putting message props on exits is the kind of niggling detail
+that's easy to forget if you leave it to later, it's also a good idea to set
+the message props immediately after <code>@opening</code> the exits. </p>
+
+<p><code>
+====================================<br>
+&gt; @open West Wing &lt;W&gt;;west wing;west;w = #4804<br>
+&nbsp;  Exit opened with number 4805.<br>
+&nbsp; Trying to link...<br>
+&nbsp; Linked to Amberside Inn: West Wing(#4804R)<br>
+&gt; @desc w = A sturdy wooden door leading to rooms on the west wing.<br>
+&nbsp;  Description set.<br>
+&gt; @succ w = You pull open the door to the West Wing hallway...<br>
+&nbsp;  Message set.<br>
+&gt; @osucc w = goes into the West Wing.<br>
+&nbsp;  Message set.<br>
+&gt; @odrop w = comes in from the Tavern.<br>
+&nbsp;  Message set.<br>
+====================================
+</code></p>
+
+<p>Exits are one way: in order to create a `door' between rooms, you need two
+exits, one leading in each direction. So, we complete the door between the
+Tavern and the West Wing by going to the West Wing and making another exit
+leading back to the Tavern. We gave the Tavern the registered name `ai', so it
+will be easy to link back to. But, if we had not done this, and the room's
+dbref had scrolled off the screen, we could determine it with the
+<code>@find</code> command.</p>
+
+<p><code>
+====================================<br>
+&gt; w<br>
+&nbsp;  You pull open the door to the West Wing hallway...<br>
+&nbsp; Amberside Inn: West Wing(#4804R)<br>
+&gt; @find tavern<br>
+&nbsp;  Amberside Inn: Tavern(#4802R)<br>
+&nbsp; ***End of List***<br>
+&nbsp; 1 objects found.<br>
+&gt; @open Tavern <T>;tavern;t;east;e = #4802<br>
+&nbsp;  Exit opened with number 4806.<br>
+&nbsp; Trying to link...<br>
+&nbsp; Linked to Amberside Inn: Tavern(#4802R)<br>
+&gt; @desc t = A strong wooden door.<br>
+&nbsp;  Description set.<br>
+&gt; @succ t = You open the door into the inn's tavern.<br>
+&nbsp;  Message set.<br>
+&gt; @osucc t = goes into the Tavern.<br>
+&nbsp;  Message set.
+&gt; @odrop t = comes out of the west hallway.
+&nbsp;  Message set.<br>
+&gt; t<br>
+&nbsp;  You open the door into the inn's tavern.<br>
+&nbsp; Amberside Inn: Tavern(#4802R)<br>
+====================================
+</code></p>
+
+<p>We gave the exits user-friendly aliases, but the exits are not showing up
+at all when we look at the room. The server <code>`look'</code> command, and
+most user-created <code>look</code> programs as well, do not show obvious exit
+lists by default. In order to have such a list appended to our rooms'
+descriptions, we will need to set the <code>@succ</code> message on the rooms
+to trigger an obvious-exit programs. You will probably need to page a wizard
+or helpstaff member to determine the dbref or registered name of such a
+program.  As discussed in <a href="triggers.html">Section 2.1.4</a>, the dbref
+or regname of <code>MUF</code> programs triggered by message props need to be
+prefaced by an <code>@</code> at-mark. </p>
+
+<p><code>
+====================================<br>
+&gt; l<br>
+&nbsp;  Amberside Inn: Tavern(#4802R)<br>
+&gt; p jessy = Hiya... Can you tell me the dbref or regname of the <br>
+&nbsp; obvious exits  program?<br>
+&nbsp;  You page, "Hiya... Can you tell me the dbref or regname of the<br>
+&nbsp; obvious exits program?" to Jessy.<br>
+&nbsp;  Jessy pages, "It's dbref #183... reg name $obvex."<br>
+&gt; p = OK, thanks.<br>
+&nbsp;  You page, "OK, thanks." to Jessy.<br>
+&gt; @succ here = @$obvex<br>
+&nbsp;  Message set.<br>
+&gt; l<br>
+&nbsp; 	Amberside Inn: Tavern(#4802R)<br>
+&nbsp;  Obvious Exits:<br>
+&nbsp;&nbsp;&nbsp;     West Wing &lt;W&gt;<br>
+====================================
+</code></p>
+
+<p>We will need to set this <code>@succ</code> message on all rooms in the
+area for which we want obvious-exit lists.</p>
+
+
+  <center>
+  <a href="buildtut.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="btut4.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

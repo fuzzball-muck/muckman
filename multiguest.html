@@ -1,0 +1,298 @@
+<html>
+<head>
+  <title>The MUCK Manual: MultiGuest.muf</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+
+<pre>
+@program MultiGuest.muf
+1 9999 d
+i
+( MultiGuest.muf    v1.1    Jessy @ FurryMUCK    4/97, 2/99
+  
+  A multi-guest program, intended to be simple to set up... by 
+  comparison, at least.
+  
+  INSTALLATION:
+  
+  Port this program, and set it W. Port a copy of con-callmultiguest
+  if you do not already have it, and set it W and L.
+  
+  Edit the GuestPassWd definition in the section below, making the pass-
+  word something unique for your MUCK. If you want Guests to be called 
+  something other than 'Guests', edit the GuestName and GuestNames 
+  definitions as well.
+)
+  
+(*** EDIT THESE DEFS AS NEEDED ***)
+$def GuestPassWd "fl0b^art!"        (* password of the actual Guests *)
+$def GuestName "Guest"               (* name string shared by guests *)
+$def GuestNames "guests"                (* plural form of guest type *)
+  
+( Create an action and link it to this program. Type the action name.
+  This creates the Guests, sets a few props on them and the program,
+  puts con-callmultiguest in the the Guest _connect queue, and attaches
+  do-nothing actions to the Guests, locking out commands that could be
+  used to change the MUCK or the Guest characters.
+  
+  The Guests will be moved and linked to the room you're in when you
+  do the installation, so it's a good idea to do it in what will be
+  the Guest player start room.
+  
+  Note: the installation routine forces the wizard doing the
+  installation to create the characters and actions and set properties.
+  A wizard *other than* God needs to do the installation.
+  
+  Players will then be able to log on, using GuestName, all lower-case,
+  as the password. Ex:
+  
+      connect guest guest      or,
+      connect visitor visitor
+  
+  By default, eight Guests are created. If you want more or fewer, 
+  supply the number desired as an argument to the action name.
+  
+  MultiGuest.muf should not be set Link_OK, in order to keep the
+  Guest password confidential.
+  
+  If for some reason you need to reinstall the Guest set up, first
+  @toad all previous Guests, and clear the @ver prop from this
+  program.
+  
+  MultiGuest.muf may be freely ported. Please comment any changes.
+)
+  
+lvar ourCounter                           (* s: loop-control counter *)
+lvar ourGuest                     (* d: dbref of Guest to connect to *)
+ 
+$def ourVersion "1.0"
+ 
+: DoInstall ( [i] --  )(* creates an log-in character, and i Guest
+                          characters. i defaults to 8. creates
+                          do-nothing actions for un-Guestlike commands,
+                          attached to the guests. registers this 
+                          program and sets the log-in character's
+                          _connect/multiguest prop to call 
+                          con-callmultiguest.                        *)
+    
+  me @ "W" flag? not if
+    "Permission denied." .tell exit
+  then
+              (* GOD_PRIV is most likely defined. God can't do this. *)
+  me @ #1 dbcmp if
+    "Sorry, the installation routine requires forcing you "
+    "to create guest characters and set props on them. "
+    "God can't be forced. Have one of your minion wizards "
+    "do this." strcat strcat strcat .tell exit
+  then
+                                                 (* register program *)
+  #0 "_reg/con/multiguest" prog setprop
+    
+                                         (* pcreate log-in character *)
+  me @ "@pcreate " GuestName strcat
+  "=" strcat GuestName 1 strcut swap tolower swap strcat strcat
+  force    
+                 (* blind log-in char, so users won't see room twice *)
+  GuestName .pmatch dup ourGuest !
+  "look;loo;lo;l" newexit
+  "$nothing" match setlink
+    
+                          (* find con-callmultiguest. An inefficient
+                             loop, but it will only need to run once *)
+  2 ourCounter !
+  begin
+    ourCounter @ dbref dbtop dbcmp if
+      0 break
+    then
+    ourCounter @ dbref dup ok? if
+      dup program? if
+         dup name "con-callmultiguest" smatch if
+            pop 1 break
+         else
+            pop
+         then
+       else
+         pop
+       then
+     else
+       pop
+     then
+     ourCounter @ 1 + ourCounter ! 
+  repeat
+    
+                                  (* set log-in char to call program *)
+  if
+    ourGuest @ "_connect/multiguest" ourCounter @ dbref setprop
+    ourCounter @ dbref "L" set
+  else
+    " " .tell
+    "NOTE: con-callmultiguest not found. You will need to port "
+    "it, @set it Link_OK and Wizard, and set " strcat
+    GuestName strcat 
+    "'s _connect/multiguest property to its dbref" strcat .tell
+    " " .tell
+  then
+                                   (* get number of Guests to create *)
+  dup if
+    dup number? if
+      ourCounter !
+    else
+      "8" ourCounter !
+    then
+  else
+    "8" ourCounter !
+  then
+                                                   (* create guests *)
+  begin
+    ourCounter @ atoi while
+    
+    me @ "@pcreate " GuestName strcat ourCounter @ strcat
+    "=" strcat GuestPassWd strcat force
+    
+    GuestName ourCounter @ strcat .pmatch ourGuest !
+        
+                                  (* lock out unGuest-like commands *)
+    ourGuest @
+    "@chown;@chow;@cho;@ch;@contents;@content;@conten;@conte;"
+    "@cont;@describe;@describ;@descri;@descr;@desc;@des;@de;"
+    "@drop;@dro;@dr;@entrances;@entrance;@entranc;@entran;@entra;"
+    "@entr;@ent;@en;@exits;@exit;@exi;@ex;@fail;@fai;@fa;@flock;"
+    "@floc;@flo;@fl;@idescribe;@idescrib;@idescri;@idescr;@idesc;"
+    "@ides;@ide;@id;@link;@lin;@li;@lock;@loc;@lo;@name;@nam;@na;"
+    "@odrop;@odro;@odr;@od;@ofail;@ofai;@ofa;@of;@osuccess;@osucces;"
+    "@osucce;@osucc;@osuc;@osu;@os;@propset;@propse;@props;@prop;"
+    "@recycle;@recycl;@recyc;@recy;@rec;@re;@r;@register;@registe;"
+    "@regist;@regis;@regi;@reg;@doing;@doin;@doi;@do"
+    strcat strcat strcat strcat strcat strcat strcat strcat strcat 
+    newexit
+    dup "$nothing" match setlink
+    "Sorry, " GuestNames strcat " can't do that." strcat setsucc
+        
+    ourGuest @    
+    "@relink;@relin;@reli;@rel;@set;@se;@shout;@pshout;@success;"
+    "@succes;@succe;@succ;@suc;@su;@teleport;@telepor;@telepo;"
+    "@telep;@tele;@tel;@te;@unlink;@unlin;@unli;@unl;@unlock;"
+    "@unloc;@unlo;actions;act;autosweep;as;change;chang;chan;"
+    "cha;ch;c;edit;edi;ed;examine;examin;exami;exam;exa;ex;exits;"
+    "give;giv;gi;gripe;grip;gri;gr;g;kill;kil;ki;laston;@laston;"
+    "@last;+laston;+last;lsedit;listedit;listedit;lsedi;lsed;lse;"
+    "propcopy;propcp;pcopy;cp;propmove;propmv;pmove;mv;pwho;pwh;"
+    "pw;rob;ro;r;sweep;swee;swe;spoof;spoo;spo;sp;@emit;@emi;@em;"
+    "watchfor;wf;announce"
+    strcat strcat strcat strcat strcat strcat strcat strcat strcat 
+    newexit
+    dup "$nothing" match setlink
+    "Sorry, " GuestNames strcat " can't do that." strcat setsucc
+        
+                          (* move and link guests to user's location *)
+    ourGuest @ me @ location moveto
+    ourGuest @ me @ location setlink
+        
+                                    (* set some 'I'm a Guest!' props *)
+    ourGuest @ "@guest/player?" "yes" setprop
+    ourGuest @ "guest_player?" "yes" setprop
+    ourGuest @ "A Guestatian! Be nice to it." setdesc
+    ourGuest @ "sex" "Hardly" setprop
+    ourGuest @ "species" GuestName setprop
+        
+    ourCounter @ atoi 1 - intostr ourCounter !
+  repeat
+    
+  prog "@ver" ourVersion setprop
+  "Installed. Please recycle #" trig intostr strcat .tell
+;
+  
+: BootMe  (  --  )   (* too many guests... boot newly connected user *)
+ 
+  preempt background
+  me @ descriptors
+  begin
+    dup while
+    1 - swap
+    descrcon conboot
+  repeat
+;
+  
+: GetNextGuest  (  -- i )  (* store dbref of next available Guest
+                              character in lvar ourGuest. Return
+                              true if one is available, false if not *)
+  "1" ourCounter !
+  begin
+    GuestName ourCounter @ strcat .pmatch dup not if
+      pop 0 break
+    then
+    dup awake? if
+      pop
+    else
+      ourGuest ! 1 break
+    then
+    ourCounter @ atoi 1 + intostr ourCounter !
+  repeat
+;
+ 
+: main
+ 
+  "me" match me !
+    
+  prog "@ver" getprop not if
+    DoInstall exit
+  then
+                     (* get next available Guest... bail out if none *)
+  GetNextGuest not if
+    "Sorry, there are too many "
+    GuestNames strcat
+    " connected right now." strcat .tell
+      "Please try again later." .tell
+      BootMe exit
+  then
+                                               (* get descriptors... *)
+  me @ descriptors 1 - swap
+    
+                        (* connect top descriptor to available Guest *)
+  ourGuest @ GuestPassWd descr_setuser pop
+    
+                                   (* boot any remaining descriptors *)
+  begin
+    dup while
+    1 - swap
+    descrcon conboot
+  repeat
+;        
+.
+c
+q
+@set multiguest.muf=W
+@set multiguest.muf=!L
+
+@prog con-callmultiguest
+1 9999 d
+1 i
+( Have all the guest chars call this program from a _connect propqueue )
+(This calls the !Link_OK multi-guest program, to keep the password...)
+(...creation subroutines secret)
+: go "$con/multiguest" match call ;
+.
+c
+q
+@set con-callmultiguest=L
+@set con-callmultiguest=S
+@act instmg=me=instmg
+@link $instmg=multiguest.muf
+instmg
+@recycle $instmg
+@set #0=_reg/instmg:
+</pre>
+
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

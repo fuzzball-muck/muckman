@@ -1,0 +1,108 @@
+<html>
+<head>
+  <title>The MUCK Manual: Looktraps</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="droptos.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="exits.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+
+<p><b>2.2.2  Looktraps</b></p>
+
+<p>'Looktraps' are details or `fake objects' in a room. For example,
+rather than creating a `Sign' object with instructions on how to use
+some local commands and placing it in a room, you could mention the sign
+in the room's desc and create it as a looktrap. There will be no
+separated dbref'd object named `Sign', but players will still be able to
+do <code>look sign</code> and see it. The primary value of looktraps is
+efficiency: because no separate object is created, overall database size
+is somewhat smaller, and commands that must search the database have one
+fewer objects to examine. And, if your <code>MUCK</code> uses a quota
+system, there will be one fewer object counting against your quota.</p>
+
+<p>Looktraps are stored as properties in the <code>_details/</code>
+directory. Names of looktraps follow the aliasing conventions of exits:
+strings delimited by ; semicolons serve as alias names.</p>
+
+<p><code>
+====================================<br>
+&gt; @set here = _details/sign;plaque;notice:To see who lives here,<br> 
+&nbsp;  type `look mailboxes'. To get a home here, type `claim #', <br>
+&nbsp;  using an unclaimed home number for `#'.<br>
+&nbsp;  Property set.<br>
+<br>
+&gt; l plaque<br>
+&nbsp;  To see who lives here, type `look mailboxes'. To get a home here,<br> 
+&nbsp;  type `claim #', using an unclaimed home number for `#'.<br>
+====================================<br>
+</code></p>
+
+<p>Looktraps are automatically parsed for <code>MPI.</code></p>
+
+<p>This looktrap puts the sign text in a list, allowing better control
+over formatting...<br>
+<code>
+====================================<br>
+&gt; @set here = _details/sign;plaque;notice:{list:signtext}<br>
+&nbsp;  Property set.<br>
+&gt; lsedit here = signtext<br>
+<nobr>
+&nbsp;  &lt; &nbsp;&nbsp;&nbsp;Welcome to the list editor.  You can get help
+by entering `.h' &nbsp;&nbsp;&nbsp; &gt;<br>
+</nobr><nobr>
+&nbsp;  &lt; `.end' will exit and save the list.  `.abort' will abort any changes. &gt;<br>
+</nobr><nobr>
+&nbsp;  &lt; &nbsp;&nbsp;&nbsp;To save changes to the list, and continue
+editing, use `.save'  &nbsp;&nbsp;&nbsp;&gt;<br>
+</nobr>
+
+&nbsp;  &lt; Insert at line 1 &gt;<br>
+&gt;     ... text text text ... <br>
+&gt;     ... blah blah blah ... <br>
+&gt;     ...  etc etc etc   ...<br>
+&nbsp;  &lt; Editor exited. &gt;<br>
+&nbsp;  &lt; list saved. &gt;<br>
+====================================<br>
+</code></p>
+
+<p>This looktrap creates a `delayed effect'. Players get a little
+message seven seconds after they look at the portrait.<br>
+<code>
+====================================<br>
+&gt; @set here=_details/painting;picture;portrait:A somber portrait in<br>
+&nbsp;  oils, depicting Baron Von Hoofenstaffen, former owner of this<br>
+&nbsp;  mansion:{null:{delay:7,{lit:{null:{tell:You're not quite sure: it<br>
+&nbsp;  seems, perhaps, that the eyes of the portrait are following your <br>
+&nbsp;  moves.}}}}}<br>
+====================================<br>
+</code></p>
+
+<p>Note: Many <code>MUCKs</code> have soft-coded `look' commands that
+handle setting and removing looktraps, with syntaxes such as <code>look
+#add &lt;detail&gt; = &lt;desc&gt;</code>. Type <code>look #help</code>
+to determine if such a system is available on your
+<code>MUCK.</code></p>
+
+
+  <center>
+  <a href="droptos.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="exits.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

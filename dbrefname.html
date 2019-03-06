@@ -1,0 +1,109 @@
+<html>
+<head>
+  <title>The MUCK Manual: Overview: Dbrefs and Names</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="commands.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="flags.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE --> 
+  
+<p><b>Dbrefs and Names:</b></p>
+
+<p>A dbref is assigned to each object when it is created. In most cases,
+when specifying an object by its dbref, the number should be preceded by
+an <code>#</code> octothorpe. (Some user-created programs require that the
+octothorpe be omitted when the dbref is stored in a property.) The
+server assigns either the next available number or that of the most
+recently recycled object. For example, if the database holds 1,000
+objects and all are valid (have not been recycled), the next object
+created will be given dbref <code>#1001.</code> If someone then recycles
+an object, say <code>#123,</code> the next object created would be given
+dbref <code>#123.</code> So, dbrefs are not a reliable guide to an
+object's age. Dbrefs cannot be changed.  Unused dbrefs of recycled
+objects are `garbage'.</p>
+
+<p>Multiple objects can have the same name, except for players: there
+can be several hundred exits named `out' on a <code>MUCK,</code> but
+only one player named `Ruffin'... and there could (conceivably) be many
+things, exits, and programs named `Ruffin'. All names can be changed
+with the <code>@name</code> command, syntax <code>@name &lt;object&gt; =
+&lt;new name&gt;</code>. To rename a player, the password must be
+supplied as well: <code>@name &lt;'me' or old name&gt; = &lt;new
+name&gt; &lt;password&gt;</code>. A player must have control of an
+object to rename it; programs can rename objects if the object and the
+program have the same controller, or if the program is set
+<code>W.</code> (Programs can only name players indirectly: if the
+player's password is available, a wizbitted program can force the player
+or a wizard to rename a player.).</p>
+
+<p>Player names cannot include spaces. <code>`Madame_Bovary'</code> is an
+acceptable player name, but <code>`Madame Bovary</code>' is not. The names of
+other types of objects can include spaces.</p>
+
+<p>When handling or modifying an object in the same vacinity as you, you
+can specify it by its name or part of its name. Partial names will work,
+provided that you specify enough characters to distinguish the object
+from others in the vacinity: <code>@desc super =
+&lt;description&gt;</code> will describe `Superball', provided that
+`Superman' or something else with a name beginning with `Super-' is not
+in the same vacinity.</p>
+
+<p>When handling or modifying an object that has the same name as
+something else in the vacinity, or an object not in the same vacinity as
+your character, the object will need to be specified by dbref. You can
+determine the dbref of an object controlled by you and in the same
+vacinity by examining it (</code>ex &lt;object&gt;</code>). You can
+determine the dbref of objects that you control but are not in the same
+vacinity with the <code>@find</code> command, syntax <code>@find &lt;object's
+name&gt;</code>.</p>
+
+<p>Two substitution strings can be used in place of either a name or
+dbref: <code>`me'</code> and <code>`here'.</code> <code>`Me'</code>
+matches your character's dbref; <code>`here'</code> matches the dbref of
+the room you are in.</p>
+
+<p><code><pre>
+====================================
+> @name here = Waterloo Station
+  Name set.
+  
+> @name pen = Bic Four-Color Ballpoint
+  I don't see that here.    <font color="red">(* You left the pen at home. *)</font>
+> @find pen
+  Nyest Penal Colony, Massage Room(#855RJ) <font color="red">(* Includes `pen'. Ignore. *)</font>
+  pen(#1237)
+  End of list
+  2 objects found.
+> @name #1237 = Bic Four-Color Ballpoint
+  Name set.
+
+> @name me = Ruffin flipFlap
+  You can't give a player that name. <font color="red">(* Already a player named Ruffin. *)</font>
+> @name me = Nebuchudnezer flipFlap
+  Name set. <font color="red">(* But Nebuchudnezer works. *)</font>
+====================================<br>
+</pre></code></p>
+
+
+
+  <center>
+  <a href="commands.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="flags.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+</html>

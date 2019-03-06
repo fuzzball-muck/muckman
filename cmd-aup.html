@@ -1,0 +1,117 @@
+<html>
+<head>
+  <title>The MUCK Manual: Cmd-@aup</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+
+  <center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<pre>
+@q
+@program cmd-@aup
+1 99999 d
+i
+( cmd-@aup   v1.0    Jessy @ FurryMUCK    10/99
+
+  This utility provides an @AUP command, that allows players to
+  explicitly indicate that they have read and agree to abide by
+  the terms of your MUCK's Acceptable Use Policy.
+
+  The program simply accepts user input from the keyboard, asks
+  for confirmation that the user has read and agrees to abide by
+  the terms of the AUP, and -- if the user enters "yes" -- sets
+  the restricted property ~aup to a values of "yes". You may
+  wish to @lock important commands and exits to this property.
+	For example: @lock mail=~aup:yes.
+
+  INSTALLATION:
+
+  @Set this program Wizard and link a global action with a name
+  such as @AUP to it.
+
+  The program's #help option will include information on how to
+  access the AUP file, if it is configured. To configure, set the
+  @aupfile property on the trigger to a string that gives
+  instructions on how to read the AUP.  For ex:
+
+    @set @aup=@aupfile:To read GenericMUCK's AUP file, type `news aup'.
+
+  USAGE:
+
+  Type the command name, and -- if you agree to abide by your MUCK's
+  Acceptable Use Policy -- enter "yes" at the confirmation prompt.
+
+  Cmd-@aup may be freely ported. Please comment any changes.
+)
+
+(2345678901234567890123456789012345678901234567890123456789012345678901)
+
+$define tell me @ swap notify $enddef
+
+: DoHelp  (  --  )                                (* show help screen *)
+
+  " " tell
+  prog name " (#" strcat prog intostr strcat ")" strcat tell " " tell
+
+  "The " command @ strcat " command is used to indicate that " strcat
+  "you have read and agree to abide by the terms of the MUCK's "
+  "Acceptable Use Policy." strcat strcat tell " " tell
+
+  trig "@aupfile" getpropstr dup if
+    tell " " tell
+  else
+    pop
+  then
+
+  "Once you have read the AUP, type " command @ strcat " and " strcat
+  "enter \"yes\" at the prompts if you agree to abide by the policy's "
+  "terms." strcat strcat tell
+;
+
+: main
+
+  "me" match me !                                 (* make sure I'm me *)
+
+  dup if                                   (* check: user wants help? *)
+    "#help" over stringpfx if DoHelp exit then
+  then
+
+  ">>  AUP Confirmation:" tell                  (* confirm: has read? *)
+  ">>  Have you read Acceptable Use Policy? (y/n)" tell
+  read "yes" swap stringpfx not if
+    ">>  Aborted." tell exit
+  then
+                                                  (* confirm: agrees? *)
+  ">>  Do you agree to abide by the policy's terms? (y/n)" tell
+  read "yes" swap stringpfx not if
+    ">>  Aborted." tell exit
+  then
+                                                   (* set record prop *)
+  me @ "~aup" "yes" setprop
+                                                            (* notify *)
+  ">>  Recorded. Thank you, and welcome to the MUCK." Tell
+;
+.
+c
+q
+@set cmd-@aup=w
+@act @aup=#0
+@link @aup=cmd-@aup
+</pre>
+
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+
+
+</body>
+</html>

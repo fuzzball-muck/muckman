@@ -1,0 +1,4256 @@
+<html>
+<head>
+  <title>The MUCK Manual: MUF Refrence</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+  <center>
+  <a href="mufcomp.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="muflibref.html">next</a>
+  </center>
+
+  <table>
+  <tr>
+  <td width="20%">&nbsp;</tc>
+  <td>
+  <!--  BODY CONTENT HERE -->
+
+<p><b>3.2.5  MUF Reference</b></p>
+
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<p>Note: Some listed functions are only available in MUCK server version
+fb6.0 and following. Such cases are marked with the notation `(fb6.0+)'
+in individual entries.</p>
+
+<p>
+<center>
+<table border="0" width="98%">
+  <tr>
+    <td colspan="5"><em>Array-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#array_count"><nobr>array_count</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_delitem"><nobr>array_delitem</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_delrange"><nobr>array_delrange</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_explode"><nobr>array_explode</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_first"><nobr>array_first</a> </nobr></code></td>
+  </tr><tr>
+    <td><code><a href="#array_getitem"><nobr>array_getitem</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_getrange"><nobr>array_getrange</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_insertitem"><nobr>array_insertitem</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_insertrange"><nobr>array_insertrange</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_keys"><nobr>array_keys </a></nobr></code></td>
+  </tr><tr>
+    <td><code><a href="#array_last"><nobr>array_last</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_make"><nobr>array_make</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_make_dict"><nobr>array_make_dict</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_ndiff"><nobr>array_ndiff</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_next"><nobr>array_next</a> </nobr></code></td>
+  </tr><tr>
+    <td><code><a href="#array_nintersect"><nobr>array_nintersect</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_notify"><nobr>array_notify</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_nunion"><nobr>array_nunion</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_prev"><nobr>array_prev</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_setitem"><nobr>array_setitem</a> </nobr></code></td>
+  </tr><tr>
+    <td><code><a href="#array_setrange"><nobr>array_setrange</a> &nbsp;</nobr></code></td>
+    <td><code><a href="#array_vals"><nobr>array_vals</a> &nbsp;</nobr></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Bitwise Operators</em>:</code></td>
+  </tr><tr>
+    <td><code><a href="#bitand">bitand </a></code></td>
+    <td><code><a href="#bitor">bitor</a></code></td>
+    <td><code><a href="#bitshift">bitshift</a></code></td>
+    <td><code><a href="#bitxor">bitxor </a></code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Connection-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#awake_">awake?</a></code></td>
+    <td><code><a href="#concount">concount </a></code></td>
+    <td><code><a href="#condbref">condbref </a></code></td>
+    <td><code><a href="#conidle">conidle </a></code></td>
+    <td><code><a href="#contime">contime </a></code></td>
+  </tr><tr>
+    <td><code><a href="#conhost">conhost </a></code></td>
+    <td><code><a href="#conboot">conboot </a></code></td>
+    <td><code><a href="#connotify">connotify </a></code></td>
+    <td><code><a href="#condescr">condescr </a></code></td>
+  </tr><tr>
+    <td><code><a href="#descrflush">descrflush </a></code></td>
+    <td><code><a href="#descriptors">descriptors </a></code></td>
+    <td><code><a href="#online">online </a></code></td>
+    <td><code><a href="#nextdescr">nextdescr</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Control Structures:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#abort">abort </a></code></td>
+    <td><code><a href="#begin">begin </a></code></td>
+    <td><code><a href="#break">break </a></code></td>
+    <td><code><a href="#call">call </a></code></td>
+    <td><code><a href="#continue">continue </a></code></td>
+  </tr><tr>
+    <td><code><a href="#for">for</a></code></td>
+    <td><code><a href="#else">else </a></code></td>
+    <td><code><a href="#execute">execute </a></code></td>
+    <td><code><a href="#exit">exit </a></code></td>
+    <td><code><a href="#if">if </a></code></td>
+  </tr><tr>
+    <td><code><a href="#jmp">jmp </a></code></td>
+    <td><code><a href="#kill">kill</a></code></td>
+    <td><code><a href="#repeat">repeat </a></code></td>
+    <td><code><a href="#then">then </a></code></td>
+    <td><code><a href="#until">until </a></code></td>
+  </tr><tr>
+    <td><code><a href="#while">while </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Data Conversion Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#atoi">atoi </a></code></td>
+    <td><code><a href="#ctoi">ctoi </a></code></td>
+    <td><code><a href="#dbref">dbref </a></code></td>
+    <td><code><a href="#float">float </a></code></td>
+    <td><code><a href="#ftostr">ftostr </a></code></td>
+  </tr><tr>
+    <td><code><a href="#int">int </a></code></td>
+    <td><code><a href="#intostr">intostr </a></code></td>
+    <td><code><a href="#itoc">itoc </a></code></td>
+    <td><code><a href="#stod">stod </a></code></td>
+    <td><code><a href="#strtof">strtof</a></code></td>
+  </tr><tr>
+    <td><code><a href="#variable">variable </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Error-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#clear">clear </a></code></td>
+    <td><code><a href="#clear_error">clear_error </a></code></td>
+    <td><code><a href="#error_">error?</a></code></td>
+    <td><code><a href="#error_bit">error_bit </a></code></td>
+    <td><code><a href="#error_name">error_name </a></code></td>
+  </tr><tr>
+    <td><code><a href="#error_num">error_num </a></code></td>
+    <td><code><a href="#error_str">error_str </a></code></td>
+    <td><code><a href="#is_set_">is_set?</a></code></td>
+    <td><code><a href="#set_error">set_error</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Input/Output Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#notify">notify </a></code></td>
+    <td><code><a href="#notify_except">notify_except </a></code></td>
+    <td><code><a href="#notify_exclude">notify_exclude</a></code></td>
+    <td><code><a href="#read">read </a></code></td>
+    <td><code><a href="#tread">tread </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Lock-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#getlockstr">getlockstr </a></code></td>
+    <td><code><a href="#locked_">locked?</a></code></td>
+    <td><code><a href="#parselock">parselock </a></code></td>
+    <td><code><a href="#prettylock">prettylock </a></code></td>
+    <td><code><a href="#setlockstr">setlockstr </a></code></td>
+  </tr><tr>
+    <td><code><a href="#testlock">testlock </a></code></td>
+    <td><code><a href="#unparselock">unparselock</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Math and Comparison Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#math">+ -  / %    </a></code></td>
+    <td><code><a href="#comp">&lt;  &gt; </a></code></td>
+    <td><code><a href="#comp">= </a></code></td>
+    <td><code><a href="#comp">&lt;= </a></code></td>
+    <td><code><a href="#comp">&gt;= </a></code></td>
+  </tr><tr>
+    <td><code><a href="#acos">acos </a></code></td>
+    <td><code><a href="#and">and </a></code></td>
+    <td><code><a href="#asine">asine </a></code></td>
+    <td><code><a href="#atan">atan </a></code></td>
+    <td><code><a href="#atan2">atan2 </a></code></td>
+  </tr><tr>
+    <td><code><a href="#ceil">ceil </a></code></td>
+    <td><code><a href="#cos">cos </a></code></td>
+    <td><code><a href="#dbcmp">dbcmp</a></code></td>
+    <td><code><a href="#dist3d">dist3d</a></code></td>
+    <td><code><a href="#exp">exp </a></code></td>
+  </tr><tr>
+    <td><code><a href="#fabs">fabs</a></code></td>
+    <td><code><a href="#floor">floor </a></code></td>
+    <td><code><a href="#frand">frand </a></code></td>
+    <td><code><a href="#getseed">getseed </a></code></td>
+    <td><code><a href="#inf">inf </a></code></td>
+  </tr><tr>
+    <td><code><a href="#log">log </a></code></td>
+    <td><code><a href="#log10">log10 </a></code></td>
+    <td><code><a href="#modf">modf </a></code></td>
+    <td><code><a href="#not">not </a></code></td>
+    <td><code><a href="#number_">number?</a></code></td>
+  </tr><tr>
+    <td><code><a href="#or">or </a></code></td>
+    <td><code><a href="#pi">pi </a></code></td>
+    <td><code><a href="#polar_to_xyz">polar_to_xyz </a></code></td>
+    <td><code><a href="#pow">pow </a></code></td>
+    <td><code><a href="#random">random </a></code></td>
+  </tr><tr>
+    <td><code><a href="#round">round </a></code></td>
+    <td><code><a href="#setseed">setseed </a></code></td>
+    <td><code><a href="#sine">sine </a></code></td>
+    <td><code><a href="#sqrt">sqrt</a></code></td>
+    <td><code><a href="#srand">srand</a></code></td>
+  </tr><tr>
+    <td><code><a href="#strcmp">strcmp </a></code></td>
+    <td><code><a href="#stringcmp">stringcmp </a></code></td>
+    <td><code><a href="#strncmp">strncmp </a></code></td>
+    <td><code><a href="#tan">tan </a></code></td>
+    <td><code><a href="#xyz_to_polar">xyz_to_polar </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Message-Management Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#desc">desc </a></code></td>
+    <td><code><a href="#drop">drop </a></code></td>
+    <td><code><a href="#fail">fail </a></code></td>
+    <td><code><a href="#name">name </a></code></td>
+    <td><code><a href="#odrop">odrop </a></code></td>
+  </tr><tr>
+    <td><code><a href="#ofail">ofail </a></code></td>
+    <td><code><a href="#osucc">osucc </a></code></td>
+    <td><code><a href="#setdesc">setdesc </a></code></td>
+    <td><code><a href="#setdrop">setdrop </a></code></td>
+    <td><code><a href="#setfail">setfail </a></code></td>
+  </tr><tr>
+    <td><code><a href="#setname">setname </a></code></td>
+    <td><code><a href="#setodrop">setodrop</a></code></td>
+    <td><code><a href="#setofail">setofail </a></code></td>
+    <td><code><a href="#setosucc">setosucc </a></code></td>
+    <td><code><a href="#succ">succ </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Miscellaneous Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#addpennies">addpennies </a></code></td>
+    <td><code><a href="#checkargs">checkargs </a></code></td>
+    <td><code><a href="#checkpassword">checkpassword</a></code></td>
+    <td><code><a href="#contents">contents </a></code></td>
+    <td><code><a href="#copyobj">copyobj </a></code></td>
+  </tr><tr>
+    <td><code><a href="#dbtop">dbtop </a></code></td>
+    <td><code><a href="#exits">exits </a></code></td>
+    <td><code><a href="#flag_">flag?</a></code></td>
+    <td><code><a href="#force">force </a></code></td>
+    <td><code><a href="#getlink">getlink </a></code></td>
+  </tr><tr>
+    <td><code><a href="#interp">interp</a></code></td>
+    <td><code><a href="#location">location </a></code></td>
+    <td><code><a href="#match">match </a></code></td>
+    <td><code><a href="#mlevel">mlevel </a></code></td>
+    <td><code><a href="#movepennies">movepennies </a></code></td>
+  </tr><tr>
+    <td><code><a href="#moveto">moveto </a></code></td>
+    <td><code><a href="#newexit">newexit </a></code></td>
+    <td><code><a href="#newobject">newobject </a></code></td>
+    <td><code><a href="#newroom">newroom </a></code></td>
+    <td><code><a href="#next">next </a></code></td>
+  </tr><tr>
+    <td><code><a href="#nextowned">nextowned </a></code></td>
+    <td><code><a href="#owner">owner </a></code></td>
+    <td><code><a href="#part_pmatch">part_pmatch</a></code></td>
+    <td><code><a href="#pennies">pennies </a></code></td>
+    <td><code><a href="#pmatch">pmatch </a></code></td>
+  </tr><tr>
+    <td><code><a href="#prog">prog </a></code></td>
+    <td><code><a href="#recycle">recycle </a></code></td>
+    <td><code><a href="#rmatch">rmatch </a></code></td>
+    <td><code><a href="#set">set </a></code></td>
+    <td><code><a href="#setlink">setlink </a></code></td>
+  </tr><tr>
+    <td><code><a href="#setown">setown </a></code></td>
+    <td><code><a href="#stats">stats </a></code></td>
+    <td><code><a href="#sysparm">sysparm </a></code></td>
+    <td><code><a href="#textattr">textattr </a></code></td>
+    <td><code><a href="#trig">trig </a></code></td>
+  </tr><tr>
+    <td><code><a href="#version">version </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Multitasking:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#background">background </a></code></td>
+    <td><code><a href="#bg_mode">bg_mode </a></code></td>
+    <td><code><a href="#fg_mode">fg_mode </a></code></td>
+    <td><code><a href="#fork">fork </a></code></td>
+    <td><code><a href="#foreground">foreground </a></code></td>
+  </tr><tr>
+    <td><code><a href="#kill">kill </a></code></td>
+    <td><code><a href="#mode">mode </a></code></td>
+    <td><code><a href="#pr_mode">pr_mode</a></code></td>
+    <td><code><a href="#preempt">preempt </a></code></td>
+    <td><code><a href="#queue">queue </a></code></td>
+  </tr><tr>
+    <td><code><a href="#setmode">setmode </a></code></td>
+    <td><code><a href="#sleep">sleep </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Property-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#addprop">addprop </a></code></td>
+    <td><code><a href="#envpropstr">envpropstr </a></code></td>
+    <td><code><a href="#getlockstr">getlockstr </a></code></td>
+    <td><code><a href="#getpropfval">getpropfval </a></code></td>
+    <td><code><a href="#getpropstr">getpropstr </a></code></td>
+  </tr><tr>
+    <td><code><a href="#getpropval">getpropval </a></code></td>
+    <td><code><a href="#nextprop">nextprop </a></code></td>
+    <td><code><a href="#propdir_">propdir?</a></code></td>
+    <td><code><a href="#remove_prop">remove_prop </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Stack-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#depth">depth </a></code></td>
+    <td><code><a href="#dup">dup </a></code></td>
+    <td><code><a href="#dupn">dupn </a></code></td>
+    <td><code><a href="#ldup">ldup </a></code></td>
+    <td><code><a href="#lreverse">lreverse </a></code></td>
+  </tr><tr>
+    <td><code><a href="#over">over </a></code></td>
+    <td><code><a href="#pick">pick </a></code></td>
+    <td><code><a href="#pop">pop </a></code></td>
+    <td><code><a href="#popn">popn</a></code></td>
+    <td><code><a href="#put">put </a></code></td>
+  </tr><tr>
+    <td><code><a href="#reverse">reverse </a></code></td>
+    <td><code><a href="#rot">rot </a></code></td>
+    <td><code><a href="#rotate">rotate </a></code></td>
+    <td><code><a href="#swap">swap </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>String-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#explode">explode </a></code></td>
+    <td><code><a href="#fmtstring">fmtstring </a></code></td>
+    <td><code><a href="#instr">instr </a></code></td>
+    <td><code><a href="#instring">instring </a></code></td>
+    <td><code><a href="#midstr">midstr </a></code></td>
+  </tr><tr>
+    <td><code><a href="#pronoun_sub">pronoun_sub </a></code></td>
+    <td><code><a href="#tolower">tolower </a></code></td>
+    <td><code><a href="#toupper">toupper </a></code></td>
+    <td><code><a href="#rinstr">rinstr </a></code></td>
+    <td><code><a href="#rinstring">rinstring </a></code></td>
+  </tr><tr>
+    <td><code><a href="#smatch">smatch </a></code></td>
+    <td><code><a href="#split">split </a></code></td>
+    <td><code><a href="#strcat">strcat </a></code></td>
+    <td><code><a href="#strcut">strcut </a></code></td>
+    <td><code><a href="#strdecrytp">strdecrypt </a></code></td>
+  </tr><tr>
+    <td><code><a href="#strencrypt">strencrypt </a></code></td>
+    <td><code><a href="#stringpfx">stringpfx</a></code></td>
+    <td><code><a href="#strip">strip </a></code></td>
+    <td><code><a href="#striplead">striplead </a></code></td>
+    <td><code><a href="#striptail">striptail </a></code></td>
+  </tr><tr>
+    <td><code><a href="#strlen">strlen </a></code></td>
+    <td><code><a href="#subst">subst </a></code></td>
+    <td><code><a href="#unparseobj">unparseobj </a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Time Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#systime">systime </a></code></td>
+    <td><code><a href="#timesplit">timesplit </a></code></td>
+    <td><code><a href="#timefmt">timefmt </a></code></td>
+    <td><code><a href="#date">date </a></code></td>
+    <td><code><a href="#gmtoffset">gmtoffset </a></code></td>
+  </tr><tr>
+    <td><code><a href="#time">time </a></code></td>
+    <td><code><a href="#timestamps">timestamps</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Type-Checking Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#array_">array?</a></code></td>
+    <td><code><a href="#dbref_">dbref?</a></code></td>
+    <td><code><a href="#dictionary_">dictionary?</a></code></td>
+    <td><code><a href="#exit_">exit?</a></code></td>
+    <td><code><a href="#flag_">flag?</a></code></td>
+  </tr><tr>
+    <td><code><a href="#float_">float?</a></code></td>
+    <td><code><a href="#int_">int?</a></code></td>
+    <td><code><a href="#ispid_">ispid?</a></code></td>
+    <td><code><a href="#lock_">lock?</a></code></td>
+    <td><code><a href="#ok_">ok?</a></code></td>
+  </tr><tr>
+    <td><code><a href="#player_">player?</a></code></td>
+    <td><code><a href="#program_">program?</a></code></td>
+    <td><code><a href="#propdir_">propdir?</a></code></td>
+    <td><code><a href="#number_">number?</a></code></td>
+    <td><code><a href="#room_">room?</a></code></td>
+  </tr><tr>
+    <td><code><a href="#string_">string?</a></code></td>
+    <td><code><a href="#thing_">thing?</a></code></td>
+  </tr><tr>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+    <td><code> &nbsp; </code></td>
+  </tr><tr>
+    <td colspan="5"><em>Variable-Handling Primitives:</em></code></td>
+  </tr><tr>
+    <td><code><a href="#fetch">@ </a></code></td>
+    <td><code><a href="#store">! </a></code></td>
+    <td><code><a href="#localvar">localvar </a></code></td>
+    <td><code><a href="#lvar">lvar </a></code></td>
+    <td><code><a href="#public">public </a></code></td>
+  </tr><tr>
+    <td><code><a href="#var">var </a></code></td>
+    <td><code><a href="#variable">variable </a></code></td>
+  </tr>
+</table>
+</center>
+</p>
+
+<p><hr></p>
+<a name="a">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<p><hr></p>
+
+
+<a name="math">
+<p><code>+ - * / %  &nbsp;&nbsp; ( x1 x2 -- i )</code></p>
+
+<p>These words perform arithmetic operations on integer and floating
+point numbers. </p>
+
+<p><table>
+  <tr>
+    <td rowspan="6"> &nbsp; &nbsp; &nbsp; </td>
+  </tr><tr>
+    <td><code>+ is addition:</code></td>
+    <td><code>x1 + x2 </code></td>
+  </tr><tr>
+    <td><code>- is subtraction:</code></td>
+    <td><code>x1 - x2</code></td>
+  </tr><tr>
+    <td><code>* is multiplication: &nbsp; </code></td>
+    <td><code>x1 times x2, or x1 * x2</code></td>
+  </tr><tr>
+    <td><code>/ is division: </code></td>
+    <td><code>x1 divided by x2, or x1 / x2</code></td>
+  </tr><tr>
+    <td><code>% is modulo: </code></td>
+    <td><code>remainter of x1 / x2, or x1 % x2</code></td>
+  </tr>
+</table></p>
+
+<p>The result of an integer division is truncated of fractions.</p>
+
+<p>Modulo cannot be used on floating point values: see
+<a href="#modf"><code>MODF.</code></a> </p>
+
+<p>All math operations may also be performed where <code>x1</code> is a
+variable type.  This is mainly useful in calculating an offset for a
+variable array. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="comp">
+<p><code>&lt; &gt; = &lt;= &gt;=  &nbsp;&nbsp; ( x1 x2 -- i )</code></p>
+
+<p>Perform relational operations on integers or dbrefs <code>x1</code>
+and <code>x2.</code> These return <code>i</code> as <code>1</code> if
+the expression is true, and <code>i</code> as <code>0</code>
+otherwise. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="fetch">
+<p><code>@  &nbsp;&nbsp;  ( v -- x )</p></code>
+
+<p>Retrieves variable <code>v's</code> value <code>x.</code> (Pronounced
+`fetch'.) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="store">
+<p><code>! &nbsp;&nbsp; ( x v -- )</p></code>
+
+<p>Sets variable <code>v's</code> value to <code>x.</code> See also <a
+href="#variable"><code>VARIABLE,</code></a> <a
+href="#var"><code>VAR,</code></a> <a href="#lvar"><code>LVAR,</code></a>
+<a href="#localvar"><code>LOCALVAR,</code></a> and <a
+href="#miscellaneous"><code>miscellaneous.</code></a> (Pronounced
+`store'.) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="abort">
+<p><code>ABORT &nbsp;&nbsp; ( s --  )</p></code>
+
+<p>Aborts the MUF program with an error. For example, <code>`"Bad
+vibes." abort'</code> would stop the MUF program and tell the user a
+message like:</p>
+
+<p><code>
+   &nbsp;&nbsp; Programmer error. Please tell Revar the following message:<br>
+   &nbsp;&nbsp; #1234 (line 23) ABORT: Bad vibes.
+</code></p>
+
+<p>[<a href="#top">top</a>]</p><hr>
+
+<a name="acos">
+<p><code>ACOS &nbsp;&nbsp;( f -- f' )</p></code>
+
+<p>Returns the inverse cosine of &nbsp;<code>f</code>. (fb6.0+) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="addpennies">
+<p><code>ADDPENNIES &nbsp;&nbsp; ( d i --  )</p></code>
+
+<p><code>d</code> must be a player or thing object. Adds <code>i</code>
+pennies to object <code>d.</code> Without Wizard permissions,
+<code>addpennies</code> may only give players pennies, limited to
+between zero and <code>MAX_PENNIES.</code> &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="addprop">
+<p><code>ADDPROP  &nbsp;&nbsp; ( d s1 s2 i -- )</p></code>
+
+<p>Sets property associated with <code>s1</code> in object
+<code>d.</code> Note that if <code>s2</code> is null <code>"",</code>
+then <code>i</code> will be used. Otherwise, <code>s2</code> is always
+used. All four parameters must be on the stack; none may be omitted. If
+the effective user of the program does not control the object in
+question and the property begins with an underscore <code>`_',</code>
+the property cannot be changed.  The same goes for properties beginning
+with a dot <code>`.'</code> which cannot be read without permission. If
+you store values, you must ensure that it they are never zero.
+Otherwise, when the user stores a non-zero number into the string field,
+(users may only access string fields) the next time TinyMUCK is dumped
+and loaded up again, the value field will be replaced with
+<code>atoi</code> (string field). If it is necessary to store zero, it
+is safer to just add 1 to everything. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="address_">
+<p><code>ADDRESS? &nbsp;&nbsp; ( ? -- i )</code></p>
+
+<p>Returns true if the top stack item is a function address.
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="and">
+<p><code>AND  &nbsp;&nbsp; ( x y -- i )</code></p>
+
+<p>Performs the boolean `and' operation on <code>x</code> and
+<code>y,</code> returning <code>i</code> as <code>1</code> if both
+<code>i1</code> and <code>i2</code> are <code>TRUE,</code> and returning
+i as <code>0</code> otherwise. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_">
+<p><code>ARRAY?  &nbsp; ( ? -- i ) </code></p>
+
+Returns true if the top item on the stack is an array. (fb6.0+) &nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_count">
+<p><code>ARRAY_COUNT  &nbsp; ( a -- i )     </code></p>
+
+<p>Returns a count of the items in an array. (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_delitem">
+<p><code>ARRAY_DELITEM  &nbsp;  ( a @ -- a' )  </code></p>
+
+<p>Removes a given item from an array. (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_delrange">
+<p><code>ARRAY_DELRANGE &nbsp; ( a @ @ -- a' )</code> </p>
+
+<p>Deletes a range of items from an array, between two indexes,
+inclusive.  Returns the resulting array. (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_first">
+<p><code>ARRAY_FIRST &nbsp; ( a -- @ i )   </code></p>
+
+<p>Returns first the index in array, and a boolean. Bool is false if no
+items are in array. (fb6.0+) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_explode">
+<p><code>ARRAY_EXPLODE &nbsp;  ( a -- {@ ?} ) </code></p>
+
+<p>Explodes array into stackrange of index/value pairs, such as
+<code>"idx0" "val0" "idx1" "val1" 2</code>. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_getitem">
+<p><code>ARRAY_GETITEM  &nbsp;  ( a @ -- ? )   </code></p>
+
+<p>Gets a given item from an array. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_getrange">
+<p><code>ARRAY_GETRANGE &nbsp; ( a @ @ -- a' ) </code></p>
+
+<p>Gets range between two indexes (inclusive) from an array, returning
+it as an array. (fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_insertitem">
+<p><code>ARRAY_INSERTITEM &nbsp; ( ? a @ -- a') </code></p>
+
+<p>Inserts a given value into an array. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_insertrange">
+<p><code>ARRAY_INSERTRANGE &nbsp; ( a1 @ a2 -- a' ) </code></p>
+
+<p>Inserts items from array <code>a2</code> into <code>a1,</code>
+starting at the given index.  Returns the resulting array. (fb6.0+)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_keys">
+<p><code>ARRAY_KEYS  &nbsp;  ( a -- {@} )   </code></p>
+
+<p>Returns the keys of an array in a stackrange. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_last">
+<p><code>ARRAY_LAST &nbsp;   ( a -- @ i )   </code></p>
+
+<p>Returns last index in array, and a boolean. Bool is false if no items
+are in array. (fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_make">
+<p><code>ARRAY_MAKE  &nbsp;  ( {?} -- a )   </code></p>
+
+<p>Makes a list array from a stackrange. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_make_dict">
+<p><code>ARRAY_MAKE_DICT &nbsp; ( {@ ?} -- a ) </code></p>
+
+<p>Makes a dictionary associative array from a stackrange of index/value
+pairs. (fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_ndiff">
+<p><code>ARRAY_NDIFF  &nbsp; ( {a} -- a )</code></p>
+
+<p>Returns a list array, containing the difference of all the given arrays.
+Multiple arrays are consecutively processed against the results of the
+previous difference, from the top of the stack down. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_nintersect">
+<p><code>ARRAY_NINTERSECT  &nbsp; ( {a} -- a ) </code></p>
+
+<p>Return a list array, containing the intersection of all the given
+arrays. Multiple arrays are consecutively processed against the results
+of the previous intersection, from the top of the stack down.
+(fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_next">
+<p><code>ARRAY_NEXT &nbsp;   ( a @ -- @ i ) </code></p>
+
+<p>Returns the next index in array, following index <code>a,</code> and
+a boolean. Bool is false if no items left. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_notify">
+<p><code>ARRAY_NOTIFY  &nbsp; (a1 a2 -- )</code></p>
+
+<p>Notifies all dbref items in array <code>a2</code> with all string
+items in array <code>a1.</code>  (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_nunion">
+<p><code>ARRAY_NUNION  &nbsp; ({a} -- a) </code></p>
+
+<p>Returns a list array, containing the union of values of all the given
+arrays. (fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_prev">
+<p><code>ARRAY_PREV  &nbsp;  ( a @ -- @ i ) </code></p>
+
+<p>Returns previous index in array, following index <code>a,</code> and
+a boolean. Bool is false if no items left. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_setitem">
+<p><code>ARRAY_SETITEM  &nbsp;  ( ? a @ -- a' ) </code></p>
+
+<p>Overwrites item a from array @ with value ?. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="array_setrange">
+<p><code>ARRAY_SETRANGE &nbsp; (a1 @ a2 -- a') </code></p>
+
+<p>Sets items in list <code>a1</code> to values from list
+<code>a2,</code> starting at the given index.  Returns the resulting
+array. (fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="array_vals">
+<p><code>ARRAY_VALS  &nbsp;  ( a -- {?} )   </code></p>
+
+<p>Returns the values of an array in a stackrange. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="asine">
+<p><code>ASINE  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the inverse cosine of <code>f.</code> Operates in the range
+of <code>-pi/2</code> to <code>pi/2.</code> (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="atan">
+<p><code>ATAN  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the inverse tangent of <code>f.</code> Operates in the range
+of <code>-pi/2</code> to <code>pi/2.</code> (fb6.0+) [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="atan2">
+<p><code>ATAN2  &nbsp;( fy fx -- f )</code></p>
+
+<p>Equivalent to <a href="#atan"><code>ATAN,</code></a> but takes the signs
+of the arguments into account, and avoids division-by-zero errors.
+(fb6.0+) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="atoi">
+<p><code>ATOI  &nbsp;&nbsp; ( s -- i )</code></p>
+
+<p>Turns string <code>s</code> into integer <code>i.</code> If
+<code>s</code> is not a string, then <code>0</code> is pushed onto the
+stack. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="awake_">
+<p><code>AWAKE?  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Passed a player's dbref, returns the number of connections they have
+to the game. This will be <code>0</code> if they are not
+connected. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="b">
+
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="background">
+<p><code>BACKGROUND  &nbsp;&nbsp; ( -- )</code></p>
+
+<p>A way to turn on multitasking. Programs in the background let the
+program user go on and be able to do other things while waiting for the
+program to finish. You cannot use the <code>READ</code> command in a background
+program. Once a program is put into background mode, you cannot set it
+into foreground or preempt mode. A program will remain in the background
+until it finishes execution. &nbsp; [<a href="#top">top</a>] </p><hr>
+
+<a name="begin">
+<p><code>BEGIN   ( -- )</code></p>
+
+<p>Marks the beginning of begin-until or begin-repeat loops. &nbsp; [<a
+href="#top">top</a>] </p><hr>
+
+<a name="bg_mode">
+<p><code>BG_MODE  &nbsp;&nbsp; (  -- i )</code><br>
+<code>pr_mode </code><br>
+<code>fg_mode </code></p>
+
+<p>These are all standard built in defines.  They are used with
+<code>MODE</code> and <code>SETMODE</code> to show what mode the program
+is running in, or to set what mode it will run in.  For example,
+<code>MODE</code> returns an integer on the stack, that you can compare
+against <code>pr_mode,</code> <code>fg_mode,</code> or
+<code>bg_mode,</code> to determine what mode the program is in.
+<code>pr_mode</code> is defined as <code>0,</code> <code>fg_mode</code>
+is defined as <code>1,</code> and <code>bg_mode</code> is defined as
+<code>2.</code> &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="bitor">
+<p><code>BITOR  &nbsp;&nbsp; ( x x -- i )</code></p>
+
+<p>Does a mathematical bitwise or. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="bitand">
+<p><code>BITAND  &nbsp;&nbsp; ( i i -- i )</code></p>
+
+<p>Does a mathematical bitwise and.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="bitshift">
+<p><code>BITSHIFT  &nbsp;&nbsp; ( i i -- i )</code></p>
+
+<p>Shifts the first integer by the second integer's number of bit
+positions. This works like the C <code>&lt;&lt;</code> operator. If the
+second integer is negative, it is equivalent to
+<code>&gt;&gt;.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="bitxor">
+<p><code>BITXOR  &nbsp;&nbsp; ( i i -- i )</code></p>
+
+<p>Does a mathematical bitwise exclusive or.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="break">
+<p><code>BREAK  &nbsp;&nbsp; ( -- )</code></p>
+
+<p>Breaks out of the innermost loop. Jumps execution to the instruction
+after the <code>UNTIL</code> or <code>REPEAT</code> for the current loop. &nbsp;[<a href="#top">top</a>]</p><hr>
+
+<a name="c">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="call">
+<p><code>CALL  &nbsp;&nbsp; ( d -- ?? )</code></p>
+
+<p>Calls another program <code>d.</code> <code>d</code> must have been
+compiled already. <code>d</code> will inherit the values of
+<code>ME,</code> <code>LOC,</code> <code>TRIGGER,</code> and all other
+variables. &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="caller">
+<p><code>CALLER  &nbsp;&nbsp; ( -- d )</code></p>
+
+<p>Returns the dbref of the program that called this one, or the dbref
+of the trigger, if this wasn't called by a program.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="ceil">
+<p><code>CEIL  &nbsp;&nbsp; ( f -- f )</code></p>
+
+<p>Returns the next highest integer number as a float. (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="checkargs">
+<p><code>CHECKARGS  &nbsp;&nbsp; ( ??? s -- )</code></p>
+
+<p>Takes a string argument that contains an expression that is used to
+test the arguments on the stack below the given string. If they do not
+match what the expression says should be there, then it aborts the
+running program with an appropriate <code>Program Error</code> message.
+The expression is formed from single character argument tests that refer
+to different argument types. The tests are: </p>
+
+<p><table border="0">
+  <tr>
+    <td rowspan="18"> &nbsp; </td>
+    <td><code>a - function address</code></td>
+    <td><code>&nbsp;</code></td>
+  </tr><tr>
+    <td><code>d - dbref </code></td>
+    <td><code>(#-1, #-2, #-3 are okay)</code></td>
+  </tr><tr>
+    <td><code>D - valid, non-garbage dbref </code></td>
+    <td><code>(#-1, #-2 NOT allowed #-3 is okay)</code></td>
+  </tr><tr>
+    <td><code>e - exit dbref</code></td>
+    <td><code>(#-1, #-2 allowed)</code></td>
+  </tr><tr>
+    <td><code>E - exit dbref</code></td>
+    <td><code>(#-1, #-2 NOT allowed)</code></td>
+  </tr><tr>
+    <td><code>f - program dbref</code></td>
+    <td><code>(#-1, #-2 allowed)</code></td>
+  </tr><tr>
+    <td><code>F - program dbref</code></td>
+    <td><code>(#-1, #-2 NOT allowed)</code></td>
+  </tr><tr>
+    <td><code>i - integer</code></td>
+    <td><code>&nbsp;</code></td>
+  </tr><tr>
+    <td><code>p - player dbref</code></td>
+    <td><code>(#-1, #-2 allowed)</code></td>
+  </tr><tr>
+    <td><code>P - player dbref</code></td>
+    <td><code>(#-1, #-2 NOT allowed)</code></td>
+  </tr><tr>
+    <td><code>r - room dbref</code></td>
+    <td><code>(#-1, #-2 allowed)  (#-3 is a room)</code></td>
+  </tr><tr>
+    <td><code>R - room dbref</code></td>
+    <td><code>(#-1, #-2 NOT allowed)  (#-3 is a room)</code></td>
+  </tr><tr>
+    <td><code>s - string</code></td>
+    <td><code>&nbsp;</code></td>
+  </tr><tr>
+    <td><code>S - non-null string</code></td>
+    <td><code>&nbsp;</code></td>
+  </tr><tr>
+    <td><code>t - thing dbref</code></td>
+    <td><code>(#-1, #-2 allowed)</code></td>
+  </tr><tr>
+    <td><code>T - thing dbref</code></td>
+    <td><code>(#-1, #-2 NOT allowed)</code></td>
+  </tr><tr>
+    <td><code>v - local or global variable </code></td>
+    <td><code>&nbsp;</code></td>
+  </tr><tr>
+    <td><code>? - any stack item type</code></td>
+    <td><code>&nbsp;</code></td>
+  </tr>
+</table></p>
+
+<p>Tests can be repeated multiple times by following the test with a
+number. For example, <code>"i12" checkargs</code> would test the stack
+for 12 integers.</p>
+
+<p>The last test in the string expression will be done on the top stack
+item. Tests are done from the top of the stack down, in order, so the
+last test that fails in a string expression will be the one that the
+Program Error will be given for. ie: <code>"sdSi" checkargs</code> will
+test that the top stack item is an integer, then it tests that the next
+item down is a non-null string, then it tests the third item from the
+top to see if it is a dbref, and lastly it tests to make sure that the
+4th item from the top is a string.</p>
+
+Spaces are ignored, so <code>s d i</code> is the same as
+<code>sdi.</code> However, multipliers are ignored if they follow a
+space, so <code>s 4d i</code> is also the same as <code>sdi.</code> This
+is because you are basically telling it to repeat the space 4 times, and
+since spaces are ignored, it has no effect. </p>
+
+<p>If you have a function that takes a stack item of any type, you can
+use the <code>?</code> test. <code>?</code> will match a string,
+integer, dbref, or any other type.</p>
+
+<p>Since sometimes arguments are passed in ranges, such as the way that
+the explode primitive returns multiple strings with an integer count on
+top, there is a way to group arguments, to show that you expect to
+recieve a range of that type. For example, <code>"{s}" checkargs</code>
+would test the stack for a set of strings like <code>"first" "second"
+"third" "fourth" 4</code> where the top stack item tells how many
+strings to expect within the range.</p>
+
+<p>Sometimes a function takes a range of paired arguments, such as:
+<code>"one" 1 "two" 2 "three" 3 "four" 4 4</code> where the count on the
+top of the range refers to the number of pairs. To test for the range
+given above, you would use <code>"{si}" checkargs</code> to tell it that
+you want to check for a range of paired strings and integers. You can
+group as many argument tests together in a range as you would like. ie:
+you could use <code>{sida}</code> as an expression to test for a range
+of related strings, integers, dbrefs, and function addresses.</p>
+
+<p>Since the argument multipliers refer to the previous test
+<code>OR</code> range, you can test for two string ranges with the test
+<code>"{s}2" checkargs.</code> ie: It would succeed on a stack of:
+<code>"one" "two" "three" 3 "four" "five" 2.  "{s2}" checkargs,</code>
+however, would test for one range of paired strings.  ie: It would
+succeed with a stack of: <code>"one" "1" "two" "2" "three" "3"
+3.</code></p>
+
+<p>If, for some reason, you need to pass a range of ranges to a function,
+you can test for it by nesting the braces. ie: <code>"{{s}}"
+checkargs</code>.</p>
+
+<p>Now, as one last example, the primitive <code>notify_exclude,</code>
+if we were to test the arguments passed to it manually, would use the
+test <code>"R{p}s" checkargs</code> to test for a valid room dbref, a
+range of player dbrefs or <code>#-1s,</code> and a string.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="checkpassword">
+<p><code>CHECKPASSWORD  &nbsp;&nbsp; ( d s --  )</code></p>
+
+<p>Returns true if the password of player <code>d.</code> (wizbit
+only)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="clear">
+<p><code>CLEAR &nbsp;&nbsp; (  --  )</code></p>
+
+<p>Clears all error flags.&nbsp; See also <a
+href="#clear_error"><code>CLEAR_ERROR</code></a>, <a
+href="#error_"><code>ERROR?</code></a>, <a
+href="#error_str"><code>ERROR_STR</code></a>, <a
+href="#error_name"><code>ERROR_NAME</code></a>, <a
+href="#error_bit"><code>ERROR_BIT</code></a>, <a
+href="#error_num"><code>ERROR_NUM</code></a>, <a
+href="#is_set_"><code>IS_SET?</code></a>, and <a
+href="#set_error"><code>SET_ERROR</code></a> &nbsp; (fb6.0+)  [<a
+href="#top">top</a>]</p><hr>
+
+<a name="clear_error">
+<p><code>CLEAR_ERROR  &nbsp;&nbsp; ( i --  )</code></p>
+
+<p>Clears error flag <code>i</code>.&nbsp; See also <a
+href="#clear"><code>CLEAR</code></a>, <a
+href="#error_"><code>ERROR?</code></a>, <a
+href="#error_str"><code>ERROR_STR</code></a>, <a
+href="#error_name"><code>ERROR_NAME</code></a>, <a
+href="#error_bit"><code>ERROR_BIT</code></a>, <a
+href="#error_num"><code>ERROR_NUM</code></a>, <a
+href="#is_set_"><code>IS_SET?</code></a>, and <a
+href="#set_error"><code>SET_ERROR</code></a>  (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="conboot">
+<p><code>CONBOOT  &nbsp;&nbsp; ( i -- )</code></p>
+
+<p>Takes a connection number and disconnects that connection from the
+server. (wizbit only)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="concount">
+<p><code>CONCOUNT  &nbsp;&nbsp; (  -- i )</code></p>
+
+<p>Returns how many connections to the server there are. (Requires Mucker
+Level 3)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="condbref">
+<p><code>CONDBREF  &nbsp;&nbsp; ( i -- d )</code></p>
+
+<p>Returns the dbref of the player connected to this connection.
+(Requires Mucker Level 3) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="condescr">
+<p><code>CONDESCR   &nbsp;&nbsp;( i -- i )</code></p>
+
+<p>Takes a connection number and returns the descriptor number
+associated with it. (Requires Mucker Level 3) See <a
+href="#descriptors"><code>DESCRIPTORS,</code></a> <a
+href="#descron"><code>DESCRCON</code></a>.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="conhost">
+<p><code>CONHOST  &nbsp;&nbsp; ( i -- s )</code></p>
+
+<p>Returns the hostname of the connection. (wizbit only)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="conidle">
+<p><code>CONIDLE  &nbsp;&nbsp; ( i -- i )</code></p>
+
+<p>Returns how many seconds the connection has been idle. (Requires
+Mucker Level 3)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="connotify">
+<p><code>CONNOTIFY   &nbsp;&nbsp;( i s -- )</code></p>
+
+<p>Sends a string to a specific connection to the server. (Requires
+Mucker Level 3)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="contents">
+<p><code>CONTENTS   &nbsp;&nbsp;( d -- d' )</code></p>
+
+<p>Pushes the dbref of the first thing contained by <code>d.</code> This
+dbref can then be referenced by <code>next</code> to cycle through all
+of the contents of <code>d.</code> <code>d</code> may be a room or a
+player.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="contime">
+<p><code>CONTIME   &nbsp;&nbsp; ( i -- i )</code></p>
+
+<p>Returns how many seconds the given connection has been connected to
+the server. (Requires Mucker Level 3)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="continue">
+<p><code>CONTINUE   &nbsp;&nbsp; ( -- )</code></p>
+
+<p>Jumps execution to the beginning of the current loop. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="copyobj">
+<p><code>COPYOBJ  &nbsp;&nbsp; ( d -- d' )</code></p>
+
+<p>Creates a new object (returning <code>d'</code> on top of the stack),
+that is a copy of object <code>d.</code> Each program is allowed to
+create only one new object per run.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="cos">
+<p><code>COS  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the cosine of <code>f.</code> Operates in the range of -pi/4
+and pi/4. (fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="ctoi">
+<p><code>CTOI   ( s -- i )</code></p>
+
+<p>Converts the first character in a string to its <code>ASCII</code>
+equivalent integer.&nbsp; (fb6.0+) [<a href="#top">top</a>]</p><hr>
+
+
+<a name="d">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+
+<a name="date">
+<p><code>DATE  &nbsp;&nbsp; ( -- i i i )  </code></p>
+
+<p>Returns the monthday, month, and year. For example, if it were
+February 6, 1992, <code>date</code> would return <code>6 2 1992</code>
+as three integers on the stack.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="dbcmp">
+<p><code>DBCMP  &nbsp;&nbsp; ( d1 d2 -- i )</code></p>
+
+<p>Performs comparison of database objects <code>d1</code> and
+<code>d2.</code> If they are the same object, then <code>i</code> is
+<code>1,</code> otherwise i is <code>0.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="dbref">
+<p><code>DBREF   &nbsp;&nbsp;( i -- d )</code></p>
+
+<p>Converts integer <code>i</code> to object reference
+<code>d.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="dbref_">
+<p><code>DBREF?  &nbsp;&nbsp; ( x -- i )</code></p>
+
+<p>Returns true if <code>x</code> is a dbref.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="dbtop">
+<p><code>DBTOP  &nbsp;&nbsp; ( -- d)</code></p>
+
+<p>Returns the dbref of the first object beyond the top object of the
+database. <code>dbtop ok?</code> would return a false value.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="depth">
+<p><code>DEPTH  &nbsp;&nbsp; ( -- i )</code></p>
+
+<p>Returns the number of items on the stack.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="desc">
+<p><code>DESC  &nbsp;&nbsp; ( d -- s )</code></p>
+
+Takes object <code>d</code> and returns its description
+(<code>@desc</code>) string field.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="descron">
+<p><code>DESCRCON  &nbsp;&nbsp; ( i -- i )</code></p>
+
+<p>Takes a descriptor and returns the associated connection number, or
+<code>0</code> if no match was found. See <code>DESCRIPTORS,</code>
+<code>CONDESCR.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="descrflush">
+<p><code>DESCRFLUSH  &nbsp;&nbsp; ( i -- )</code></p>
+
+<p>Flushes output text on the given descriptor. If <code>-1</code> is
+passed as the descriptor, it flushes output on all connections. &nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+<a name="descriptors">
+<p><code>DESCRIPTORS   &nbsp;&nbsp;( d -- ix...i1 i ) </code></p>
+
+<p>Takes a player dbref, or <code>#-1,</code> and returns the range of
+descriptor numbers associated with that dbref (or all for
+<code>#-1</code>) with their count on top. Descriptors are numbers that
+always stay the same for a connection, while a connection number is the
+relative position in the <code>WHO</code> list of a connection. See <a
+href="#descron"><code>DESCRCON,</code></a> <a
+href="#condescr"><code>CONDESCR.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="dictionary_">
+DICTIONARY?  &nbsp; ( ? -- i )
+
+Returns true if the top item on the stack is a dictionary array.
+(fb6.0+) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="dist3d">
+<p><code>DIST3D  &nbsp; ( fx fy fz -- f )</code></p>
+
+Returns the distance of <code>XYZ</code> coords <code>(fx, fy,
+fz)</code> from the origin. (fb6.0+) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="drop">
+<p><code>DROP  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Takes object <code>d</code> and returns its drop (<code>@drop</code>)
+string field.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="dup">
+<p><code>DUP  &nbsp;&nbsp; ( x -- x x )</code></p>
+
+<p>Duplicates the item at the top of the stack.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="dupn">
+<p><code>DUPN  &nbsp;&nbsp; ( ?n...?1 i -- ?n...?1 ?n...?1 ) </code></p>
+
+Duplicates the top <code>N</code> stack items. See also
+<a href="#ldup"><code>LDUP.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="e">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="else">
+<p><code>ELSE</code> &nbsp;&nbsp;
+
+(See <a href="#if"><code>IF</code></a>)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="envpropstr">
+<p><code>ENVPROPSTR  &nbsp;&nbsp; ( s d -- s d )</code></p>
+
+<p>Takes a starting object dbref and a property name and searches down
+the environment tree from that object for a property with the given
+name. If the property isn't found, it returns <code>#-1</code> and a
+null string. If the property is found, it will return the dbref of the
+object it was found on, and the string value it contained.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="error_">
+<p><code>ERROR?  &nbsp;&nbsp; (  -- i )</code></p>
+
+<p>Returns true if any error flags have been set.  See also <a
+href="#clear"><code>CLEAR</code></a>, <a
+href="#clear_error"><code>CLEAR_ERROR</code></a>, <a
+href="#error_str"><code>ERROR_STR</code></a>, <a
+href="#error_name"><code>ERROR_NAME</code></a>, <a
+href="#error_bit"><code>ERROR_BIT</code></a>, <a
+href="#error_num"><code>ERROR_NUM</code></a>, <a
+href="#is_set_"><code>IS_SET?</code></a>, and <a
+href="#set_error"><code>SET_ERROR</code></a>  (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="error_bit">
+<p><code>ERROR_BIT  &nbsp;&nbsp; ( s -- i )</code></p>
+
+<p>Given the error flag string name, returns the bit identifier.  See
+also <a href="#clear"><code>CLEAR</code></a>, <a
+href="#clear_error"><code>CLEAR_ERROR</code></a>, <a
+href="#error_"><code>ERROR?</code></a>, <a
+href="#error_str"><code>ERROR_STR</code></a>, <a
+href="#error_name"><code>ERROR_NAME</code></a>, <a
+href="#error_num"><code>ERROR_NUM</code></a>, <a
+href="#is_set_"><code>IS_SET?</code></a>, and <a
+href="#set_error"><code>SET_ERROR</code></a>  (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="error_name">
+<p><code>ERROR_NAME  &nbsp;&nbsp; ( i -- s )</code></p>
+
+<p>Given the error flag bit identifier, returns the string name for the
+error flag.  See also <a href="#clear"><code>CLEAR</code></a>, <a
+href="#clear_error"><code>CLEAR_ERROR</code></a>, <a
+href="#error_"><code>ERROR?</code></a>, <a
+href="#error_str"><code>ERROR_STR</code></a>, <a
+href="#error_bit"><code>ERROR_BIT</code></a>, <a
+href="#error_num"><code>ERROR_NUM</code></a>, <a
+href="#is_set_"><code>IS_SET?</code></a>, and <a
+href="#set_error"><code>SET_ERROR</code></a>  (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="error_num">
+<p><code>ERROR_NUM  &nbsp;&nbsp; (  -- i )</code></p>
+
+<p>Returns the total number of error flag types.  </p>
+
+<p><table>
+  <tr>
+    <td><code>DIV_ZERO</code></td>
+    <td><code>(0)</code></td>
+    <td><code>Division by zero attempted</code></td>
+  </tr><tr>
+    <td><code>NAN </code></td>
+    <td><code>(1)</code></td>
+    <td><code>Result was not a number</code></td>
+  </tr><tr>
+    <td><code>IMAGINARY </code></td>
+    <td><code>(2) </code></td>
+    <td><code>Result would be imaginary</code></td>
+  </tr><tr>
+    <td><code>FBOUNDS </code></td>
+    <td><code>(3) </code></td>
+    <td><code>Floating-point inputs were out of range</code></td>
+  </tr><tr>
+    <td><code>IBOUNDS</code></td>
+    <td><code>(4) </code></td>
+    <td><code>Calculation resulted in an integer overflow or
+    underflow</code></td>
+  </tr>
+</table></p>
+
+<p>See also <a
+href="#clear"><code>CLEAR</code></a>, <a
+href="#clear_error"><code>CLEAR_ERROR</code></a>, <a
+href="#error_"><code>ERROR?</code></a>, <a
+href="#error_str"><code>ERROR_STR</code></a>, <a
+href="#error_name"><code>ERROR_NAME</code></a>, <a
+href="#error_bit"><code>ERROR_BIT</code></a>, <a
+href="#is_set_"><code>IS_SET?</code></a>, and <a
+href="#set_error"><code>SET_ERROR</code></a>  (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="error_str">
+<p><code>ERROR_STR  &nbsp;&nbsp; ( i -- s )</code></p>
+
+Given an error identifier, returns a user-readable error string.
+See also
+<a href="#clear"><code>CLEAR</code></a>,
+<a href="#clear_error"><code>CLEAR_ERROR</code></a>,
+<a href="#error_"><code>ERROR?</code></a>,
+<a href="#error_name"><code>ERROR_NAME</code></a>,
+<a href="#error_bit"><code>ERROR_BIT</code></a>,
+<a href="#error_num"><code>ERROR_NUM</code></a>,
+<a href="#is_set_"><code>IS_SET?</code></a>, and
+<a href="#set_error"><code>SET_ERROR</code></a>  (fb6.0+)
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="execute">
+<p><code>EXECUTE  &nbsp;&nbsp; ( a -- ?? )</code></p>
+
+<p>Executes the function pointed to by the address a on the stack.&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="exit">
+<p><code>EXIT  &nbsp;&nbsp; ( -- )</code></p>
+
+<p>Exits from the word currently being executed, returning control to the
+calling word, at the statement immediately after the invokation of the
+call (exiting the program if applicable).&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="exit_">
+<p><code>EXIT?  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Returns <code>1</code> if object <code>d</code> is an exit object,
+<code>0</code> if otherwise. See also <code>player?,</code>
+<code>program?,</code> <code>room?,</code> <code>thing?,</code>
+<code>ok?.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="exits">
+<p><code>EXITS  &nbsp;&nbsp; ( d -- d' )</code></p>
+
+<p>Returns the first exit in the linked exit list of room/player/object
+<code>d.</code>  This list can be transversed with
+<code>next.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="exp">
+<p><code>EXP  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns <code>e</code> raised to the <code>fth</code> power. (fb6.0+)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="explode">
+<p><code>EXPLODE  &nbsp;&nbsp; ( s1 s2 -- ... i )</code></p>
+
+<p><code>s2</code> is the delimiter string, and <code>s1</code> is the
+target string, which will be fragmented, with <code>i</code> pushed on
+top of the stack as the number of strings <code>s1</code> was broken
+into. For instance: </p>
+
+<p><code>
+  &nbsp;&nbsp;   "Hello world" " " explode<br>
+</code></p>
+
+<p>will result in</p>
+
+<p><code>
+  &nbsp;&nbsp;   "world" "Hello" 2
+</code></p>
+
+<p>on the stack. (Note that if you read these items off in order, they
+will come out <code>"Hello"</code> first, then <code>"world"</code>.)
+For TinyMUCK 2.2, <code>s2</code> may be any length. But <code>""</code>
+(null string) is not an acceptable string for parameter
+<code>s2.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+
+<a name="f">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="fabs">
+<p><code>FABS  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the absolute value of <code>f.</code> (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="fail">
+<p><code>FAIL  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Takes object <code>d</code> and returns its fail (<code>@fail</code>)
+string field.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="fg_mode">
+<p><code>FG_MODE  &nbsp;&nbsp; (  -- i )<br>
+pr_mode <br>
+bg_mode</code><p>
+
+<p>These are all standard built in defines.  They are used with
+<code>MODE</code> and <code>SETMODE</code> to show what mode the program
+is running in, or to set what mode it will run in.  For example,
+<code>MODE</code> returns an integer on the stack, that you can compare
+against <code>pr_mode,</code> <code>fg_mode,</code> or
+<code>bg_mode,</code> to determine what mode the program is in.
+<code>pr_mode</code> is defined as <code>0,</code> <code>fg_mode</code>
+is defined as <code>1,</code> and <code>bg_mode</code> is defined as
+<code>2.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="flag_">
+<p><code>FLAG?  &nbsp;&nbsp; ( d s -- i )</code></p>
+
+<p>Reads the flag of object <code>d,</code> specified by <code>s,</code>
+and returns its state: <code>1 = on</code>; <code>0 = off.</code>
+Different flags may be supported in different installations.
+<code>flag?</code> returns <code>0</code> for unsupported or
+unrecognized flags.  You can check the <code>"interactive"</code> flag
+to see if a player is currently in a program's <code>READ,</code> or if
+they are in the MUF editor.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="float">
+<p><code>FLOAT  &nbsp;&nbsp; ( i -- f )</code></p>
+
+<p>Converts <code>i</code> to a floating point. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="float_">
+<p><code>FLOAT?  &nbsp;&nbsp; ( x -- i )</code></p>
+
+<p>Returns true if <code>x</code> is a floating point. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="floor">
+<p><code>FLOOR  &nbsp;&nbsp; ( f -- f )</code></p>
+
+<p>Returns the next lowest integer number as a float. (fb6.0+) &nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="foreach">
+<p><code>FOREACH  &nbsp; ( a -- @ ? )</code></p>
+
+A loop construct for arrays. (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="fmtstring">
+<code>FMTSTRING</code>
+
+<p><code>FMTSTRING</code> can be used to format complicated and long
+strings, as well as multi-lined (with embedded new-lines) strings.
+These strings can consist entirely of user-specified text, formatted
+variable entries (as values taken from the stack) or a combination of
+both.</p>
+
+<p>The syntax for the format string is as follows:</p>
+
+<p><code>
+&nbsp;&nbsp; Format -+---+-%[-,|][+,
+][0][number][.number]type->+-----><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^   |                                      |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |   +-text---------------------------------->|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |                                          |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +------------------------------------------+
+</code></p>
+
+<p>Here, text can be any string that does not contain a <code>%</code>
+percent mark.  This can be circumvented by replacing any occurance of a
+<code>%</code> with <code>%%.</code>  <code>Number</code> is any
+standard integer number, and type should be one of the following single
+character identifiers (case is important):</p>
+
+<ul>
+<li><code>i - integer argument</code>
+<li><code>s - string argument</code>
+<li><code>? - unknown type argument, will print a string stating what the variable type is</code>
+<li><code>d - dbref number, in the form of #123</code>
+<li><code>D - dbref name reference; given a dbref, will print the associated name for that object - terminates on bad reference</code>
+<li><code>l - pretty-lock, given a lock, will print the
+description</code>
+<li><code>f - float in xxx.yyy form</code>
+<li><code>e - float in x.yyEzz form</code>
+<li><code>g - shorter of forms e or f</code>
+</ul>
+
+<p>A sample format string might look something like:</p>
+
+<p><code>
+  &nbsp;&nbsp; "There are %i apples in the box."
+</code></p>
+
+<p>If there was an integer value of '5' on the stack, this would
+return:</p>
+
+<p><code>
+  &nbsp;&nbsp; "There are 5 apples in the box."
+</code></p>
+
+<p>Variables can be formatted in very specific manners.  For numeric
+entries, zero padding can be specified, as well as control over the sign
+field.  The total output field size for the variable can be specified,
+as well as the minimum and maximum output lengths.  Within a field,
+output can be left, right or center justified.  The <code>[-,|]</code>
+denotes the justification style to use.  With no argument, a field will
+be right justified.  A <code>-</code> will change this to left and a
+<code>|</code> will make the field centered.  If justification is to be
+used, the first numeric entry must be specified.  This denotes the total
+size of the variable field.  If the output of the variable is not
+limited by the maximum output number (see below), and the total size of
+the output is greater than the given field width, justification will
+have no meaning.  The second number field (after the period) specifies
+the maximum number of characters to be printed for string variables, or
+the precision for numerics.  When dealing with numerics, the
+<code>+,</code> <code>' '</code> and <code>'0'</code> characters also
+can be used before the numeric fields.  Specifing <code>+</code> will
+make sure that a sign character is always printed before the number,
+wether it be a plus or a minus.  Default is to only print a minus sign
+as needed.  If a <code>' '</code> is used instead of the <code>+,</code>
+a positive number will be prefaced with a space instead of a plus-sign.
+When a <code>0</code> is given, zeros will be prefaced to the printed
+number in order to fill the field width.</p>
+
+<p>Tabbing and new-lines are allowed within the format strings as well.
+Tabs are defaulted to the equivilent of eight spaces.  Starting a new
+line with <code>\r</code> will reset the tab count.  Unless explicitly
+reset with a new-line character, tab will continue to count in mod-eight
+across the given output line.  To insert a tab character, use
+<code>\t.</code></p>
+
+<p>Variables should be on the stack `under' the format string, and should
+be in order of reference.  The first variable referenced by the format
+string should be the next item in the stack, and so forth. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="for">
+<p><code>FOR  &nbsp;&nbsp; ( i1 i2 i3 -- i ) </code></p>
+
+<p>A loop structure, iterating from <code>i1</code> to <code>i2,</code>
+with a step of <code>i3.</code>  The current count is pushed onto the
+stack at each iteration.  <code>FOR</code> is used just like
+<code>BEGIN,</code> marking the beginning of a loop, with
+<code>REPEAT</code> or <code>UNTIL</code> marking the end.  However
+unlike other loops, <code>FOR</code> loops are limited to a ridiculously
+high nesting of 512, enforced at runtime.  The <code>FOR</code>
+primitive is actually <code>( i1 i2 i3 --  )</code> and the
+<code>FORITER</code> primitive, used to control the iteration count is
+<code>( -- [i] i1)</code> where <code>i1</code> is a boolean signaling
+weather or not to continue, and if continuing, <code>i</code> is the
+currnet count.  The primitive <code>FORPOP ( -- )</code> cleans up the
+<code>FOR</code> nesting stack by popping off the data for the nested
+loop.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="force">
+<p><code>FORCE  &nbsp;&nbsp; ( d s -- )</code></p>
+
+<p>Forces player <code>d</code> to do action s as if they were <code>@forced.</code> (wizbit only)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="foreground">
+<p><code>FOREGROUND  &nbsp;&nbsp; ( -- )</code></p>
+
+<p>To turn on multitasking, you can issue a foreground command. While a
+program is in foreground mode, the server will be multitasking and
+handling multiple programs at once, and input from other users, but it
+will be blocking any input from the user of the program until the
+program finishes. You cannot foreground a program once it is running in
+the background. A program will stay in foreground mode until it finishes
+running or until you change the mode. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="fork">
+<p><code>FORK  &nbsp;&nbsp; ( -- i )</code></p>
+
+<p>This primitive forks off a <a
+href="#background"><code>BACKGROUND</code></a> (muf) process from the
+currently running program. It returns the pid of the child process to
+the parent process, and returns a <code>0</code> to the child. If the
+timequeue was full, then it returns a <code>-1</code> to the parent
+process, and there is no child process.  (Requires Mucker Level 3)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="frand">
+<p><code>FRAND  &nbsp;&nbsp;(  -- f )</code></p>
+
+<p>Returns a random number between <code>0</code> and <code>1.</code>
+(fb6.0+) &nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="ftostr">
+<p><code>FTOSTR  &nbsp;&nbsp; ( f -- s )</code></p>
+
+<p>Converts a floating point value to a string. (fb6.0+)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="g">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="getlink">
+<p><code>GETLINK  &nbsp;&nbsp; ( d -- d' )</code></p>
+
+<p>Returns what object <code>d</code> is linked to, or <code>#-1</code>
+if <code>d</code> is unlinked. The interpretation of link depends on the
+type of <code>d:</code> for an exit, returns the room, player, program,
+action, or thing that the exit is linked to.  For a player, program, or
+thing, it returns its `home', and for rooms returns the drop-to.&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="getlinks">
+<p><code>GETLINKS  &nbsp;&nbsp; ( d -- dn..d1 n ) </code></p>
+
+Returns information on metalinks.  Returns <code>0</code> when the
+<code>obj</code> is an unlinked exit, or if the <code>obj</code> is a
+program.  Returns <code>0</code> if the <code>obj</code> is a room with
+no <code>dropto.</code>  Returns <code>#-3</code> and a count of
+<code>1</code> if the dropto is linked to <code>HOME.</code>&nbsp;
+(fb6.0+) [<a href="#top">top</a>]</p><hr>
+
+<a name="getlockstr">
+<p><code>GETLOCKSTR  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Returns the lock expression for the given object in the form of a
+string. Returns <code>*UNLOCKED*</code> if the object doesn't have a
+lock set.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="getpropstr">
+<p><code>GETPROPSTR  &nbsp;&nbsp; ( d s -- s' )</code></p>
+
+<p>Retrieves string associated with property <code>s</code> on object
+<code>d.</code> The value stored in s must be a string. If the property
+is cleared, <code>""</code> (null string) is returned.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="getpropfval">
+<p><code>GETPROPFVAL  &nbsp;&nbsp; ( d s -- f )</code></p>
+
+<p>Retrieves the floating point associated with property <code>s</code>
+on object <code>d.</code> The value stored in s must be a float. If the
+property is cleared, <code>&lt;&lt;&lt;?&gt;&gt;&gt;</code> is
+returned.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="getpropval">
+<p><code>GETPROPVAL  &nbsp;&nbsp; ( d s -- i )</code></p>
+
+<p><code>s</code> must be a string. Retrieves the integer value
+<code>i</code> associated with property <code>s</code> in object
+<code>d.</code> If the property is cleared, <code>0</code> is
+returned.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="getseed">
+<p><code>GETSEED &nbsp;  ( -- s ) </code></p>
+
+<p>Returns the the current <code>SRAND</code> seed string. See also <a
+href="#setseed"><code>SETSEED</code></a> and <a
+href="#srand"><code>SRAND</code></a> (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="gmtoffset">
+<p><code>GMTOFFSET  &nbsp;&nbsp; (  -- i )</code></p>
+
+<p>Returns the machine's offset from GMT in seconds.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="h">
+<a name="i">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="if">
+<p><code>IF ... [ else ... ] then   &nbsp;&nbsp; ( x -- )</code></p>
+
+<p>Examines boolean value <code>x.</code> If <code>x</code> is
+<code>TRUE,</code> the sequence of statements after the <code>if</code>
+up until the <code>then</code> (or until the <code>else</code> if it is
+present) performed. If it is <em>fails</em>, then these statements are
+skipped, and if an <code>else</code> is present, the statements between
+the <code>else</code> and the <code>then</code> are performed. Control
+continues as usual at the statement after the <code>then.</code>  Note
+that checking the top of the stack actually pops it, so if you want to
+re-use it, you should dup (see <a href="#dup"><code>DUP</code></a>) it
+before the if. For every <code>IF</code> in a word, there <em>must</em>
+be a <em>then</em>, and vice-versa. <code>ELSE</code> is optional.&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="inf">
+<p><code>INF  &nbsp;&nbsp; (  -- f )</code></p>
+
+<p>Returns an infinite result. (fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="instr">
+<p><code>INSTR  &nbsp;&nbsp; ( s s1 -- i )</code></p>
+
+<p>Returns the first occurrence of string <code>s1</code> in string
+<code>s,</code> or <code>0</code> if <code>s1</code> is not found. See
+also <a href="#rinstr"><code>RINSTR.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="instring">
+<p><code>INSTRING  &nbsp;&nbsp; ( s s1 -- i )</code></p>
+
+<p>Returns the first occurrence of string <code>s1</code> in string
+<code>s,</code> or <code>0</code> if <code>s1</code> is not found.
+Non-case sensitive. See also <a
+href="#rinstring"><code>RINSTRING,</code></a> <a
+href="#instr"><code>INSTR,</code></a> and <a
+href="#rinstr"><code>RINSTR</code></a>. This is an inserver define to
+<code>tolower swap tolower swap instr</code>.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="int">
+<p><code>INT  &nbsp;&nbsp; ( x -- i )</code></p>
+
+<p>Converts variable or object <code>x</code> to integer
+<code>i.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="int_">
+<p><code>INT?  &nbsp;&nbsp; ( x -- i )</code></p>
+
+<p>Returns true if <code>x</code> is an integer.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="interp">
+<p><code>INTERP  &nbsp;&nbsp; ( d d2 s -- ?) </code></p>
+
+Takes a program dbref to run, the trigger to use, and the top stack item
+string.  It runs the <code>MUF</code> program with the given trigger
+(with the given string on top of the stack) and returns the top stack
+item that the <code>MUF</code> program exits with.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="intostr">
+<p><code>INTOSTR  &nbsp;&nbsp; ( x -- s )</code></p>
+
+<p><code>x</code> must be an integer or a dbref. Converts <code>x</code>
+into string <code>s.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="is_set_">
+<p><code>IS_SET?  &nbsp;&nbsp; ( i -- i )</code></p>
+
+Returns true if a specific error flag is set.
+See also <a href="#clear"><code>CLEAR</code></a>, <a
+href="#clear_error"><code>CLEAR_ERROR</code></a>, <a
+href="#error_"><code>ERROR?</code></a>, <a
+href="#error_str"><code>ERROR_STR</code></a>, <a
+href="#error_name"><code>ERROR_NAME</code></a>, <a
+href="#error_bit"><code>ERROR_BIT</code></a>, <a
+href="#error_num"><code>ERROR_NUM</code></a>, and <a
+href="#set_error"><code>SET_ERROR</code></a> &nbsp;
+(fb6.0+) [<a href="#top">top</a>]</p><hr>
+
+<a name="ispid_">
+<p><code>ISPID? &nbsp;&nbsp; ( i -- i)</code></p>
+
+<p>Takes a process id and checks to see if an event with that pid is in
+the timequeue. It returns <code>1</code> if it is, and <code>0</code> if
+it is not. <em>NOTE</em>: since the program that is running is not on
+the timequeue <em>while</em> it is executing, but only when it is
+swapped out letting other programs run, <code>pid ispid?</code> will
+always return <code>0.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="itoc">
+<p><code>ITOC  &nbsp;&nbsp; ( i -- s )</code></p>
+
+<p>Converts an integer to its ASCII equivalent character. If it is not a
+valid display character, a null string is returned.&nbsp; (fb6.0+) [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="j">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="jmp">
+<p><code>JMP  &nbsp;&nbsp; ( a -- )</code></p>
+
+<p>The JMP primitive takes an address like those supplied by `funcname and
+moves execution to that point. It is one early way that was used to do
+tail-recursion loops without as much overhead, and without failing due
+to system stack overflows. It is mostly obsolete now, except that it's
+one of the three or four internal primitives used to implement
+if-else-then and begin-while-repeat loops and such.</p>
+
+<p>Example of JMP as a tail-recursion optimization:</p>
+
+<p><code>
+ &nbsp;&nbsp;   : countforever ( i -- )<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;       1 +<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;       dup intostr .tell<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;       `countforever jmp<br>
+ &nbsp;&nbsp;   ;
+</code></p>
+
+<p>A better ways to do the same thing with looping primitives would
+be:</p>
+
+<p><code>
+ &nbsp;&nbsp; : countforever ( i -- )<br>
+ &nbsp;&nbsp;&nbsp;&nbsp; begin<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 +<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dup intostr .tell<br>
+ &nbsp;&nbsp;&nbsp;&nbsp; repeat<br>
+ &nbsp;&nbsp; ;
+</code></p>
+[<a href="#top">top</a>]</p><hr>
+
+<a name="k">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="kill">
+<p><code>KILL  &nbsp;&nbsp; ( i -- i )</code></p>
+
+<p>Attempts to kill the given process number. Returns <code>1</code> if
+the process existed, and <code>0</code> if it didn't. Any process can
+kill itself; killing other processes equires Mucker Level 3.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="l">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="ldup">
+<p><code>LDUP  &nbsp;&nbsp; ( {?} -- {?} {?} ) </code></p>
+
+Duplicates a stackrange on top of the stack. See also <a
+href="#dupn"><code>DUPN.</code></a> &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="localvar">
+<p><code>LOCALVAR  &nbsp;&nbsp; ( i -- l )</code></p>
+
+<p>Takes an integer and returns the respective local variable. Similar to
+the <a href="#variable"><code>VARIABLE</code></a> primitive.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="location">
+<p><code>LOCATION  &nbsp;&nbsp; ( d -- d' )</code></p>
+
+<p>Returns location of object <code>d</code> as object
+<code>d'.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="lock_">
+<p><code>LOCK?  &nbsp;&nbsp; ( ? -- i )</code></p>
+
+<p>Returns true if the top stack item is a lock.  See also <a
+href="#getprop"><code>GETPROP,</code></a> <a
+href="#setprop"><code>SETPROP,</code></a> <a
+href="#parselock"><code>PARSELOCK,</code></a> <a
+href="#unparselock"><code>UNPARSELOCK,</code></a> <a
+href="#prettylock"><code>PRETTYLOCK,</code></a> and <a
+href="#testlock"><code>TESTLOCK.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="locked_">
+<p><code>LOCKED?  &nbsp;&nbsp; ( d d -- i )</code></p>
+
+<p>Takes, in order, the dbref of the object to test the lock on, and the
+dbref of the player to test the lock against. It tests the lock, running
+programs as necessary, and returns a integer of <code>0</code> if it is
+not locked against her, or <code>1</code> if it is.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="log">
+<p><code>LOG  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the natural log of <code>f.</code> <code>f</code> must be
+greater than zero. Very small values will return INF.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="log10">
+<p><code>LOG10  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the log base 10 of <code>f.</code> <code>f</code> must be
+greater than zero. Very small values will return INF.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="lreverse">
+<p><code>LREVERSE  &nbsp;&nbsp; ( ?n...?1 i -- ?1...?n i ) </code></p>
+
+Reverses top <code>N</code> items, leaving count. See also <a
+href="#reverse"><code>REVERSE.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="lvar">
+<p><code>LVAR &lt;varname&gt;</code></p>
+
+<p>This declares a variable as a local variable, that is local to a
+specific program. If another program calls this program, the values of
+the local variables will not be changed in the calling program, even if
+the called program changes them.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="m">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="match">
+<p><code>MATCH  &nbsp;&nbsp; ( s -- d )</code></p>
+
+<p>Takes string <code>s,</code> first checks all objects in the user's
+inventory, then checks all objects in the current room, as well as all
+exits that the player may use, and returns object <code>d</code> which
+contains string <code>s.</code> If nothing is found, <code>d =
+#-1.</code> If ambiguous, <code>d = #-2.</code> If HOME, <code>d =
+#-3.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="midstr">
+<p><code>MIDSTR	&nbsp;&nbsp; ( s1 i1 i2 - s2 )</code></p>
+
+<p>Returns the sub-string specified by positions <code>i1</code> to
+<code>i2</code> (inclusive) from within string <code>s1.</code>&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="mlevel">
+<p><code>MLEVEL  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Returns the Mucker (or Priority) Level of the given object.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="mode">
+<p><code>MODE  &nbsp;&nbsp; (  -- i )</code></p>
+
+<p>Returns an integer denoting the current multitasking mode.  This
+ignores <code>BOUND</code> bits on programs.  The integer this returns
+will be the same as one of those defined by the standard
+<code>$defines</code> <code>bg_mode,</code> <code>fg_mode,</code> and
+<code>pr_mode,</code> being <code>background,</code>
+<code>foreground,</code> and <code>preempt</code> mode, respectively.
+Also see <a href="#pr_mode"><code>PR_MODE.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="modf">
+<p><code>MODF  &nbsp;&nbsp; ( f -- f f )</code></p>
+
+<p>Returns the integral and fractional parts of <code>f,</code> both as
+floating point numbers. Ex: </p>
+
+<p><code>
+  &nbsp;&nbsp;  1.5 MODF
+</code></p>
+
+<p>would put</p>
+
+<p><code>
+  &nbsp;&nbsp;  1.0 0.5
+</code></p>
+
+<p>on the stack.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="movepennies">
+<p><code>MOVEPENNIES &nbsp; ( d1 d2 i --  ) </code></p>
+
+<p>Moves <code>i</code> pennies from player/thing <code>d1</code> to
+player or thing <code>d2.</code>  (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="moveto">
+<p><code>MOVETO  &nbsp;&nbsp; ( d1 d2 -- )</code></p>
+
+<p>Moves object <code>d1</code> to object <code>d2.</code> <code>MOVETO</code> is affected by the following rules:
+
+<ol>
+   <li>If the object being moved is <code>!Jump_OK</code> and is it
+   being moved by someone other than the object's owner, then the moveto
+   fails.
+   <li>If the object being moved is a person and either the source or
+   destination rooms (if not owned by the person being moved) are
+   <code>!Jump_OK,</code> the moveto fails.
+   <li>If the object being moved is not a player, is owned by the owner
+   of either the source or destination rooms, and either room where the
+   ownership matches is <code>!Jump_OK,</code> the moveto fails.
+</ol>
+
+<p>The <code>MOVETO</code> succeeds under any other circumstances.
+<code>MOVETO</code> rules follow the permissions of the current
+effective userid. <code>MOVETO</code> will run programs in the
+<code>@desc</code> and <code>@succ/@fail</code> of a room when moving a
+player. If the object to be moved is an exit, the program must be
+<code>M3.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="n">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+
+<a name="name">
+<p><code>NAME  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Takes object <code>d</code> and returns its name (<code>@name</code>)
+string field.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="newexit">
+<p><code>NEWEXIT  &nbsp;&nbsp; ( d s -- d )</code></p>
+
+<p>Takes a location and name and returns the new exit's dbref. Owner is the
+person running the program. (wizbit only)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="newobject">
+<p><code>NEWOBJECT  &nbsp;&nbsp; ( d s -- d )</code></p>
+
+<p>Takes a location and name and returns the new thing's dbref. Owner is
+the person running the program. (wizbit only)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="newroom">
+<p><code>NEWROOM  &nbsp;&nbsp; ( d s -- d )</code></p>
+
+<p>Takes the dbref of the parent and the name of the room. It returns the
+dbref of the created room. Owner is the person running the program.
+(wizbit only)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="next">
+<p><code>NEXT  &nbsp;&nbsp; ( d -- d' )</code></p>
+
+<p>Takes object <code>d</code> and returns the next thing in the linked
+contents/exits list of <code>d's</code> location.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="nextdescr">
+<p><code>NEXTDESCR  &nbsp;&nbsp; ( i -- i )</code></p>
+
+<p>Takes a descriptor number, and returns the next connected descriptor
+number.  To get the first descriptor number, use <code>1
+condescr.</code>  Between these, you can step through  the descriptors
+list.  If you try to use nextdescr on an invalid descriptor, it will
+return <code>0.</code>  If you have reached the end of the descriptor
+list, it returns <code>0.</code> (requires Mucker Level 3.)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="nextowned">
+<p><code>NEXTOWNED  &nbsp;&nbsp; ( d -- d ) </code></p>
+
+<p>Returns the dbref of the first object owned by player <code>d.</code>
+When called this object's dbref, <code>NEXTOWNED</code> returns the next
+object owned by the same player.  When there are no more objects left
+owned by that player, then <code>#-1</code> is returned.  The order of
+the objects is not guarenteed, but when used correctly, each object
+owned by that player will be returned exactly once. The player object
+itself will <em>not</em> be returned.  This is used similarly to the
+<code>NEXT</code> primitive.  Ex:</p>
+
+<p><code>
+  &nbsp;&nbsp; me @ begin dup while dup unparseobj .tell nextowned repeat
+</code></p>
+
+<p>(fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="nextprop">
+<p><code>NEXTPROP  &nbsp;&nbsp; ( d s -- s )</code></p>
+
+<p>This takes a dbref and a string that is the name of a property and
+returns the next property name on that dbref, or returns a null string
+if that was the last. To <em>start</em> the search, give it a propdir, or a
+blank string. For example, </p>
+
+<p><code>
+   &nbsp;&nbsp;      #10 "/" NEXTPROP
+</code></p>
+
+<p>or</p>
+
+<p><code>
+   &nbsp;&nbsp;      #28 "/letters/" NEXTPROP
+</code></p>
+
+<p>A blank string is the same as <code>"/".</code> (Requires Mucker
+Level 3) <code>NEXTPROP</code> will skip properties if they would not be
+readable by the program with the given permissions and effective user
+id.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="not">
+<p><code>NOT  &nbsp;&nbsp; ( x -- i )</code></p>
+
+<p>Performs the boolean `not' operation on <code>x,</code> returning
+<code>i</code> as <code>1</code> if <code>x</code> is
+<code>FALSE,</code> and returning <code>i</code> as <code>0</code>
+otherwise.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="notify">
+<p><code>NOTIFY  &nbsp;&nbsp; ( d s -- )</code></p>
+
+<p><code>d</code> must be a player object. <code>s</code> must be a
+string. Tells player <code>d</code> message <code>s.</code>  If s is
+null it will print nothing. This primitive will trigger the
+<code>_listen</code>'er property on the object the message is sent to,
+unless the program that would be run is the same as one one currently
+running.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="notify_except">
+<p><code>NOTIFY_EXCEPT  &nbsp;&nbsp; ( d1 d2 s -- )</code></p>
+
+<p><code>d1</code> must be a room object, s must be a string. Tells
+everyone at location <code>d1</code> except object <code>d2</code>
+message <code>s.</code> If object <code>d2</code> is not a player or
+<code>NOTHING</code> (<code>#-1</code>) all players are notified. If
+<code>s</code> is null it prints nothing. <em>Note</em>:
+<code>notify_except</code> is now only an inserver <code>$define.</code>
+It is translated to <code>1 swap notify_exclude.</code> See also <a
+href="#notify_exclude"><code>NOTIFY_EXCLUDE</code></a> <!--, below, and
+Directives, above.-->&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="notify_exclude">
+<p><code>NOTIFY_EXCLUDE  &nbsp;&nbsp; ( d dn ... d1 n s -- )</code></p>
+
+<p>Displays the message <code>s</code> to all the players (or
+<code>_listening</code> objects), excluding the <code>n</code> given players,
+in the given room. For example:</p>
+
+<p><code>
+   &nbsp;&nbsp;     #0 #1 #23 #7 3 "Hi!" notify_exclude
+</code></p>
+
+<p>would send <code>"Hi!"</code> to everyone in room <code>#0</code>
+except for players (or objects) <code>#1,</code> <code>#7,</code> and
+<code>#23.</code> <code>_listener's</code> will not be triggered by a
+<code>notify_exclude</code> if the program they would run is the same as
+the current program running.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="number_">
+<p><code>NUMBER?  &nbsp;&nbsp; ( s -- i )</code></p>
+
+<p>Returns <code>1</code> if string on top of the stack contains a
+number. Otherwise returns <code>0.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="o">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="odrop">
+<p><code>ODROP  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Takes object <code>d</code> and returns its odrop
+(<code>@odrop</code>) string field.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="ofail">
+<p><code>OFAIL  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Takes object <code>d</code> and returns its ofail
+(<code>@ofail</code>) string field.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="ok_">
+<p><code>OK?  &nbsp;&nbsp; ( x -- i )</code></p>
+
+<p>Takes <code>x</code> and returns <code>1</code> if <code>x</code> is
+a type dbref, as well as <code>0</code> or above, below the top of the
+database, and is not an object of type garbage. See also <a
+href="#exit_"><code>EXIT?,</code></a> <a
+href="#player_"><code>PLAYER?,</code></a> <a
+href="#program_"><code>PROGRAM?,</code></a> and <a
+href="#thing_>"><code>THING?.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="online">
+<p><code>ONLINE  &nbsp;&nbsp; ( -- d ... i )</code></p>
+
+<p>Returns a dbref for every connection to the game, and lastly the
+number of connections.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="or">
+<p><code>OR  &nbsp;&nbsp; ( x y -- i )</code></p>
+
+<p>Performs the boolean `or' operation on <code>x</code> and
+<code>y.</code> Returns <code>i</code> as <code>1</code> if either
+<code>x</code> or <code>y</code> is <code>TRUE,</code> returns
+<code>i</code> as <code>0</code> otherwise.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="osucc">
+<p><code>OSUCC  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Takes object <code>d</code> and returns its osuccess
+(<code>@osucc</code>) string field.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="over">
+<p><code>OVER  &nbsp;&nbsp; ( x y -- x y x )</code></p>
+
+<p>Duplicates the second-to-top thing on the stack. This is the same as
+<code>2</code> pick.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="owner">
+<p><code>OWNER  &nbsp;&nbsp; ( d -- d' )</code></p>
+
+<p><code>d</code> is any database object. Returns <code>d',</code> the
+player object that owns <code>d.</code> If <code>d</code> is a player,
+<code>d'</code> will be the same as <code>d.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+
+<a name="p">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="parselock">
+<p><code>PARSELOCK  &nbsp;&nbsp; ( s -- l )</code></p>
+
+<p>Parses a lock string into a lock.  If the parsing failed, then the
+lock returned will be a true_boolexp, Which is logically false to an
+`if' test.  See also <a href="#unparselock"><code>UNPARSELOCK,</code></a> <a
+href="#lock_"><code>LOCK?,</code></a> <a
+href="#prettylock"><code>PRETTYLOCK,</code></a> <a
+href="#testlock"><code>TESTLOCK,</code></a> <a
+href="#getlockstr"><code>GETLOCKSTR,</code></a> <a
+href="#setlockstr"><code>SETLOCKSTR,</code></a> and <a
+href="#locked_"><code>LOCKED?.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="parseprop">
+<p><code>PARSEPROP  &nbsp;&nbsp; ( d s s i -- s ) </code></p>
+
+Returns the string output of the MPI parser, given an object, a property
+name to parse, an input string for the <code>{&cmd}</code> variable, and
+an integer that should either be <code>1,</code> for when you want
+<code>{delay}</code> messages to be sent to the player only, and
+<code>0,</code> when you want the rest of the players in the room to get
+the omessages. Note: for security reasons, you cannot use parseprop on
+an object you don't control, if the property is not a <code>_prop</code>
+or a <code>~prop.</code> The exception to this is if the
+<code>MUF</code> program is at least Mucker Level 3. Then parsing of
+normal props is allowed.  If the <code>MUF</code> program is wizbit, it
+can also parse <code>@props</code> and <code>.props.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="part_pmatch">
+<p><code>PART_PMATCH  &nbsp;&nbsp; ( s -- d )</code></p>
+
+<p>Takes a player name, or the first part of the name, and matches it
+against the names of the players who are currently online.  If the given
+string is a prefix of the name of a player who is online, then their
+dbref is returned.  If two players could be matched by the given string,
+it returns a <code>#-2.</code>  If none of the players online match,
+then it returns a <code>#-1.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="pennies">
+<p><code>PENNIES  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Gets the amount of pennies player object <code>d</code> has, or the
+penny value of thing <code>d.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="pi">
+<p><code>pi  &nbsp;&nbsp; (  -- f )</code></p>
+
+<p>Returns pi.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="pick">
+<p><code>PICK  &nbsp;&nbsp; ( ni ... n1 i -- ni ... n1 ni )</code></p>
+
+<p>Takes the <code>i</code>'th thing from the top of the stack and
+pushes it on the top.  <code>1 pick</code> is equivalent to
+<code>dup,</code> and <code>2 pick</code> is equivalent to
+<code>over.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="player_">
+<p><code>PLAYER?  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Returns <code>1</code> if object <code>d</code> is a player object,
+otherwise returns <code>0.</code> If the dbref is that of an invalid
+object, it will return <code>0.</code> see also <a
+href="#code"><code>PROGRAM?,</code></a>
+<a href="#room"><code>ROOM?,</code></a>
+<a href="#thing"><code>THING?,</code></a>
+<a href="#exit_"><code>EXIT?,</code></a>
+<a href="#ok_"><code>OK?.</code></a>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="polar_to_xyz">
+<p><code>POLAR_TO_XYZ &nbsp; ( fr ft fp -- fx fy fz )</code></p>
+
+<p>This converts the spherical polar coordinate <code>(fr, ft,
+fp)</code> to the <code>XYZ</code> coord <code>(fx, fy, fz).</code>
+(fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="pmatch">
+<p><code>PMATCH  &nbsp; ( s -- d ) </code></p>
+
+<p>Returns the dbref of the player with name <code>s.</code>
+(fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="pop">
+<p><code>POP  &nbsp;&nbsp; ( x -- )</code></p>
+
+<p>Pops the top of the stack into oblivion.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="popn">
+<p><code>POPN  &nbsp;&nbsp; ( ?n...?1 i -- )</code></p>
+
+<p>Pops the top <code>n</code> stack items. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="pow">
+<p><code>POW  &nbsp;&nbsp; ( f f' - f'' )</code></p>
+
+<p>Returns <code>f</code> raised to the <code>f</code>'th power. If
+<code>f</code> is zero, <code>f'</code> must be greater than zero. If
+<code>f</code> is less than zero, <code>f'</code> must be an integer
+value.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="pr_mode">
+<p><code>PR_MODE  &nbsp;&nbsp; (  -- i )</code><br>
+fg_mode<br>
+bg_mode</p>
+
+These are all standard built in defines.  They are used with mode and
+setmode to show what mode the program is running in, or to set what mode
+it will run in.  For example, mode returns an integer on the stack, that
+you can compare against <code>PR_MODE,</code> <code>FG_MODE,</code> or
+<code>BG_MODE,</code> to determine what mode the program is in.
+<code>PR_MODE</code> is defined as <code>0,</code> <code>FG_MODE</code>
+is defined as <code>1,</code> and <code>BG_MODE</code> is defined as
+<code>2.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="preempt">
+<p><code>PREEMPT  &nbsp;&nbsp; ( -- )</code></p>
+
+<p>Prevents a program from being swapped out to do multitasking. Needed
+in some cases to protect crutial data from being changed while it is
+being worked on. A program will remain in preempt mode until its
+execution is completed. Basically what this command does is to turn off
+multitasking, but then you have a limit on how many instructions you can
+run without needing either to pause with a sleep, or have a wizbit on
+the program.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="prettylock">
+<p><code>PRETTYLOCK  &nbsp;&nbsp; ( l -- s )</code></p>
+
+Unparses a lock into a string fit for players to see.  Also see <a
+href="#lock_"><code>LOCK?,</a></code> <a
+href="#parselock"><code>PARSELOCK,</a></code> <a
+href="#unparselock"><code>UNPARSELOCK,</a></code> <a
+href="#testlock"><code>TESTLOCK,</a></code> <a
+href="#getlockstr"><code>GETLOCKSTR,</a></code> <a
+href="#setlockstr"><code>SETLOCKSTR, </a></code> and <a
+href="#locked_"><code>LOCKED?.</a></code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="prog">
+<p><code>PROG  &nbsp;&nbsp; ( -- d )</code></p>
+
+<p>Returns the dbref of the currently running program.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="program_">
+<p><code>PROGRAM?  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Returns <code>1</code> if object <code>d</code> is a program,
+otherwise returns <code>0.</code> If the dbref is that of an invalid
+object, it will return <code>0.</code> See also <a
+href="#"><code>PLAYER?,</a></code> <a href="#"><code>ROOM?,</a></code>
+<a href="#"><code>THING?,</a></code> <a href="#"><code>EXIT?,</a></code>
+<a href="#"><code>OK?.</a></code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="pronoun_sub">
+<p><code>PRONOUN_SUB  &nbsp;&nbsp; ( d s -- s' )</code></p>
+
+<p>Takes database object <code>d</code> and substitutes string <code>s</code> according to <code>o-message</code> rules. For example:</p>
+
+<p><code>
+   &nbsp;&nbsp;   me @ "%n has lost %p marbles." pronoun_sub
+</code></p>
+
+<p>would return:</p>
+
+<p><code>
+  &nbsp;&nbsp;    "igor has lost his marbles."
+</code></p>
+
+<p>If the player's name was Igor and his sex were male. <code>d</code>
+does not have to be a player for the substitutions to work. The
+substitutions are:</p>
+
+<p><code>
+  &nbsp;&nbsp; %a/%a for absolute possessive (his/hers/its, his/hers/its)<br>
+  &nbsp;&nbsp; %s/%s for subjective pronouns (he/she/it, he/she/it)<br>
+  &nbsp;&nbsp; %o/%o for objective pronouns  (him/her/it,
+  him/her/it)<br>
+  &nbsp;&nbsp; %p/%p for possessive pronouns (his/her/its,
+  his/her/its)<br>
+  &nbsp;&nbsp; %r/%r for reflexive pronouns
+  (himself/herself/itself,<br>
+  &nbsp;&nbsp; %n/%n for the player's name. (himself/herself/itself)
+</code></p>
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="propdir_">
+<p><code>PROPDIR?  &nbsp;&nbsp; ( d s -- i )</code></p>
+
+<p>Takes a dbref and a property name, and returns whether that property
+is a propdir that contains other props. (Requires mucker level 3)&nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+<a name="public">
+<p><code>PUBLIC &lt;functionname&gt;</code></p>
+
+<p>Declares a previously defined function to be public for execution by other programs. This is a compile-time directive, not a run-time primitive. To call a public function, put the dbref of the program on the stack, then put a string, containing the function name, on the stack, then use <code>CALL.</code></p>
+
+<p>For example:</p>
+
+<p><code>
+  &nbsp;&nbsp; #888 "functionname" call
+</code></p>
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="put">
+<p><code>PUT  &nbsp;&nbsp; ( nx...n1 ni i -- nx...ni...n1 )</code></p>
+
+<p>Replaces the <code>i</code>'th thing from the top of the stack with
+the value of <code>ni.</code>  <code>1 put</code> is equivalent to
+<code>swap pop</code></p>
+
+<p>Example:</p>
+
+<p><code>
+   &nbsp;&nbsp;   "a" "b" "c" "d" "e" 3 put
+</code></p>
+
+<p>would return on the stack:</p>
+
+<p><code>
+   &nbsp;&nbsp;   "a", "e", "c", "d"
+</code></p>
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="q">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="queue">
+<p><code>QUEUE  &nbsp;&nbsp; ( i d s -- i )</code></p>
+
+<p>Takes a time in seconds, a program's dbref, and a parameter string.
+It will execute the given program with the given string as the only
+string on the stack, after a delay of the given number of second.
+Returns the pid of the queued process, or <code>0</code> if the
+timequeue was full. (Requires Mucker Level 3)&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="r">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="random">
+<p><code>RANDOM  &nbsp;&nbsp; ( -- i )</code></p>
+
+<p>Returns a random integer from <code>0</code> to the
+<code>MAXINT</code> of the system running the MUCK. In general this
+number is <code>(2^31)-1</code> or <code>2,147,483,647</code> (2.1
+billion).&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="read">
+<p><code>READ  &nbsp;&nbsp; ( -- s )</code></p>
+
+<p>Reads a string <code>s</code> from the user. This command should not
+be used in a program that is locked (as opposed to linked) to an object,
+as the lock will always fail and print the fail messages at read time.
+It cannot be used in a program associated with a room object. &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="recycle">
+<p><code>RECYCLE  &nbsp;&nbsp; ( d -- )</code></p>
+
+<p>Recycles the given object <code>d.</code> Will not recycle players,
+the global environment, the player starting room, or any currently
+running program.  (Can recycle objets owned by uid if running with
+Mucker Level 3 permissions. Can recycle other people's items with
+wizbit)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="remove_prop">
+<p><code>REMOVE_PROP  &nbsp;&nbsp; ( d s -- )</code></p>
+
+<p>Removes property <code>s</code> from object <code>d.</code> If the
+property begins with an underscore, <code>`_'</code> or a dot
+<code>`.',</code> and the effective user does not have permission on
+that object, the call fails.</p>
+
+(<em>Note</em>: There is a slight bug with <code>REMOVE_PROP</code> in
+versions <code>fb5.46</code> and earlier. If you use the primitive to
+remove a prop, and then later in the same process try to remove a prop
+whose name contains that of the earlier prop, the second property will
+not be removed. For example:</p>
+
+<p><code>
+  &nbsp;&nbsp;  loc @ "banned_lock" remove_prop<br>
+  &nbsp;&nbsp;  loc @ "banned_lock/program" remove_prop
+</code></p>
+
+<p>If these two lines were executed in this order, no error would be
+issued, but property <code>banned_lock/program</code> would not be
+removed. If the order of the two lines is reversed, both properties will
+be removed.)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="repeat">
+<p><code>REPEAT  &nbsp;&nbsp; ( -- )</code></p>
+
+<p>Jumps execution to the instruction after the <code>BEGIN</code> in a
+<code>BEGIN-REPEAT</code> loop. Marks the end of the current loop.
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="reverse">
+<p><code>REVERSE  &nbsp;&nbsp; ( ?n...?1 i -- ?1...?n i ) </code></p>
+
+<p>Reverses the order of the top <code>i</code> items on the stack,
+returning the number of items reversed. See also <a
+href="#lreverse"><code>LREVERSE.</code> </a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="rinstr">
+<p><code>RINSTR  &nbsp;&nbsp; ( s s1 -- i )</code></p>
+
+<p>Returns the last occurrence of string <code>s1</code> in string
+<code>s,</code> or <code>0</code> if <code>s1</code> is not found.
+<code>"abcbcba" "bc" rinstr</code> returns <code>4.</code> See also <a
+href="#instr"><code>INSTR.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="rinstring">
+<p><code>RINSTRING  &nbsp;&nbsp; ( s s1 -- i )</code></p>
+
+<p>Returns the last occurrence of string <code>s1</code> in string
+<code>s,</code> or <code>-1</code> if <code>s1</code> is not found.
+Non-case sensitive. See also <a
+href="#instring"><code>INSTRING,</code></a> <a
+href="#instr"><code>INSTR,</code></a> and <a
+hrefp"#rinstr"><code>RINSTR.</code></a> This is an inserver define to
+<code>tolower swap tolower swap rinstr</code>.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="rmatch">
+<p><code>RMATCH  &nbsp;&nbsp; ( d s -- d' )</code></p>
+
+<p>Takes string <code>s,</code> checks all objects and actions
+associated with object <code>d,</code> and returns object
+<code>d'</code> which matches that string. For example, matches actions
+and inventory objects for a player object, actions on a thing object,
+etc. If nothing is found, <code>d'= #-1.</code> If ambiguous, <code>d' =
+#-2.</code> If HOME, <code>d' = #-3.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="room_">
+<p><code>ROOM?  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Returns <code>1</code> if object <code>d</code> is a room, otherwise
+returns <code>0.</code> If the dbref is that of an invalid object, it
+will return <code>0</code>.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="rot">
+<p><code>ROT  &nbsp;&nbsp; ( x y z -- y z x )</code></p>
+
+<p>Rotates the top three things on the stack. This is equivalent to
+<code>3 rotate</code>.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="rotate">
+<p><code>ROTATE  &nbsp;&nbsp; ( ni ... n1 i -- n(i-1) ... n1 ni ) </code></p>
+
+<p>Rotates the top <code>i</code> things on the stack.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="round">
+<p><code>ROUND  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns <code>f,</code> rounded to the nearest whole number, as a
+floating point.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="s">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="set">
+<p><code>SET  &nbsp;&nbsp; ( d s -- )</code></p>
+
+<p>Sets flag <code>s</code> to object <code>d.</code> Currently settable
+things are: <code>Abode,</code> <code>Chown,</code> <code>Dark,</code>
+<code>Haven,</code> <code>Jump,</code> <code>Link,</code> and
+<code>Sticky.</code> Boolean operations (e.g. `!abode') work as
+expected. See also <a href="#setname"><code>SETNAME,</code></a> <a
+href="#setdesc"><code>SETDESC,</code></a> and <a
+href="flag_"><code>FLAG?</a>.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="set_error">
+<p><code>SET_ERROR  &nbsp;&nbsp; ( i --  )</code></p>
+
+<p>Sets a specific error flag to <code>ON.</code> (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="setdesc">
+<a name="setsucc">
+<a name="setfail">
+<a name="setdrop">
+<a name="setosucc">
+<a name="setofail">
+<a name="setodrop">
+<p><code>SETDESC SETSUCC SETFAIL SETDROP SETOSUCC SETOFAIL SETODROP  &nbsp;&nbsp; (d s -- )</code></p>
+
+<p>Takes object <code>d,</code> and sets the string field specified to
+<code>s.</code> A program may only set string fields of objects that are
+owned by the effective user of the program, or any object if the program
+is <code>Wizard.</code> These are all actually <code>$defines</code> to
+<code>addprop</code> with the apprpriate property name. They are
+effectively defined as:</p>
+
+<table border="0">
+  <tr>
+    <td rowspan="7"> &nbsp;&nbsp; </td>
+    <td><code>$define setdesc</code></td>
+    <td><code>"_/de"</code></td>
+    <td><code>swap 0 addprop $enddef</code></td>
+  </tr><tr>
+    <td><code>$define setsucc</code></td>
+    <td><code>"_/sc"</code></td>
+    <td><code>swap 0 addprop $enddef</code></td>
+  </tr><tr>
+    <td><code>$define setfail</code></td>
+    <td><code>"_/fl"</code></td>
+    <td><code>swap 0 addprop $enddef</code></td>
+  </tr><tr>
+    <td><code>$define setdrop</code></td>
+    <td><code>"_/dr"</code></td>
+    <td><code>swap 0 addprop $enddef</code></td>
+  </tr><tr>
+    <td><code>$define setosucc</code></td>
+    <td><code>"_/osc"</code></td>
+    <td><code>swap 0 addprop $enddef</code></td>
+  </tr><tr>
+    <td><code>$define setofail &nbsp;</code></td>
+    <td><code>"_/ofl" &nbsp;</code></td>
+    <td><code>swap 0 addprop $enddef</code></td>
+  </tr><tr>
+    <td><code>$define setodrop</code></td>
+    <td><code>"_/odr"</code></td>
+    <td><code>swap 0 addprop $enddef</code></td>
+  </tr>
+</table>
+
+<p>See also <code><a href="#set">SET,</a></code> <code><a
+href="#setname">SETNAME,</a></code> <code><a
+href="#addprop">ADDPROP,</a></code> <code><a
+href="#getpropstr">GETPROPSTR,</a></code> <code><a
+href="#remove_prop">REMOVE_PROP,</a></code> <code><a
+href="#desc">DESC,</a></code> <code><a href="#succ">SUCC,</a></code>
+<code><a href="#fail">FAIL,</a></code> <code><a
+href="#drop">DROP,</a></code> <code><a href="#osucc">OSUCC,</a></code>
+<code><a href="#ofail">OFAIL,</a></code> and <code><a
+href="#odrop">ODROP.</a></code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="setlink">
+<p><code>SETLINK  &nbsp;&nbsp; ( d1 d2 -- )</code></p>
+
+<p>Takes an exit dbref <code>d1,</code> and sets its destination to
+<code>d2.</code> You must have control of the exit, and if the exit is
+already linked, it must be unlinked first by doing setlink with
+<code>#-1</code> as the destination. Wizbitted programs can
+<code>SETLINK</code> regardless of whether the exit is already linked or
+who controls it.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="setlockstr">
+<p><code>SETLOCKSTR  &nbsp;&nbsp; (d s -- i)</code></p>
+
+<p>Tries to set the lock on the given object to the lock expression
+given in the string. If it was a success, then it will return a
+<code>1,</code> otherwise, if the lock expression was bad, it returns a
+<code>0.</code> To unlock an object, set its lock to a null
+string.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="setmode">
+<p><code>SETMODE  &nbsp;&nbsp; ( i --  )   </code></p>
+
+<p>Sets the current multitasking mode to the given mode.  The integer
+this uses will be the same as one of those defined by the standard
+<code>$defines</code> <code>bg_mode,</code> <code>fg_mode,</code> and
+<code>pr_mode,</code> being <code>background,</code>
+<code>foreground,</code> and <code>preempt</code> mode, respectively.
+Programs set <code>BLOCK</code> will run <code>PREEMPT,</code> ignoring
+this mode.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="setname">
+<p><code>SETNAME  &nbsp;&nbsp; ( d s --  )</code></p>
+
+<p>Takes object <code>d,</code> and sets the name to <code>s.</code> A
+program may only set the names of objects that are owned by the
+effective user of the program, or any object if the program is
+<code>Wizard.</code> The name of a player can never be set, since that
+would normally require a password. See also <a
+href="#set"><code>SET,</code></a> <a href="#name"><code>NAME,</code></a>
+and <a href="#setdesc"><code>SETDESC.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="setown">
+<p><code>SETOWN  &nbsp;&nbsp; ( d d --  )</code></p>
+
+<p>Sets the ownership of the first object to the player given in the
+second dbref. (wizbit only)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="setseed">
+<p><code>SETSEED &nbsp; ( s -- )</code></p>
+
+<p>Sets the seed for <code>SRAND.</code> Only the first thirty-two
+characters are significant. If <code>SRAND</code> is called before
+<code>SETSEED</code> is called, then <code>SRAND</code> is seeded with a
+semi-random value. See also <a href="#getseed"><code>GETSEED</code></a>
+and <a href="#srand"><code>SRAND</code></a>. (fb6.0+) &nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="sine">
+<p><code>SINE  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+
+<p>Returns the sine of <code>f.</code> Operates in the range of
+<code>-pi/4</code> and <code>pi/4.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="sleep">
+<p><code>SLEEP  &nbsp;&nbsp; ( i -- )</code></p>
+
+<p>Makes the program pause here for <code>i</code> seconds. The value of
+<code>i</code> cannot be negative. If the sleep is for more than
+<code>0</code> seconds, then the program may not thereafter use the
+<code>READ</code> primitive.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="smatch">
+<p><code>SMATCH  &nbsp;&nbsp; ( s s -- i )</code></p>
+
+<p>Takes a string <code>s,</code> and a string pattern, <code>s2,</code>
+to check against.  Returns <code>TRUE</code> if the string fits the pattern.
+This is case insensitive.  In the pattern string, the following special
+characters will do as follows:
+
+<ul>
+   <li>  A <code>?</code> matches any single character.
+
+   <li>  A <code>*</code> matches any number of any characters.
+
+   <li>  <code>{word1|word2|etc}</code> will match a single word, if it
+   is one of those given, separated by <code>|</code> characters,
+   between the <code>{}</code>'s.  A word ends with a space or at the
+   end of the string.  The given example would match either the words
+   <code>"word1",</code> <code>"word2",</code> or <code>"etc".</code>
+   <code>{}</code> word patterns will only match complete words:
+   <code>"{foo}*"</code> and <code>"{foo}p"</code> do not match
+   <code>"foop"</code> and <code>"*{foo}"</code> and
+   <code>"p{foo}"</code> do not match <code>"pfoo".</code>
+   <code>{}</code> word patterns can be easily meaningless; they will
+   match nothing if they:<br>
+<br>
+          &nbsp;&nbsp; (a) contain spaces,<br>
+	  &nbsp;&nbsp; (b) do not follow a wildcard, space or beginning
+	  of string,<br>
+	  &nbsp;&nbsp; (c) are not followed by a wildcard, space or end
+	  of string.<br><br>
+
+   <li>  If the first char of a <code>{}</code> word set is a
+   <code>`^',</code> then it will match a single word if it is
+   <code>NOT</code> one of those contained within the <code>{}</code>s.
+   Example: <code>`{^Foxen|Fiera}'</code> will match any single word
+   <em>except</em> for Foxen or Fiera.
+
+   <li>  <code>`[aeiou]'</code> will match a single character as long as
+   it is one of those contained between the <code>[]</code>s.  In this
+   case, it matches any vowel.
+
+   <li>  If the first char of a <code>[]</code> char set is a
+   <code>`^',</code> then it will match a single character if it is
+   <em>not</em> one of those contained within the <code>[]</code>s.
+   Example: <code>`[^aeiou]'</code> will match any single character
+   <em>except</em> for a vowel.
+
+   <li>  If a <code>[]</code> char set contains two characters separated
+   by a <code>`-',</code> then it will match any single character that
+   is between those two given characters.  Example:
+   <code>`[a-z0-9_]'</code> would match any single character between
+   <code>`a'</code> and <code>`z',</code> inclusive, any character
+   between <code>`0'</code> and <code>`9',</code> inclusive, or a
+   <code>`_'.</code>
+
+   <li>  The <code>`\'</code> character will disable the special meaning
+   of the character that follows it, matching it literally.
+</ul>
+
+<p>Example patterns:</p>
+
+<p>
+<ul>
+  <li><code>"d*g" matches "dg", "dog", "doog", "dorfg", etc.</code>
+  <li><code>"d?g" matches "dog", "dig" and "dug" but not "dg" or
+  "drug".</code>
+  <li><code>"M[rs]." matches "Mr." and "Ms."</code>
+  <li><code>"M[a-z]" matches "Ma", "Mb", etc.</code>
+  <li><code>"[^a-z]" matches anything but an alphabetical
+  character.</code>
+  <li><code>"{Moira|Chupchup}*" matches "Moira snores" and "Chupchup
+  arghs."</code>
+  <li><code>"{Moira|Chupchup}*" does NOT match "Moira' snores".</code>
+  <li><code>"{Foxen|Lynx|Fier[ao]} *t[iy]ckle*\?"  Will match any string
+  starting with `Foxen', `Lynx', `Fiera', or `Fiero', that contains
+  either `tickle' or `tyckle' and ends with a `?'.</code>
+</ul>
+<p>[<a href="#top">top</a>]</p><hr>
+
+
+<a name="srand">
+<p><code>SRAND &nbsp; ( -- i ) </code></p>
+
+Generates a seeded random number. See also <a
+href="#getseed"><code>GETSEED</code></a> and <a
+href="#setseed"><code>SETSEED</code></a> (fb6.0+).&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="sqrt">
+<p><code>SQRT  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the square root of <code>f.</code> <code>f</code> must be greater than or equal to zero.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="stats">
+<p><code>STATS  &nbsp;&nbsp; ( d -- total rooms exits things programs
+players garbage )</code></p>
+
+<p>Returns the number of objects owned by <code>d,</code> or the total
+objects in the system if <code>d == #-1.</code> This is broken up into a
+total, rooms, exits, things, programs, players, and garbage. This
+functions much as the <code>@STAT</code> command. (Requires Mucker Level
+3)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="stod">
+<p><code>STOD  &nbsp;&nbsp; ( s -- d )</code></p>
+
+Takes a string and attempts to extract a dbref number from it.
+Recognizes both plain numbers as well as numbers prepended with the
+<code>#</code> sign.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="strcat">
+<p><code>STRCAT  &nbsp;&nbsp; ( s1 s2 -- s )</code></p>
+
+<p>Concatenates two strings <code>s1</code> and <code>s2</code> and
+pushes the result <code>s = s1s2</code> onto the stack.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="strcmp">
+<p><code>STRCMP  &nbsp;&nbsp; ( s1 s2 -- i )</code></p>
+
+<p>Compares strings <code>s1</code> and <code>s2,</code> and returns
+<code>i</code> as <code>0</code> if they are equal.  Otherwise,
+<code>STRCMP</code> returns <code>i</code> as the difference between the
+first non-matching character in the strings. For example,
+<code>"a"</code> <code>"z"</code> strcmp returns <code>25.</code> While
+returning <code>0</code> (<code>false</code>) for a match may seem
+counter-intuitive, this arrangement allows the primitive to be used for
+things such as string sorting functions. Unlike STRINGCMP, STRCMP is
+case sensitive. See also <a
+href="#strncmp"><code>STRNCMP.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="strcut">
+<p><code>STRCUT  &nbsp;&nbsp; ( s i -- s1 s2 )</code></p>
+
+<p>Cuts string <code>s</code> after its <code>i</code>'th character. For
+example,</p>
+
+<p><code>
+   &nbsp;&nbsp;   "Foobar" 3 strcut
+</code></p>
+
+<p>returns</p>
+
+<p><code>
+   &nbsp;&nbsp;   "Foo" "bar"
+</code></p>
+
+<p>If <code>i</code> is zero or greater than the length of
+<code>s,</code> returns a null string in the first or second position,
+respectively.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="string_">
+<p><code>STRING?  &nbsp;&nbsp; ( x -- i )</code></p>
+
+<p>Returns true if <code>x</code> is a string.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="stringcmp">
+<p><code>STRINGCMP  &nbsp;&nbsp; ( s1 s2 -- i )</code></p>
+
+<p>Compares strings <code>s1</code> and <code>s2.</code> Returns
+<code>i</code> as <code>0</code> if they are equal, otherwise returns
+<code>i</code> as the difference between the first non-matching
+character in the strings.  For example, <code>"a" "z"</code> stringcmp
+returns <code>25.</code>  This function is not case sensitive, unlike
+<code>STRCMP.</code>  See also <a
+href="#strncmp"><code>STRNCMP.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="stringpfx">
+<p><code>STRINGPFX  &nbsp;&nbsp; ( s s2 -- i )</code></p>
+
+<p>Returns <code>1</code> if <code>s2</code> is a prefix of
+<code>s.</code> Case insensitive. Returns <code>0</code> if
+<code>s2</code> is <em>not</em> a prefix of <code>s.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="strip">
+<p><code>STRIP  &nbsp;&nbsp; ( s -- s )</code></p>
+
+<p>This is a built in <code>$define.</code> It is interpreted as
+<code>striplead striptail</code> It strips the spaces from both ends of
+a string.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="striplead">
+<p><code>STRIPLEAD  &nbsp;&nbsp; ( s -- s )</code></p>
+
+<p>Strips leading spaces from the given string.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="striptail">
+<p><code>STRIPTAIL  &nbsp;&nbsp; ( s -- s )</code></p>
+
+<p>Strips trailing spaces from the given string.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="strlen">
+<p><code>STRLEN  &nbsp;&nbsp; ( s -- i )</code></p>
+
+<p>Returns the length of string <code>s.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="strncmp">
+<p><code>STRNCMP  &nbsp;&nbsp; ( s1 s2 i -- i' )</code></p>
+
+<p>Compares the first <code>i</code> characters in strings
+<code>s1</code> and <code>s2.</code> Return value is like
+<code>STRCMP.</code> See also <code>STRINGCMP.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="strtof">
+<p><code>STRTOF  &nbsp;&nbsp; ( s -- f )</code></p>
+
+<p>Converts string <code>s</code> to a floating point number.
+<code>s</code> may be in the format <code>xxx.yyy</code> or
+<code>xxx.yyyEzz.</code> See also <code>FTOSTR.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="subst">
+<p><code>SUBST  &nbsp;&nbsp; ( s1 s2 s3 -- s )</code></p>
+
+<p><code>s1</code> is the string to operate on, <code>s2</code> is the
+string to change all occurences of <code>s3</code> into, and
+<code>s</code> is resultant string. For example:</p>
+
+<p><code>
+   &nbsp;&nbsp;   "HEY_YOU_THIS_IS" " " "_" subst
+</code></p>
+
+<p>results in</p>
+
+<p><code>
+   &nbsp;&nbsp;   "HEY YOU THIS IS"
+</code></p>
+
+<p><code>s2</code> and <code>s3</code> may be of any length.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="succ">
+<p><code>SUCC  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Takes object <code>d</code> and returns its success
+(<code>@succ</code>) string field <code>s.</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="swap">
+<p><code>SWAP  &nbsp;&nbsp; ( x y -- y x )</code></p>
+
+<p>Takes objects <code>x</code> and <code>y</code> on the stack and
+reverses their order.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="sysparm">
+<p><code>SYSPARM  &nbsp;&nbsp; ( s -- s )</code></p>
+
+<p>Takes a tuneable system parameter and returns its value as a string.
+For an integer it returns it as a string, a time is returned as a string
+containing the number of seconds, a dbref is returned in standard dbref
+format, and boolean is returned as <code>`yes'</code> or
+<code>`no'</code> Checking an invalid parameter or a parameter with
+higher permissions then the program has will return an empty string.</p>
+
+<p>Parameters available:</p>
+
+<table>
+  <tr>
+    <td><code>(str)  dumpwarn_mesg        </code></td>
+    <td><code>- Message to warn of a coming DB dump</code></td>
+  </tr><tr>
+    <td><code>(str)  deltawarn_mesg       </code></td>
+    <td><code>- Message to warn of a coming delta dump</code></td>
+  </tr><tr>
+    <td><code>(str)  dumpdeltas_mesg      </code></td>
+    <td><code>- Message telling of a delta dump</code></td>
+  </tr><tr>
+    <td><code>(str)  dumping_mesg         </code></td>
+    <td><code>- Message telling of a DB dump</code></td>
+  </tr><tr>
+    <td><code>(str)  dumpdone_mesg        </code></td>
+    <td><code>- Message notifying a dump is done</code></td>
+  </tr><tr>
+    <td><code>(str)  penny                </code></td>
+    <td><code>- A single currency</code></td>
+  </tr><tr>
+    <td><code>(str)  pennies              </code></td>
+    <td><code>- Plural currency</code></td>
+  </tr><tr>
+    <td><code>(str)  cpenny               </code></td>
+    <td><code>- Capitolized currency</code></td>
+  </tr><tr>
+    <td><code>(str)  cpennies             </code></td>
+    <td><code>- Capitolized plural currency</code></td>
+  </tr><tr>
+    <td><code>(str)  muckname             </code></td>
+    <td><code>- The name of the MUCK</code></td>
+  </tr><tr>
+    <td><code>(str)  rwho_passwd          </code></td>
+    <td><code>- Password for RWHO servers (Wizbit only)</code></td>
+  </tr><tr>
+    <td><code>(str)  rwho_server          </code></td>
+    <td><code>- RWHO server to connect to (Wizbit only)</code></td>
+  </tr><tr>
+    <td><code>(str)  huh_mesg             </code></td>
+    <td><code>- Message for invalid commands</code></td>
+  </tr><tr>
+    <td><code>(str)  leave_mesg           </code></td>
+    <td><code>- Message given when QUIT is used</code></td>
+  </tr><tr>
+    <td><code>(str)  register_mesg        </code></td>
+    <td><code>- Message for a failed `create' at login</code></td>
+  </tr><tr>
+    <td><code>(time) rwho_interval        </code></td>
+    <td><code>- Interval between RWHO updates</code></td>
+  </tr><tr>
+    <td><code>(time) dump_interval        </code></td>
+    <td><code>- Interval between dumps</code></td>
+  </tr><tr>
+    <td><code>(time) dump_warntime        </code></td>
+    <td><code>- Warning prior to a dump</code></td>
+  </tr><tr>
+    <td><code>(time) monolithic_interval  </code></td>
+    <td><code>- Max time between full DB dumps</code></td>
+  </tr><tr>
+    <td><code>(time) clean_interval       </code></td>
+    <td><code>- Interval between unused object purges</code></td>
+  </tr><tr>
+    <td><code>(time) aging_time           </code></td>
+    <td><code>- When an object is considered old and unused</code></td>
+  </tr><tr>
+    <td><code>(int)  max_object_endowment </code></td>
+    <td><code>- Max value of an object</code></td>
+  </tr><tr>
+    <td><code>(int)  object_cost          </code></td>
+    <td><code>- Cost to create an object</code></td>
+  </tr><tr>
+    <td><code>(int)  exit_cost            </code></td>
+    <td><code>- Cost to create an exit</code></td>
+  </tr><tr>
+    <td><code>(int)  link_cost            </code></td>
+    <td><code>- Cost to link an exit</code></td>
+  </tr><tr>
+    <td><code>(int)  room_cost            </code></td>
+    <td><code>- Cost to dig a room</code></td>
+  </tr><tr>
+    <td><code>(int)  lookup_cost          </code></td>
+    <td><code>- Cost to lookup a player name</code></td>
+  </tr><tr>
+    <td><code>(int)  max_pennies          </code></td>
+    <td><code>- Max number of pennies a player can own</code></td>
+  </tr><tr>
+    <td><code>(int)  penny_rate           </code></td>
+    <td><code>- Rate for finding pennies</code></td>
+  </tr><tr>
+    <td><code>(int)  start_pennies        </code></td>
+    <td><code>- Starting wealth for new players</code></td>
+  </tr><tr>
+    <td><code>(int)  kill_base_cost       </code></td>
+    <td><code>- Number of pennies for a 100 percent chance</code></td>
+  </tr><tr>
+    <td><code>(int)  kill_min_cost        </code></td>
+    <td><code>- Minimum cost for doing a kill</code></td>
+  </tr><tr>
+    <td><code>(int)  kill_bonus           </code></td>
+    <td><code>- Bonus for a successful kill</code></td>
+  </tr><tr>
+    <td><code>(int)  command_burst_size   </code></td>
+    <td><code>- Maximum number of commands per burst</code></td>
+  </tr><tr>
+    <td><code>(int)  commands_per_time    </code></td>
+    <td><code>- Commands per time slice after burst</code></td>
+  </tr><tr>
+    <td><code>(int)  command_time_msec    </code></td>
+    <td><code>- Time slice length in milliseconds</code></td>
+  </tr><tr>
+    <td><code>(int)  max_delta_objs       </code></td>
+    <td><code>- Max percent of changed objects for a delta</code></td>
+  </tr><tr>
+    <td><code>(int)  max_loaded_objs      </code></td>
+    <td><code>- Max percent of the DB in memory at once</code></td>
+  </tr><tr>
+    <td><code>(int)  max_process_limit    </code></td>
+    <td><code>- Total processes allowed</code></td>
+  </tr><tr>
+    <td><code>(int)  max_plyr_processes   </code></td>
+    <td><code>- Processes allowed for each player</code></td>
+  </tr><tr>
+    <td><code>(int)  max_instr_count      </code></td>
+    <td><code>- Max preempt mode instructions</code></td>
+  </tr><tr>
+    <td><code>(int)  instr_slice          </code></td>
+    <td><code>- Max uninterrupted instructions per time
+    slice</code></td>
+  </tr><tr>
+    <td><code>(int)  mpi_max_commands     </code></td>
+    <td><code>- Max number of uninterruptable MPI commands</code></td>
+  </tr><tr>
+    <td><code>(int)  pause_min            </code></td>
+    <td><code>- Pause between input and output servicing</code></td>
+  </tr><tr>
+    <td><code>(int)  free_frames_pool     </code></td>
+    <td><code>- Number of program frames pre-allocated</code></td>
+  </tr><tr>
+    <td><code>(int)  listen_mlev          </code></td>
+    <td><code>- Minimum Mucker level for _listen programs</code></td>
+  </tr><tr>
+    <td><code>(ref)  player_start         </code></td>
+    <td><code>- The home for players without a home</code></td>
+  </tr><tr>
+    <td><code>(bool) use_hostnames        </code></td>
+    <td><code>- Do reverse domain name lookup</code></td>
+  </tr><tr>
+    <td><code>(bool) log_commands         </code></td>
+    <td><code>- The server logs commands (Wizbit only)</code></td>
+  </tr><tr>
+    <td><code>(bool) log_failed_commands  </code></td>
+    <td><code>- The server logs failed commands (Wizbit
+    only)</code></td>
+  </tr><tr>
+    <td><code>(bool) log_programs         </code></td>
+    <td><code>- The server logs programs (Wizbit only)</code></td>
+  </tr><tr>
+    <td><code>(bool) dbdump_warning       </code></td>
+    <td><code>- Warn about coming DB dumps</code></td>
+  </tr><tr>
+    <td><code>(bool) deltadump_warning    </code></td>
+    <td><code>- Warn about coming delta dumps</code></td>
+  </tr><tr>
+    <td><code>(bool) periodic_program_purge </code></td>
+    <td><code>- Purge unused programs from memory</code></td>
+  </tr><tr>
+    <td><code>(bool) support_rwho         </code></td>
+    <td><code>- Use RWHO server</code></td>
+  </tr><tr>
+    <td><code>(bool) secure_who           </code></td>
+    <td><code>- WHO works only in command mode</code></td>
+  </tr><tr>
+    <td><code>(bool) who_doing            </code></td>
+    <td><code>- Server support for @doing</code></td>
+  </tr><tr>
+    <td><code>(bool) realms_control       </code></td>
+    <td><code>- Support for realm wizzes</code></td>
+  </tr><tr>
+    <td><code>(bool) allow_listeners      </code></td>
+    <td><code>- Allow listeners</code></td>
+  </tr><tr>
+    <td><code>(bool) allow_listeners_obj  </code></td>
+    <td><code>- Objects can be listeners</code></td>
+  </tr><tr>
+    <td><code>(bool) allow_listeners_env  </code></td>
+    <td><code>- Listeners can be up the environment</code></td>
+  </tr><tr>
+    <td><code>(bool) allow_zombies        </code></td>
+    <td><code>- Zombie objects allowed</code></td>
+  </tr><tr>
+    <td><code>(bool) wiz_vehicles         </code></td>
+    <td><code>- Only wizzes can make vehicles</code></td>
+  </tr><tr>
+    <td><code>(bool) force_mlev1_name_notify </code></td>
+    <td><code>- M1 programs forced to show name on notify</code></td>
+  </tr><tr>
+    <td><code>(bool) restrict_kill        </code></td>
+    <td><code>- Can only kill KILL_OK players</code></td>
+  </tr><tr>
+    <td><code>(bool) registration         </code></td>
+    <td><code>- Only wizzes can create players</code></td>
+  </tr><tr>
+    <td><code>(bool) teleport_to_player   </code></td>
+    <td><code>- Allow use of exits linked to players</code></td>
+  </tr><tr>
+    <td><code>(bool) secure_teleport      </code></td>
+    <td><code>- Check teleport permissions for personal
+    exits</code></td>
+  </tr><tr>
+    <td><code>(bool) exit_darking         </code></td>
+    <td><code>- Players can set exits dark</code></td>
+  </tr><tr>
+    <td><code>(bool) thing_darking        </code></td>
+    <td><code>- Players can set objects dark</code></td>
+  </tr><tr>
+    <td><code>(bool) dark_sleepers        </code></td>
+    <td><code>- Sleepers are effectively dark</code></td>
+  </tr><tr>
+    <td><code>(bool) who_hides_dark       </code></td>
+    <td><code>- Dark players are hidden (Wizbit only)</code></td>
+  </tr><tr>
+    <td><code>(bool) compatible_priorities </code></td>
+    <td><code>- Backwards compatibility for exit priorities</code></td>
+  </tr><tr>
+    <td><code>(bool) do_mpi_parsing       </code></td>
+    <td><code>- Parse MPI strings in messages</code></td>
+  </tr><tr>
+    <td><code>(bool) look_propqueues      </code></td>
+    <td><code>- Look triggers _lookq propqueue</code></td>
+  </tr><tr>
+    <td><code>(bool) lock_envcheck        </code></td>
+    <td><code>- Locks will check the environment</code></td>
+  </tr><tr>
+    <td><code>(bool) diskbase_propvals    </code></td>
+    <td><code>- Allow diskbasing of property values</code></td>
+  </tr>
+</table>
+
+<a name="systime">
+<p><code>SYSTIME  &nbsp;&nbsp; ( -- i )</code></p>
+
+<p>Returns the number of second from Jan 1, 1970. This is compatible
+with the system timestamps and may be broken down into useful values
+through `timesplit'.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="t">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="tan">
+<p><code>TAN  &nbsp;&nbsp; ( f -- f' )</code></p>
+
+<p>Returns the tangent of <code>f.</code> Operates in the range of
+<code>-pi/4</code> and <code>pi/4.</code>&nbsp; (fb6.0+) [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="testlock">
+<p><code>TESTLOCK  &nbsp;&nbsp; ( d l -- i )</code></p>
+
+<p>Tests the player dbref against the given lock.  If the test was
+successful, then this returns a <code>1.</code>  If the test failed,
+then this returns a <code>0.</code> See also <a
+href="#lock_"><code>LOCK?,</code></a> <a
+href="#parselock"><code>PARSELOCK,</code></a> <a
+href="#unparselock"><code>UNPARSELOCK,</code></a> <a
+href="#prettylock"><code>PRETTYLOCK,</code></a> <a
+href="#getlockstr"><code>GETLOCKSTR,</code></a> <a
+href="#setlockstr"><code>SETLOCKSTR,</code> and <a
+href="#locked_"><code>LOCKED?</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="textattr">
+<p><code>TEXTATTR  &nbsp; ( s1 s2 -- s3 ) </code></p>
+
+<p>Takes plain text string <code>s1</code> and adds color and
+formmatting codes specified in string <code>s2,</code> returning the
+enhanced string as <code>s3.</code> The attributes specified in
+<code>s2</code> should be a comma-separated list of attribute names. For
+example: </p>
+
+<p><code>
+ &nbsp; "WARNING!" "bold,red" textattr me @ swap notify
+</code></p>
+
+<p>(fb6.0+)&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="then">
+<p><code>THEN</code> &nbsp;&nbsp; See <a href="#if"><code>IF</code></a>
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="thing?">
+<p><code>THING?  &nbsp;&nbsp; ( d -- i )</code></p>
+
+<p>Returns <code>i</code> as <code>1</code> if object <code>d</code> is
+a thing, otherwise returns <code>i</code> as <code>0.</code> See also <a
+href="#player_"><code>PLAYER?,</code></a> <a
+href="#program_"><code>PROGRAM?,</code></a> <a
+href="#room_"><code>ROOM?,</code></a> <a
+href="#exit_"><code>EXIT?,</code></a> <a
+href="#ok_"><code>OK?.</code></a>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="time">
+<p><code>TIME  &nbsp;&nbsp; ( -- s m h )</code></p>
+
+<p>Returns the time of day as integers on the stack, seconds, then
+minutes, then hours.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="timefmt">
+<p><code>TIMEFMT  &nbsp;&nbsp; ( s i -- s )</code></p>
+
+<p>Takes a format string and a <code>SYSTIME</code> integer and returns
+a string formatted with the time. The format string is
+<code>ASCII</code> text with formatting commands:</p>
+
+   <code>&nbsp; &nbsp; %% -- "%"</code><br>
+   <code>&nbsp; &nbsp; %a -- abbreviated weekday name.</code><br>
+   <code>&nbsp; &nbsp; %A -- full weekday name.</code><br>
+   <code>&nbsp; &nbsp; %b -- abbreviated month name.</code><br>
+   <code>&nbsp; &nbsp; %B -- full month name.</code><br>
+   <code>&nbsp; &nbsp; %C -- "%A %B %e, %Y"</code><br>
+   <code>&nbsp; &nbsp; %c -- "%x %X"</code><br>
+   <code>&nbsp; &nbsp; %D -- "%m/%d/%y"</code><br>
+   <code>&nbsp; &nbsp; %d -- month day, "01" - "31"</code><br>
+   <code>&nbsp; &nbsp; %e -- month day, " 1" - "31"</code><br>
+   <code>&nbsp; &nbsp; %h -- "%b"</code><br>
+   <code>&nbsp; &nbsp; %H -- hour, "00" - "23"</code><br>
+   <code>&nbsp; &nbsp; %I -- hour, "01" - "12"    </code><br>
+   <code>&nbsp; &nbsp; %j -- year day, "001" - "366"</code><br>
+   <code>&nbsp; &nbsp; %k -- hour, " 0" - "23"</code><br>
+   <code>&nbsp; &nbsp; %l -- hour, " 1" - "12"</code><br>
+   <code>&nbsp; &nbsp; %M -- minute, "00" - "59"</code><br>
+   <code>&nbsp; &nbsp; %m -- month, "01" - "12"</code><br>
+   <code>&nbsp; &nbsp; %p -- "AM" or "PM"</code><br>
+   <code>&nbsp; &nbsp; %R -- "%H:%M"</code><br>
+   <code>&nbsp; &nbsp; %r -- "%I:%M:%S %p"</code><br>
+   <code>&nbsp; &nbsp; %S -- seconds, "00" - "59"</code><br>
+   <code>&nbsp; &nbsp; %T -- "%H:%M:%S"</code><br>
+   <code>&nbsp; &nbsp; %U -- week number of the year. "00" - "52"</code><br>
+   <code>&nbsp; &nbsp; %w -- week day number, "0" - "6"</code><br>
+   <code>&nbsp; &nbsp; %W -- week# of year, starting on a monday, "00" -
+   "52"</code><br>
+   <code>&nbsp; &nbsp; %X -- "%H:%M:%S"</code><br>
+   <code>&nbsp; &nbsp; %x -- "%m/%d/%y"</code><br>
+   <code>&nbsp; &nbsp; %y -- year, "00" - "99"</code><br>
+   <code>&nbsp; &nbsp; %Y -- year, "1900" - "2155"</code><br>
+   &nbsp; &nbsp; %Z -- Time zone. "GMT", "EDT", "PST", etc.<br>
+
+<a name="timesplit">
+<p><code>TIMESPLIT  &nbsp;&nbsp; ( i -- is im ih id im iy iw iyd )</code></p>
+
+<p>Splits a systime value into <code>8</code> values in the following
+order: seconds, minutes, hours, monthday, month, year, weekday, yearday.
+Weekday starts with sunday as <code>1,</code> and yearday is the day of
+the year (1-366).&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="timestamps">
+<p><code>TIMESTAMPS  &nbsp;&nbsp; ( d -- i i2 i3 i4 )</code></p>
+
+<p>Returns the following for a program, the time created
+(<code>i</code>), the time last modified (<code>i2</code>), the time
+last used (<code>i3</code>), and the number of uses(<code>i4</code>) for
+any object.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="tolower">
+<p><code>TOLOWER  &nbsp;&nbsp; ( s -- s )</code></p>
+
+<p>Takes a string and returns it with all the letters in
+lowercase.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="toupper">
+<p><code>TOUPPER  &nbsp;&nbsp; ( s -- s )</code></p>
+
+<p>Takes a string and returns it with all the letters in
+uppercase.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="tread">
+<p><code>TREAD  &nbsp;&nbsp; ( i -- i | s i )</code></p>
+
+<p>Acts like a timed <code>READ</code> call.  If the user does not
+provide input within the given number of seconds, the <code>READ</code>
+call will time-out and return a failure to the program, otherwise it
+returns a success and the string value entered.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="trig">
+<p><code>TRIG  &nbsp;&nbsp; ( -- d )</code></p>
+
+<p>Returns the dbref of the original trigger.&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+
+<a name="u">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="unparselock">
+<p><code>UNPARSELOCK  &nbsp;&nbsp; ( l -- s )</code></p>
+
+<p>Unparses a lock into a string fit for program editing.  Also see
+<a href="#lock_"><code>LOCK?,</code></a>
+<a href="#parselock"><code>PARSELOCK,</code></a>
+<a href="#prettylock"><code>PRETTYLOCK,</code></a>
+<a href="#testlock"><code>TESTLOCK,</code></a>
+<a href="#getlockstr"><code>GETLOCKSTR,</code></a>
+<a href="#setlockstr"><code>SETLOCKSTR,</code></a> and
+<a href="#locked_"><code>LOCKED?.</code></a>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="unparseobj">
+<p><code>UNPARSEOBJ  &nbsp;&nbsp; ( d -- s )</code></p>
+
+<p>Returns the name-and-flag string for an object. It always has the
+dbref and flag string after the name, even if the player doesn't control
+the object. For example: <code>"One(#1PW)"</code>&nbsp; [<a
+href="#top">top</a>]</p><hr>
+
+<a name="until">
+<p><code>UNTIL  &nbsp;&nbsp; ( i -- )</code></p>
+
+<p>If the value on top of the stack is false, then it jumps execution
+back to the instruction afer the matching <code>BEGIN</code> statement.
+(<code>BEGIN-UNTIL,</code> <code>BEGIN-REPEAT,</code> and
+<code>IF-ELSE-THEN</code>'s can all be nested as much as you want.) If
+the value is true, it exits the loop, and executes the next instruction,
+following the <code>UNTIL.</code> Marks the end of the current loop.
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="v">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="var">
+<p><code>VAR &lt;name&gt;</code></p>
+
+<p>VAR is not a `true' primitive in that it must always be used outside words and does not alter the stack in any way. When the compiler sees a <code>VAR</code> statement, it allows the use of <code>&lt;name&gt;</code> as a variable in all words sequentially defined after the var declaration. See also
+<a href="#code"><code>@,</code></a>
+<a href="#variable"><code>VARIABLE,</code></a> and
+<a href="#localvar"><code>LOCALVAR.</code></a>
+[<a href="#top">top</a>]</p><hr>
+
+<a name="variable">
+<p><code>VARIABLE  &nbsp;&nbsp; ( i -- v )</code></p>
+
+<p>Converts integer <code>i</code> to variable reference <code>v.</code>
+Of the pre-defined variables, <code>me</code> corresponds to integer
+<code>0,</code> <code>loc</code> to <code>1,</code> and
+<code>trigger</code> to 2. Thus:</p>
+
+<p><code>
+  &nbsp;&nbsp;   me @
+</code></p>
+
+<p>and</p>
+
+<p><code>
+  &nbsp;&nbsp;   0 variable @
+</code></p>
+
+<p>will do the same thing (return the user's dbref). User-defined
+variables are numbered sequentially starting at <code>3</code> by the
+compiler. Note that these variable numbers can be used even if variables
+have not been formally declared, making implementation of such things as
+arrays conveniently easy. See
+<a href="#fetch"><code>@,</code></a>
+<a href="#store"><code>!,</code></a> and
+<a href="#var"><code>VAR</code></a>
+&nbsp; [<a href="#top">top</a>]</p><hr>
+
+<a name="version">
+<p><code>VERSION  &nbsp;&nbsp; ( -- s )</code></p>
+
+<p>Returns the version of this code in a string. "Muck2.2fb6.0",
+currently.&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+<a name="w">
+<a name="x">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+
+<a name="xyz_to_polor">
+<p><code>XYZ_TO_POLAR  &nbsp; ( fx fy fz -- fr ft fp )</code></p>
+
+<p>This converts the <code>XYZ</code> coordinate <code>(fx, fy, fz)</code>
+to the spherical polar coord <code>(fr, ft, fp).</code> (fb6.0+) &nbsp;
+[<a href="#top">top</a>]</p><hr>
+
+
+
+<a name="y">
+<a name="z">
+<p><center><nobr>
+[<a href="#a">A</a>
+| <a href="#b">B</a>
+| <a href="#c">C</a>
+| <a href="#d">D</a>
+| <a href="#e">E</a>
+| <a href="#f">F</a>
+| <a href="#g">G</a>
+| <a href="#h">H</a>
+| <a href="#i">I</a>
+| <a href="#j">J</a>
+| <a href="#k">K</a>
+| <a href="#l">L</a>
+| <a href="#m">M</a>
+| <a href="#n">N</a>
+| <a href="#o">O</a>
+| <a href="#p">P</a>
+| <a href="#q">Q</a>
+| <a href="#r">R</a>
+| <a href="#s">S</a>
+| <a href="#t">T</a>
+| <a href="#u">U</a>
+| <a href="#v">V</a>
+| <a href="#w">W</a>
+| <a href="#x">X</a>
+| <a href="#y">Y</a>
+| <a href="#z">Z</a>
+]</nobr></center></p>
+
+<a name="while">
+<p><code>WHILE  &nbsp;&nbsp; ( i -- )</code></p>
+
+<p>If the value on top of the stack is false, then this causes execution
+to jump to the instruction after the <code>UNTIL</code> or
+<code>REPEAT</code> for the current loop.  If the value is true,
+however, execution falls through to the instruction after the
+<code>WHILE.</code>&nbsp; [<a href="#top">top</a>]</p><hr>
+
+
+  <center>
+  <a href="mufcomp.html">prev</a>|
+  <a href="toc.html">toc</a>|
+  <a href="#top">top</a>|
+  <a href="muflibref.html">next</a>
+  </center>
+
+  </td>
+  <td width="20%">&nbsp;</tc>
+  </table>
+</body>
+<!--
+(fb6.0+)
+-->
+</html>
